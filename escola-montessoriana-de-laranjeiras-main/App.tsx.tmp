@@ -1,0 +1,67 @@
+import React from 'react';
+import { Navbar } from './components/Navbar';
+import { Hero } from './components/Hero';
+import { Philosophy } from './components/Philosophy';
+import { Practice } from './components/Practice';
+import { Gallery } from './components/Gallery';
+import { Testimonials } from './components/Testimonials';
+import { ContactForm } from './components/ContactForm';
+import { MapPin, Phone, Instagram } from 'lucide-react';
+
+const App: React.FC = () => {
+  return (
+    <div className="min-h-screen flex flex-col font-sans text-montessori-dark">
+      <Navbar />
+      
+      <main className="flex-grow">
+        <Hero />
+        <Philosophy />
+        <Practice />
+        <Gallery />
+        <Testimonials />
+        <ContactForm />
+      </main>
+
+      <footer className="bg-montessori-green text-white py-16 border-t border-white/10">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-3 gap-12">
+          
+          {/* Brand */}
+          <div className="space-y-4">
+            <h3 className="font-serif text-2xl tracking-wide">Escola Montessoriana <br/>de Laranjeiras</h3>
+            <p className="text-gray-400 text-sm max-w-xs">
+              Excelência acadêmica e humana. Construindo o futuro, uma criança de cada vez.
+            </p>
+          </div>
+
+          {/* Contact */}
+          <div className="space-y-4">
+            <h4 className="font-bold uppercase tracking-widest text-montessori-gold text-sm">Contato</h4>
+            <div className="flex items-start space-x-3 text-gray-300">
+              <MapPin size={20} className="mt-1 shrink-0" />
+              <span>Rua das Laranjeiras, 540<br/>Laranjeiras, Rio de Janeiro - RJ</span>
+            </div>
+            <div className="flex items-center space-x-3 text-gray-300">
+              <Phone size={20} />
+              <span>+55 (21) 96455-1080</span>
+            </div>
+          </div>
+
+          {/* Social */}
+          <div className="space-y-4">
+            <h4 className="font-bold uppercase tracking-widest text-montessori-gold text-sm">Acompanhe</h4>
+            <a href="https://www.instagram.com/escola_montessoriana/" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-3 text-gray-300 hover:text-white transition-colors">
+              <Instagram size={20} />
+              <span>@escola_montessoriana</span>
+            </a>
+            <p className="text-xs text-gray-500 mt-8">
+              © {new Date().getFullYear()} Escola Montessoriana de Laranjeiras. Todos os direitos reservados.
+            </p>
+          </div>
+
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+export default App;
