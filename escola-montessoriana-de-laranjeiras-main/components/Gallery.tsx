@@ -50,7 +50,7 @@ export const Gallery: React.FC = () => {
             }}
           />
           <div className="absolute bottom-0 left-0 p-3 sm:p-4 bg-white/90 m-3 sm:m-4 rounded-sm border-l-4 border-yellow-400 min-w-0">
-            <p className="font-serif text-montessori-green font-semibold text-base break-words">Atividades</p>
+            <p className="font-serif text-montessori-green font-semibold text-base break-words">Atividades lúdicas</p>
           </div>
         </div>
         <div className="lg:col-span-2 relative overflow-hidden rounded-sm group h-56 sm:h-64 lg:min-h-[250px] bg-gray-200">
@@ -92,7 +92,7 @@ export const Gallery: React.FC = () => {
         <div className="lg:col-span-2 relative overflow-hidden rounded-sm group h-56 sm:h-64 lg:min-h-[250px] bg-gray-200">
            <img 
             src="/images/espaco-2.png" 
-            alt="Música e atividades ao ar livre com as crianças" 
+            alt="Musicalização com as crianças"
             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 min-h-[200px] sm:min-h-[250px]"
             loading="lazy"
             onError={(e) => {
@@ -104,7 +104,7 @@ export const Gallery: React.FC = () => {
             }}
           />
           <div className="absolute bottom-0 left-0 p-3 sm:p-4 bg-white/90 m-3 sm:m-4 rounded-sm border-l-4 border-yellow-400 min-w-0">
-            <p className="font-serif text-montessori-green font-semibold text-base break-words">Atividades ao ar livre</p>
+            <p className="font-serif text-montessori-green font-semibold text-base break-words">Musicalização</p>
           </div>
         </div>
       </div>
