@@ -9,7 +9,7 @@ const WhatsAppIcon = ({ size = 20, className = '' }: { size?: number; className?
 );
 
 export const Hero: React.FC = () => {
-  const bgImageUrl = '/images/hero-capoeira.jpg';
+  const bgImageUrl = '/images/hero-criancas.jpg';
 
   return (
     <div className="relative min-h-screen w-full flex items-center justify-center md:items-start md:pt-[8.5rem] md:justify-center md:pb-16">
