@@ -7,6 +7,8 @@ import baileys, {
 } from '@whiskeysockets/baileys';
 import { carregarConfig, CAMINHOS } from './config.js';
 import { carregarModelos, prepararComparador, reconhecerAlunos } from './reconhecimento.js';
+import { hashPerceptual } from './hash.js';
+import { carregarHistorico, motivoBloqueio, registrarEnvio, enviosHoje } from './historico.js';
 
 const makeWASocket = baileys.default ?? baileys;
 const logger = pino({ level: 'silent' });
@@ -17,6 +19,8 @@ const alunosPorNome = new Map(config.alunos.map((a) => [a.nome, a]));
 // Fila do modo revisão: id -> { buffer, alunos, turma, criadoEm }
 const pendentes = new Map();
 let proximoId = 1;
+
+carregarHistorico(config.diasHistoricoFotos);
 
 console.log('Carregando modelos de reconhecimento facial...');
 await carregarModelos();
@@ -116,24 +120,53 @@ async function tratarMensagem(sock, msg) {
     return;
   }
 
+  // Filtra fotos repetidas/parecidas e famílias que já atingiram o limite diário
+  const hash = hashPerceptual(buffer);
+  const enviaveis = [];
+  const bloqueados = [];
+  for (const r of reconhecidos) {
+    const motivo = motivoBloqueio(alunosPorNome.get(r.aluno).grupoFamilia, hash, config);
+    if (motivo) bloqueados.push({ ...r, motivo });
+    else enviaveis.push(r);
+  }
+
+  if (enviaveis.length === 0) {
+    const lista = bloqueados.map((b) => `${nomeExibicao(b.aluno)} (${b.motivo})`).join(', ');
+    console.log(`Foto não será enviada: ${lista}.`);
+    if (config.grupoAdmin) {
+      await sock.sendMessage(config.grupoAdmin, {
+        text: `⏭️ Uma foto da turma não foi encaminhada — ${lista}.`,
+      });
+    }
+    return;
+  }
+
   if (config.modoEnvio === 'automatico') {
-    await enviarParaFamilias(sock, buffer, reconhecidos);
+    const { pulados } = await enviarParaFamilias(sock, buffer, hash, enviaveis);
+    if (pulados.length > 0 && config.grupoAdmin) {
+      await sock.sendMessage(config.grupoAdmin, {
+        text: `⏭️ Foto não enviada para: ${pulados.map((p) => `${p.nome} (${p.motivo})`).join(', ')}.`,
+      });
+    }
     return;
   }
 
   // modo revisão
   const id = proximoId++;
-  pendentes.set(id, { buffer, alunos: reconhecidos, turma: origem, criadoEm: Date.now() });
-  const lista = reconhecidos
-    .map((r) => `• ${nomeExibicao(r.aluno)} (confiança ${confiancaPercentual(r.distancia)}%)`)
-    .join('\n');
-  await sock.sendMessage(config.grupoAdmin, {
-    image: buffer,
-    caption:
-      `🔎 Foto #${id} — reconheci:\n${lista}\n\n` +
-      `Responda *ok ${id}* para enviar às famílias ou *nao ${id}* para descartar.`,
-  });
-  console.log(`Foto #${id} aguardando revisão (${reconhecidos.map((r) => r.aluno).join(', ')}).`);
+  pendentes.set(id, { buffer, hash, alunos: enviaveis, turma: origem, criadoEm: Date.now() });
+  let caption =
+    `🔎 Foto #${id} — reconheci:\n` +
+    enviaveis
+      .map((r) => `• ${nomeExibicao(r.aluno)} (confiança ${confiancaPercentual(r.distancia)}%)`)
+      .join('\n');
+  if (bloqueados.length > 0) {
+    caption +=
+      `\n\nNão será enviada para:\n` +
+      bloqueados.map((b) => `• ${nomeExibicao(b.aluno)} — ${b.motivo}`).join('\n');
+  }
+  caption += `\n\nResponda *ok ${id}* para enviar às famílias ou *nao ${id}* para descartar.`;
+  await sock.sendMessage(config.grupoAdmin, { image: buffer, caption });
+  console.log(`Foto #${id} aguardando revisão (${enviaveis.map((r) => r.aluno).join(', ')}).`);
 }
 
 async function tratarComandoAdmin(sock, texto) {
@@ -149,8 +182,15 @@ async function tratarComandoAdmin(sock, texto) {
     }
     pendentes.delete(id);
     if (comando === 'ok') {
-      const enviados = await enviarParaFamilias(sock, pendente.buffer, pendente.alunos);
-      await responder(`✅ Foto #${id} enviada para: ${enviados.join(', ')}.`);
+      const { enviados, pulados } = await enviarParaFamilias(sock, pendente.buffer, pendente.hash, pendente.alunos);
+      let resposta =
+        enviados.length > 0
+          ? `✅ Foto #${id} enviada para: ${enviados.join(', ')}.`
+          : `⏭️ Foto #${id}: nenhum envio feito.`;
+      if (pulados.length > 0) {
+        resposta += `\nNão enviada para: ${pulados.map((p) => `${p.nome} (${p.motivo})`).join(', ')}.`;
+      }
+      await responder(resposta);
     } else {
       await responder(`🗑️ Foto #${id} descartada.`);
     }
@@ -179,11 +219,15 @@ async function tratarComandoAdmin(sock, texto) {
   }
 
   if (comando === 'status') {
+    const totalHoje = config.alunos.reduce((soma, a) => soma + enviosHoje(a.grupoFamilia), 0);
     await responder(
       `Modo: ${config.modoEnvio}\n` +
         `Turmas monitoradas: ${config.gruposTurma.length}\n` +
         `Alunos configurados: ${config.alunos.length}\n` +
-        `Fotos pendentes: ${pendentes.size}`
+        `Fotos pendentes: ${pendentes.size}\n` +
+        `Fotos enviadas hoje: ${totalHoje}\n` +
+        `Limite diário por família: ${config.limiteDiarioPorFamilia === 0 ? 'desativado' : config.limiteDiarioPorFamilia}\n` +
+        `Detecção de fotos parecidas: ${config.limiarFotoParecida < 0 ? 'desativada' : `ativa (limiar ${config.limiarFotoParecida})`}`
     );
     return;
   }
@@ -200,18 +244,27 @@ async function tratarComandoAdmin(sock, texto) {
   }
 }
 
-async function enviarParaFamilias(sock, buffer, reconhecidos) {
+async function enviarParaFamilias(sock, buffer, hash, reconhecidos) {
   const enviados = [];
+  const pulados = [];
   for (const { aluno } of reconhecidos) {
     const dados = alunosPorNome.get(aluno);
+    // Reverifica na hora do envio: outra foto pode ter sido aprovada nesse meio-tempo
+    const motivo = motivoBloqueio(dados.grupoFamilia, hash, config);
+    if (motivo) {
+      pulados.push({ nome: nomeExibicao(aluno), motivo });
+      console.log(`Envio pulado para ${nomeExibicao(aluno)}: ${motivo}.`);
+      continue;
+    }
     await sock.sendMessage(dados.grupoFamilia, {
       image: buffer,
       caption: config.legendaEnvio,
     });
+    registrarEnvio(dados.grupoFamilia, hash);
     enviados.push(nomeExibicao(aluno));
     console.log(`Foto enviada para o grupo da família de ${nomeExibicao(aluno)}.`);
   }
-  return enviados;
+  return { enviados, pulados };
 }
 
 function nomeExibicao(nome) {

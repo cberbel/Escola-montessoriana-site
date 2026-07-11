@@ -2,6 +2,9 @@
   "modoEnvio": "revisao",
   "distanciaMaxima": 0.45,
   "legendaEnvio": "📸 Fotinha de hoje na escola 💚",
+  "limiteDiarioPorFamilia": 5,
+  "limiarFotoParecida": 10,
+  "diasHistoricoFotos": 7,
   "grupoAdmin": "COLE_AQUI_O_JID_DO_GRUPO_DE_REVISAO@g.us",
   "gruposTurma": [
     "COLE_AQUI_O_JID_DO_GRUPO_INTERNO_DA_TURMA@g.us"

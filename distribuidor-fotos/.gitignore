@@ -13,5 +13,8 @@ modelos/
 # Cache de descritores faciais gerado pelo treino
 descritores.json
 
+# Histórico de envios (controle de fotos repetidas e limite diário)
+historico.json
+
 node_modules/
 *.log

@@ -10,6 +10,7 @@ export const CAMINHOS = {
   modelos: path.join(raiz, 'modelos'),
   fotosReferencia: path.join(raiz, 'fotos-referencia'),
   descritores: path.join(raiz, 'descritores.json'),
+  historico: path.join(raiz, 'historico.json'),
   auth: path.join(raiz, 'auth'),
 };
 
@@ -54,5 +55,9 @@ export function carregarConfig() {
 
   config.distanciaMaxima = config.distanciaMaxima ?? 0.45;
   config.legendaEnvio = config.legendaEnvio ?? '📸 Fotinha de hoje na escola 💚';
+  // 0 desativa o limite diário; -1 desativa a detecção de fotos parecidas
+  config.limiteDiarioPorFamilia = config.limiteDiarioPorFamilia ?? 5;
+  config.limiarFotoParecida = config.limiarFotoParecida ?? 10;
+  config.diasHistoricoFotos = config.diasHistoricoFotos ?? 7;
   return config;
 }

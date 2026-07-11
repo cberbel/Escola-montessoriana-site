@@ -1,5 +1,9 @@
 # Distribuidor de Fotos — WhatsApp
 
+> 👉 Para instalar e operar sem conhecimento técnico, siga o
+> **[GUIA-INSTALACAO.md](GUIA-INSTALACAO.md)**. Este README é a referência
+> técnica completa.
+
 Aplicação que monitora os **grupos internos de cada turma** no WhatsApp, reconhece
 os alunos nas fotos postadas pelas professoras e encaminha cada foto para o
 **grupo da família** correspondente.
@@ -90,6 +94,14 @@ cp config.exemplo.json config.json
   reconhecido. Menor = mais rigoroso. Comece com `0.45`; se estiver deixando
   de reconhecer alunos, suba para `0.5`; se estiver confundindo alunos,
   desça para `0.4`.
+- `limiteDiarioPorFamilia`: máximo de fotos enviadas a cada grupo de família
+  por dia (padrão `5`; `0` desativa o limite).
+- `limiarFotoParecida`: bloqueia o reenvio de foto igual ou muito parecida
+  com uma já enviada àquela família. É a distância máxima entre os hashes
+  perceptuais (0–64): `0` bloqueia só fotos idênticas, `10` (padrão) pega
+  também recompressões e pequenas edições; `-1` desativa.
+- `diasHistoricoFotos`: por quantos dias o histórico de envios é lembrado
+  para a checagem de fotos repetidas (padrão `7`). Fica em `historico.json`.
 
 ### 3. Fotos de referência dos alunos
 
@@ -142,6 +154,9 @@ escanear o QR de novo a cada reinício.
 - Fotos sem nenhum aluno reconhecido são enviadas ao grupo de administração
   com um aviso, para encaminhamento manual.
 - Uma foto com vários alunos reconhecidos é enviada ao grupo de cada família.
+- Fotos repetidas/parecidas e envios além do limite diário são bloqueados
+  automaticamente por família, com aviso no grupo de administração. O
+  controle usa hash perceptual (dHash) e o histórico em `historico.json`.
 - As fotos pendentes de revisão ficam só na memória: se o programa reiniciar,
   a professora precisa repostar (ou alguém encaminha manualmente).
 - **Nunca versione nem compartilhe** as pastas `auth/` (credenciais da sessão
