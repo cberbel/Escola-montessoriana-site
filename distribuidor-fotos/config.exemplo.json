@@ -1,0 +1,21 @@
+{
+  "modoEnvio": "revisao",
+  "distanciaMaxima": 0.45,
+  "legendaEnvio": "📸 Fotinha de hoje na escola 💚",
+  "grupoAdmin": "COLE_AQUI_O_JID_DO_GRUPO_DE_REVISAO@g.us",
+  "gruposTurma": [
+    "COLE_AQUI_O_JID_DO_GRUPO_INTERNO_DA_TURMA@g.us"
+  ],
+  "alunos": [
+    {
+      "nome": "joao-silva",
+      "nomeExibicao": "João Silva",
+      "grupoFamilia": "COLE_AQUI_O_JID_DO_GRUPO_DA_FAMILIA@g.us"
+    },
+    {
+      "nome": "maria-souza",
+      "nomeExibicao": "Maria Souza",
+      "grupoFamilia": "COLE_AQUI_O_JID_DO_GRUPO_DA_FAMILIA@g.us"
+    }
+  ]
+}

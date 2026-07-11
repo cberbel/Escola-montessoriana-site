@@ -1,0 +1,17 @@
+# Credenciais da sessão do WhatsApp — NUNCA versionar
+auth/
+
+# Configuração real (contém JIDs dos grupos das famílias)
+config.json
+
+# Fotos de referência dos alunos — dados pessoais, ficam só na máquina da escola
+fotos-referencia/
+
+# Modelos de reconhecimento facial (baixados via `npm run modelos`)
+modelos/
+
+# Cache de descritores faciais gerado pelo treino
+descritores.json
+
+node_modules/
+*.log

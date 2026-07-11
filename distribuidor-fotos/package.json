@@ -1,0 +1,23 @@
+{
+  "name": "distribuidor-fotos-whatsapp",
+  "description": "Identifica alunos nas fotos postadas nos grupos internos das turmas e encaminha para o grupo WhatsApp de cada família",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "modelos": "node scripts/baixar-modelos.js",
+    "treinar": "node scripts/treinar.js",
+    "grupos": "node scripts/grupos.js"
+  },
+  "dependencies": {
+    "@tensorflow/tfjs-node": "^4.22.0",
+    "@vladmandic/face-api": "^1.7.15",
+    "@whiskeysockets/baileys": "^6.7.18",
+    "pino": "^9.6.0",
+    "qrcode-terminal": "^0.12.0"
+  }
+}
