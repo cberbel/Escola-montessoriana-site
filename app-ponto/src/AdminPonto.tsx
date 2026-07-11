@@ -37,13 +37,13 @@ export const AdminPonto: React.FC = () => {
   const [autenticado, setAutenticado] = useState(false);
 
   return (
-    <div className="min-h-screen bg-montessori-cream font-sans text-montessori-dark">
-      <header className="bg-montessori-green text-white px-4 py-3 flex items-center justify-between">
+    <div className="min-h-screen bg-ponto-claro font-sans text-ponto-escuro">
+      <header className="bg-ponto-azul text-white px-4 py-3 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <Clock size={22} className="text-montessori-gold" />
+          <Clock size={22} className="text-ponto-dourado" />
           <span className="font-serif text-lg">Ponto · Administração</span>
         </div>
-        <Link to="/ponto" className="flex items-center gap-1 text-sm text-white/80 hover:text-white">
+        <Link to="/" className="flex items-center gap-1 text-sm text-white/80 hover:text-white">
           <ArrowLeft size={16} /> Relógio de ponto
         </Link>
       </header>
@@ -70,25 +70,25 @@ const Login: React.FC<{ aoEntrar: () => void }> = ({ aoEntrar }) => {
   return (
     <main className="flex items-center justify-center px-4 py-16">
       <form onSubmit={entrar} className="bg-white rounded-2xl shadow-lg p-8 w-full max-w-sm text-center">
-        <KeyRound size={40} className="mx-auto text-montessori-green mb-3" />
+        <KeyRound size={40} className="mx-auto text-ponto-azul mb-3" />
         <h1 className="font-serif text-2xl mb-1">Área restrita</h1>
-        <p className="text-sm text-montessori-stone mb-6">Digite o PIN do administrador.</p>
+        <p className="text-sm text-ponto-cinza mb-6">Digite o PIN do administrador.</p>
         <input
           type="password"
           inputMode="numeric"
           autoFocus
           value={pin}
           onChange={(e) => { setPin(e.target.value); setErro(''); }}
-          className="w-full border-2 border-montessori-stone/30 rounded-lg px-4 py-3 text-center text-2xl tracking-[0.5em] focus:border-montessori-green outline-none"
+          className="w-full border-2 border-ponto-cinza/30 rounded-lg px-4 py-3 text-center text-2xl tracking-[0.5em] focus:border-ponto-azul outline-none"
           maxLength={8}
         />
         {erro && <p className="text-red-600 mt-3">{erro}</p>}
         {obterPinAdmin() === PIN_ADMIN_PADRAO && (
-          <p className="text-xs text-montessori-stone mt-3">
+          <p className="text-xs text-ponto-cinza mt-3">
             Primeiro acesso: o PIN padrão é <span className="font-bold">1234</span>. Troque-o em Configurações.
           </p>
         )}
-        <button className="mt-5 w-full bg-montessori-green text-white font-bold py-3 rounded-xl hover:bg-blue-800 transition-colors">
+        <button className="mt-5 w-full bg-ponto-azul text-white font-bold py-3 rounded-xl hover:bg-blue-800 transition-colors">
           Entrar
         </button>
       </form>
@@ -126,8 +126,8 @@ const Painel: React.FC = () => {
             onClick={() => setAba(a.id)}
             className={`flex items-center gap-2 px-4 py-2 rounded-full font-bold transition-colors ${
               aba === a.id
-                ? 'bg-montessori-green text-white'
-                : 'bg-white text-montessori-dark hover:bg-white/70'
+                ? 'bg-ponto-azul text-white'
+                : 'bg-white text-ponto-escuro hover:bg-white/70'
             }`}
           >
             {a.icone} {a.rotulo}
@@ -192,13 +192,13 @@ const AbaFuncionarios: React.FC<{
   return (
     <section>
       <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
-        <p className="text-montessori-stone">
+        <p className="text-ponto-cinza">
           {ativos} de {LIMITE_FUNCIONARIOS} funcionários ativos
         </p>
         <button
           onClick={() => setCriando(true)}
           disabled={ativos >= LIMITE_FUNCIONARIOS}
-          className="flex items-center gap-2 bg-montessori-green text-white font-bold px-4 py-2 rounded-full hover:bg-blue-800 transition-colors disabled:opacity-40"
+          className="flex items-center gap-2 bg-ponto-azul text-white font-bold px-4 py-2 rounded-full hover:bg-blue-800 transition-colors disabled:opacity-40"
         >
           <Plus size={18} /> Novo funcionário
         </button>
@@ -214,13 +214,13 @@ const AbaFuncionarios: React.FC<{
 
       <div className="bg-white rounded-2xl shadow overflow-hidden">
         {funcionarios.length === 0 ? (
-          <p className="p-6 text-montessori-stone">
+          <p className="p-6 text-ponto-cinza">
             Nenhum funcionário cadastrado. Clique em “Novo funcionário” para começar.
           </p>
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full text-left">
-              <thead className="bg-montessori-cream text-sm uppercase tracking-wide text-montessori-stone">
+              <thead className="bg-ponto-claro text-sm uppercase tracking-wide text-ponto-cinza">
                 <tr>
                   <th className="px-4 py-3">Nome</th>
                   <th className="px-4 py-3">Cargo</th>
@@ -231,7 +231,7 @@ const AbaFuncionarios: React.FC<{
               </thead>
               <tbody>
                 {funcionarios.map((f) => (
-                  <tr key={f.id} className="border-t border-montessori-cream">
+                  <tr key={f.id} className="border-t border-ponto-claro">
                     <td className="px-4 py-3 font-bold">{f.nome}</td>
                     <td className="px-4 py-3">{f.cargo || '—'}</td>
                     <td className="px-4 py-3 tabular-nums">{f.pin}</td>
@@ -248,7 +248,7 @@ const AbaFuncionarios: React.FC<{
                     <td className="px-4 py-3 text-right">
                       <button
                         onClick={() => { setEditando(f); setCriando(false); }}
-                        className="text-montessori-green hover:text-blue-800 p-1"
+                        className="text-ponto-azul hover:text-blue-800 p-1"
                         aria-label={`Editar ${f.nome}`}
                       >
                         <Pencil size={18} />
@@ -289,14 +289,14 @@ const FormFuncionario: React.FC<{
         placeholder="Nome completo"
         value={nome}
         onChange={(e) => setNome(e.target.value)}
-        className="border-2 border-montessori-stone/30 rounded-lg px-3 py-2 focus:border-montessori-green outline-none sm:col-span-2"
+        className="border-2 border-ponto-cinza/30 rounded-lg px-3 py-2 focus:border-ponto-azul outline-none sm:col-span-2"
         autoFocus
       />
       <input
         placeholder="Cargo (opcional)"
         value={cargo}
         onChange={(e) => setCargo(e.target.value)}
-        className="border-2 border-montessori-stone/30 rounded-lg px-3 py-2 focus:border-montessori-green outline-none"
+        className="border-2 border-ponto-cinza/30 rounded-lg px-3 py-2 focus:border-ponto-azul outline-none"
       />
       <input
         placeholder="PIN (4 números)"
@@ -304,14 +304,14 @@ const FormFuncionario: React.FC<{
         inputMode="numeric"
         maxLength={4}
         onChange={(e) => setPin(e.target.value.replace(/\D/g, ''))}
-        className="border-2 border-montessori-stone/30 rounded-lg px-3 py-2 focus:border-montessori-green outline-none tabular-nums"
+        className="border-2 border-ponto-cinza/30 rounded-lg px-3 py-2 focus:border-ponto-azul outline-none tabular-nums"
       />
       {erro && <p className="text-red-600 sm:col-span-4">{erro}</p>}
       <div className="flex gap-2 sm:col-span-4">
-        <button className="bg-montessori-green text-white font-bold px-5 py-2 rounded-full hover:bg-blue-800 transition-colors">
+        <button className="bg-ponto-azul text-white font-bold px-5 py-2 rounded-full hover:bg-blue-800 transition-colors">
           {inicial ? 'Salvar alterações' : 'Cadastrar'}
         </button>
-        <button type="button" onClick={onCancelar} className="text-montessori-stone hover:text-montessori-dark px-3">
+        <button type="button" onClick={onCancelar} className="text-ponto-cinza hover:text-ponto-escuro px-3">
           Cancelar
         </button>
       </div>
@@ -421,12 +421,12 @@ const AbaRegistros: React.FC<{
           type="month"
           value={mes}
           onChange={(e) => setMes(e.target.value)}
-          className="border-2 border-montessori-stone/30 rounded-lg px-3 py-2 bg-white focus:border-montessori-green outline-none"
+          className="border-2 border-ponto-cinza/30 rounded-lg px-3 py-2 bg-white focus:border-ponto-azul outline-none"
         />
         <select
           value={funcionarioId}
           onChange={(e) => setFuncionarioId(e.target.value)}
-          className="border-2 border-montessori-stone/30 rounded-lg px-3 py-2 bg-white focus:border-montessori-green outline-none"
+          className="border-2 border-ponto-cinza/30 rounded-lg px-3 py-2 bg-white focus:border-ponto-azul outline-none"
         >
           <option value="todos">Todos os funcionários</option>
           {funcionarios.map((f) => (
@@ -441,7 +441,7 @@ const AbaRegistros: React.FC<{
         </button>
         <button
           onClick={exportarCsv}
-          className="flex items-center gap-2 bg-montessori-green text-white font-bold px-4 py-2 rounded-full hover:bg-blue-800 transition-colors ml-auto"
+          className="flex items-center gap-2 bg-ponto-azul text-white font-bold px-4 py-2 rounded-full hover:bg-blue-800 transition-colors ml-auto"
         >
           <Download size={18} /> Exportar CSV
         </button>
@@ -457,12 +457,12 @@ const AbaRegistros: React.FC<{
 
       {resumoMensal.length > 0 && (
         <div className="bg-white rounded-2xl shadow p-4 mb-4">
-          <h2 className="font-bold uppercase tracking-wide text-sm text-montessori-stone mb-2">
+          <h2 className="font-bold uppercase tracking-wide text-sm text-ponto-cinza mb-2">
             Resumo do mês
           </h2>
           <div className="overflow-x-auto">
             <table className="w-full text-left text-sm">
-              <thead className="text-montessori-stone">
+              <thead className="text-ponto-cinza">
                 <tr>
                   <th className="py-1 pr-4">Funcionário</th>
                   <th className="py-1 pr-4">Dias com registro</th>
@@ -471,7 +471,7 @@ const AbaRegistros: React.FC<{
               </thead>
               <tbody>
                 {resumoMensal.map(({ funcionario, dias, total }) => (
-                  <tr key={funcionario.id} className="border-t border-montessori-cream">
+                  <tr key={funcionario.id} className="border-t border-ponto-claro">
                     <td className="py-2 pr-4 font-bold">{funcionario.nome}</td>
                     <td className="py-2 pr-4">{dias}</td>
                     <td className="py-2 tabular-nums">{formatarMinutos(total)}</td>
@@ -484,14 +484,14 @@ const AbaRegistros: React.FC<{
       )}
 
       {porDia.length === 0 ? (
-        <p className="text-montessori-stone bg-white rounded-2xl shadow p-6">
+        <p className="text-ponto-cinza bg-white rounded-2xl shadow p-6">
           Nenhum registro neste período.
         </p>
       ) : (
         porDia.map(([dia, doDia]) => (
           <div key={dia} className="bg-white rounded-2xl shadow p-4 mb-3">
             <h3 className="font-bold capitalize mb-2">{formatarData(dia)}</h3>
-            <ul className="divide-y divide-montessori-cream">
+            <ul className="divide-y divide-ponto-claro">
               {doDia
                 .slice()
                 .sort((a, b) => a.timestamp.localeCompare(b.timestamp))
@@ -510,7 +510,7 @@ const AbaRegistros: React.FC<{
                       </span>
                       <span className="flex-grow">
                         {nomePorId.get(r.funcionarioId) ?? 'Funcionário removido'}
-                        {r.manual && <span className="text-montessori-stone"> · manual</span>}
+                        {r.manual && <span className="text-ponto-cinza"> · manual</span>}
                       </span>
                       <button
                         onClick={() => excluir(r.id)}
@@ -551,7 +551,7 @@ const FormBatidaManual: React.FC<{
       <select
         value={funcionarioId}
         onChange={(e) => setFuncionarioId(e.target.value)}
-        className="border-2 border-montessori-stone/30 rounded-lg px-3 py-2 focus:border-montessori-green outline-none"
+        className="border-2 border-ponto-cinza/30 rounded-lg px-3 py-2 focus:border-ponto-azul outline-none"
       >
         {funcionarios.map((f) => (
           <option key={f.id} value={f.id}>{f.nome}</option>
@@ -561,12 +561,12 @@ const FormBatidaManual: React.FC<{
         type="datetime-local"
         value={dataHora}
         onChange={(e) => setDataHora(e.target.value)}
-        className="border-2 border-montessori-stone/30 rounded-lg px-3 py-2 focus:border-montessori-green outline-none"
+        className="border-2 border-ponto-cinza/30 rounded-lg px-3 py-2 focus:border-ponto-azul outline-none"
       />
-      <button className="bg-montessori-green text-white font-bold px-5 py-2 rounded-full hover:bg-blue-800 transition-colors">
+      <button className="bg-ponto-azul text-white font-bold px-5 py-2 rounded-full hover:bg-blue-800 transition-colors">
         Lançar
       </button>
-      <button type="button" onClick={onCancelar} className="text-montessori-stone hover:text-montessori-dark px-2">
+      <button type="button" onClick={onCancelar} className="text-ponto-cinza hover:text-ponto-escuro px-2">
         Cancelar
       </button>
       {erro && <p className="text-red-600 w-full">{erro}</p>}
@@ -605,7 +605,7 @@ const AbaConfig: React.FC = () => {
           placeholder="PIN atual"
           value={pinAtual}
           onChange={(e) => setPinAtual(e.target.value)}
-          className="w-full border-2 border-montessori-stone/30 rounded-lg px-3 py-2 focus:border-montessori-green outline-none"
+          className="w-full border-2 border-ponto-cinza/30 rounded-lg px-3 py-2 focus:border-ponto-azul outline-none"
         />
         <input
           type="password"
@@ -614,18 +614,18 @@ const AbaConfig: React.FC = () => {
           value={novoPin}
           onChange={(e) => setNovoPin(e.target.value.replace(/\D/g, ''))}
           maxLength={8}
-          className="w-full border-2 border-montessori-stone/30 rounded-lg px-3 py-2 focus:border-montessori-green outline-none"
+          className="w-full border-2 border-ponto-cinza/30 rounded-lg px-3 py-2 focus:border-ponto-azul outline-none"
         />
         {mensagem && (
           <p className={mensagem.tipo === 'ok' ? 'text-green-700' : 'text-red-600'}>{mensagem.texto}</p>
         )}
-        <button className="w-full bg-montessori-green text-white font-bold py-3 rounded-xl hover:bg-blue-800 transition-colors">
+        <button className="w-full bg-ponto-azul text-white font-bold py-3 rounded-xl hover:bg-blue-800 transition-colors">
           Salvar novo PIN
         </button>
       </form>
 
-      <div className="bg-white rounded-2xl shadow p-6 mt-4 text-sm text-montessori-stone space-y-2">
-        <h2 className="font-serif text-xl text-montessori-dark">Como funciona</h2>
+      <div className="bg-white rounded-2xl shadow p-6 mt-4 text-sm text-ponto-cinza space-y-2">
+        <h2 className="font-serif text-xl text-ponto-escuro">Como funciona</h2>
         <p>
           Os dados (funcionários e registros) ficam salvos <strong>neste dispositivo</strong>. Use
           sempre o mesmo tablet ou computador na recepção para registrar os pontos.

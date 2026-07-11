@@ -96,14 +96,14 @@ export const RelogioPonto: React.FC = () => {
   const horaFormatada = agora.toLocaleTimeString('pt-BR');
 
   return (
-    <div className="min-h-screen bg-montessori-cream font-sans text-montessori-dark flex flex-col">
-      <header className="bg-montessori-green text-white px-4 py-3 flex items-center justify-between">
+    <div className="min-h-screen bg-ponto-claro font-sans text-ponto-escuro flex flex-col">
+      <header className="bg-ponto-azul text-white px-4 py-3 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <Clock size={22} className="text-montessori-gold" />
+          <Clock size={22} className="text-ponto-dourado" />
           <span className="font-serif text-lg">Escola Montessoriana · Ponto</span>
         </div>
         <Link
-          to="/ponto/admin"
+          to="/admin"
           className="flex items-center gap-1 text-sm text-white/80 hover:text-white transition-colors"
         >
           <Settings size={16} /> Administração
@@ -111,7 +111,7 @@ export const RelogioPonto: React.FC = () => {
       </header>
 
       <main className="flex-grow flex flex-col items-center justify-center px-4 py-8">
-        <p className="text-montessori-stone capitalize">{dataFormatada}</p>
+        <p className="text-ponto-cinza capitalize">{dataFormatada}</p>
         <p className="font-serif text-5xl sm:text-6xl tabular-nums mt-1 mb-8">{horaFormatada}</p>
 
         {etapa === 'pin' && (
@@ -121,8 +121,8 @@ export const RelogioPonto: React.FC = () => {
               {[0, 1, 2, 3].map((i) => (
                 <span
                   key={i}
-                  className={`w-4 h-4 rounded-full border-2 border-montessori-green ${
-                    pin.length > i ? 'bg-montessori-green' : 'bg-transparent'
+                  className={`w-4 h-4 rounded-full border-2 border-ponto-azul ${
+                    pin.length > i ? 'bg-ponto-azul' : 'bg-transparent'
                   }`}
                 />
               ))}
@@ -143,14 +143,14 @@ export const RelogioPonto: React.FC = () => {
 
         {etapa === 'confirmar' && funcionario && (
           <div className="w-full max-w-sm bg-white rounded-2xl shadow-lg p-6 text-center">
-            <p className="text-montessori-stone">Olá,</p>
+            <p className="text-ponto-cinza">Olá,</p>
             <p className="font-serif text-2xl mb-1">{funcionario.nome}</p>
-            {funcionario.cargo && <p className="text-sm text-montessori-stone mb-4">{funcionario.cargo}</p>}
+            {funcionario.cargo && <p className="text-sm text-ponto-cinza mb-4">{funcionario.cargo}</p>}
 
-            <div className="bg-montessori-cream rounded-lg p-3 mb-4 text-left">
-              <p className="text-sm font-bold uppercase tracking-wide text-montessori-stone mb-1">Hoje</p>
+            <div className="bg-ponto-claro rounded-lg p-3 mb-4 text-left">
+              <p className="text-sm font-bold uppercase tracking-wide text-ponto-cinza mb-1">Hoje</p>
               {batidasHoje.length === 0 ? (
-                <p className="text-sm text-montessori-stone">Nenhum registro ainda.</p>
+                <p className="text-sm text-ponto-cinza">Nenhum registro ainda.</p>
               ) : (
                 <ul className="text-sm space-y-0.5">
                   {batidasHoje.map((b, i) => (
@@ -167,12 +167,12 @@ export const RelogioPonto: React.FC = () => {
 
             <button
               onClick={registrar}
-              className="w-full bg-montessori-green text-white text-lg font-bold py-4 rounded-xl hover:bg-blue-800 transition-colors flex items-center justify-center gap-2"
+              className="w-full bg-ponto-azul text-white text-lg font-bold py-4 rounded-xl hover:bg-blue-800 transition-colors flex items-center justify-center gap-2"
             >
               <LogIn size={22} />
               Registrar {rotuloBatida(batidasHoje.length)} agora
             </button>
-            <button onClick={reiniciar} className="mt-3 text-montessori-stone hover:text-montessori-dark">
+            <button onClick={reiniciar} className="mt-3 text-ponto-cinza hover:text-ponto-escuro">
               Cancelar
             </button>
           </div>
@@ -182,13 +182,13 @@ export const RelogioPonto: React.FC = () => {
           <div className="w-full max-w-sm bg-white rounded-2xl shadow-lg p-8 text-center">
             <CheckCircle2 size={56} className="mx-auto text-green-600 mb-3" />
             <p className="font-serif text-2xl mb-1">Ponto registrado!</p>
-            <p className="text-montessori-stone">
+            <p className="text-ponto-cinza">
               {funcionario.nome} · {rotuloBatida(batidasHoje.length - 1)} às{' '}
               <span className="font-bold tabular-nums">{formatarHora(ultimaBatida.timestamp)}</span>
             </p>
             <button
               onClick={reiniciar}
-              className="mt-6 w-full border-2 border-montessori-green text-montessori-green font-bold py-3 rounded-xl hover:bg-montessori-cream transition-colors"
+              className="mt-6 w-full border-2 border-ponto-azul text-ponto-azul font-bold py-3 rounded-xl hover:bg-ponto-claro transition-colors"
             >
               Concluir
             </button>
@@ -207,7 +207,7 @@ const TeclaPin: React.FC<{ onClick: () => void; children: React.ReactNode; ariaL
   <button
     onClick={onClick}
     aria-label={ariaLabel}
-    className="bg-white rounded-xl shadow text-2xl font-bold py-4 hover:bg-montessori-cream active:scale-95 transition-all"
+    className="bg-white rounded-xl shadow text-2xl font-bold py-4 hover:bg-ponto-claro active:scale-95 transition-all"
   >
     {children}
   </button>
