@@ -44,6 +44,15 @@ export const Main: React.FC = () => {
                 referrerPolicy="no-referrer-when-downgrade"
               />
             </div>
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=Escola+Montessoriana+de+Laranjeiras+Rio+de+Janeiro"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 mt-3 text-gray-300 hover:text-yellow-400 transition-colors text-sm"
+            >
+              <span className="text-montessori-gold" aria-hidden="true">★★★★★</span>
+              Nota 5,0 no Google
+            </a>
           </div>
 
           <div className="space-y-4 min-w-0">
