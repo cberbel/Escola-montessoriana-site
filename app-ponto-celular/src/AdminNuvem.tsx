@@ -14,28 +14,34 @@ import {
   MapPinOff,
   Loader2,
   Crosshair,
+  Wallet,
 } from 'lucide-react';
-import { Funcionario, LIMITE_FUNCIONARIOS, LocalEscola, RegistroAdmin } from './types';
+import { Funcionario, LIMITE_FUNCIONARIOS, LocalEscola, MetricaHoras, RegistroAdmin } from './types';
 import { obterPosicao, rpc, temConfig } from './api';
 import {
   chaveDia,
   chaveMesAtual,
   distanciaMetros,
   formatarData,
+  formatarDiasSemana,
   formatarDistancia,
   formatarHora,
+  formatarHoraSimples,
   formatarMinutos,
+  formatarSaldo,
   limitesDoMes,
   minutosTrabalhados,
+  NOMES_DIAS_SEMANA,
   rotuloBatida,
 } from './utils';
 
-type Aba = 'registros' | 'funcionarios' | 'config';
+type Aba = 'registros' | 'funcionarios' | 'banco' | 'config';
 
 interface RespostaBase { ok: boolean; erro?: string }
 interface RespostaConfig extends RespostaBase { local: LocalEscola | null; pin_padrao: boolean }
 interface RespostaFuncionarios extends RespostaBase { funcionarios: Funcionario[] }
 interface RespostaRegistros extends RespostaBase { registros: RegistroAdmin[] }
+interface RespostaMetricas extends RespostaBase { metricas: MetricaHoras[] }
 
 const CHAVE_SESSAO = 'ponto.adminSessao';
 
@@ -163,6 +169,7 @@ const Painel: React.FC<{
   const abas: { id: Aba; rotulo: string; icone: React.ReactNode }[] = [
     { id: 'registros', rotulo: 'Registros', icone: <CalendarDays size={18} /> },
     { id: 'funcionarios', rotulo: 'Funcionários', icone: <Users size={18} /> },
+    { id: 'banco', rotulo: 'Banco de Horas', icone: <Wallet size={18} /> },
     { id: 'config', rotulo: 'Configurações', icone: <KeyRound size={18} /> },
   ];
 
@@ -189,6 +196,7 @@ const Painel: React.FC<{
 
       {aba === 'registros' && <AbaRegistros pinAdmin={pinAdmin} localEscola={localEscola} />}
       {aba === 'funcionarios' && <AbaFuncionarios pinAdmin={pinAdmin} />}
+      {aba === 'banco' && <AbaBancoHoras pinAdmin={pinAdmin} />}
       {aba === 'config' && (
         <AbaConfig
           pinAdmin={pinAdmin}
@@ -229,7 +237,13 @@ const AbaFuncionarios: React.FC<{ pinAdmin: string }> = ({ pinAdmin }) => {
 
   const ativos = (funcionarios ?? []).filter((f) => f.ativo).length;
 
-  async function salvar(dados: { nome: string; cargo: string; pin: string }, existente?: Funcionario): Promise<string> {
+  async function salvar(
+    dados: {
+      nome: string; cargo: string; pin: string;
+      horaEntrada: string; horaSaida: string; diasSemana: number[]; dataAdmissao: string;
+    },
+    existente?: Funcionario
+  ): Promise<string> {
     const r = await rpc<RespostaBase>('admin_salvar_funcionario', {
       p_pin_admin: pinAdmin,
       p_id: existente?.id ?? null,
@@ -237,6 +251,10 @@ const AbaFuncionarios: React.FC<{ pinAdmin: string }> = ({ pinAdmin }) => {
       p_cargo: dados.cargo,
       p_pin: dados.pin,
       p_ativo: existente?.ativo ?? true,
+      p_hora_entrada: dados.horaEntrada || null,
+      p_hora_saida: dados.horaSaida || null,
+      p_dias_semana: dados.diasSemana,
+      p_data_admissao: dados.dataAdmissao || null,
     });
     if (!r.ok) return r.erro ?? 'Erro ao salvar.';
     setEditando(null);
@@ -253,6 +271,10 @@ const AbaFuncionarios: React.FC<{ pinAdmin: string }> = ({ pinAdmin }) => {
       p_cargo: f.cargo,
       p_pin: f.pin,
       p_ativo: !f.ativo,
+      p_hora_entrada: f.hora_entrada ?? null,
+      p_hora_saida: f.hora_saida ?? null,
+      p_dias_semana: f.dias_semana ?? [1, 2, 3, 4, 5],
+      p_data_admissao: f.data_admissao ?? null,
     });
     if (!r.ok) alert(r.erro ?? 'Erro ao salvar.');
     await carregar();
@@ -297,6 +319,7 @@ const AbaFuncionarios: React.FC<{ pinAdmin: string }> = ({ pinAdmin }) => {
                   <th className="px-4 py-3">Nome</th>
                   <th className="px-4 py-3">Cargo</th>
                   <th className="px-4 py-3">PIN</th>
+                  <th className="px-4 py-3">Horário</th>
                   <th className="px-4 py-3">Situação</th>
                   <th className="px-4 py-3" />
                 </tr>
@@ -307,6 +330,16 @@ const AbaFuncionarios: React.FC<{ pinAdmin: string }> = ({ pinAdmin }) => {
                     <td className="px-4 py-3 font-bold">{f.nome}</td>
                     <td className="px-4 py-3">{f.cargo || '—'}</td>
                     <td className="px-4 py-3 tabular-nums">{f.pin}</td>
+                    <td className="px-4 py-3 text-sm">
+                      {f.hora_entrada && f.hora_saida ? (
+                        <>
+                          {formatarHoraSimples(f.hora_entrada)}–{formatarHoraSimples(f.hora_saida)}
+                          <span className="text-ponto-cinza"> · {formatarDiasSemana(f.dias_semana ?? [1, 2, 3, 4, 5])}</span>
+                        </>
+                      ) : (
+                        <span className="text-ponto-cinza">Sem horário definido</span>
+                      )}
+                    </td>
                     <td className="px-4 py-3">
                       <button
                         onClick={() => alternarAtivo(f)}
@@ -339,21 +372,45 @@ const AbaFuncionarios: React.FC<{ pinAdmin: string }> = ({ pinAdmin }) => {
 
 const FormFuncionario: React.FC<{
   inicial?: Funcionario;
-  onSalvar: (dados: { nome: string; cargo: string; pin: string }) => Promise<string>;
+  onSalvar: (dados: {
+    nome: string; cargo: string; pin: string;
+    horaEntrada: string; horaSaida: string; diasSemana: number[]; dataAdmissao: string;
+  }) => Promise<string>;
   onCancelar: () => void;
 }> = ({ inicial, onSalvar, onCancelar }) => {
   const [nome, setNome] = useState(inicial?.nome ?? '');
   const [cargo, setCargo] = useState(inicial?.cargo ?? '');
   const [pin, setPin] = useState(inicial?.pin ?? '');
+  const [horaEntrada, setHoraEntrada] = useState(inicial?.hora_entrada ? formatarHoraSimples(inicial.hora_entrada) : '');
+  const [horaSaida, setHoraSaida] = useState(inicial?.hora_saida ? formatarHoraSimples(inicial.hora_saida) : '');
+  const [diasSemana, setDiasSemana] = useState<number[]>(inicial?.dias_semana ?? [1, 2, 3, 4, 5]);
+  const [dataAdmissao, setDataAdmissao] = useState(
+    inicial?.data_admissao ?? new Date().toISOString().slice(0, 10)
+  );
   const [erro, setErro] = useState('');
   const [salvando, setSalvando] = useState(false);
+
+  function alternarDia(dia: number) {
+    setDiasSemana((atual) =>
+      atual.includes(dia) ? atual.filter((d) => d !== dia) : [...atual, dia].sort((a, b) => a - b)
+    );
+  }
 
   async function enviar(e: React.FormEvent) {
     e.preventDefault();
     if (!nome.trim()) return setErro('Informe o nome.');
     if (!/^\d{4}$/.test(pin)) return setErro('O PIN deve ter exatamente 4 números.');
+    if ((horaEntrada && !horaSaida) || (!horaEntrada && horaSaida)) {
+      return setErro('Informe entrada e saída, ou deixe os dois em branco.');
+    }
+    if (horaEntrada && horaSaida && horaSaida <= horaEntrada) {
+      return setErro('O horário de saída deve ser depois do de entrada.');
+    }
     setSalvando(true);
-    const msg = await onSalvar({ nome: nome.trim(), cargo: cargo.trim(), pin });
+    const msg = await onSalvar({
+      nome: nome.trim(), cargo: cargo.trim(), pin,
+      horaEntrada, horaSaida, diasSemana, dataAdmissao,
+    });
     setSalvando(false);
     if (msg) setErro(msg);
   }
@@ -381,6 +438,61 @@ const FormFuncionario: React.FC<{
         onChange={(e) => setPin(e.target.value.replace(/\D/g, ''))}
         className="border-2 border-ponto-cinza/30 rounded-lg px-3 py-2 focus:border-ponto-azul outline-none tabular-nums"
       />
+
+      <div className="sm:col-span-4 border-t border-ponto-claro pt-3">
+        <p className="text-sm font-bold uppercase tracking-wide text-ponto-cinza mb-2">
+          Horário esperado (opcional — usado para atrasos, faltas e banco de horas)
+        </p>
+        <div className="grid gap-3 sm:grid-cols-4">
+          <label className="text-sm text-ponto-cinza">
+            Entrada
+            <input
+              type="time"
+              value={horaEntrada}
+              onChange={(e) => setHoraEntrada(e.target.value)}
+              className="mt-1 w-full border-2 border-ponto-cinza/30 rounded-lg px-3 py-2 focus:border-ponto-azul outline-none"
+            />
+          </label>
+          <label className="text-sm text-ponto-cinza">
+            Saída
+            <input
+              type="time"
+              value={horaSaida}
+              onChange={(e) => setHoraSaida(e.target.value)}
+              className="mt-1 w-full border-2 border-ponto-cinza/30 rounded-lg px-3 py-2 focus:border-ponto-azul outline-none"
+            />
+          </label>
+          <label className="text-sm text-ponto-cinza sm:col-span-2">
+            Admitido(a) em
+            <input
+              type="date"
+              value={dataAdmissao}
+              onChange={(e) => setDataAdmissao(e.target.value)}
+              className="mt-1 w-full border-2 border-ponto-cinza/30 rounded-lg px-3 py-2 focus:border-ponto-azul outline-none"
+            />
+          </label>
+        </div>
+        <div className="mt-3">
+          <p className="text-sm text-ponto-cinza mb-1">Dias trabalhados</p>
+          <div className="flex flex-wrap gap-2">
+            {NOMES_DIAS_SEMANA.map((rotulo, dia) => (
+              <button
+                key={dia}
+                type="button"
+                onClick={() => alternarDia(dia)}
+                className={`px-3 py-1 rounded-full text-sm font-bold ${
+                  diasSemana.includes(dia)
+                    ? 'bg-ponto-azul text-white'
+                    : 'bg-ponto-claro text-ponto-cinza'
+                }`}
+              >
+                {rotulo}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+
       {erro && <p className="text-red-600 sm:col-span-4">{erro}</p>}
       <div className="flex gap-2 sm:col-span-4">
         <button
@@ -740,6 +852,104 @@ const FormBatidaManual: React.FC<{
       </button>
       {erro && <p className="text-red-600 w-full">{erro}</p>}
     </form>
+  );
+};
+
+// ---------- Banco de Horas ----------
+
+const DATA_MINIMA = '2000-01-01';
+
+const AbaBancoHoras: React.FC<{ pinAdmin: string }> = ({ pinAdmin }) => {
+  const [metricas, setMetricas] = useState<MetricaHoras[] | null>(null);
+  const [erro, setErro] = useState('');
+
+  const carregar = useCallback(async () => {
+    setMetricas(null);
+    setErro('');
+    try {
+      const hoje = new Date().toISOString().slice(0, 10);
+      const r = await rpc<RespostaMetricas>('admin_metricas_horas', {
+        p_pin_admin: pinAdmin,
+        p_de: DATA_MINIMA,
+        p_ate: hoje,
+      });
+      if (!r.ok) return setErro(r.erro ?? 'Erro ao carregar.');
+      setMetricas(r.metricas);
+    } catch (e) {
+      setErro(e instanceof Error ? e.message : 'Erro inesperado.');
+    }
+  }, [pinAdmin]);
+
+  useEffect(() => { carregar(); }, [carregar]);
+
+  if (erro) return <p className="text-red-600 bg-white rounded-2xl shadow p-6">{erro}</p>;
+  if (!metricas) return <Carregando />;
+
+  return (
+    <section>
+      <p className="text-ponto-cinza mb-4">
+        Acumulado desde a admissão de cada funcionário, com tolerância de 10 minutos para atrasos.
+        Só aparecem aqui os funcionários com horário cadastrado (aba Funcionários).
+      </p>
+
+      {metricas.length === 0 ? (
+        <p className="text-ponto-cinza bg-white rounded-2xl shadow p-6">
+          Nenhum funcionário com horário cadastrado ainda. Defina o horário esperado na aba
+          Funcionários para começar a acompanhar atrasos, faltas e banco de horas.
+        </p>
+      ) : (
+        <div className="bg-white rounded-2xl shadow overflow-hidden">
+          <div className="overflow-x-auto">
+            <table className="w-full text-left">
+              <thead className="bg-ponto-claro text-sm uppercase tracking-wide text-ponto-cinza">
+                <tr>
+                  <th className="px-4 py-3">Funcionário</th>
+                  <th className="px-4 py-3">Dias esperados</th>
+                  <th className="px-4 py-3">Faltas</th>
+                  <th className="px-4 py-3">Atrasos</th>
+                  <th className="px-4 py-3">Minutos de atraso</th>
+                  <th className="px-4 py-3">Saldo (banco de horas)</th>
+                </tr>
+              </thead>
+              <tbody>
+                {metricas.map((m) => (
+                  <tr key={m.funcionario_id} className="border-t border-ponto-claro">
+                    <td className="px-4 py-3 font-bold">{m.nome}</td>
+                    <td className="px-4 py-3">{m.dias_esperados}</td>
+                    <td className="px-4 py-3">
+                      {m.faltas > 0 ? (
+                        <span className="px-2 py-0.5 rounded-full text-xs font-bold bg-red-100 text-red-800">
+                          {m.faltas}
+                        </span>
+                      ) : (
+                        0
+                      )}
+                    </td>
+                    <td className="px-4 py-3">
+                      {m.atrasos > 0 ? (
+                        <span className="px-2 py-0.5 rounded-full text-xs font-bold bg-amber-100 text-amber-800">
+                          {m.atrasos}
+                        </span>
+                      ) : (
+                        0
+                      )}
+                    </td>
+                    <td className="px-4 py-3 tabular-nums">
+                      {m.minutos_atraso_total > 0 ? formatarMinutos(m.minutos_atraso_total) : '—'}
+                    </td>
+                    <td className="px-4 py-3 tabular-nums font-bold">
+                      <span className={m.saldo_min < 0 ? 'text-red-700' : 'text-green-700'}>
+                        {formatarSaldo(m.saldo_min)}
+                      </span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
+    </section>
   );
 };
 

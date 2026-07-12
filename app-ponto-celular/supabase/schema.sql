@@ -24,7 +24,13 @@ create table if not exists funcionarios (
   cargo text not null default '',
   pin text not null,
   ativo boolean not null default true,
-  criado_em timestamptz not null default now()
+  criado_em timestamptz not null default now(),
+  -- Horário esperado, para calcular atrasos, faltas e banco de horas.
+  -- Ficam null quando o funcionário ainda não tem horário definido (não entra nas métricas).
+  hora_entrada time,
+  hora_saida time,
+  dias_semana int[] not null default '{1,2,3,4,5}', -- 0=domingo .. 6=sábado (padrão PostgreSQL)
+  data_admissao date
 );
 
 create table if not exists registros (
@@ -39,6 +45,13 @@ create table if not exists registros (
 
 create index if not exists idx_registros_func_ts on registros (funcionario_id, ts);
 create index if not exists idx_registros_ts on registros (ts);
+
+-- Garante as colunas de horário mesmo em bancos criados antes desta versão do schema.
+alter table funcionarios add column if not exists hora_entrada time;
+alter table funcionarios add column if not exists hora_saida time;
+alter table funcionarios add column if not exists dias_semana int[] not null default '{1,2,3,4,5}';
+alter table funcionarios add column if not exists data_admissao date;
+update funcionarios set data_admissao = criado_em::date where data_admissao is null;
 
 -- Tabelas trancadas: sem policies, o papel anon não lê nem escreve nada direto.
 alter table config enable row level security;
@@ -61,6 +74,88 @@ language sql security definer set search_path = public as $$
   where r.funcionario_id = p_funcionario_id
     and (r.ts at time zone 'America/Sao_Paulo')::date = (now() at time zone 'America/Sao_Paulo')::date;
 $$;
+
+-- ---------- Atrasos, faltas e banco de horas ----------
+
+-- Dias em que o funcionário deveria trabalhar, dentro do período [p_de, p_ate],
+-- considerando a data de admissão e os dias da semana cadastrados.
+create or replace function _dias_esperados(p_data_admissao date, p_dias_semana int[], p_de date, p_ate date)
+returns setof date
+language sql stable as $$
+  select d::date
+  from generate_series(
+    greatest(p_de, coalesce(p_data_admissao, p_de)),
+    least(p_ate, current_date),
+    interval '1 day'
+  ) d
+  where extract(dow from d)::int = any(p_dias_semana);
+$$;
+
+-- Horário (fuso de São Paulo) da primeira batida do funcionário no dia, ou null se faltou.
+create or replace function _primeira_entrada_hora(p_funcionario_id uuid, p_dia date) returns time
+language sql stable as $$
+  select (min(ts) at time zone 'America/Sao_Paulo')::time
+  from registros
+  where funcionario_id = p_funcionario_id
+    and (ts at time zone 'America/Sao_Paulo')::date = p_dia;
+$$;
+
+-- Minutos trabalhados no dia, pareando as batidas em sequência (1ª=entrada, 2ª=saída, ...).
+create or replace function _minutos_trabalhados_dia(p_funcionario_id uuid, p_dia date) returns int
+language sql stable as $$
+  with batidas as (
+    select ts, row_number() over (order by ts) as rn
+    from registros
+    where funcionario_id = p_funcionario_id
+      and (ts at time zone 'America/Sao_Paulo')::date = p_dia
+  ),
+  pares as (
+    select e.ts as entrada, s.ts as saida
+    from batidas e
+    join batidas s on s.rn = e.rn + 1
+    where e.rn % 2 = 1
+  )
+  select coalesce(sum(greatest(0, round(extract(epoch from (saida - entrada)) / 60)))::int, 0)
+  from pares;
+$$;
+
+-- Métricas de frequência de cada funcionário com horário cadastrado, no período [p_de, p_ate]:
+-- dias esperados, faltas, atrasos (tolerância de 10 min), minutos trabalhados/esperados e saldo.
+create or replace function admin_metricas_horas(p_pin_admin text, p_de date, p_ate date) returns json
+language plpgsql security definer set search_path = public as $$
+declare resultado json;
+begin
+  if not _pin_admin_ok(p_pin_admin) then
+    return json_build_object('ok', false, 'erro', 'PIN de administrador incorreto.');
+  end if;
+
+  select coalesce(json_agg(row_to_json(m) order by m.nome), '[]'::json) into resultado
+  from (
+    select
+      f.id as funcionario_id,
+      f.nome,
+      count(*)::int as dias_esperados,
+      count(*) filter (where pe.hora is null)::int as faltas,
+      count(*) filter (where pe.hora is not null and pe.hora > f.hora_entrada + interval '10 minutes')::int as atrasos,
+      coalesce(sum(
+        case when pe.hora is not null and pe.hora > f.hora_entrada + interval '10 minutes'
+          then (extract(epoch from (pe.hora - f.hora_entrada)) / 60)::int
+          else 0
+        end
+      ), 0)::int as minutos_atraso_total,
+      coalesce(sum(mt.minutos), 0)::int as minutos_trabalhados,
+      (count(*) * (extract(epoch from (f.hora_saida - f.hora_entrada)) / 60))::int as minutos_esperados,
+      (coalesce(sum(mt.minutos), 0) - (count(*) * (extract(epoch from (f.hora_saida - f.hora_entrada)) / 60)))::int as saldo_min
+    from funcionarios f
+    cross join lateral _dias_esperados(f.data_admissao, f.dias_semana, p_de, p_ate) dia(d)
+    cross join lateral (select _primeira_entrada_hora(f.id, dia.d) as hora) pe
+    cross join lateral (select _minutos_trabalhados_dia(f.id, dia.d) as minutos) mt
+    where f.hora_entrada is not null and f.hora_saida is not null
+    group by f.id, f.nome
+  ) m;
+
+  return json_build_object('ok', true, 'metricas', resultado);
+end $$;
 
 -- ---------- Funcionário (celular) ----------
 
@@ -104,12 +199,17 @@ begin
     return json_build_object('ok', false, 'erro', 'PIN de administrador incorreto.');
   end if;
   return json_build_object('ok', true, 'funcionarios', coalesce((
-    select json_agg(json_build_object('id', f.id, 'nome', f.nome, 'cargo', f.cargo, 'pin', f.pin, 'ativo', f.ativo) order by f.nome)
+    select json_agg(json_build_object(
+      'id', f.id, 'nome', f.nome, 'cargo', f.cargo, 'pin', f.pin, 'ativo', f.ativo,
+      'hora_entrada', f.hora_entrada, 'hora_saida', f.hora_saida,
+      'dias_semana', f.dias_semana, 'data_admissao', f.data_admissao) order by f.nome)
     from funcionarios f), '[]'::json));
 end $$;
 
 create or replace function admin_salvar_funcionario(
-  p_pin_admin text, p_id uuid, p_nome text, p_cargo text, p_pin text, p_ativo boolean
+  p_pin_admin text, p_id uuid, p_nome text, p_cargo text, p_pin text, p_ativo boolean,
+  p_hora_entrada time default null, p_hora_saida time default null,
+  p_dias_semana int[] default '{1,2,3,4,5}', p_data_admissao date default null
 ) returns json
 language plpgsql security definer set search_path = public as $$
 declare v_ativos int;
@@ -123,6 +223,9 @@ begin
   if p_pin !~ '^\d{4}$' then
     return json_build_object('ok', false, 'erro', 'O PIN deve ter exatamente 4 números.');
   end if;
+  if p_hora_entrada is not null and p_hora_saida is not null and p_hora_saida <= p_hora_entrada then
+    return json_build_object('ok', false, 'erro', 'O horário de saída deve ser depois do de entrada.');
+  end if;
   if p_ativo and exists (select 1 from funcionarios where ativo and pin = p_pin and (p_id is null or id <> p_id)) then
     return json_build_object('ok', false, 'erro', 'Este PIN já está em uso por outro funcionário.');
   end if;
@@ -131,11 +234,15 @@ begin
     return json_build_object('ok', false, 'erro', 'Limite de 25 funcionários ativos atingido.');
   end if;
   if p_id is null then
-    insert into funcionarios (nome, cargo, pin, ativo)
-    values (btrim(p_nome), coalesce(btrim(p_cargo), ''), p_pin, p_ativo);
+    insert into funcionarios (nome, cargo, pin, ativo, hora_entrada, hora_saida, dias_semana, data_admissao)
+    values (btrim(p_nome), coalesce(btrim(p_cargo), ''), p_pin, p_ativo,
+      p_hora_entrada, p_hora_saida, coalesce(p_dias_semana, '{1,2,3,4,5}'), coalesce(p_data_admissao, current_date));
   else
     update funcionarios
-    set nome = btrim(p_nome), cargo = coalesce(btrim(p_cargo), ''), pin = p_pin, ativo = p_ativo
+    set nome = btrim(p_nome), cargo = coalesce(btrim(p_cargo), ''), pin = p_pin, ativo = p_ativo,
+      hora_entrada = p_hora_entrada, hora_saida = p_hora_saida,
+      dias_semana = coalesce(p_dias_semana, '{1,2,3,4,5}'),
+      data_admissao = coalesce(p_data_admissao, data_admissao, current_date)
     where id = p_id;
   end if;
   return json_build_object('ok', true);

@@ -4,6 +4,22 @@ export interface Funcionario {
   cargo: string;
   pin?: string;
   ativo?: boolean;
+  hora_entrada?: string | null; // "HH:MM:SS"
+  hora_saida?: string | null;
+  dias_semana?: number[]; // 0=domingo .. 6=sábado
+  data_admissao?: string | null; // "AAAA-MM-DD"
+}
+
+export interface MetricaHoras {
+  funcionario_id: string;
+  nome: string;
+  dias_esperados: number;
+  faltas: number;
+  atrasos: number;
+  minutos_atraso_total: number;
+  minutos_trabalhados: number;
+  minutos_esperados: number;
+  saldo_min: number;
 }
 
 export interface Batida {

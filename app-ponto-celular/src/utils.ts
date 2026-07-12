@@ -73,3 +73,28 @@ export function formatarDistancia(metros: number): string {
   if (metros < 1000) return `${metros} m`;
   return `${(metros / 1000).toLocaleString('pt-BR', { maximumFractionDigits: 1 })} km`;
 }
+
+export const NOMES_DIAS_SEMANA = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
+
+/** Resume os dias da semana trabalhados (ex.: "Seg-Sex", "Seg-Sáb", ou lista). */
+export function formatarDiasSemana(dias: number[]): string {
+  const ordenados = [...dias].sort((a, b) => a - b);
+  if (ordenados.length === 5 && ordenados.every((d, i) => d === i + 1)) return 'Seg-Sex';
+  if (ordenados.length === 6 && ordenados.every((d, i) => d === i + 1)) return 'Seg-Sáb';
+  if (ordenados.length === 7) return 'Todos os dias';
+  return ordenados.map((d) => NOMES_DIAS_SEMANA[d]).join(', ');
+}
+
+/** "HH:MM:SS" (do banco) para "HH:MM". */
+export function formatarHoraSimples(hora: string): string {
+  return hora.slice(0, 5);
+}
+
+/** Saldo de banco de horas com sinal, ex.: "+3h20", "-1h05", "0h00". */
+export function formatarSaldo(minutos: number): string {
+  const sinal = minutos < 0 ? '-' : '+';
+  const abs = Math.abs(minutos);
+  const h = Math.floor(abs / 60);
+  const m = abs % 60;
+  return `${sinal}${h}h${`${m}`.padStart(2, '0')}`;
+}
