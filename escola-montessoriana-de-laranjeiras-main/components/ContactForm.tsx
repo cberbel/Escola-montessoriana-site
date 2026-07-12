@@ -59,7 +59,9 @@ function submitViaFormPost(data: FormState, iframeName: string) {
     neighborhood: data.neighborhood,
     comments: data.comments,
     _subject: 'Contato pelo site – Escola Montessoriana',
-    _replyto: data.email
+    _replyto: data.email,
+    _captcha: 'false',
+    _template: 'table'
   };
   for (const [name, value] of Object.entries(fields)) {
     const input = document.createElement('input');
@@ -94,47 +96,15 @@ export const ContactForm: React.FC = () => {
     setError(null);
     setLoading(true);
 
-    const markSuccess = () => {
-      setSubmitted(true);
-      setLoading(false);
-    };
-
     try {
-      const payload = {
-        responsibleName: formState.responsibleName,
-        childName: formState.childName,
-        childAge: formState.childAge,
-        phone: formState.phone,
-        email: formState.email,
-        neighborhood: formState.neighborhood,
-        comments: formState.comments,
-        _subject: 'Contato pelo site – Escola Montessoriana',
-        _replyto: formState.email
-      };
-
-      const res = await fetch(`https://formsubmit.co/ajax/${FORMSUBMIT_EMAIL}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json'
-        },
-        body: JSON.stringify(payload)
-      });
-
-      const data = await res.json().catch(() => ({}));
-      if (res.ok) {
-        markSuccess();
-        return;
-      }
-      throw new Error((data as { message?: string })?.message || 'Erro ao enviar');
-    } catch {
-      try {
-        submitViaFormPost(formState, IFRAME_NAME);
-        setTimeout(markSuccess, 1800);
-      } catch {
-        setError('Não foi possível enviar. Tente o WhatsApp.');
+      submitViaFormPost(formState, IFRAME_NAME);
+      setTimeout(() => {
+        setSubmitted(true);
         setLoading(false);
-      }
+      }, 1800);
+    } catch {
+      setError('Não foi possível enviar. Tente o WhatsApp.');
+      setLoading(false);
     }
   };
 
