@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import './index.css';
 import { AppConfig, definirConfig } from './api';
 import { PontoFuncionario } from './PontoFuncionario';
@@ -24,6 +25,7 @@ async function iniciar() {
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </BrowserRouter>
+      <SpeedInsights />
     </React.StrictMode>
   );
 }
