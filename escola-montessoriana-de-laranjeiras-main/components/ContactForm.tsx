@@ -59,7 +59,9 @@ function submitViaFormPost(data: FormState, iframeName: string) {
     neighborhood: data.neighborhood,
     comments: data.comments,
     _subject: 'Contato pelo site – Escola Montessoriana',
-    _replyto: data.email
+    _replyto: data.email,
+    _captcha: 'false',
+    _template: 'table'
   };
   for (const [name, value] of Object.entries(fields)) {
     const input = document.createElement('input');
