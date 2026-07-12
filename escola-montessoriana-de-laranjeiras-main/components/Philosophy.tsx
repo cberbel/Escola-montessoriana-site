@@ -16,18 +16,18 @@ export const Philosophy: React.FC = () => {
   const points = [
     {
       icon: <Brain size={32} />,
-      title: "The right time of childhood",
-      text: "The first years of life are decisive for the formation of thought, language and personality. An adequate environment in this period allows development to happen in a natural and consistent way."
+      title: "O momento certo da infância",
+      text: "Os primeiros anos de vida são decisivos para a formação do pensamento, da linguagem e da personalidade. Um ambiente adequado nesse período permite que o desenvolvimento aconteça de forma natural e consistente."
     },
     {
       icon: <GlobeMinimalIcon size={32} />,
-      title: "Language and autonomy for the world",
-      text: "Language is lived in everyday life, in relationships and in real experiences. Living with different languages and practicing autonomy from an early age strengthen communication, confidence and the ability to act in the world."
+      title: "Linguagem e autonomia para o mundo",
+      text: "A linguagem é vivida no dia a dia, nas relações e em experiências reais. Conviver com diferentes idiomas e praticar a autonomia desde cedo fortalecem a comunicação, a confiança e a capacidade de agir no mundo."
     },
     {
       icon: <TreePine size={32} />,
-      title: "An environment that protects and sustains",
-      text: "Tranquility, predictability and care are essential for child development. We offer a prepared, protected and welcoming space where the child can concentrate, explore and grow with security."
+      title: "Um ambiente que protege e sustenta",
+      text: "Tranquilidade, previsibilidade e cuidado são essenciais para o desenvolvimento infantil. Oferecemos um espaço preparado, protegido e acolhedor onde a criança pode se concentrar, explorar e crescer com segurança."
     }
   ];
 
