@@ -10,8 +10,17 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-56ZSQTXF');</script>
     <!-- End Google Tag Manager -->
-    <title>Escola Montessoriana de Laranjeiras | Oásis Urbano</title>
+    <title>Escola Montessoriana de Laranjeiras | Educação Infantil de 9 meses a 6 anos</title>
+    <meta name="description" content="Escola Montessoriana em Laranjeiras, Rio de Janeiro. Educação infantil de 9 meses a 6 anos com inglês por imersão com professoras nativas, alimentação saudável, política de zero telas e ambiente acolhedor e arborizado. Agende sua visita." />
     <link rel="icon" type="image/png" href="/images/logo-escola.png" />
+    <!-- Open Graph / prévia ao compartilhar (WhatsApp, redes sociais) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Escola Montessoriana de Laranjeiras" />
+    <meta property="og:description" content="Educação infantil de 9 meses a 6 anos com inglês por imersão com professoras nativas, alimentação saudável e acolhimento exemplar. Agende sua visita." />
+    <meta property="og:image" content="https://escola-montessoriana-site.vercel.app/images/hero-criancas.jpg" />
+    <meta property="og:url" content="https://escola-montessoriana-site.vercel.app/" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta name="twitter:card" content="summary_large_image" />
     <!-- Fontes otimizadas - apenas pesos necessários -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -101,50 +110,6 @@
           };
         };
 
-        // Chat n8n - carrega apenas após tudo carregado
-        setTimeout(function() {
-          import('https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js').then(function(module) {
-            module.createChat({
-              webhookUrl: 'https://igorgomessilva.app.n8n.cloud/webhook/1f83e8ac-d465-454a-8327-cef7f0149cb1/chat',
-              title: 'Olá! Bem-vindo',
-              welcomeMessage: 'Inicie uma conversa. Estamos aqui para ajudar.'
-            });
-            
-            // Traduz textos do chat
-            const chatReplacements = [
-              { from: /Hi there!\s*👋/gi, to: 'Olá! Bem-vindo' },
-              { from: /Hi there!/gi, to: 'Olá! Bem-vindo' },
-              { from: /Start a chat\.\s*We're here to help you 24\/7\.?/gi, to: 'Inicie uma conversa. Estamos aqui para ajudar.' },
-              { from: /My name is Nathan\. How can I assist you today\?/gi, to: 'Olá! Sou o assistente virtual da Escola Montessoriana. Como posso ajudar você hoje?' }
-            ];
-            function replaceChatTexts(root) {
-              if (!root) return;
-              root.querySelectorAll('h1, p, span, div[class*="message"]').forEach(function (el) {
-                el.childNodes.forEach(function (node) {
-                  if (node.nodeType !== Node.TEXT_NODE) return;
-                  let text = node.textContent;
-                  chatReplacements.forEach(function (r) {
-                    text = text.replace(r.from, r.to);
-                  });
-                  if (text !== node.textContent) node.textContent = text;
-                });
-              });
-            }
-            function observeChat() {
-              const chat = document.getElementById('n8n-chat');
-              if (!chat) {
-                setTimeout(observeChat, 200);
-                return;
-              }
-              replaceChatTexts(chat);
-              const obs = new MutationObserver(function () {
-                replaceChatTexts(chat);
-              });
-              obs.observe(chat, { childList: true, subtree: true, characterData: true });
-            }
-            setTimeout(observeChat, 500);
-          });
-        }, 2000);
       });
     </script>
     <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1183448566465118&ev=PageView&noscript=1" alt="" /></noscript>

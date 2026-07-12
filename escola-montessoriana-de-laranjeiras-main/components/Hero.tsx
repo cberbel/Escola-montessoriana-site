@@ -46,15 +46,30 @@ export const Hero: React.FC = () => {
               Escola Montessoriana
             </h2>
             <p className="font-logo text-montessori-gold font-semibold text-base sm:text-lg md:text-xl mt-1 opacity-95">
-              Educação infantil trilíngue
+              Educação infantil bilíngue
             </p>
           </div>
           <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-white leading-tight mb-4 sm:mb-5 drop-shadow-[0_10px_25px_rgba(15,23,42,0.8)] break-words text-center">
             Acolhimento e autonomia para seu filho
           </h1>
-          <p className="font-sans text-base sm:text-lg md:text-xl text-gray-50 mb-7 sm:mb-8 max-w-2xl mx-auto font-normal leading-relaxed break-words">
+          <p className="font-sans text-base sm:text-lg md:text-xl text-gray-50 mb-5 sm:mb-6 max-w-2xl mx-auto font-normal leading-relaxed break-words">
             Formando jovens curiosos, confiantes e capazes, prontos para explorar o mundo.
           </p>
+
+          <div className="flex flex-wrap justify-center items-center gap-2 sm:gap-3 mb-7 sm:mb-8">
+            <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-white/15 border border-white/25 text-white text-sm sm:text-base font-medium backdrop-blur-sm">
+              De 9 meses a 6 anos
+            </span>
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=Escola+Montessoriana+de+Laranjeiras+Rio+de+Janeiro"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white/15 border border-white/25 text-white text-sm sm:text-base font-medium backdrop-blur-sm hover:bg-white/25 transition-colors"
+            >
+              <span className="text-montessori-gold" aria-hidden="true">★★★★★</span>
+              5,0 no Google
+            </a>
+          </div>
 
           <div className="flex flex-col gap-3 sm:gap-4 justify-center items-center">
             <a

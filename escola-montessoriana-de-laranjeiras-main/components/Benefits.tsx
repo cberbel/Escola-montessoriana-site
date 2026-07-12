@@ -1,6 +1,6 @@
 import React from 'react';
 import { Section } from './ui/Section';
-import { Heart, Users, Clock, Globe, TreePine, Calendar, Home, Music } from 'lucide-react';
+import { Heart, Users, Clock, Globe, TreePine, Calendar, Home, Music, Salad, MonitorOff } from 'lucide-react';
 import { trackWhatsAppClick } from '../utils/tracking';
 
 export const Benefits: React.FC = () => {
@@ -23,12 +23,22 @@ export const Benefits: React.FC = () => {
     {
       icon: <Globe size={32} />,
       title: "Imersão no aprendizado de inglês",
-      description: "Aprendizado natural através da vivência diária"
+      description: "Professoras nativas e aprendizado natural através da vivência diária"
     },
     {
       icon: <TreePine size={32} />,
       title: "Contato com a Natureza",
       description: "Área ao ar livre com tanque de areia e atividades na natureza"
+    },
+    {
+      icon: <Salad size={32} />,
+      title: "Alimentação saudável",
+      description: "Refeições frescas e nutritivas, com cardápio pensado para cada fase da criança"
+    },
+    {
+      icon: <MonitorOff size={32} />,
+      title: "Política de zero telas",
+      description: "Infância livre de telas, com experiências reais, concretas e sensoriais"
     },
     {
       icon: <Calendar size={32} />,
