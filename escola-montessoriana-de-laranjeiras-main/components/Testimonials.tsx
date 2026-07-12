@@ -44,9 +44,20 @@ export const Testimonials: React.FC = () => {
       </div>
 
       <div className="relative z-10 max-w-5xl mx-auto min-w-0">
-        <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl text-center mb-10 sm:mb-16 text-montessori-cream px-1">
+        <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl text-center mb-4 sm:mb-6 text-montessori-cream px-1">
           A escolha de famílias que valorizam a excelência.
         </h2>
+        <div className="flex justify-center mb-10 sm:mb-16">
+          <a
+            href="https://www.google.com/maps/search/?api=1&query=Escola+Montessoriana+de+Laranjeiras+Rio+de+Janeiro"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/10 border border-white/20 text-white text-base font-medium hover:bg-white/20 transition-colors"
+          >
+            <span className="text-montessori-gold" aria-hidden="true">★★★★★</span>
+            Nota 5,0 no Google
+          </a>
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-12">
           {testimonials.map((t) => (
@@ -74,7 +85,7 @@ export const Testimonials: React.FC = () => {
             onClick={trackWhatsAppClick}
             className="inline-flex items-center justify-center min-h-[52px] px-8 py-4 bg-[#25D366] text-white font-semibold rounded-sm hover:bg-[#20bd5a] transition-colors shadow-lg hover:shadow-xl"
           >
-            Agendar minha visita gratuita
+            Agendar minha visita
           </a>
         </div>
       </div>

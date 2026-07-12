@@ -16,18 +16,18 @@ export const Philosophy: React.FC = () => {
   const points = [
     {
       icon: <Brain size={32} />,
-      title: "The right time of childhood",
-      text: "The first years of life are decisive for the formation of thought, language and personality. An adequate environment in this period allows development to happen in a natural and consistent way."
+      title: "O momento certo da infância",
+      text: "Os primeiros anos de vida são decisivos para a formação do pensamento, da linguagem e da personalidade. Um ambiente adequado nesse período permite que o desenvolvimento aconteça de forma natural e consistente."
     },
     {
       icon: <GlobeMinimalIcon size={32} />,
-      title: "Language and autonomy for the world",
-      text: "Language is lived in everyday life, in relationships and in real experiences. Living with different languages and practicing autonomy from an early age strengthen communication, confidence and the ability to act in the world."
+      title: "Linguagem e autonomia para o mundo",
+      text: "A linguagem é vivida no dia a dia, nas relações e em experiências reais. Conviver com diferentes idiomas e praticar a autonomia desde cedo fortalecem a comunicação, a confiança e a capacidade de agir no mundo."
     },
     {
       icon: <TreePine size={32} />,
-      title: "An environment that protects and sustains",
-      text: "Tranquility, predictability and care are essential for child development. We offer a prepared, protected and welcoming space where the child can concentrate, explore and grow with security."
+      title: "Um ambiente que protege e sustenta",
+      text: "Tranquilidade, previsibilidade e cuidado são essenciais para o desenvolvimento infantil. Oferecemos um espaço preparado, protegido e acolhedor onde a criança pode se concentrar, explorar e crescer com segurança."
     }
   ];
 
@@ -50,6 +50,14 @@ export const Philosophy: React.FC = () => {
           <li>Ambiente cientificamente preparado.</li>
           <li>Bem diferente do modelo fabril da escola convencional.</li>
         </ul>
+        <blockquote className="max-w-2xl mx-auto text-left bg-white border-l-4 border-montessori-gold rounded-sm shadow-sm p-5 sm:p-6 mb-2">
+          <p className="font-serif italic text-lg sm:text-xl text-montessori-green mb-3">
+            "Fiz esta escola para os meus próprios filhos."
+          </p>
+          <p className="text-gray-600 text-sm sm:text-base">
+            Cláudio, fundador — formador Montessori reconhecido pela ABEM (Associação Brasileira de Educação Montessoriana, de Talita de Almeida)
+          </p>
+        </blockquote>
         <div className="mt-8 sm:mt-10">
           <a
             href="https://wa.me/5521993311000?text=Ol%C3%A1!%20Gostaria%20de%20conhecer%20a%20escola%20e%20agendar%20uma%20visita."
@@ -58,7 +66,7 @@ export const Philosophy: React.FC = () => {
             onClick={trackWhatsAppClick}
             className="inline-flex items-center justify-center gap-2 min-h-[48px] px-8 py-3 bg-[#25D366] text-white font-semibold rounded-sm hover:bg-[#20bd5a] transition-colors shadow-md hover:shadow-lg"
           >
-            Quero agendar uma visita gratuita
+            Quero agendar uma visita
           </a>
         </div>
       </div>

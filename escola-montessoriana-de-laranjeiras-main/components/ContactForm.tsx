@@ -6,14 +6,14 @@ import { Send, CheckCircle, Calendar } from 'lucide-react';
 import { trackWhatsAppClick } from '../utils/tracking';
 
 const WHATSAPP_ESCOLA = '5521993311000';
-const FORMSUBMIT_EMAIL = 'claudio@escolamontessoriana.com.br';
+const FORMSUBMIT_EMAIL = 'contato@escolamontessoriana.com.br';
 const FORMSUBMIT_URL = `https://formsubmit.co/${FORMSUBMIT_EMAIL}`;
 
-/** Por enquanto true = só envio por WhatsApp na interface. A lógica de e-mail permanece no código. */
-const USE_WHATSAPP_ONLY = true;
+/** false = o formulário envia por e-mail (FormSubmit); o WhatsApp fica como opção secundária. */
+const USE_WHATSAPP_ONLY = false;
 
 // IMPORTANTE – Para receber os e-mails do formulário:
-// 1. Na primeira vez, o FormSubmit envia um e-mail de ATIVAÇÃO para claudio@escolamontessoriana.com.br
+// 1. Na primeira vez, o FormSubmit envia um e-mail de ATIVAÇÃO para contato@escolamontessoriana.com.br
 // 2. Abra esse e-mail (verifique a pasta de SPAM) e clique no link de ativação
 // 3. Depois disso, todos os contatos passam a chegar na caixa de entrada (submissões feitas antes são guardadas por 30 dias)
 
@@ -173,14 +173,13 @@ export const ContactForm: React.FC = () => {
               Fale conosco agora
             </h3>
             <p className="text-montessori-cream/80 text-base sm:text-lg mb-4 leading-relaxed">
-              Envie por WhatsApp e receba resposta em minutos. Sem compromisso.
+              Preencha o formulário e retornaremos em breve. Sem compromisso.
             </p>
             <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-4 gap-1 text-base text-yellow-400 uppercase tracking-wider font-bold mb-6">
-              <span>• Resposta em minutos</span>
-              <span>• Visita gratuita</span>
+              <span>• Resposta rápida</span>
             </div>
             <p className="text-white/90 text-sm">
-              Preencha os dados abaixo e clique em &quot;Enviar por WhatsApp&quot;. Abrimos a conversa para você.
+              Preencha os dados abaixo e clique em &quot;Enviar&quot;. Sua mensagem chega direto no e-mail da escola.
             </p>
           </div>
         </div>
@@ -194,7 +193,7 @@ export const ContactForm: React.FC = () => {
               <p className="text-gray-600 mb-6">
                 {USE_WHATSAPP_ONLY
                   ? 'A mensagem foi preparada. Conclua o envio no WhatsApp que abriu.'
-                  : 'Sua mensagem foi enviada para claudio@escolamontessoriana.com.br. Responderemos em breve.'}
+                  : 'Sua mensagem foi enviada. Responderemos em breve.'}
               </p>
               <Link to="/agendamento" className="text-montessori-green font-semibold underline hover:no-underline">Agendar visita →</Link>
             </div>
@@ -383,7 +382,7 @@ export const ContactForm: React.FC = () => {
           Pronto para conhecer a escola?
         </p>
         <p className="text-montessori-dark/80 text-base mb-5">
-          Agende uma visita gratuita. Sem compromisso. Resposta em minutos.
+          Agende uma visita. Sem compromisso. Resposta em minutos.
         </p>
         <a
           href="https://wa.me/5521993311000?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20visita%20%C3%A0%20Escola%20Montessoriana."
@@ -393,7 +392,7 @@ export const ContactForm: React.FC = () => {
           className="inline-flex items-center justify-center gap-2 min-h-[52px] px-8 py-4 text-base font-semibold tracking-wide transition-all duration-300 rounded-sm touch-manipulation bg-[#25D366] text-white hover:bg-[#20bd5a] focus:outline focus:ring-2 focus:ring-[#25D366] focus:ring-offset-2 shadow-lg hover:shadow-xl"
         >
           <Calendar size={22} strokeWidth={2} />
-          Agendar minha visita gratuita
+          Agendar minha visita
         </a>
       </div>
     </Section>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Section } from './ui/Section';
-import { Heart, Users, Clock, Globe, TreePine, Calendar, Home, Music } from 'lucide-react';
+import { Heart, Users, Clock, Globe, TreePine, Calendar, Home, Music, Salad, MonitorOff } from 'lucide-react';
 import { trackWhatsAppClick } from '../utils/tracking';
 
 export const Benefits: React.FC = () => {
@@ -12,7 +12,7 @@ export const Benefits: React.FC = () => {
     },
     {
       icon: <Users size={32} />,
-      title: "Uma professora para cada 3 bebês menores de 2 anos de idade",
+      title: "Uma professora para cada 3 bebês menores de 18 meses de idade",
       description: "Cuidado personalizado, respeitando o ritmo e os interesses da criança"
     },
     {
@@ -22,13 +22,23 @@ export const Benefits: React.FC = () => {
     },
     {
       icon: <Globe size={32} />,
-      title: "Imersão no aprendizado de inglês e espanhol",
-      description: "Aprendizado natural através da vivência diária"
+      title: "Imersão no aprendizado de inglês",
+      description: "Professoras nativas e aprendizado natural através da vivência diária"
     },
     {
       icon: <TreePine size={32} />,
       title: "Contato com a Natureza",
       description: "Área ao ar livre com tanque de areia e atividades na natureza"
+    },
+    {
+      icon: <Salad size={32} />,
+      title: "Alimentação saudável",
+      description: "Refeições frescas e nutritivas, com cardápio pensado para cada fase da criança"
+    },
+    {
+      icon: <MonitorOff size={32} />,
+      title: "Política de zero telas",
+      description: "Infância livre de telas, com experiências reais, concretas e sensoriais"
     },
     {
       icon: <Calendar size={32} />,
@@ -60,7 +70,7 @@ export const Benefits: React.FC = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-10 sm:mb-16 min-w-0">
         {benefits.map((benefit, index) => (
           <div key={index} className="bg-montessori-cream p-5 sm:p-6 rounded-sm border border-montessori-green/10 hover:shadow-lg transition-shadow min-w-0 break-words">
-            <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-montessori-green/10 border-2 border-yellow-400 flex items-center justify-center text-montessori-green mb-3 sm:mb-4 [&>svg]:w-7 [&>svg]:h-7 sm:[&>svg]:w-8 sm:[&>svg]:h-8">
+            <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-montessori-green/10 border-2 border-yellow-400 flex items-center justify-center text-montessori-green mb-3 sm:mb-4 mx-auto [&>svg]:w-7 [&>svg]:h-7 sm:[&>svg]:w-8 sm:[&>svg]:h-8">
               {benefit.icon}
             </div>
             <h3 className="font-serif text-lg sm:text-xl text-montessori-green mb-2 sm:mb-3">
