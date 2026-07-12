@@ -12,7 +12,7 @@ export const Benefits: React.FC = () => {
     },
     {
       icon: <Users size={32} />,
-      title: "Uma professora para cada 3 bebês menores de 2 anos de idade",
+      title: "Uma professora para cada 3 bebês menores de 18 meses de idade",
       description: "Cuidado personalizado, respeitando o ritmo e os interesses da criança"
     },
     {
@@ -22,7 +22,7 @@ export const Benefits: React.FC = () => {
     },
     {
       icon: <Globe size={32} />,
-      title: "Imersão no aprendizado de inglês e espanhol",
+      title: "Imersão no aprendizado de inglês",
       description: "Aprendizado natural através da vivência diária"
     },
     {
@@ -60,7 +60,7 @@ export const Benefits: React.FC = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-10 sm:mb-16 min-w-0">
         {benefits.map((benefit, index) => (
           <div key={index} className="bg-montessori-cream p-5 sm:p-6 rounded-sm border border-montessori-green/10 hover:shadow-lg transition-shadow min-w-0 break-words">
-            <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-montessori-green/10 border-2 border-yellow-400 flex items-center justify-center text-montessori-green mb-3 sm:mb-4 [&>svg]:w-7 [&>svg]:h-7 sm:[&>svg]:w-8 sm:[&>svg]:h-8">
+            <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-montessori-green/10 border-2 border-yellow-400 flex items-center justify-center text-montessori-green mb-3 sm:mb-4 mx-auto [&>svg]:w-7 [&>svg]:h-7 sm:[&>svg]:w-8 sm:[&>svg]:h-8">
               {benefit.icon}
             </div>
             <h3 className="font-serif text-lg sm:text-xl text-montessori-green mb-2 sm:mb-3">
