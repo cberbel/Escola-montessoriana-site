@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { MessageCircle, X, Send } from 'lucide-react';
 
+const AI_CHAT_URL = '/api/chat';
 const N8N_WEBHOOK_URL = 'https://igorgomessilva.app.n8n.cloud/webhook/1f83e8ac-d465-454a-8327-cef7f0149cb1/chat';
 
 export type ChatMessage = { role: 'user' | 'bot'; text: string };
@@ -17,6 +18,28 @@ function getReplyFromN8nResponse(data: unknown): string {
     }
   }
   return 'Desculpe, não consegui processar a resposta.';
+}
+
+async function fetchAiReply(message: string, history: ChatMessage[]): Promise<string> {
+  const res = await fetch(AI_CHAT_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ message, history }),
+  });
+  if (!res.ok) throw new Error(`AI chat respondeu ${res.status}`);
+  const data = await res.json();
+  if (typeof data?.reply !== 'string') throw new Error('Resposta da IA sem texto');
+  return data.reply;
+}
+
+async function fetchN8nReply(message: string, history: ChatMessage[]): Promise<string> {
+  const res = await fetch(N8N_WEBHOOK_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ message, history }),
+  });
+  const data = await res.json().catch(() => ({}));
+  return getReplyFromN8nResponse(data);
 }
 
 export const ChatBot: React.FC = () => {
@@ -48,24 +71,24 @@ export const ChatBot: React.FC = () => {
     const trimmed = inputValue.trim();
     if (!trimmed) return;
 
+    const history = messages;
     setMessages((prev) => [...prev, { role: 'user', text: trimmed }]);
     setInputValue('');
     setIsLoading(true);
 
     try {
-      const res = await fetch(N8N_WEBHOOK_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: trimmed, history: messages }),
-      });
-      const data = await res.json().catch(() => ({}));
-      const reply = getReplyFromN8nResponse(data);
+      const reply = await fetchAiReply(trimmed, history);
       setMessages((prev) => [...prev, { role: 'bot', text: reply }]);
     } catch (_) {
-      setMessages((prev) => [
-        ...prev,
-        { role: 'bot', text: 'Não foi possível conectar no momento. Tente novamente ou fale conosco pelo WhatsApp.' },
-      ]);
+      try {
+        const reply = await fetchN8nReply(trimmed, history);
+        setMessages((prev) => [...prev, { role: 'bot', text: reply }]);
+      } catch (_) {
+        setMessages((prev) => [
+          ...prev,
+          { role: 'bot', text: 'Não foi possível conectar no momento. Tente novamente ou fale conosco pelo WhatsApp.' },
+        ]);
+      }
     } finally {
       setIsLoading(false);
     }
