@@ -345,7 +345,7 @@ export const ContactForm: React.FC = () => {
                   <span>Enviando...</span>
                 ) : (
                   <>
-                    <span>Enviar</span>
+                    <span>Enviar mensagem</span>
                     <Send size={16} className="group-hover:translate-x-1 transition-transform" />
                   </>
                 )}
