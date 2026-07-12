@@ -177,7 +177,6 @@ export const ContactForm: React.FC = () => {
             </p>
             <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-4 gap-1 text-base text-yellow-400 uppercase tracking-wider font-bold mb-6">
               <span>• Resposta em minutos</span>
-              <span>• Visita gratuita</span>
             </div>
             <p className="text-white/90 text-sm">
               Preencha os dados abaixo e clique em &quot;Enviar por WhatsApp&quot;. Abrimos a conversa para você.
@@ -383,7 +382,7 @@ export const ContactForm: React.FC = () => {
           Pronto para conhecer a escola?
         </p>
         <p className="text-montessori-dark/80 text-base mb-5">
-          Agende uma visita gratuita. Sem compromisso. Resposta em minutos.
+          Agende uma visita. Sem compromisso. Resposta em minutos.
         </p>
         <a
           href="https://wa.me/5521993311000?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20visita%20%C3%A0%20Escola%20Montessoriana."
@@ -393,7 +392,7 @@ export const ContactForm: React.FC = () => {
           className="inline-flex items-center justify-center gap-2 min-h-[52px] px-8 py-4 text-base font-semibold tracking-wide transition-all duration-300 rounded-sm touch-manipulation bg-[#25D366] text-white hover:bg-[#20bd5a] focus:outline focus:ring-2 focus:ring-[#25D366] focus:ring-offset-2 shadow-lg hover:shadow-xl"
         >
           <Calendar size={22} strokeWidth={2} />
-          Agendar minha visita gratuita
+          Agendar minha visita
         </a>
       </div>
     </Section>

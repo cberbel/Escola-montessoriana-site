@@ -74,7 +74,7 @@ export const Testimonials: React.FC = () => {
             onClick={trackWhatsAppClick}
             className="inline-flex items-center justify-center min-h-[52px] px-8 py-4 bg-[#25D366] text-white font-semibold rounded-sm hover:bg-[#20bd5a] transition-colors shadow-lg hover:shadow-xl"
           >
-            Agendar minha visita gratuita
+            Agendar minha visita
           </a>
         </div>
       </div>
