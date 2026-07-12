@@ -60,15 +60,6 @@ export const Hero: React.FC = () => {
             <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-white/15 border border-white/25 text-white text-sm sm:text-base font-medium backdrop-blur-sm">
               De 9 meses a 6 anos
             </span>
-            <a
-              href="https://www.google.com/maps/search/?api=1&query=Escola+Montessoriana+de+Laranjeiras+Rio+de+Janeiro"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white/15 border border-white/25 text-white text-sm sm:text-base font-medium backdrop-blur-sm hover:bg-white/25 transition-colors"
-            >
-              <span className="text-montessori-gold" aria-hidden="true">★★★★★</span>
-              5,0 no Google
-            </a>
           </div>
 
           <div className="flex flex-col gap-3 sm:gap-4 justify-center items-center">
