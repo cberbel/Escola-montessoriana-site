@@ -50,6 +50,14 @@ export const Philosophy: React.FC = () => {
           <li>Ambiente cientificamente preparado.</li>
           <li>Bem diferente do modelo fabril da escola convencional.</li>
         </ul>
+        <blockquote className="max-w-2xl mx-auto text-left bg-white border-l-4 border-montessori-gold rounded-sm shadow-sm p-5 sm:p-6 mb-2">
+          <p className="font-serif italic text-lg sm:text-xl text-montessori-green mb-3">
+            "Fiz esta escola para os meus próprios filhos."
+          </p>
+          <p className="text-gray-600 text-sm sm:text-base">
+            Cláudio, fundador — formador Montessori reconhecido pela ABEM (Associação Brasileira de Educação Montessoriana, de Talita de Almeida)
+          </p>
+        </blockquote>
         <div className="mt-8 sm:mt-10">
           <a
             href="https://wa.me/5521993311000?text=Ol%C3%A1!%20Gostaria%20de%20conhecer%20a%20escola%20e%20agendar%20uma%20visita."
