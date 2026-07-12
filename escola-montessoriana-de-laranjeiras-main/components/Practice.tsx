@@ -23,9 +23,9 @@ export const Practice: React.FC = () => {
         <div className="min-w-0 w-full md:w-auto">
           <div className="rounded-lg border border-amber-300/40 bg-white/5 px-5 sm:px-6 py-5 sm:py-6 shadow-[0_18px_45px_rgba(15,23,42,0.65)] max-w-md">
             <p className="font-sans text-sm sm:text-base text-amber-50 leading-relaxed">
-              In a truly bilingual environment, children experience languages in everyday life: in conversations, songs,
-              stories and play. Thus, the second (or third) language becomes a natural part of life,
-              not just an isolated class on the schedule.
+              Em um ambiente verdadeiramente bilíngue, as crianças vivenciam os idiomas no dia a dia: em conversas, músicas,
+              histórias e brincadeiras. Assim, a segunda (ou terceira) língua se torna parte natural da vida,
+              e não apenas uma aula isolada na grade horária.
             </p>
           </div>
         </div>
