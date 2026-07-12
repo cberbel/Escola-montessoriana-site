@@ -1,0 +1,3 @@
+{
+  "rewrites": [{ "source": "/((?!config\\.json).*)", "destination": "/index.html" }]
+}
