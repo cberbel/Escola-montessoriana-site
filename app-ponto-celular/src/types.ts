@@ -38,6 +38,7 @@ export interface RegistroAdmin {
   lat: number | null;
   lng: number | null;
   precisao_m: number | null;
+  dispositivo: string | null;
 }
 
 export interface LocalEscola {

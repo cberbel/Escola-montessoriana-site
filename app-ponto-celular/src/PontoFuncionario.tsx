@@ -13,7 +13,7 @@ import {
   CloudOff,
 } from 'lucide-react';
 import { Batida, Funcionario } from './types';
-import { obterPosicao, rpc, temConfig } from './api';
+import { idDispositivo, obterPosicao, rpc, temConfig } from './api';
 import { formatarHora, rotuloBatida } from './utils';
 
 interface RespostaFuncionario {
@@ -106,6 +106,7 @@ export const PontoFuncionario: React.FC = () => {
         p_lat: pos.lat,
         p_lng: pos.lng,
         p_precisao: pos.precisao,
+        p_dispositivo: idDispositivo(),
       });
       if (!r.ok) {
         setErro(r.erro ?? 'Não foi possível registrar.');

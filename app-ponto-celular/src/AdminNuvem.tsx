@@ -15,6 +15,7 @@ import {
   Loader2,
   Crosshair,
   Wallet,
+  Smartphone,
 } from 'lucide-react';
 import { Funcionario, LIMITE_FUNCIONARIOS, LocalEscola, MetricaHoras, RegistroAdmin } from './types';
 import { obterPosicao, rpc, temConfig } from './api';
@@ -575,6 +576,18 @@ const AbaRegistros: React.FC<{ pinAdmin: string; localEscola: LocalEscola | null
     return [...mapa.entries()].sort((a, b) => b[0].localeCompare(a[0]));
   }, [filtrados]);
 
+  // Aparelhos usados por mais de um funcionário no mês (indício de ponto batido pelo colega).
+  // Usa o mês inteiro (não o filtro), para o alerta não sumir ao filtrar por uma pessoa.
+  const dispositivosCompartilhados = useMemo(() => {
+    const porDispositivo = new Map<string, Set<string>>();
+    for (const r of registros ?? []) {
+      if (!r.dispositivo) continue;
+      if (!porDispositivo.has(r.dispositivo)) porDispositivo.set(r.dispositivo, new Set());
+      porDispositivo.get(r.dispositivo)!.add(r.nome);
+    }
+    return new Map([...porDispositivo].filter(([, nomes]) => nomes.size > 1));
+  }, [registros]);
+
   const resumoMensal = useMemo(() => {
     const porFuncionario = new Map<string, { nome: string; dias: Map<string, RegistroAdmin[]> }>();
     for (const r of filtrados) {
@@ -695,6 +708,22 @@ const AbaRegistros: React.FC<{ pinAdmin: string; localEscola: LocalEscola | null
         </p>
       )}
 
+      {dispositivosCompartilhados.size > 0 && (
+        <div className="bg-red-50 border border-red-200 text-red-900 rounded-xl px-4 py-3 mb-4 text-sm">
+          <p className="font-bold flex items-center gap-2">
+            <Smartphone size={16} /> Atenção: mesmo aparelho usado por mais de um funcionário neste mês
+          </p>
+          <ul className="mt-1 list-disc list-inside">
+            {[...dispositivosCompartilhados.values()].map((nomes, i) => (
+              <li key={i}>{[...nomes].sort().join(', ')}</li>
+            ))}
+          </ul>
+          <p className="mt-1 text-red-800/80">
+            Pode indicar ponto registrado por um colega. As batidas envolvidas estão marcadas abaixo.
+          </p>
+        </div>
+      )}
+
       {adicionando && (
         <FormBatidaManual
           funcionarios={funcionarios}
@@ -764,6 +793,14 @@ const AbaRegistros: React.FC<{ pinAdmin: string; localEscola: LocalEscola | null
                             {r.nome}
                             {r.manual && <span className="text-ponto-cinza"> · manual</span>}
                           </span>
+                          {r.dispositivo && dispositivosCompartilhados.has(r.dispositivo) && (
+                            <span
+                              className="flex items-center gap-1 text-xs font-bold px-2 py-0.5 rounded-full bg-red-100 text-red-800"
+                              title="Este aparelho também registrou ponto de outro funcionário neste mês"
+                            >
+                              <Smartphone size={13} /> aparelho compartilhado
+                            </span>
+                          )}
                           {r.lat === null ? (
                             !r.manual && (
                               <span className="flex items-center gap-1 text-xs text-ponto-cinza">

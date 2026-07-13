@@ -35,6 +35,21 @@ export async function rpc<T>(fn: string, args: Record<string, unknown>): Promise
   return resposta.json() as Promise<T>;
 }
 
+const CHAVE_DISPOSITIVO = 'ponto.dispositivo';
+
+/** Código anônimo e estável deste aparelho/navegador, criado no primeiro uso. */
+export function idDispositivo(): string {
+  let id = localStorage.getItem(CHAVE_DISPOSITIVO);
+  if (!id) {
+    id =
+      typeof crypto !== 'undefined' && 'randomUUID' in crypto
+        ? crypto.randomUUID()
+        : `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`;
+    localStorage.setItem(CHAVE_DISPOSITIVO, id);
+  }
+  return id;
+}
+
 /** Obtém a posição GPS do aparelho; resolve com valores nulos se indisponível/negado. */
 export function obterPosicao(): Promise<{ lat: number | null; lng: number | null; precisao: number | null }> {
   return new Promise((resolve) => {

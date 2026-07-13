@@ -40,7 +40,8 @@ create table if not exists registros (
   manual boolean not null default false,
   lat double precision,
   lng double precision,
-  precisao_m double precision
+  precisao_m double precision,
+  dispositivo text -- código anônimo do aparelho, para detectar ponto batido pelo colega
 );
 
 create index if not exists idx_registros_func_ts on registros (funcionario_id, ts);
@@ -52,6 +53,7 @@ alter table funcionarios add column if not exists hora_saida time;
 alter table funcionarios add column if not exists dias_semana int[] not null default '{1,2,3,4,5}';
 alter table funcionarios add column if not exists data_admissao date;
 update funcionarios set data_admissao = criado_em::date where data_admissao is null;
+alter table registros add column if not exists dispositivo text;
 
 -- Tabelas trancadas: sem policies, o papel anon não lê nem escreve nada direto.
 alter table config enable row level security;
@@ -183,7 +185,12 @@ begin
   );
 end $$;
 
-create or replace function bater_ponto(p_pin text, p_lat float8, p_lng float8, p_precisao float8) returns json
+-- Remove a assinatura antiga (sem dispositivo) para não criar sobrecarga ambígua.
+drop function if exists bater_ponto(text, float8, float8, float8);
+
+create or replace function bater_ponto(
+  p_pin text, p_lat float8, p_lng float8, p_precisao float8, p_dispositivo text default null
+) returns json
 language plpgsql security definer set search_path = public as $$
 declare
   f funcionarios;
@@ -217,7 +224,8 @@ begin
     end if;
   end if;
 
-  insert into registros (funcionario_id, lat, lng, precisao_m) values (f.id, p_lat, p_lng, p_precisao);
+  insert into registros (funcionario_id, lat, lng, precisao_m, dispositivo)
+  values (f.id, p_lat, p_lng, p_precisao, p_dispositivo);
   return entrar_funcionario(p_pin);
 end $$;
 
@@ -288,7 +296,8 @@ begin
   return json_build_object('ok', true, 'registros', coalesce((
     select json_agg(json_build_object(
       'id', r.id, 'funcionario_id', r.funcionario_id, 'nome', f.nome, 'ts', r.ts,
-      'manual', r.manual, 'lat', r.lat, 'lng', r.lng, 'precisao_m', r.precisao_m) order by r.ts)
+      'manual', r.manual, 'lat', r.lat, 'lng', r.lng, 'precisao_m', r.precisao_m,
+      'dispositivo', r.dispositivo) order by r.ts)
     from registros r join funcionarios f on f.id = r.funcionario_id
     where r.ts >= p_de and r.ts < p_ate), '[]'::json));
 end $$;
