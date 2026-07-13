@@ -38,7 +38,7 @@ import {
 type Aba = 'registros' | 'funcionarios' | 'banco' | 'config';
 
 interface RespostaBase { ok: boolean; erro?: string }
-interface RespostaConfig extends RespostaBase { local: LocalEscola | null; pin_padrao: boolean }
+interface RespostaConfig extends RespostaBase { local: LocalEscola | null; exigir_presenca: boolean; pin_padrao: boolean }
 interface RespostaFuncionarios extends RespostaBase { funcionarios: Funcionario[] }
 interface RespostaRegistros extends RespostaBase { registros: RegistroAdmin[] }
 interface RespostaMetricas extends RespostaBase { metricas: MetricaHoras[] }
@@ -48,12 +48,14 @@ const CHAVE_SESSAO = 'ponto.adminSessao';
 export const AdminNuvem: React.FC = () => {
   const [pinAdmin, setPinAdmin] = useState<string | null>(() => sessionStorage.getItem(CHAVE_SESSAO));
   const [localEscola, setLocalEscola] = useState<LocalEscola | null>(null);
+  const [exigirPresenca, setExigirPresenca] = useState(false);
   const [pinPadrao, setPinPadrao] = useState(false);
 
   function autenticado(pin: string, cfg: RespostaConfig) {
     sessionStorage.setItem(CHAVE_SESSAO, pin);
     setPinAdmin(pin);
     setLocalEscola(cfg.local);
+    setExigirPresenca(cfg.exigir_presenca);
     setPinPadrao(cfg.pin_padrao);
   }
 
@@ -93,6 +95,8 @@ export const AdminNuvem: React.FC = () => {
           pinAdmin={pinAdmin}
           localEscola={localEscola}
           setLocalEscola={setLocalEscola}
+          exigirPresenca={exigirPresenca}
+          setExigirPresenca={setExigirPresenca}
           pinPadrao={pinPadrao}
           aoTrocarPin={(novo) => { sessionStorage.setItem(CHAVE_SESSAO, novo); setPinAdmin(novo); setPinPadrao(false); }}
         />
@@ -161,9 +165,11 @@ const Painel: React.FC<{
   pinAdmin: string;
   localEscola: LocalEscola | null;
   setLocalEscola: (l: LocalEscola | null) => void;
+  exigirPresenca: boolean;
+  setExigirPresenca: (e: boolean) => void;
   pinPadrao: boolean;
   aoTrocarPin: (novo: string) => void;
-}> = ({ pinAdmin, localEscola, setLocalEscola, pinPadrao, aoTrocarPin }) => {
+}> = ({ pinAdmin, localEscola, setLocalEscola, exigirPresenca, setExigirPresenca, pinPadrao, aoTrocarPin }) => {
   const [aba, setAba] = useState<Aba>('registros');
 
   const abas: { id: Aba; rotulo: string; icone: React.ReactNode }[] = [
@@ -202,6 +208,8 @@ const Painel: React.FC<{
           pinAdmin={pinAdmin}
           localEscola={localEscola}
           setLocalEscola={setLocalEscola}
+          exigirPresenca={exigirPresenca}
+          setExigirPresenca={setExigirPresenca}
           aoTrocarPin={aoTrocarPin}
         />
       )}
@@ -959,13 +967,33 @@ const AbaConfig: React.FC<{
   pinAdmin: string;
   localEscola: LocalEscola | null;
   setLocalEscola: (l: LocalEscola | null) => void;
+  exigirPresenca: boolean;
+  setExigirPresenca: (e: boolean) => void;
   aoTrocarPin: (novo: string) => void;
-}> = ({ pinAdmin, localEscola, setLocalEscola, aoTrocarPin }) => {
+}> = ({ pinAdmin, localEscola, setLocalEscola, exigirPresenca, setExigirPresenca, aoTrocarPin }) => {
   const [novoPin, setNovoPin] = useState('');
   const [mensagemPin, setMensagemPin] = useState<{ tipo: 'ok' | 'erro'; texto: string } | null>(null);
   const [raio, setRaio] = useState(localEscola?.raio_m ?? 100);
   const [mensagemLocal, setMensagemLocal] = useState<{ tipo: 'ok' | 'erro'; texto: string } | null>(null);
   const [obtendo, setObtendo] = useState(false);
+  const [mensagemExigir, setMensagemExigir] = useState<{ tipo: 'ok' | 'erro'; texto: string } | null>(null);
+  const [salvandoExigir, setSalvandoExigir] = useState(false);
+
+  async function alternarExigencia() {
+    setSalvandoExigir(true);
+    setMensagemExigir(null);
+    const novo = !exigirPresenca;
+    const r = await rpc<RespostaBase>('admin_definir_exigencia', { p_pin_admin: pinAdmin, p_exigir: novo });
+    setSalvandoExigir(false);
+    if (!r.ok) return setMensagemExigir({ tipo: 'erro', texto: r.erro ?? 'Erro ao salvar.' });
+    setExigirPresenca(novo);
+    setMensagemExigir({
+      tipo: 'ok',
+      texto: novo
+        ? 'Bloqueio ativado: só serão aceitas batidas dentro do raio da escola.'
+        : 'Bloqueio desativado: batidas fora da escola voltam a ser aceitas (apenas marcadas).',
+    });
+  }
 
   async function trocarPin(e: React.FormEvent) {
     e.preventDefault();
@@ -1047,6 +1075,30 @@ const AbaConfig: React.FC<{
           {obtendo ? <Loader2 size={20} className="animate-spin" /> : <Crosshair size={20} />}
           {obtendo ? 'Obtendo localização…' : 'Usar minha localização atual'}
         </button>
+
+        <div className="border-t border-ponto-claro mt-5 pt-4">
+          <label className="flex items-start gap-3 cursor-pointer">
+            <input
+              type="checkbox"
+              checked={exigirPresenca}
+              disabled={salvandoExigir}
+              onChange={alternarExigencia}
+              className="mt-1 w-5 h-5 accent-blue-800"
+            />
+            <span>
+              <span className="font-bold block">Só aceitar batidas dentro do raio da escola</span>
+              <span className="text-sm text-ponto-cinza">
+                Com isso ativado, quem estiver fora do raio (ou sem GPS) não consegue registrar o
+                ponto. A verificação é feita no servidor.
+              </span>
+            </span>
+          </label>
+          {mensagemExigir && (
+            <p className={`mt-2 text-sm ${mensagemExigir.tipo === 'ok' ? 'text-green-700' : 'text-red-600'}`}>
+              {mensagemExigir.texto}
+            </p>
+          )}
+        </div>
       </div>
 
       <form onSubmit={trocarPin} className="bg-white rounded-2xl shadow p-6 space-y-4">

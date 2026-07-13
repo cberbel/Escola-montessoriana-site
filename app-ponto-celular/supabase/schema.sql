@@ -66,6 +66,15 @@ language sql security definer set search_path = public as $$
   select exists (select 1 from config where chave = 'pin_admin' and valor = to_jsonb(p));
 $$;
 
+-- Distância em metros entre duas coordenadas (fórmula de Haversine).
+create or replace function _distancia_m(lat1 float8, lng1 float8, lat2 float8, lng2 float8) returns float8
+language sql immutable as $$
+  select 2 * 6371000 * asin(sqrt(
+    pow(sin(radians(lat2 - lat1) / 2), 2) +
+    cos(radians(lat1)) * cos(radians(lat2)) * pow(sin(radians(lng2 - lng1) / 2), 2)
+  ));
+$$;
+
 -- Batidas de hoje (fuso de São Paulo) de um funcionário, como JSON.
 create or replace function _batidas_hoje(p_funcionario_id uuid) returns json
 language sql security definer set search_path = public as $$
@@ -176,7 +185,12 @@ end $$;
 
 create or replace function bater_ponto(p_pin text, p_lat float8, p_lng float8, p_precisao float8) returns json
 language plpgsql security definer set search_path = public as $$
-declare f funcionarios; v_ultima timestamptz;
+declare
+  f funcionarios;
+  v_ultima timestamptz;
+  v_local jsonb;
+  v_exigir boolean;
+  v_dist float8;
 begin
   select * into f from funcionarios where pin = p_pin and ativo limit 1;
   if f.id is null then
@@ -186,6 +200,23 @@ begin
   if v_ultima is not null and now() - v_ultima < interval '1 minute' then
     return json_build_object('ok', false, 'erro', 'Ponto já registrado há menos de 1 minuto.');
   end if;
+
+  -- Bloqueio por localização: quando ativado nas Configurações, só aceita a
+  -- batida dentro do raio da escola (validado aqui no servidor).
+  select valor into v_local from config where chave = 'local_escola';
+  v_exigir := coalesce((select (valor #>> '{}')::boolean from config where chave = 'exigir_presenca'), false);
+  if v_exigir and v_local is not null then
+    if p_lat is null or p_lng is null then
+      return json_build_object('ok', false, 'erro',
+        'Para registrar o ponto é preciso permitir o acesso à localização (GPS).');
+    end if;
+    v_dist := _distancia_m(p_lat, p_lng, (v_local->>'lat')::float8, (v_local->>'lng')::float8);
+    if v_dist > (v_local->>'raio_m')::float8 then
+      return json_build_object('ok', false, 'erro',
+        format('Você está a %s m da escola. Aproxime-se para registrar o ponto.', round(v_dist)::int));
+    end if;
+  end if;
+
   insert into registros (funcionario_id, lat, lng, precisao_m) values (f.id, p_lat, p_lng, p_precisao);
   return entrar_funcionario(p_pin);
 end $$;
@@ -304,7 +335,24 @@ begin
   return json_build_object(
     'ok', true,
     'local', (select valor from config where chave = 'local_escola'),
+    'exigir_presenca', coalesce((select (valor #>> '{}')::boolean from config where chave = 'exigir_presenca'), false),
     'pin_padrao', (select valor = to_jsonb('1234'::text) from config where chave = 'pin_admin'));
+end $$;
+
+-- Liga/desliga o bloqueio de batidas fora do raio da escola.
+create or replace function admin_definir_exigencia(p_pin_admin text, p_exigir boolean) returns json
+language plpgsql security definer set search_path = public as $$
+begin
+  if not _pin_admin_ok(p_pin_admin) then
+    return json_build_object('ok', false, 'erro', 'PIN de administrador incorreto.');
+  end if;
+  if p_exigir and not exists (select 1 from config where chave = 'local_escola') then
+    return json_build_object('ok', false, 'erro',
+      'Defina primeiro a localização da escola para ativar o bloqueio.');
+  end if;
+  insert into config (chave, valor) values ('exigir_presenca', to_jsonb(p_exigir))
+  on conflict (chave) do update set valor = excluded.valor;
+  return json_build_object('ok', true);
 end $$;
 
 create or replace function admin_definir_local(p_pin_admin text, p_lat float8, p_lng float8, p_raio float8) returns json
