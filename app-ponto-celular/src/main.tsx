@@ -20,6 +20,7 @@ async function iniciar() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<PontoFuncionario />} />
+          <Route path="/estacao" element={<PontoFuncionario modoCompartilhado />} />
           <Route path="/admin" element={<AdminNuvem />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>

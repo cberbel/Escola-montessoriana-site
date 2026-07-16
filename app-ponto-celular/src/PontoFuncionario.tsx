@@ -27,7 +27,12 @@ const CHAVE_PIN_SALVO = 'ponto.pinFuncionario';
 
 type Fase = 'pin' | 'carregando' | 'home';
 
-export const PontoFuncionario: React.FC = () => {
+/**
+ * modoCompartilhado: para o computador da recepção (rota /estacao). Nunca lembra o
+ * PIN entre pessoas e volta sozinho ao teclado após cada registro — evita que a
+ * próxima pessoa bata o ponto sem querer como quem usou por último.
+ */
+export const PontoFuncionario: React.FC<{ modoCompartilhado?: boolean }> = ({ modoCompartilhado = false }) => {
   const [fase, setFase] = useState<Fase>('pin');
   const [pin, setPin] = useState('');
   const [erro, setErro] = useState('');
@@ -43,12 +48,21 @@ export const PontoFuncionario: React.FC = () => {
     return () => clearInterval(timer);
   }, []);
 
-  // Entra automaticamente com o PIN salvo da última vez
+  // Entra automaticamente com o PIN salvo da última vez (não no modo compartilhado)
   useEffect(() => {
+    if (modoCompartilhado) return;
     const salvo = localStorage.getItem(CHAVE_PIN_SALVO);
     if (salvo && temConfig()) entrar(salvo);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // No modo compartilhado, volta sozinho ao teclado pouco depois de confirmar o registro
+  useEffect(() => {
+    if (!modoCompartilhado || !sucesso) return;
+    const timer = setTimeout(sair, 2500);
+    return () => clearTimeout(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [modoCompartilhado, sucesso]);
 
   async function entrar(pinDigitado: string) {
     setFase('carregando');
@@ -62,7 +76,7 @@ export const PontoFuncionario: React.FC = () => {
         setFase('pin');
         return;
       }
-      localStorage.setItem(CHAVE_PIN_SALVO, pinDigitado);
+      if (!modoCompartilhado) localStorage.setItem(CHAVE_PIN_SALVO, pinDigitado);
       setFuncionario(r.funcionario);
       setBatidas(r.batidas ?? []);
       setFase('home');
@@ -92,8 +106,8 @@ export const PontoFuncionario: React.FC = () => {
   }
 
   async function registrar() {
-    const pinSalvo = localStorage.getItem(CHAVE_PIN_SALVO);
-    if (!pinSalvo) return sair();
+    const pinAtual = modoCompartilhado ? pin : localStorage.getItem(CHAVE_PIN_SALVO);
+    if (!pinAtual) return sair();
     setErro('');
     setSucesso('');
     setSemGps(false);
@@ -102,7 +116,7 @@ export const PontoFuncionario: React.FC = () => {
     setRegistrando('enviando');
     try {
       const r = await rpc<RespostaFuncionario>('bater_ponto', {
-        p_pin: pinSalvo,
+        p_pin: pinAtual,
         p_lat: pos.lat,
         p_lng: pos.lng,
         p_precisao: pos.precisao,
@@ -139,6 +153,11 @@ export const PontoFuncionario: React.FC = () => {
         <div className="flex items-center gap-2">
           <Clock size={22} className="text-ponto-dourado" />
           <span className="font-serif text-lg">Escola Montessoriana · Ponto</span>
+          {modoCompartilhado && (
+            <span className="text-xs bg-white/15 px-2 py-0.5 rounded-full text-white/80">
+              Estação compartilhada
+            </span>
+          )}
         </div>
         <Link to="/admin" className="flex items-center gap-1 text-sm text-white/80 hover:text-white">
           <Settings size={16} /> Admin
@@ -226,6 +245,9 @@ export const PontoFuncionario: React.FC = () => {
                     Registrado sem localização — ative o GPS e permita o acesso à localização.
                   </p>
                 )}
+                {modoCompartilhado && sucesso && (
+                  <p className="text-ponto-cinza text-sm mb-3">Voltando para o próximo funcionário…</p>
+                )}
 
                 <button
                   onClick={registrar}
@@ -250,7 +272,8 @@ export const PontoFuncionario: React.FC = () => {
                   onClick={sair}
                   className="mt-3 flex items-center gap-1 mx-auto text-ponto-cinza hover:text-ponto-escuro"
                 >
-                  <LogOut size={16} /> Não sou {funcionario.nome.split(' ')[0]} · sair
+                  <LogOut size={16} />
+                  {modoCompartilhado ? 'Voltar ao teclado' : `Não sou ${funcionario.nome.split(' ')[0]} · sair`}
                 </button>
               </div>
             )}
