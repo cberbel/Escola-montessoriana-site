@@ -65,7 +65,7 @@ O código ou resposta deve seguir estritamente esta ordem:
 ## Estrutura
 - `App.tsx` – layout principal e rotas (quando em uso: BrowserRouter, Routes, Route)
 - `pages/` – Home, Agendamento (página com Calendly)
-- `components/` – Navbar, Hero, Philosophy, Benefits, Practice, Gallery, Testimonials, ContactForm, ChatBot; em `components/ui/`: Button, Section
+- `components/` – Navbar, Hero, Philosophy, Benefits, Practice, Gallery, Testimonials, ContactForm, FloatingWhatsApp; em `components/ui/`: Button, Section. (O antigo ChatBot.tsx foi removido em 2026-07-19: nunca foi renderizado e o webhook n8n do webdesigner saiu do ar; o contato é pelo botão flutuante de WhatsApp.)
 - `public/images/` – imagens locais; `public/videos/` – vídeos
 - Cores e fontes definidas em `index.html` (tailwind.config e Google Fonts: Playfair Display, Lato)
 
