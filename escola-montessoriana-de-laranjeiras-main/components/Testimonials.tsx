@@ -87,7 +87,7 @@ export const Testimonials: React.FC = () => {
 
       <div className="relative z-10 max-w-5xl mx-auto min-w-0">
         <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl text-center mb-10 sm:mb-16 text-montessori-cream px-1">
-          A escolha de famílias que valorizam a excelência.
+          A escolha de famílias que valorizam o cuidado e a autonomia.
         </h2>
 
         {/* Depoimentos em vídeo */}
