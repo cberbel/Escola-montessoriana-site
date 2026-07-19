@@ -33,33 +33,34 @@ export const Philosophy: React.FC = () => {
 
   return (
     <Section id="method" className="bg-montessori-cream">
-      <div className="text-center mb-10 sm:mb-16 min-w-0">
+      <div className="text-center mb-10 sm:mb-14 min-w-0">
         <span className="text-montessori-green tracking-widest font-bold text-sm sm:text-base mb-2 block">
-          Diferenciais
+          O Método
         </span>
         <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-montessori-green mb-4 sm:mb-6">
-          Montessori oferece educação para a vida real, de forma personalizada
+          Educação para a vida real, no ritmo do seu filho
         </h2>
-        <p className="font-sans text-lg md:text-xl text-montessori-dark font-semibold max-w-2xl mx-auto mb-5 sm:mb-6 px-1 leading-relaxed">
-          A criança aprende no seu ritmo, seguindo seus interesses, dentro de um ambiente preparado para o desenvolvimento infantil.
+        <p className="font-sans text-lg md:text-xl text-montessori-dark font-semibold max-w-2xl mx-auto px-1 leading-relaxed">
+          Método Montessori: a criança aprende seguindo seus interesses, em um ambiente preparado para o desenvolvimento infantil.
         </p>
-        <ul className="font-sans text-lg md:text-xl text-montessori-dark max-w-2xl mx-auto list-none space-y-2 sm:space-y-3 mb-6 sm:mb-8 px-1 text-left break-words [&>li]:relative [&>li]:pl-6 [&>li]:before:content-['•'] [&>li]:before:absolute [&>li]:before:left-0 [&>li]:before:text-montessori-gold [&>li]:before:font-bold">
+      </div>
+
+      {/* Bullets + foto: o texto afirma, a foto demonstra */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 items-center max-w-5xl mx-auto mb-12 sm:mb-20 min-w-0">
+        <ul className="font-sans text-lg md:text-xl text-montessori-dark list-none space-y-2 sm:space-y-3 px-1 text-left break-words [&>li]:relative [&>li]:pl-6 [&>li]:before:content-['•'] [&>li]:before:absolute [&>li]:before:left-0 [&>li]:before:text-montessori-gold [&>li]:before:font-bold">
           <li>Liberdade com limites.</li>
           <li>Autonomia e independência desde cedo.</li>
           <li>Foco no desenvolvimento da concentração.</li>
           <li>Ambiente cientificamente preparado.</li>
-          <li>Bem diferente do modelo fabril da escola convencional.</li>
+          <li>Um método com mais de 100 anos de resultados no mundo inteiro.</li>
         </ul>
-        <div className="mt-8 sm:mt-10">
-          <a
-            href="https://wa.me/5521993311000?text=Ol%C3%A1!%20Gostaria%20de%20conhecer%20a%20escola%20e%20agendar%20uma%20visita."
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={trackWhatsAppClick}
-            className="inline-flex items-center justify-center gap-2 min-h-[48px] px-8 py-3 bg-[#25D366] text-white font-semibold rounded-sm hover:bg-[#20bd5a] transition-colors shadow-md hover:shadow-lg"
-          >
-            Quero agendar uma visita
-          </a>
+        <div className="relative overflow-hidden rounded-sm shadow-lg border-l-4 border-montessori-gold min-w-0">
+          <img
+            src="/images/ambiente-preparado.png"
+            alt="Crianças concentradas brincando no tanque de areia da Escola Montessoriana"
+            loading="lazy"
+            className="w-full h-64 sm:h-80 object-cover"
+          />
         </div>
       </div>
 
@@ -77,6 +78,18 @@ export const Philosophy: React.FC = () => {
             </p>
           </div>
         ))}
+      </div>
+
+      <div className="text-center mt-12 sm:mt-16">
+        <a
+          href="https://wa.me/5521993311000?text=Ol%C3%A1!%20Gostaria%20de%20conhecer%20a%20escola%20e%20agendar%20uma%20visita."
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={trackWhatsAppClick}
+          className="inline-flex items-center justify-center gap-2 min-h-[48px] px-8 py-3 bg-[#25D366] text-white font-semibold rounded-sm hover:bg-[#20bd5a] transition-colors shadow-md hover:shadow-lg"
+        >
+          Quero agendar uma visita
+        </a>
       </div>
     </Section>
   );
