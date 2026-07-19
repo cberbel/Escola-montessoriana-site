@@ -44,7 +44,7 @@ Sua missão é dupla:
 # Fluxo de Conversa (Lógica de Implementação)
 O código ou resposta deve seguir estritamente esta ordem:
 1. **Boas-vindas + Filtro:** Perguntar idade da criança.
-   - SE > 6 anos: Encerrar gentilmente.
+   - SE > 6 anos: Oferecer o Ensino Fundamental 1 (valores sob consulta) e convidar para uma conversa com a diretora.
 2. **Entender a Dor:** Perguntar sobre turno (Meio período vs Integral/Trabalho).
 3. **Isca da Visita:** Oferecer visita citando o "espaço de natureza único".
 4. **Fechamento:** Agendar ou tratar preço.
