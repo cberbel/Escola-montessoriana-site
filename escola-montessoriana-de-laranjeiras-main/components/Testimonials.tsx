@@ -4,7 +4,49 @@ import { Section } from './ui/Section';
 import { Testimonial } from '../types';
 import { trackWhatsAppClick } from '../utils/tracking';
 
+interface VideoTestimonial {
+  id: number;
+  name: string;
+  role: string;
+  src: string;
+  poster: string;
+  vertical: boolean;
+}
+
 export const Testimonials: React.FC = () => {
+  const videoTestimonials: VideoTestimonial[] = [
+    {
+      id: 1,
+      name: "Jean e Anastácia",
+      role: "pais do Nicolas",
+      src: "/videos/depoimento-jean.mp4",
+      poster: "/images/thumb-depoimento-jean.jpg",
+      vertical: false
+    },
+    {
+      id: 2,
+      name: "Manu",
+      role: "mãe da Nina",
+      src: "/videos/depoimento-manu.mp4",
+      poster: "/images/thumb-depoimento-manu.jpg",
+      vertical: true
+    },
+    {
+      id: 3,
+      name: "Pai da Madalena",
+      role: "",
+      src: "/videos/depoimento-madalena.mp4",
+      poster: "/images/thumb-depoimento-madalena.jpg",
+      vertical: true
+    }
+  ];
+
+  const pauseOthers = (e: React.SyntheticEvent<HTMLVideoElement>) => {
+    document.querySelectorAll('video').forEach((v) => {
+      if (v !== e.currentTarget) v.pause();
+    });
+  };
+
   const testimonials: Testimonial[] = [
     {
       id: 1,
@@ -47,6 +89,31 @@ export const Testimonials: React.FC = () => {
         <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl text-center mb-10 sm:mb-16 text-montessori-cream px-1">
           A escolha de famílias que valorizam a excelência.
         </h2>
+
+        {/* Depoimentos em vídeo */}
+        <div className="flex flex-wrap justify-center items-start gap-6 sm:gap-8 mb-12 sm:mb-16">
+          {videoTestimonials.map((v) => (
+            <div key={v.id} className={v.vertical ? "w-[240px] sm:w-[260px] min-w-0" : "w-full max-w-[560px] min-w-0"}>
+              <div className={`${v.vertical ? "aspect-[9/16]" : "aspect-video"} bg-black/30 rounded-sm overflow-hidden border border-white/10`}>
+                <video
+                  src={v.src}
+                  poster={v.poster}
+                  controls
+                  playsInline
+                  preload="none"
+                  onPlay={pauseOthers}
+                  className="w-full h-full object-cover"
+                >
+                  Seu navegador não suporta vídeo.
+                </video>
+              </div>
+              <div className="mt-3 text-center">
+                <h4 className="font-serif text-lg text-white leading-tight">{v.name}</h4>
+                {v.role && <p className="text-white/70 text-sm">{v.role}</p>}
+              </div>
+            </div>
+          ))}
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-12">
           {testimonials.map((t) => (
