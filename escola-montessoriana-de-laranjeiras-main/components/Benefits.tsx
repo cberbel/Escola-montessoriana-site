@@ -50,9 +50,10 @@ export const Benefits: React.FC = () => {
   const activities = [
     "Capoeira",
     "Musicalização",
+    "Dança e movimento",
+    "Corpo e movimento",
     "Permacultura",
-    "Psicomotricidade",
-    "Artes",
+    "Circo e teatro",
     "Contação de histórias"
   ];
 
