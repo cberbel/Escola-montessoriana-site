@@ -1,6 +1,7 @@
 import React from 'react';
 import { LandingHero, LandingSection, LandingCTA, Highlight, Bullets, P, usePageMeta } from '../../components/landing/Landing';
 import { SynapseDiagram } from '../../components/landing/SynapseDiagram';
+import { SensitivePeriodsChart } from '../../components/landing/SensitivePeriodsChart';
 
 export const DesenvolvimentoCerebral: React.FC = () => {
   usePageMeta(
@@ -70,6 +71,12 @@ export const DesenvolvimentoCerebral: React.FC = () => {
           idioma novo por uma pessoa ao vivo aprenderam os sons dessa língua — enquanto bebês expostos ao mesmo
           conteúdo em vídeo, sozinhos, não aprenderam nada. A tela não substitui a interação social real.
         </P>
+        <P>
+          E a linguagem não é a única com hora marcada. Cada grande função do cérebro — os sentidos, a linguagem, as
+          funções cognitivas mais complexas — tem sua própria janela de maior facilidade, e todas se concentram nos
+          primeiros anos de vida:
+        </P>
+        <SensitivePeriodsChart />
         <Highlight>
           Ouvir não basta: o cérebro do bebê aprende linguagem na relação com outra pessoa, ao vivo, respondendo e
           sendo respondido — é por isso que chamamos de "servir e devolver".
