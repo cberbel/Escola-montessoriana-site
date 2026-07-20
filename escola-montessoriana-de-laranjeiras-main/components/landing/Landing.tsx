@@ -83,6 +83,19 @@ export const LandingImage: React.FC<{ src: string; alt: string; portrait?: boole
     </div>
   );
 
+export const LandingImagePair: React.FC<{ images: { src: string; alt: string }[]; caption?: string }> = ({ images, caption }) => (
+  <div className="my-6">
+    <div className="grid grid-cols-2 gap-2 sm:gap-4">
+      {images.map((im) => (
+        <div key={im.src} className="overflow-hidden rounded-sm shadow-lg">
+          <img src={im.src} alt={im.alt} loading="lazy" className="w-full h-56 sm:h-80 object-cover" />
+        </div>
+      ))}
+    </div>
+    {caption && <p className="mt-2 text-center text-sm text-gray-500">{caption}</p>}
+  </div>
+);
+
 export const LandingCTA: React.FC<{ heading: string; text: string }> = ({ heading, text }) => (
   <section className="px-4 sm:px-6 md:px-12 py-12 sm:py-16 overflow-x-hidden">
     <div className="max-w-3xl mx-auto min-w-0 text-center bg-montessori-green text-white rounded-sm p-8 sm:p-12">

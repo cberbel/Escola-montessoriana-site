@@ -1,5 +1,5 @@
 import React from 'react';
-import { LandingHero, LandingSection, LandingCTA, LandingImage, Highlight, Bullets, P, usePageMeta } from '../../components/landing/Landing';
+import { LandingHero, LandingSection, LandingCTA, LandingImage, LandingImagePair, Highlight, Bullets, P, usePageMeta } from '../../components/landing/Landing';
 
 /** Tema da educação cósmica: título + texto, no mesmo estilo das áreas do currículo */
 const Tema: React.FC<{ title: string; children: React.ReactNode }> = ({ title, children }) => (
@@ -34,7 +34,13 @@ export const NaturezaEducacaoCosmica: React.FC = () => {
           coordenação motora e até um sistema imunológico mais forte. Numa infância cada vez mais trancada entre telas
           e apartamentos, um quintal de verdade virou privilégio raro — e a gente acha que deveria ser direito.
         </P>
-        <LandingImage src="/images/ambiente-preparado.png" alt="Crianças concentradas brincando no tanque de areia da Escola Montessoriana" />
+        <LandingImagePair
+          images={[
+            { src: '/images/natureza/tanque-areia-1.jpg', alt: 'Duas crianças brincando descalças no tanque de areia da escola' },
+            { src: '/images/natureza/tanque-areia-2.jpg', alt: 'Crianças explorando a areia com baldinhos e peneiras no tanque de areia' },
+          ]}
+          caption="No tanque de areia: textura, peso e temperatura que só a mão descobre."
+        />
       </LandingSection>
 
       <LandingSection heading="Espaço amplo é liberdade de movimento">
@@ -45,9 +51,22 @@ export const NaturezaEducacaoCosmica: React.FC = () => {
         </P>
         <P>
           Por isso nossos espaços são amplos por projeto, não por acaso: salas espaçosas com vista para o verde, onde o
-          movimento é livre; área externa com tanque de areia e árvores; e atividades — capoeira, circo, dança e
-          movimento, psicomotricidade — que fazem do corpo um instrumento de aprendizagem.
+          movimento é livre; um pátio coberto e arborizado; e atividades — capoeira, circo, dança e movimento,
+          psicomotricidade — que fazem do corpo um instrumento de aprendizagem.
         </P>
+        <LandingImage src="/images/natureza/patio-arborizado.jpg" alt="Pátio coberto da escola cercado por uma copa densa de árvores, com professora e crianças em aula de música no chão" />
+        <P>
+          Nosso pátio coberto fica cercado de verde: de qualquer ponto, a criança levanta os olhos e encontra árvores.
+          É nele que acontecem as aulas de movimento — e é raro, em plena Laranjeiras, ter tanta árvore à vista.
+        </P>
+        <LandingImagePair
+          images={[
+            { src: '/images/natureza/quadra-danca.jpg', alt: 'Crianças dançando no pátio coberto, com árvores visíveis ao fundo através da tela de proteção' },
+            { src: '/images/natureza/quadra-capoeira.jpg', alt: 'Aula de capoeira no pátio, com o professor de branco e árvores ao fundo' },
+          ]}
+          caption="Capoeira, dança e movimento no pátio arborizado."
+        />
+        <LandingImage src="/images/natureza/area-externa.jpg" alt="Criança pequena andando de bicicleta de equilíbrio na área externa coberta, com árvores ao fundo" />
         <LandingImage src="/images/espaco.png" alt="Sala ampla da Escola Montessoriana, com mesas baixas, materiais ao alcance das crianças e janelas para o paredão de pedra verde" />
       </LandingSection>
 
@@ -136,6 +155,13 @@ export const NaturezaEducacaoCosmica: React.FC = () => {
             Aula de permacultura: conhecendo as minhocas do minhocário
           </p>
         </div>
+        <LandingImagePair
+          images={[
+            { src: '/images/natureza/minhocario-maos.jpg', alt: 'Mão de uma criança e de um adulto segurando terra do minhocário, com uma minhoca na palma' },
+            { src: '/images/natureza/minhocario-turma.jpg', alt: 'Turma reunida em roda ao redor da bandeja do minhocário durante a aula de permacultura' },
+          ]}
+          caption="A tarefa cósmica na palma da mão: a turma inteira ao redor do minhocário."
+        />
         <P>
           <strong>E em breve, abelhas nativas sem ferrão:</strong> estamos preparando a chegada de um meliponário com
           abelhas brasileiras como a jataí — que não têm ferrão, são seguras para as crianças e estão entre as
