@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { LandingHero, LandingSection, LandingCTA, Highlight, Bullets, P, usePageMeta } from '../../components/landing/Landing';
 import { SynapseDiagram } from '../../components/landing/SynapseDiagram';
 import { SensitivePeriodsChart } from '../../components/landing/SensitivePeriodsChart';
@@ -72,6 +73,13 @@ export const DesenvolvimentoCerebral: React.FC = () => {
           conteúdo em vídeo, sozinhos, não aprenderam nada. A tela não substitui a interação social real.
         </P>
         <P>
+          É por essa janela — a mesma que a Kuhl mediu — que a imersão em inglês faz tanta diferença quando começa
+          cedo, com uma pessoa real, e não com um aplicativo.{' '}
+          <Link to="/ingles-primeira-infancia" className="text-montessori-green font-semibold underline hover:no-underline">
+            Entenda por que o inglês na primeira infância é tão poderoso
+          </Link>.
+        </P>
+        <P>
           E a linguagem não é a única com hora marcada. Cada grande função do cérebro — os sentidos, a linguagem, as
           funções cognitivas mais complexas — tem sua própria janela de maior facilidade, e todas se concentram nos
           primeiros anos de vida:
@@ -125,7 +133,7 @@ export const DesenvolvimentoCerebral: React.FC = () => {
         </P>
         <Bullets
           items={[
-            <><strong>O trajeto é temporário.</strong> Alguns minutos a mais no caminho duram o semestre. A arquitetura cerebral construída nesses anos dura a vida inteira.</>,
+            <><strong>Faça a conta das horas.</strong> São 10 ou 15 minutos a mais no trajeto — contra 8, 9, 10 horas por dia que seu filho vive dentro da escola. O que pesa mais na vida dele: os poucos minutos no carro, ou as milhares de horas de experiências que constroem o cérebro dele?</>,
             <><strong>Essa janela não volta.</strong> Como mostrou o trabalho de Charles Nelson, quanto mais cedo o ambiente certo chega, maior a recuperação possível — e o inverso também é verdadeiro. Skills beget skills: o que não se constrói agora fica mais difícil de construir depois.</>,
             <><strong>"Cuidar bem" não é o mesmo que desenvolver.</strong> Um lugar limpo e carinhoso é o mínimo. A pergunta certa é: o que acontece com a linguagem, o movimento e o vínculo do meu filho nas 8 horas por dia que ele passa lá?</>,
           ]}
