@@ -1,10 +1,11 @@
 import React from 'react';
 import { LandingHero, LandingSection, LandingCTA, Highlight, Bullets, P, usePageMeta } from '../../components/landing/Landing';
+import { SynapseDiagram } from '../../components/landing/SynapseDiagram';
 
 export const DesenvolvimentoCerebral: React.FC = () => {
   usePageMeta(
     'Os Primeiros Anos e o Cérebro | Escola Montessoriana de Laranjeiras',
-    'Mais de 1 milhão de conexões neurais por segundo: o que acontece no cérebro do seu filho nos primeiros anos, o papel da linguagem — e por que a escolha da escola pesa mais do que a distância de casa.'
+    'A ciência da primeira infância: arquitetura cerebral, a pesquisa de Fernald, Kuhl e Charles Nelson sobre linguagem, movimento e afeto — e por que a escolha da escola pesa mais do que a distância de casa.'
   );
 
   return (
@@ -12,50 +13,114 @@ export const DesenvolvimentoCerebral: React.FC = () => {
       <LandingHero
         eyebrow="Primeiros anos"
         title="O que está acontecendo no cérebro do seu filho — agora"
-        subtitle="Nos primeiros anos de vida, o cérebro forma mais de 1 milhão de novas conexões por segundo. Nenhuma outra fase da vida chega perto. O que acontece nesse período constrói a base de tudo o que vem depois."
+        subtitle="Nos primeiros anos de vida, o cérebro forma até 1 milhão de novas conexões neurais por segundo. Nenhuma outra fase da vida chega perto. O que acontece nesse período constrói a base de tudo o que vem depois."
       />
 
       <LandingSection heading="A arquitetura se constrói uma vez" className="pt-10 sm:pt-14">
         <P>
-          O cérebro não nasce pronto — ele se constrói, e a construção mais intensa acontece antes dos 6 anos. Aos 5,
-          o cérebro já atingiu cerca de 90% do tamanho adulto. As conexões formadas nesse período — e as experiências
-          que as formaram — viram o alicerce sobre o qual toda aprendizagem futura se apoia.
+          O cérebro do recém-nascido pesa cerca de 350–400g — em torno de 25% do peso que terá na vida adulta (por
+          volta de 1,3 a 1,4 kg) — mas já traz praticamente todos os neurônios que essa pessoa vai ter, cerca de 86
+          bilhões. O crescimento que vem depois não é sobre criar mais neurônios: é sobre conectá-los.
         </P>
         <P>
-          Como numa casa, dá para reformar depois. Mas a fundação se faz uma vez. É por isso que cientistas do
-          desenvolvimento infantil são unânimes: não existe investimento com retorno maior do que a qualidade das
-          experiências nos primeiros anos.
+          Esse crescimento é vertiginoso. Ao 1 ano de idade, o cérebro já alcançou cerca de 70% do peso adulto; aos 3
+          anos, por volta de 80%; aos 5, cerca de 90%. Boa parte da arquitetura cerebral que uma pessoa vai usar a
+          vida inteira está, literalmente, montada antes da alfabetização.
+        </P>
+        <SynapseDiagram />
+        <P>
+          Como numa casa, dá para reformar depois. Mas a fundação se faz uma vez. É por isso que o Center on the
+          Developing Child, de Harvard — referência mundial em ciência do desenvolvimento infantil — descreve esse
+          processo como "arquitetura cerebral": um edifício que se constrói de baixo para cima, e cuja qualidade
+          estrutural depende diretamente da qualidade das experiências vividas nesses primeiros anos.
         </P>
       </LandingSection>
 
-      <LandingSection heading="A linguagem é o tijolo dessa construção">
+      <LandingSection heading='"Skills beget skills": por que o atraso se acumula' className="bg-montessori-cream/60 py-10 sm:py-14 rounded-sm">
         <P>
-          Entre todas as experiências, a linguagem tem papel central. Cada conversa, história, música e nomeação do
-          mundo dispara o que os pesquisadores chamam de "servir e devolver": a criança balbucia, aponta, pergunta — e
-          o adulto atento responde. Cada uma dessas trocas fortalece circuitos cerebrais de linguagem, raciocínio e
-          vínculo.
+          Uma das descobertas mais importantes da economia da educação — do prêmio Nobel James Heckman — é que
+          habilidade gera habilidade, e motivação gera motivação. Capacidades fundamentais como atenção,
+          autorregulação e comunicação, construídas nos primeiros anos, são os alicerces sobre os quais habilidades
+          mais complexas se apoiam mais tarde: raciocínio, leitura, relações sociais.
         </P>
         <P>
-          A quantidade e a qualidade da linguagem que a criança vive nos primeiros anos estão entre os melhores
-          previsores de vocabulário, leitura e desempenho escolar mais tarde. Não é sobre ensinar letras cedo — é
-          sobre viver imersa em conversa de qualidade, em uma ou mais línguas.
+          O inverso também é verdadeiro, e é aí que mora a urgência: um cérebro que não recebeu estímulo suficiente
+          cedo não parte do zero depois — parte atrás, tentando construir o segundo andar sem o primeiro pronto.
+          Cada ano de atraso fica mais caro e mais difícil de recuperar do que o anterior.
         </P>
         <Highlight>
-          Um ambiente rico em linguagem, com adultos que observam e respondem cada criança individualmente, não é um
-          luxo pedagógico. É literalmente construção de arquitetura cerebral.
+          Não é sobre "adiantar" a infância. É sobre não perder a janela em que construir essas bases custa
+          naturalmente pouco — porque é exatamente para isso que o cérebro dessa idade está preparado.
         </Highlight>
       </LandingSection>
 
-      <LandingSection heading={'"Mas tem uma creche do lado de casa..."'} className="bg-montessori-cream/60 py-10 sm:py-14 rounded-sm">
+      <LandingSection heading="O papel da linguagem">
+        <P>
+          A pesquisadora Anne Fernald, de Stanford, mostrou algo notável: bebês que ouvem mais linguagem dirigida a
+          eles — não apenas ao redor, mas diretamente, em conversa real — processam palavras com mais velocidade e
+          eficiência já aos 18 meses. Essa velocidade de processamento, medida em laboratório, prediz o tamanho do
+          vocabulário anos depois. A diferença não é sobre inteligência inata: é sobre quantidade e qualidade de
+          conversa vivida.
+        </P>
+        <P>
+          Patricia Kuhl, da Universidade de Washington, descobriu algo igualmente importante sobre o "quando". Bebês
+          nascem como o que ela chama de "cidadãos do mundo", capazes de distinguir os sons de qualquer idioma
+          humano. Por volta dos 10–12 meses, essa capacidade se especializa nos sons da língua que ouvem — uma
+          janela que se fecha progressivamente. E, em um experimento célebre, Kuhl mostrou que bebês expostos a um
+          idioma novo por uma pessoa ao vivo aprenderam os sons dessa língua — enquanto bebês expostos ao mesmo
+          conteúdo em vídeo, sozinhos, não aprenderam nada. A tela não substitui a interação social real.
+        </P>
+        <Highlight>
+          Ouvir não basta: o cérebro do bebê aprende linguagem na relação com outra pessoa, ao vivo, respondendo e
+          sendo respondido — é por isso que chamamos de "servir e devolver".
+        </Highlight>
+      </LandingSection>
+
+      <LandingSection heading="O papel do movimento">
+        <P>
+          Maria Montessori afirmou, um século atrás, que movimento e inteligência estão profundamente ligados — e a
+          neurociência confirmou. Engatinhar, subir, equilibrar e manusear objetos com as próprias mãos não é apenas
+          desenvolvimento físico: é construção cognitiva. O cerebelo, tradicionalmente associado só à coordenação
+          motora, também participa ativamente de funções como linguagem, atenção e planejamento.
+        </P>
+        <P>
+          Por isso um ambiente que restringe o movimento — mais tempo sentado, mais tela, menos exploração livre —
+          não poupa energia da criança para "coisas mais importantes". Ele tira do cérebro justamente um dos
+          combustíveis de que mais precisa nessa fase.
+        </P>
+      </LandingSection>
+
+      <LandingSection heading="O papel do afeto" className="bg-montessori-cream/60 py-10 sm:py-14 rounded-sm">
+        <P>
+          A evidência mais contundente sobre a importância do vínculo afetivo vem do trabalho do pesquisador Charles
+          Nelson, de Harvard, no Bucharest Early Intervention Project. O estudo acompanhou crianças romenas criadas
+          em orfanatos — instituições que ofereciam comida, higiene e abrigo, mas pouquíssima atenção individualizada
+          e vínculo afetivo responsivo. O resultado: essas crianças apresentaram volume cerebral reduzido e
+          alterações mensuráveis na atividade elétrica do cérebro, em comparação a crianças criadas em famílias.
+        </P>
+        <P>
+          O achado mais importante para uma família decidindo hoje: crianças transferidas para um lar afetivo e
+          responsivo antes dos 2 anos de idade recuperaram boa parte do desenvolvimento perdido. As que foram
+          transferidas depois, não. Não foi a falta de comida ou de teto que prejudicou o desenvolvimento cerebral —
+          foi a ausência de um adulto que respondesse, de forma consistente e individual, a cada uma delas.
+        </P>
+        <Highlight>
+          "Cuidar bem" não é o mesmo que nutrir o desenvolvimento. A pergunta que importa não é se seu filho está
+          seguro e alimentado — é se alguém está genuinamente presente, respondendo a ele, todos os dias.
+        </Highlight>
+      </LandingSection>
+
+      <LandingSection heading={'"Mas tem uma creche do lado de casa..."'}>
         <P>
           É a dúvida mais honesta que ouvimos — e merece uma resposta honesta. Conveniência importa, especialmente na
-          rotina puxada de quem tem filho pequeno. Mas vale colocar as duas coisas na balança:
+          rotina puxada de quem tem filho pequeno. Mas, à luz do que a ciência mostra sobre arquitetura cerebral,
+          janelas únicas e o papel do vínculo, vale colocar as duas coisas na balança:
         </P>
         <Bullets
           items={[
             <><strong>O trajeto é temporário.</strong> Alguns minutos a mais no caminho duram o semestre. A arquitetura cerebral construída nesses anos dura a vida inteira.</>,
-            <><strong>Esses anos não voltam.</strong> Escola dá para trocar depois — mas a janela dos primeiros anos passa uma única vez. O que não foi vivido nela não se recupera com a mesma facilidade.</>,
-            <><strong>"Cuidar bem" não é o mesmo que desenvolver.</strong> Um lugar limpo e carinhoso é o mínimo. A pergunta certa é: o que acontece com o cérebro do meu filho nas 8 horas por dia que ele passa lá?</>,
+            <><strong>Essa janela não volta.</strong> Como mostrou o trabalho de Charles Nelson, quanto mais cedo o ambiente certo chega, maior a recuperação possível — e o inverso também é verdadeiro. Skills beget skills: o que não se constrói agora fica mais difícil de construir depois.</>,
+            <><strong>"Cuidar bem" não é o mesmo que desenvolver.</strong> Um lugar limpo e carinhoso é o mínimo. A pergunta certa é: o que acontece com a linguagem, o movimento e o vínculo do meu filho nas 8 horas por dia que ele passa lá?</>,
           ]}
         />
         <P>
@@ -67,10 +132,10 @@ export const DesenvolvimentoCerebral: React.FC = () => {
       <LandingSection heading="O que fazemos com essa janela">
         <Bullets
           items={[
-            'Uma professora para cada 3 bebês menores de 18 meses: cada balbucio encontra um adulto que responde.',
-            'Imersão diária em inglês com professoras nativas, no auge da janela da linguagem.',
-            'Ambiente preparado Montessori: concentração, movimento livre e experiências concretas — zero telas.',
-            'Observação individual: cada criança é acompanhada no seu ritmo, com registros do seu desenvolvimento.',
+            'Uma professora para cada 3 bebês menores de 18 meses: cada balbucio, cada tentativa, encontra um adulto que observa e responde.',
+            'Imersão diária em inglês com professoras nativas, no auge da janela da linguagem — pelo caminho do "servir e devolver", não da tela.',
+            'Ambiente preparado Montessori: movimento livre, materiais concretos e manuseáveis — zero telas.',
+            'Observação individual: cada criança é acompanhada no seu ritmo, com registros reais do seu desenvolvimento.',
           ]}
         />
       </LandingSection>
