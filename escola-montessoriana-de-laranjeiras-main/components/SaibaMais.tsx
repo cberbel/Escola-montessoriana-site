@@ -25,7 +25,7 @@ const topics = [
   {
     icon: <Sprout size={28} />,
     title: 'Natureza e educação cósmica',
-    text: 'Espaço amplo, verde e movimento livre: como o ambiente forma a inteligência e o senso de pertencimento ao mundo.',
+    text: 'Espaço amplo e arborizado, aulas de permacultura com horta e minhocário: como a natureza forma a inteligência e o senso de pertencimento ao mundo.',
     to: '/natureza-educacao-cosmica',
   },
 ];
