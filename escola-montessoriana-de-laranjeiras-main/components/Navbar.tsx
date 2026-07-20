@@ -72,7 +72,7 @@ export const Navbar: React.FC = () => {
       tabIndex={-1}
       role="navigation"
       aria-label="Menu de navegação"
-      className="lg:hidden fixed left-0 right-0 w-full max-h-[70vh] overflow-y-auto bg-montessori-green/98 backdrop-blur-sm border-t border-white/10 shadow-xl z-50 nav-mobile-menu"
+      className="xl:hidden fixed left-0 right-0 w-full max-h-[70vh] overflow-y-auto bg-montessori-green/98 backdrop-blur-sm border-t border-white/10 shadow-xl z-50 nav-mobile-menu"
       style={{ top: navHeight }}
     >
       <nav className="flex flex-col py-2 pb-[max(1.5rem,env(safe-area-inset-bottom,1.5rem))]">
@@ -128,12 +128,12 @@ export const Navbar: React.FC = () => {
         </Link>
 
         {/* Desktop Nav - lista em cima na versão computador */}
-        <div className="hidden lg:flex items-center space-x-4 xl:space-x-6 flex-shrink-0">
+        <div className="hidden xl:flex items-center gap-x-4 2xl:gap-x-6 flex-shrink-0">
           {navLinks.map((link) => (
             <Link
               key={link.name}
               to={link.to}
-              className="text-white hover:text-montessori-gold text-sm xl:text-base font-medium tracking-wide transition-colors [text-shadow:0_1px_2px_rgba(0,0,0,0.9),0_2px_4px_rgba(0,0,0,0.7)]"
+              className="text-white hover:text-montessori-gold text-sm 2xl:text-base font-medium tracking-wide whitespace-nowrap transition-colors [text-shadow:0_1px_2px_rgba(0,0,0,0.9),0_2px_4px_rgba(0,0,0,0.7)]"
             >
               {link.name}
             </Link>
@@ -143,14 +143,14 @@ export const Navbar: React.FC = () => {
             target="_blank"
             rel="noopener noreferrer"
             onClick={trackWhatsAppClick}
-            className="bg-montessori-gold text-white px-5 py-2 rounded-sm text-sm xl:text-base font-semibold hover:bg-[#c5a805] transition-colors inline-block whitespace-nowrap [text-shadow:0_1px_2px_rgba(0,0,0,0.4)] shadow-md"
+            className="bg-montessori-gold text-white px-4 2xl:px-5 py-2 rounded-sm text-sm 2xl:text-base font-semibold hover:bg-[#c5a805] transition-colors inline-block whitespace-nowrap [text-shadow:0_1px_2px_rgba(0,0,0,0.4)] shadow-md"
           >
             Agendar Visita
           </a>
         </div>
 
         {/* Mobile Toggle - somente em telas reduzidas */}
-        <div className="lg:hidden flex-shrink-0">
+        <div className="xl:hidden flex-shrink-0">
           <button
             ref={menuButtonRef}
             type="button"
