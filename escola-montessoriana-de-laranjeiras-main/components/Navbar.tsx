@@ -61,9 +61,9 @@ export const Navbar: React.FC = () => {
     { name: 'O cérebro do seu filho', to: '/desenvolvimento-cerebral' },
     { name: 'Imersão no inglês', to: '/ingles-primeira-infancia' },
     { name: 'Natureza', to: '/natureza-educacao-cosmica' },
+    { name: 'Turmas', to: '/turmas' },
     { name: 'Depoimentos', to: '/#testimonials' },
     { name: 'Contato', to: '/#contact' },
-    { name: 'Turmas', to: '/turmas' },
   ];
 
   const mobileMenuContent = mobileMenuOpen && (
