@@ -1,10 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { LandingHero, LandingSection, LandingCTA, Highlight, Bullets, P, usePageMeta } from '../../components/landing/Landing';
 
 export const InglesPrimeiraInfancia: React.FC = () => {
   usePageMeta(
     'Inglês na Primeira Infância | Escola Montessoriana de Laranjeiras',
-    'Por que os primeiros anos são a melhor janela para aprender inglês: imersão diária com professoras nativas, benefícios cognitivos do bilinguismo e aquisição natural, sem esforço.'
+    'Por que os primeiros anos são a melhor janela para o inglês: aquisição natural com professoras nativas, função executiva do cérebro bilíngue, o custo de oportunidade e o acesso ao conhecimento do mundo.'
   );
 
   return (
@@ -24,7 +25,10 @@ export const InglesPrimeiraInfancia: React.FC = () => {
         <P>
           A capacidade de distinguir e reproduzir os sons de qualquer idioma é máxima na primeira infância e diminui com
           os anos. É por isso que quem começa cedo fala sem sotaque e sem esforço — e quem começa tarde estuda anos
-          para alcançar menos.
+          para alcançar menos.{' '}
+          <Link to="/desenvolvimento-cerebral" className="text-montessori-green font-semibold underline hover:no-underline">
+            Veja a ciência dos períodos sensíveis
+          </Link>.
         </P>
         <Highlight>
           Para a criança pequena, o inglês não é uma matéria. É só mais uma forma natural de falar com pessoas de quem
@@ -32,34 +36,91 @@ export const InglesPrimeiraInfancia: React.FC = () => {
         </Highlight>
       </LandingSection>
 
-      <LandingSection heading="Os benefícios vão muito além do idioma">
-        <P>Pesquisas sobre bilinguismo precoce associam o convívio com duas línguas a ganhos que aparecem em toda a vida:</P>
+      <LandingSection heading="O custo de oportunidade: agora é de graça, depois é caro" className="bg-montessori-cream/60 py-10 sm:py-14 rounded-sm">
+        <P>
+          Aqui está o argumento que quase ninguém faz — e talvez seja o mais importante. Na primeira infância, o inglês
+          entra <strong>embutido na vida</strong>: na música da roda, no lanche, na brincadeira do parquinho. Não toma
+          uma única hora a mais na rotina da criança. O custo, em tempo e esforço, é praticamente <strong>zero</strong>.
+        </P>
+        <P>
+          Alguns anos depois, tudo muda. A agenda da criança maior fica cheia — esporte, música, dever de casa,
+          amigos, vida social. O inglês deixa de ser algo que se vive e vira <strong>mais uma atividade</strong> a
+          encaixar na semana: uma aula extra, um curso à parte, um horário disputado com tudo o que a criança também
+          quer fazer. Custa dinheiro, custa horas, custa força de vontade — e ainda entrega um resultado inferior, com
+          mais esforço e quase sempre com sotaque.
+        </P>
+        <Highlight>
+          O idioma que hoje entra brincando, amanhã vira mais uma tarefa na agenda. Aprender inglês cedo não é adiantar
+          uma matéria — é aproveitar a única fase em que ele custa quase nada.
+        </Highlight>
+      </LandingSection>
+
+      <LandingSection heading="Um cérebro bilíngue é um cérebro mais forte">
+        <P>
+          Os ganhos do bilinguismo precoce vão muito além de falar duas línguas. A pesquisadora Ellen Bialystok, uma
+          das maiores autoridades mundiais no tema, mostrou que o cérebro bilíngue vive resolvendo uma pergunta
+          invisível — "qual língua eu uso agora?" — e que esse exercício constante fortalece a{' '}
+          <strong>função executiva</strong>: o conjunto de habilidades que comanda o foco, o autocontrole e a
+          organização do pensamento.
+        </P>
         <Bullets
           items={[
-            <><strong>Função executiva:</strong> alternar entre dois idiomas exercita atenção, memória de trabalho e autocontrole — os músculos cerebrais do foco.</>,
-            <><strong>Flexibilidade cognitiva:</strong> quem cresce entre duas línguas aprende cedo que existe mais de um jeito de nomear — e de pensar — o mundo.</>,
-            <><strong>Consciência linguística:</strong> entender a estrutura de uma língua facilita aprender a terceira, a quarta...</>,
-            <><strong>Abertura cultural:</strong> o idioma vem junto com músicas, histórias e formas diferentes de ver o mundo.</>,
+            <><strong>Controle inibitório:</strong> para falar uma língua, o cérebro precisa "segurar" a outra. É o mesmo músculo mental que ajuda a criança a se concentrar e resistir à distração.</>,
+            <><strong>Memória de trabalho:</strong> manter dois sistemas ativos ao mesmo tempo treina a capacidade de reter e manipular informação — base do raciocínio e da matemática.</>,
+            <><strong>Flexibilidade cognitiva:</strong> alternar entre línguas é alternar entre formas de ver o mundo. Quem faz isso desde cedo pensa com mais jogo de cintura.</>,
+            <><strong>Consciência da linguagem:</strong> entender que a mesma coisa tem dois nomes desperta cedo a percepção de como as línguas funcionam — e facilita aprender a terceira, a quarta.</>,
           ]}
         />
+        <P>
+          A função executiva prevê o sucesso escolar e profissional melhor do que o próprio QI — e, como toda
+          habilidade fundamental, ela se constrói mais facilmente nos primeiros anos.{' '}
+          <Link to="/desenvolvimento-cerebral" className="text-montessori-green font-semibold underline hover:no-underline">
+            É o princípio do "skills beget skills"
+          </Link>: quanto antes essa base é construída, mais tudo o que vem depois se apoia nela.
+        </P>
+      </LandingSection>
+
+      <LandingSection heading="O conhecimento do mundo está em inglês" className="bg-montessori-cream/60 py-10 sm:py-14 rounded-sm">
+        <P>
+          Há uma razão prática, e enorme, que costuma ser esquecida: o inglês é a língua em que o mundo pensa e
+          compartilha o que sabe. A ciência mais avançada, a medicina, a tecnologia, a aviação, os negócios
+          internacionais, o melhor da internet — tudo isso acontece, primeiro, em inglês.
+        </P>
+        <P>
+          Uma criança que cresce fluente não vai depender de traduções de segunda mão nem de legendas. Ela terá acesso
+          <strong> direto à fonte</strong>: poderá estudar nas melhores universidades do mundo, ler o artigo original,
+          assistir à aula do especialista, trabalhar com pessoas de qualquer país. O inglês deixa de ser uma matéria a
+          vencer e vira uma <strong>chave</strong> — a que abre a sala onde o conhecimento de verdade circula.
+        </P>
+        <Highlight>
+          Dar inglês fluente a um filho não é dar uma habilidade a mais. É ampliar o tamanho do mundo ao qual ele terá
+          acesso pela vida inteira.
+        </Highlight>
       </LandingSection>
 
       <LandingSection heading="Imersão de verdade, com professoras nativas">
         <P>
-          Aula de inglês uma ou duas vezes por semana não cria bilinguismo — cria vocabulário decorado. O que funciona é
-          a imersão: o idioma presente na rotina, todos os dias, em situações reais.
+          Aula de inglês uma ou duas vezes por semana não cria bilinguismo — cria vocabulário decorado, que some nas
+          férias. O que funciona é a imersão: o idioma presente na rotina, todos os dias, em situações reais.
         </P>
         <P>
           Na Escola Montessoriana, as crianças convivem diariamente com professoras nativas. O inglês aparece nas
           brincadeiras, nas músicas, nas refeições, no parquinho — exatamente como a língua materna apareceu na vida
           delas. Sem pressão, sem prova, sem "hora do inglês". A língua simplesmente faz parte da vida.
         </P>
+        <P>
+          E precisa ser gente de verdade: a pesquisa de Patricia Kuhl mostrou que o bebê aprende os sons de um novo
+          idioma com uma pessoa presente e interagindo — e não aprende nada assistindo ao mesmo conteúdo em uma tela,
+          sozinho. Por isso a imersão viva, com professoras nativas, faz toda a diferença — e nenhum aplicativo
+          substitui.
+        </P>
       </LandingSection>
 
       <LandingSection heading="E não paramos no inglês">
         <P>
           Famílias que desejam podem escolher mais um idioma para o filho: francês, mandarim, espanhol, italiano ou
-          alemão. A mesma lógica da imersão vale para a terceira língua — e a janela da primeira infância também.
+          alemão. A mesma lógica da imersão vale para a terceira língua — e a mesma janela da primeira infância
+          também. Quanto mais cedo, mais natural, mais barato e mais duradouro.
         </P>
       </LandingSection>
 
