@@ -9,11 +9,30 @@ import { InglesPrimeiraInfancia } from './pages/landing/InglesPrimeiraInfancia';
 import { DesenvolvimentoCerebral } from './pages/landing/DesenvolvimentoCerebral';
 import { NaturezaEducacaoCosmica } from './pages/landing/NaturezaEducacaoCosmica';
 
-/** Rola para o topo a cada troca de página (rotas com âncora #... continuam funcionando). */
+/**
+ * A cada troca de rota: rola para o topo, ou — quando a URL tem uma âncora (#...) —
+ * rola até a seção correspondente. Isso faz os links de âncora (Depoimentos, Contato)
+ * funcionarem a partir de qualquer página, inclusive das landing pages.
+ */
 const ScrollToTop: React.FC = () => {
   const { pathname, hash } = useLocation();
   useEffect(() => {
-    if (!hash) window.scrollTo(0, 0);
+    if (!hash) {
+      window.scrollTo(0, 0);
+      return;
+    }
+    const id = hash.slice(1);
+    // Tenta algumas vezes, pois a seção-alvo pode ainda estar montando após a navegação.
+    let tries = 0;
+    const tryScroll = () => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else if (tries++ < 10) {
+        setTimeout(tryScroll, 80);
+      }
+    };
+    tryScroll();
   }, [pathname, hash]);
   return null;
 };

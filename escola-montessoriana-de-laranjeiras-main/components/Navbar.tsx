@@ -56,11 +56,12 @@ export const Navbar: React.FC = () => {
   }, [mobileMenuOpen]);
 
   const navLinks = [
-    { name: 'O Método', href: '/metodo-montessori' },
-    { name: 'Natureza', href: '/natureza-educacao-cosmica' },
-    { name: 'Na Prática', href: '#practice' },
-    { name: 'Estrutura', href: '#structure' },
-    { name: 'Depoimentos', href: '#testimonials' },
+    { name: 'O Método', to: '/metodo-montessori' },
+    { name: 'Imersão no inglês', to: '/ingles-primeira-infancia' },
+    { name: 'O cérebro do seu filho', to: '/desenvolvimento-cerebral' },
+    { name: 'Natureza', to: '/natureza-educacao-cosmica' },
+    { name: 'Depoimentos', to: '/#testimonials' },
+    { name: 'Contato', to: '/#contact' },
   ];
 
   const mobileMenuContent = mobileMenuOpen && (
@@ -70,38 +71,20 @@ export const Navbar: React.FC = () => {
       tabIndex={-1}
       role="navigation"
       aria-label="Menu de navegação"
-      className="md:hidden fixed left-0 right-0 w-full max-h-[70vh] overflow-y-auto bg-montessori-green/98 backdrop-blur-sm border-t border-white/10 shadow-xl z-50 nav-mobile-menu"
+      className="lg:hidden fixed left-0 right-0 w-full max-h-[70vh] overflow-y-auto bg-montessori-green/98 backdrop-blur-sm border-t border-white/10 shadow-xl z-50 nav-mobile-menu"
       style={{ top: navHeight }}
     >
       <nav className="flex flex-col py-2 pb-[max(1.5rem,env(safe-area-inset-bottom,1.5rem))]">
-        {navLinks.map((link) =>
-          link.href.startsWith('#') ? (
-            <a
-              key={link.name}
-              href={link.href}
-              onClick={() => setMobileMenuOpen(false)}
-              className="text-white text-base font-medium py-4 px-5 min-h-[48px] flex items-center touch-manipulation active:bg-white/10 transition-colors border-b border-white/5 [text-shadow:0_1px_2px_rgba(0,0,0,0.9)]"
-            >
-              {link.name}
-            </a>
-          ) : (
-            <Link
-              key={link.name}
-              to={link.href}
-              onClick={() => setMobileMenuOpen(false)}
-              className="text-white text-base font-medium py-4 px-5 min-h-[48px] flex items-center touch-manipulation active:bg-white/10 transition-colors border-b border-white/5 [text-shadow:0_1px_2px_rgba(0,0,0,0.9)]"
-            >
-              {link.name}
-            </Link>
-          )
-        )}
-        <Link
-          to="/agendamento"
-          onClick={() => setMobileMenuOpen(false)}
-          className="text-white text-base font-medium py-4 px-5 min-h-[48px] flex items-center touch-manipulation active:bg-white/10 transition-colors border-b border-white/5 [text-shadow:0_1px_2px_rgba(0,0,0,0.9)]"
-        >
-          Agendamento
-        </Link>
+        {navLinks.map((link) => (
+          <Link
+            key={link.name}
+            to={link.to}
+            onClick={() => setMobileMenuOpen(false)}
+            className="text-white text-base font-medium py-4 px-5 min-h-[48px] flex items-center touch-manipulation active:bg-white/10 transition-colors border-b border-white/5 [text-shadow:0_1px_2px_rgba(0,0,0,0.9)]"
+          >
+            {link.name}
+          </Link>
+        ))}
         <a
           href="https://wa.me/5521993311000?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20visita%20%C3%A0%20Escola%20Montessoriana."
           target="_blank"
@@ -144,45 +127,29 @@ export const Navbar: React.FC = () => {
         </Link>
 
         {/* Desktop Nav - lista em cima na versão computador */}
-        <div className="hidden md:flex items-center space-x-6 lg:space-x-8 flex-shrink-0">
-          {navLinks.map((link) =>
-            link.href.startsWith('#') ? (
-              <a
-                key={link.name}
-                href={link.href}
-                className="text-white hover:text-montessori-gold text-base font-medium tracking-wide transition-colors [text-shadow:0_1px_2px_rgba(0,0,0,0.9),0_2px_4px_rgba(0,0,0,0.7)]"
-              >
-                {link.name}
-              </a>
-            ) : (
-              <Link
-                key={link.name}
-                to={link.href}
-                className="text-white hover:text-montessori-gold text-base font-medium tracking-wide transition-colors [text-shadow:0_1px_2px_rgba(0,0,0,0.9),0_2px_4px_rgba(0,0,0,0.7)]"
-              >
-                {link.name}
-              </Link>
-            )
-          )}
-          <Link
-            to="/agendamento"
-            className="text-white hover:text-montessori-gold text-base font-medium tracking-wide transition-colors [text-shadow:0_1px_2px_rgba(0,0,0,0.9),0_2px_4px_rgba(0,0,0,0.7)]"
-          >
-            Agendamento
-          </Link>
+        <div className="hidden lg:flex items-center space-x-4 xl:space-x-6 flex-shrink-0">
+          {navLinks.map((link) => (
+            <Link
+              key={link.name}
+              to={link.to}
+              className="text-white hover:text-montessori-gold text-sm xl:text-base font-medium tracking-wide transition-colors [text-shadow:0_1px_2px_rgba(0,0,0,0.9),0_2px_4px_rgba(0,0,0,0.7)]"
+            >
+              {link.name}
+            </Link>
+          ))}
           <a
             href="https://wa.me/5521993311000?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20visita%20%C3%A0%20Escola%20Montessoriana."
             target="_blank"
             rel="noopener noreferrer"
             onClick={trackWhatsAppClick}
-            className="bg-montessori-gold text-white px-6 py-2 rounded-sm text-base font-semibold hover:bg-[#c5a805] transition-colors inline-block [text-shadow:0_1px_2px_rgba(0,0,0,0.4)] shadow-md"
+            className="bg-montessori-gold text-white px-5 py-2 rounded-sm text-sm xl:text-base font-semibold hover:bg-[#c5a805] transition-colors inline-block whitespace-nowrap [text-shadow:0_1px_2px_rgba(0,0,0,0.4)] shadow-md"
           >
             Agendar Visita
           </a>
         </div>
 
         {/* Mobile Toggle - somente em telas reduzidas */}
-        <div className="md:hidden flex-shrink-0">
+        <div className="lg:hidden flex-shrink-0">
           <button
             ref={menuButtonRef}
             type="button"
