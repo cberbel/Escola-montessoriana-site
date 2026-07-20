@@ -60,7 +60,7 @@ export const NaturezaEducacaoCosmica: React.FC = () => {
         </div>
         <LandingImagePair
           images={[
-            { src: '/images/natureza/minhoca-mao.jpg', alt: 'Criança segurando uma minhoca na palma da mão durante a aula de permacultura' },
+            { src: '/images/natureza/minhocas-mao.jpg', alt: 'Mão cheia de minhocas tiradas do minhocário, com as crianças em volta observando' },
             { src: '/images/natureza/compostagem.jpg', alt: 'Educador e crianças ao redor da caixa de compostagem com restos de frutas e verduras virando terra' },
           ]}
           caption="A tarefa cósmica na palma da mão: os restos do lanche viram terra fértil, e a minhoca vira amiga."
@@ -104,7 +104,11 @@ export const NaturezaEducacaoCosmica: React.FC = () => {
           movimento é livre; um pátio coberto e arborizado; e atividades — capoeira, circo, dança e movimento,
           psicomotricidade — que fazem do corpo um instrumento de aprendizagem.
         </P>
-        <LandingImage src="/images/natureza/patio-arborizado.jpg" alt="Pátio coberto da escola cercado por uma copa densa de árvores, com professora e crianças em aula de música no chão" />
+        <LandingImage src="/images/natureza/patio-bolhas.jpg" alt="Crianças brincando de estourar bolhas de sabão no amplo pátio coberto, com árvores e flores visíveis por cima da tela de proteção" />
+        <LandingImage src="/images/natureza/patio-verde.jpg" alt="Duas crianças de costas, apoiadas na grade do pátio, observando uma parede de árvores verdes através da tela" />
+        <p className="-mt-2 mb-6 text-center text-sm text-gray-500">
+          Do pátio, a criança levanta os olhos e encontra árvores — é raro, em plena Laranjeiras, ter tanto verde à vista.
+        </p>
         <LandingImage src="/images/espaco.png" alt="Sala ampla da Escola Montessoriana, vista de cima, com mesas baixas espalhadas, materiais ao alcance das crianças e janelas para o paredão de pedra verde" />
       </LandingSection>
 
