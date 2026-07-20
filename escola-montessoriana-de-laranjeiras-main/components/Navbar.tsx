@@ -58,11 +58,12 @@ export const Navbar: React.FC = () => {
   const navLinks = [
     { name: 'O Método', to: '/metodo-montessori' },
     { name: 'Acolhimento', to: '/acolhimento' },
-    { name: 'Imersão no inglês', to: '/ingles-primeira-infancia' },
     { name: 'O cérebro do seu filho', to: '/desenvolvimento-cerebral' },
+    { name: 'Imersão no inglês', to: '/ingles-primeira-infancia' },
     { name: 'Natureza', to: '/natureza-educacao-cosmica' },
     { name: 'Depoimentos', to: '/#testimonials' },
     { name: 'Contato', to: '/#contact' },
+    { name: 'Turmas', to: '/turmas' },
   ];
 
   const mobileMenuContent = mobileMenuOpen && (
@@ -128,12 +129,12 @@ export const Navbar: React.FC = () => {
         </Link>
 
         {/* Desktop Nav - lista em cima na versão computador */}
-        <div className="hidden xl:flex items-center gap-x-4 2xl:gap-x-6 flex-shrink-0">
+        <div className="hidden xl:flex items-center gap-x-3 2xl:gap-x-5 flex-shrink-0">
           {navLinks.map((link) => (
             <Link
               key={link.name}
               to={link.to}
-              className="text-white hover:text-montessori-gold text-sm 2xl:text-base font-medium tracking-wide whitespace-nowrap transition-colors [text-shadow:0_1px_2px_rgba(0,0,0,0.9),0_2px_4px_rgba(0,0,0,0.7)]"
+              className="text-white hover:text-montessori-gold text-sm font-medium tracking-wide whitespace-nowrap transition-colors [text-shadow:0_1px_2px_rgba(0,0,0,0.9),0_2px_4px_rgba(0,0,0,0.7)]"
             >
               {link.name}
             </Link>
@@ -143,7 +144,7 @@ export const Navbar: React.FC = () => {
             target="_blank"
             rel="noopener noreferrer"
             onClick={trackWhatsAppClick}
-            className="bg-montessori-gold text-white px-4 2xl:px-5 py-2 rounded-sm text-sm 2xl:text-base font-semibold hover:bg-[#c5a805] transition-colors inline-block whitespace-nowrap [text-shadow:0_1px_2px_rgba(0,0,0,0.4)] shadow-md"
+            className="bg-montessori-gold text-white px-4 py-2 rounded-sm text-sm font-semibold hover:bg-[#c5a805] transition-colors inline-block whitespace-nowrap [text-shadow:0_1px_2px_rgba(0,0,0,0.4)] shadow-md"
           >
             Agendar Visita
           </a>

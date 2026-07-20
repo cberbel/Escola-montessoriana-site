@@ -9,6 +9,8 @@ import { Acolhimento } from './pages/landing/Acolhimento';
 import { InglesPrimeiraInfancia } from './pages/landing/InglesPrimeiraInfancia';
 import { DesenvolvimentoCerebral } from './pages/landing/DesenvolvimentoCerebral';
 import { NaturezaEducacaoCosmica } from './pages/landing/NaturezaEducacaoCosmica';
+import { Turmas } from './pages/landing/Turmas';
+import { Agrupada3 } from './pages/landing/Agrupada3';
 
 /**
  * A cada troca de rota: rola para o topo, ou — quando a URL tem uma âncora (#...) —
@@ -51,6 +53,8 @@ const App: React.FC = () => {
           <Route path="ingles-primeira-infancia" element={<InglesPrimeiraInfancia />} />
           <Route path="desenvolvimento-cerebral" element={<DesenvolvimentoCerebral />} />
           <Route path="natureza-educacao-cosmica" element={<NaturezaEducacaoCosmica />} />
+          <Route path="turmas" element={<Turmas />} />
+          <Route path="agrupada-3" element={<Agrupada3 />} />
         </Route>
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
