@@ -89,6 +89,10 @@ export const NaturezaEducacaoCosmica: React.FC = () => {
             compreender — e é dessa segurança que nasce a coragem de explorar.
           </p>
         </Tema>
+        <LandingImage src="/images/natureza/ciclo-vida.jpg" alt="Duas crianças estudando o material Montessori do ciclo de vida da rã sobre o tapete" />
+        <p className="-mt-2 mb-6 text-center text-sm text-gray-500">
+          O ciclo de vida em material concreto: a criança segura, na mão, a ordem por trás da natureza.
+        </p>
 
         <Tema title="Tudo depende de tudo">
           <p>
@@ -106,6 +110,13 @@ export const NaturezaEducacaoCosmica: React.FC = () => {
             trabalho: trabalhar não é obrigação, é o jeito de cada um participar do mundo.
           </p>
         </Tema>
+        <LandingImagePair
+          images={[
+            { src: '/images/natureza/material-folhas.jpg', alt: 'Criança pareando formas de folhas com o gabinete de botânica Montessori' },
+            { src: '/images/natureza/animais-marinhos.jpg', alt: 'Criança classificando cartões e miniaturas de animais marinhos numa mesa Montessori' },
+          ]}
+          caption="Botânica e zoologia na sala: conhecer cada ser vivo é o primeiro passo para respeitá-lo."
+        />
 
         <Tema title="Supranatureza: o que os humanos constroem">
           <p>
@@ -120,6 +131,10 @@ export const NaturezaEducacaoCosmica: React.FC = () => {
           Dessa percepção nascem o cuidado com o outro, a responsabilidade ambiental e o senso de propósito — não por
           sermão, mas por experiência vivida.
         </Highlight>
+        <LandingImage src="/images/natureza/grupo-natureza.jpg" alt="Grupo de crianças sorrindo com coroas de folhas na cabeça ao lado do educador de permacultura, diante do paredão de pedra" />
+        <p className="-mt-2 text-center text-sm text-gray-500">
+          Guardiões da natureza: quem se sente parte do mundo aprende a cuidar dele.
+        </p>
       </LandingSection>
 
       <LandingSection heading="Permacultura na prática: horta, minhocário e abelhas">
@@ -130,9 +145,11 @@ export const NaturezaEducacaoCosmica: React.FC = () => {
         </P>
         <P>
           <strong>Na horta</strong>, a criança prepara a terra, planta, rega, espera e colhe. Cada etapa é uma lição de
-          ciclo, paciência e causa e efeito — com as mãos na terra, do jeito que criança aprende de verdade.
+          ciclo, paciência e causa e efeito — com as mãos na terra, do jeito que criança aprende de verdade. E a horta
+          fica encostada na mata: de dentro dela, a criança está cercada de verde por todos os lados.
         </P>
-        <LandingImage src="/images/natureza/horta-plantio.jpg" alt="Duas crianças agachadas na horta da escola, plantando uma muda juntas na terra" />
+        <LandingImage src="/images/natureza/horta-vista.jpg" alt="Vista ampla da horta da escola encostada num paredão de pedra tomado por vegetação densa, com crianças plantando no canteiro" />
+        <LandingImage src="/images/natureza/horta-plantar.jpg" alt="Crianças plantando mudas em vasos de reaproveitamento na horta, com o educador ajudando" />
         <P>
           <strong>No minhocário</strong>, os restos do lanche viram terra fértil pelo trabalho das minhocas — a tarefa
           cósmica acontecendo na palma da mão. As crianças observam, tocam e acompanham a transformação semana a
@@ -142,7 +159,7 @@ export const NaturezaEducacaoCosmica: React.FC = () => {
           <div className="aspect-[9/16] overflow-hidden rounded-sm shadow-lg bg-black">
             <video
               src="/videos/video2.mp4"
-              poster="/images/natureza/permacultura-minhocario-poster.jpg"
+              poster="/images/natureza/minhocario-real.jpg"
               controls
               playsInline
               preload="none"
@@ -157,10 +174,10 @@ export const NaturezaEducacaoCosmica: React.FC = () => {
         </div>
         <LandingImagePair
           images={[
-            { src: '/images/natureza/minhocario-maos.jpg', alt: 'Mão de uma criança e de um adulto segurando terra do minhocário, com uma minhoca na palma' },
-            { src: '/images/natureza/minhocario-turma.jpg', alt: 'Turma reunida em roda ao redor da bandeja do minhocário durante a aula de permacultura' },
+            { src: '/images/natureza/minhoca-mao.jpg', alt: 'Criança segurando uma minhoca na palma da mão durante a aula de permacultura' },
+            { src: '/images/natureza/compostagem.jpg', alt: 'Educador e crianças ao redor da caixa de compostagem com restos de frutas e verduras virando terra' },
           ]}
-          caption="A tarefa cósmica na palma da mão: a turma inteira ao redor do minhocário."
+          caption="A tarefa cósmica na palma da mão: os restos do lanche viram terra fértil, e a minhoca vira amiga."
         />
         <P>
           <strong>E em breve, abelhas nativas sem ferrão:</strong> estamos preparando a chegada de um meliponário com
