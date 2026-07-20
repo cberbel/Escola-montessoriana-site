@@ -56,7 +56,7 @@ export const Navbar: React.FC = () => {
   }, [mobileMenuOpen]);
 
   const navLinks = [
-    { name: 'O Método', href: '#method' },
+    { name: 'O Método', href: '/metodo-montessori' },
     { name: 'Na Prática', href: '#practice' },
     { name: 'Estrutura', href: '#structure' },
     { name: 'Depoimentos', href: '#testimonials' },
@@ -73,16 +73,27 @@ export const Navbar: React.FC = () => {
       style={{ top: navHeight }}
     >
       <nav className="flex flex-col py-2 pb-[max(1.5rem,env(safe-area-inset-bottom,1.5rem))]">
-        {navLinks.map((link) => (
-          <a
-            key={link.name}
-            href={link.href}
-            onClick={() => setMobileMenuOpen(false)}
-            className="text-white text-base font-medium py-4 px-5 min-h-[48px] flex items-center touch-manipulation active:bg-white/10 transition-colors border-b border-white/5 [text-shadow:0_1px_2px_rgba(0,0,0,0.9)]"
-          >
-            {link.name}
-          </a>
-        ))}
+        {navLinks.map((link) =>
+          link.href.startsWith('#') ? (
+            <a
+              key={link.name}
+              href={link.href}
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-white text-base font-medium py-4 px-5 min-h-[48px] flex items-center touch-manipulation active:bg-white/10 transition-colors border-b border-white/5 [text-shadow:0_1px_2px_rgba(0,0,0,0.9)]"
+            >
+              {link.name}
+            </a>
+          ) : (
+            <Link
+              key={link.name}
+              to={link.href}
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-white text-base font-medium py-4 px-5 min-h-[48px] flex items-center touch-manipulation active:bg-white/10 transition-colors border-b border-white/5 [text-shadow:0_1px_2px_rgba(0,0,0,0.9)]"
+            >
+              {link.name}
+            </Link>
+          )
+        )}
         <Link
           to="/agendamento"
           onClick={() => setMobileMenuOpen(false)}
@@ -133,15 +144,25 @@ export const Navbar: React.FC = () => {
 
         {/* Desktop Nav - lista em cima na versão computador */}
         <div className="hidden md:flex items-center space-x-6 lg:space-x-8 flex-shrink-0">
-          {navLinks.map((link) => (
-            <a 
-              key={link.name} 
-              href={link.href} 
-              className="text-white hover:text-montessori-gold text-base font-medium tracking-wide transition-colors [text-shadow:0_1px_2px_rgba(0,0,0,0.9),0_2px_4px_rgba(0,0,0,0.7)]"
-            >
-              {link.name}
-            </a>
-          ))}
+          {navLinks.map((link) =>
+            link.href.startsWith('#') ? (
+              <a
+                key={link.name}
+                href={link.href}
+                className="text-white hover:text-montessori-gold text-base font-medium tracking-wide transition-colors [text-shadow:0_1px_2px_rgba(0,0,0,0.9),0_2px_4px_rgba(0,0,0,0.7)]"
+              >
+                {link.name}
+              </a>
+            ) : (
+              <Link
+                key={link.name}
+                to={link.href}
+                className="text-white hover:text-montessori-gold text-base font-medium tracking-wide transition-colors [text-shadow:0_1px_2px_rgba(0,0,0,0.9),0_2px_4px_rgba(0,0,0,0.7)]"
+              >
+                {link.name}
+              </Link>
+            )
+          )}
           <Link
             to="/agendamento"
             className="text-white hover:text-montessori-gold text-base font-medium tracking-wide transition-colors [text-shadow:0_1px_2px_rgba(0,0,0,0.9),0_2px_4px_rgba(0,0,0,0.7)]"
