@@ -104,7 +104,8 @@ export const NaturezaEducacaoCosmica: React.FC = () => {
           movimento é livre; um pátio coberto e arborizado; e atividades — capoeira, circo, dança e movimento,
           psicomotricidade — que fazem do corpo um instrumento de aprendizagem.
         </P>
-        <LandingImage src="/images/natureza/patio-bolhas.jpg" alt="Crianças brincando de estourar bolhas de sabão no amplo pátio coberto, com árvores e flores visíveis por cima da tela de proteção" />
+        <LandingImage src="/images/natureza/patio-bolhas.jpg" portrait alt="Crianças brincando de estourar bolhas de sabão no amplo pátio coberto, com árvores e flores visíveis por cima da tela de proteção" />
+        <LandingImage src="/images/natureza/maos-tinta.jpg" portrait alt="Menino mostrando as mãos pintadas, no pátio coberto, com as árvores ao fundo através da tela" />
         <LandingImage src="/images/natureza/patio-verde.jpg" alt="Duas crianças de costas, apoiadas na grade do pátio, observando uma parede de árvores verdes através da tela" />
         <p className="-mt-2 mb-6 text-center text-sm text-gray-500">
           Do pátio, a criança levanta os olhos e encontra árvores — é raro, em plena Laranjeiras, ter tanto verde à vista.
