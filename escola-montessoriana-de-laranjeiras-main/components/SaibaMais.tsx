@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, BookOpen, Languages, Brain, Sprout } from 'lucide-react';
+import { ArrowRight, BookOpen, Heart, Languages, Brain, Sprout } from 'lucide-react';
 import { Section } from './ui/Section';
 
 const topics = [
@@ -9,6 +9,12 @@ const topics = [
     title: 'O Método Montessori',
     text: 'Por que a descoberta de Maria Montessori atravessou um século — e o que ela muda, na prática, na vida do seu filho.',
     to: '/metodo-montessori',
+  },
+  {
+    icon: <Heart size={28} />,
+    title: 'Acolhimento',
+    text: 'Segurança é a base do desenvolvimento: adaptação respeitosa, muito colo, flexibilidade para a família e comida de verdade. Por que acolher vem antes de ensinar.',
+    to: '/acolhimento',
   },
   {
     icon: <Languages size={28} />,

@@ -5,6 +5,7 @@ import { Main } from './components/Main';
 import { Home } from './pages/Home';
 import { Agendamento } from './pages/Agendamento';
 import { MetodoMontessori } from './pages/landing/MetodoMontessori';
+import { Acolhimento } from './pages/landing/Acolhimento';
 import { InglesPrimeiraInfancia } from './pages/landing/InglesPrimeiraInfancia';
 import { DesenvolvimentoCerebral } from './pages/landing/DesenvolvimentoCerebral';
 import { NaturezaEducacaoCosmica } from './pages/landing/NaturezaEducacaoCosmica';
@@ -46,6 +47,7 @@ const App: React.FC = () => {
           <Route index element={<Home />} />
           <Route path="agendamento" element={<Agendamento />} />
           <Route path="metodo-montessori" element={<MetodoMontessori />} />
+          <Route path="acolhimento" element={<Acolhimento />} />
           <Route path="ingles-primeira-infancia" element={<InglesPrimeiraInfancia />} />
           <Route path="desenvolvimento-cerebral" element={<DesenvolvimentoCerebral />} />
           <Route path="natureza-educacao-cosmica" element={<NaturezaEducacaoCosmica />} />

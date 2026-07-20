@@ -57,6 +57,7 @@ export const Navbar: React.FC = () => {
 
   const navLinks = [
     { name: 'O Método', to: '/metodo-montessori' },
+    { name: 'Acolhimento', to: '/acolhimento' },
     { name: 'Imersão no inglês', to: '/ingles-primeira-infancia' },
     { name: 'O cérebro do seu filho', to: '/desenvolvimento-cerebral' },
     { name: 'Natureza', to: '/natureza-educacao-cosmica' },
