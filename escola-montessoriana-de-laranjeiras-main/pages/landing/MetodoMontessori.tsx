@@ -78,6 +78,13 @@ export const MetodoMontessori: React.FC = () => {
           tem materiais específicos, apresentados individualmente pela professora quando a criança está pronta. As
           fotos abaixo são da nossa própria sala, no dia a dia real.
         </P>
+        <P>
+          Apesar da livre escolha das atividades, orientada por uma professora não diretiva, o currículo é bem
+          estruturado. Não é espontaneísmo: cada material tem um objetivo de desenvolvimento definido, uma sequência
+          de apresentação e um lugar certo na estante. A liberdade da criança acontece dentro de uma progressão
+          pedagógica cuidadosamente planejada — a professora sabe exatamente onde cada criança está e o que vem a
+          seguir.
+        </P>
 
         <Area
           title="Vida Prática"
@@ -124,8 +131,9 @@ export const MetodoMontessori: React.FC = () => {
         >
           <p>
             Em Montessori, a matemática entra pelas mãos: a criança segura a quantidade antes de conhecer o símbolo,
-            empilha, compara, conta com materiais concretos. Quando o número abstrato chega, ele já tem corpo, peso e
-            significado — por isso a matemática Montessori é sólida e sem medo.
+            empilha, compara, conta com materiais concretos. São abstrações materializadas — cada conceito matemático
+            ganha um corpo físico que a criança manuseia antes de encontrá-lo no papel. Quando o número abstrato
+            chega, ele já tem corpo, peso e significado — por isso a matemática Montessori é sólida e sem medo.
           </p>
         </Area>
 
