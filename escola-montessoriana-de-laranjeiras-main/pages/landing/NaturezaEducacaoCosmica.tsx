@@ -23,7 +23,57 @@ export const NaturezaEducacaoCosmica: React.FC = () => {
         subtitle="No meio da cidade, um ambiente arborizado onde a criança corre, planta, cuida de minhocas e descobre que faz parte de algo maior."
       />
 
-      <LandingSection heading="Por que a natureza é essencial (e não decoração)" className="pt-10 sm:pt-14">
+      <LandingSection heading="Permacultura na prática: horta, minhocário e abelhas" className="pt-10 sm:pt-14">
+        <P>
+          Vamos começar pelo que a criança mais ama: pôr a mão na terra. Aqui, as crianças têm{' '}
+          <strong>aulas de permacultura</strong> como parte da rotina, com um educador especializado. Permacultura é o
+          desenho de sistemas que imitam a inteligência da natureza — onde nada se perde e tudo se transforma.
+        </P>
+        <P>
+          <strong>Na horta</strong>, a criança prepara a terra, planta, rega, espera e colhe. Cada etapa é uma lição de
+          ciclo, paciência e causa e efeito — com as mãos na terra, do jeito que criança aprende de verdade. E a horta
+          fica encostada na mata: de dentro dela, a criança está cercada de verde por todos os lados.
+        </P>
+        <LandingImage src="/images/natureza/horta-vista.jpg" alt="Vista ampla da horta da escola encostada num paredão de pedra tomado por vegetação densa, com crianças plantando no canteiro" />
+        <LandingImage src="/images/natureza/horta-plantar.jpg" alt="Crianças plantando mudas em vasos de reaproveitamento na horta, com o educador ajudando" />
+        <P>
+          <strong>No minhocário</strong>, os restos do lanche viram terra fértil pelo trabalho das minhocas — a tarefa
+          cósmica acontecendo na palma da mão. As crianças observam, tocam e acompanham a transformação semana a
+          semana. Veja uma aula de verdade:
+        </P>
+        <div className="max-w-xs mx-auto my-6">
+          <div className="aspect-[9/16] overflow-hidden rounded-sm shadow-lg bg-black">
+            <video
+              src="/videos/video2.mp4"
+              poster="/images/natureza/minhocario-real.jpg"
+              controls
+              playsInline
+              preload="none"
+              className="w-full h-full object-cover"
+            >
+              Seu navegador não suporta vídeo.
+            </video>
+          </div>
+          <p className="mt-3 text-center text-sm text-gray-500">
+            Aula de permacultura: conhecendo as minhocas do minhocário
+          </p>
+        </div>
+        <LandingImagePair
+          images={[
+            { src: '/images/natureza/minhoca-mao.jpg', alt: 'Criança segurando uma minhoca na palma da mão durante a aula de permacultura' },
+            { src: '/images/natureza/compostagem.jpg', alt: 'Educador e crianças ao redor da caixa de compostagem com restos de frutas e verduras virando terra' },
+          ]}
+          caption="A tarefa cósmica na palma da mão: os restos do lanche viram terra fértil, e a minhoca vira amiga."
+        />
+        <P>
+          <strong>E em breve, abelhas nativas sem ferrão:</strong> estamos preparando a chegada de um meliponário com
+          abelhas brasileiras como a jataí — que não têm ferrão, são seguras para as crianças e estão entre as
+          principais polinizadoras da nossa flora. As crianças vão acompanhar de perto o trabalho de um dos seres mais
+          importantes do planeta.
+        </P>
+      </LandingSection>
+
+      <LandingSection heading="Por que a natureza é essencial (e não decoração)">
         <P>
           Criança pequena aprende com o corpo inteiro. Terra, areia, água, plantas e bichos oferecem o que nenhum
           brinquedo plástico oferece: texturas, pesos, cheiros e surpresas reais, que refinam os sentidos e alimentam a
@@ -55,19 +105,7 @@ export const NaturezaEducacaoCosmica: React.FC = () => {
           psicomotricidade — que fazem do corpo um instrumento de aprendizagem.
         </P>
         <LandingImage src="/images/natureza/patio-arborizado.jpg" alt="Pátio coberto da escola cercado por uma copa densa de árvores, com professora e crianças em aula de música no chão" />
-        <P>
-          Nosso pátio coberto fica cercado de verde: de qualquer ponto, a criança levanta os olhos e encontra árvores.
-          É nele que acontecem as aulas de movimento — e é raro, em plena Laranjeiras, ter tanta árvore à vista.
-        </P>
-        <LandingImagePair
-          images={[
-            { src: '/images/natureza/quadra-danca.jpg', alt: 'Crianças dançando no pátio coberto, com árvores visíveis ao fundo através da tela de proteção' },
-            { src: '/images/natureza/quadra-capoeira.jpg', alt: 'Aula de capoeira no pátio, com o professor de branco e árvores ao fundo' },
-          ]}
-          caption="Capoeira, dança e movimento no pátio arborizado."
-        />
-        <LandingImage src="/images/natureza/area-externa.jpg" alt="Criança pequena andando de bicicleta de equilíbrio na área externa coberta, com árvores ao fundo" />
-        <LandingImage src="/images/espaco.png" alt="Sala ampla da Escola Montessoriana, com mesas baixas, materiais ao alcance das crianças e janelas para o paredão de pedra verde" />
+        <LandingImage src="/images/espaco.png" alt="Sala ampla da Escola Montessoriana, vista de cima, com mesas baixas espalhadas, materiais ao alcance das crianças e janelas para o paredão de pedra verde" />
       </LandingSection>
 
       <LandingSection heading="Educação cósmica: o lugar da criança no mundo" className="bg-montessori-cream/60 py-10 sm:py-14 rounded-sm">
@@ -89,7 +127,7 @@ export const NaturezaEducacaoCosmica: React.FC = () => {
             compreender — e é dessa segurança que nasce a coragem de explorar.
           </p>
         </Tema>
-        <LandingImage src="/images/natureza/ciclo-vida.jpg" alt="Duas crianças estudando o material Montessori do ciclo de vida da rã sobre o tapete" />
+        <LandingImage src="/images/natureza/ciclo-vida.jpg" alt="Criança apontando para o material Montessori do ciclo de vida da rã: um disco com as etapas, do ovo à rã adulta" position="center 60%" />
         <p className="-mt-2 mb-6 text-center text-sm text-gray-500">
           O ciclo de vida em material concreto: a criança segura, na mão, a ordem por trás da natureza.
         </p>
@@ -137,62 +175,12 @@ export const NaturezaEducacaoCosmica: React.FC = () => {
         </p>
       </LandingSection>
 
-      <LandingSection heading="Permacultura na prática: horta, minhocário e abelhas">
-        <P>
-          Aqui, a educação cósmica não fica na teoria: as crianças têm <strong>aulas de permacultura</strong> como
-          parte da rotina, com um educador especializado. Permacultura é o desenho de sistemas que imitam a
-          inteligência da natureza — onde nada se perde e tudo se transforma.
-        </P>
-        <P>
-          <strong>Na horta</strong>, a criança prepara a terra, planta, rega, espera e colhe. Cada etapa é uma lição de
-          ciclo, paciência e causa e efeito — com as mãos na terra, do jeito que criança aprende de verdade. E a horta
-          fica encostada na mata: de dentro dela, a criança está cercada de verde por todos os lados.
-        </P>
-        <LandingImage src="/images/natureza/horta-vista.jpg" alt="Vista ampla da horta da escola encostada num paredão de pedra tomado por vegetação densa, com crianças plantando no canteiro" />
-        <LandingImage src="/images/natureza/horta-plantar.jpg" alt="Crianças plantando mudas em vasos de reaproveitamento na horta, com o educador ajudando" />
-        <P>
-          <strong>No minhocário</strong>, os restos do lanche viram terra fértil pelo trabalho das minhocas — a tarefa
-          cósmica acontecendo na palma da mão. As crianças observam, tocam e acompanham a transformação semana a
-          semana. Veja uma aula de verdade:
-        </P>
-        <div className="max-w-xs mx-auto my-6">
-          <div className="aspect-[9/16] overflow-hidden rounded-sm shadow-lg bg-black">
-            <video
-              src="/videos/video2.mp4"
-              poster="/images/natureza/minhocario-real.jpg"
-              controls
-              playsInline
-              preload="none"
-              className="w-full h-full object-cover"
-            >
-              Seu navegador não suporta vídeo.
-            </video>
-          </div>
-          <p className="mt-3 text-center text-sm text-gray-500">
-            Aula de permacultura: conhecendo as minhocas do minhocário
-          </p>
-        </div>
-        <LandingImagePair
-          images={[
-            { src: '/images/natureza/minhoca-mao.jpg', alt: 'Criança segurando uma minhoca na palma da mão durante a aula de permacultura' },
-            { src: '/images/natureza/compostagem.jpg', alt: 'Educador e crianças ao redor da caixa de compostagem com restos de frutas e verduras virando terra' },
-          ]}
-          caption="A tarefa cósmica na palma da mão: os restos do lanche viram terra fértil, e a minhoca vira amiga."
-        />
-        <P>
-          <strong>E em breve, abelhas nativas sem ferrão:</strong> estamos preparando a chegada de um meliponário com
-          abelhas brasileiras como a jataí — que não têm ferrão, são seguras para as crianças e estão entre as
-          principais polinizadoras da nossa flora. As crianças vão acompanhar de perto o trabalho de um dos seres mais
-          importantes do planeta.
-        </P>
-      </LandingSection>
-
       <LandingSection heading="Na nossa escola, isso significa">
         <Bullets
           items={[
             'Ambiente arborizado em plena Laranjeiras — um refúgio verde no ritmo da cidade.',
-            'Área ao ar livre todos os dias, com tanque de areia e exploração livre.',
             'Aulas de permacultura na rotina: horta, minhocário e, em breve, abelhas nativas sem ferrão.',
+            'Área ao ar livre todos os dias, com tanque de areia e exploração livre.',
             'Espaços amplos e movimento livre, dentro e fora da sala.',
             'Zero telas: experiência concreta no lugar de estímulo passivo.',
           ]}

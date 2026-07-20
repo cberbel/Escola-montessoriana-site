@@ -72,14 +72,20 @@ export const Highlight: React.FC<{ children: React.ReactNode }> = ({ children })
   </div>
 );
 
-export const LandingImage: React.FC<{ src: string; alt: string; portrait?: boolean }> = ({ src, alt, portrait = false }) =>
+export const LandingImage: React.FC<{ src: string; alt: string; portrait?: boolean; position?: string }> = ({ src, alt, portrait = false, position }) =>
   portrait ? (
     <div className="overflow-hidden rounded-sm shadow-lg my-6 max-w-md mx-auto">
       <img src={src} alt={alt} loading="lazy" className="w-full h-auto" />
     </div>
   ) : (
     <div className="overflow-hidden rounded-sm shadow-lg my-6">
-      <img src={src} alt={alt} loading="lazy" className="w-full h-64 sm:h-80 object-cover" />
+      <img
+        src={src}
+        alt={alt}
+        loading="lazy"
+        className="w-full h-64 sm:h-80 object-cover"
+        style={position ? { objectPosition: position } : undefined}
+      />
     </div>
   );
 
