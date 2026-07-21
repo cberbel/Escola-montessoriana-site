@@ -12,8 +12,8 @@ export const InglesPrimeiraInfancia: React.FC = () => {
     <div className="bg-white">
       <LandingHero
         eyebrow="Bilinguismo"
-        title="Inglês na primeira infância: a janela que não volta"
-        subtitle="Nenhum adulto aprende um idioma com a facilidade de uma criança pequena. Não é talento — é biologia. E essa janela está aberta exatamente agora."
+        title="Inglês na primeira infância: o momento ideal"
+        subtitle="Nenhum adulto aprende um idioma com a facilidade de uma criança pequena. Não é talento — é biologia. E esse é exatamente o período ideal para começar."
       />
 
       <LandingSection heading="Por que tão cedo?" className="pt-10 sm:pt-14">

@@ -14,8 +14,8 @@ export const DesenvolvimentoCerebral: React.FC = () => {
     <div className="bg-white">
       <LandingHero
         eyebrow="Primeiros anos"
-        title="O que está acontecendo no cérebro do seu filho — agora"
-        subtitle="Nos primeiros anos de vida, o cérebro forma até 1 milhão de novas conexões neurais por segundo. Nenhuma outra fase da vida chega perto. O que acontece nesse período constrói a base de tudo o que vem depois."
+        title="A janela que não volta"
+        subtitle="O que acontece no cérebro do seu filho agora constrói a base de tudo o que vem depois. Nos primeiros anos de vida, ele forma até 1 milhão de novas conexões neurais por segundo — nenhuma outra fase da vida chega perto."
       />
 
       <LandingSection heading="A arquitetura se constrói uma vez" className="pt-10 sm:pt-14">

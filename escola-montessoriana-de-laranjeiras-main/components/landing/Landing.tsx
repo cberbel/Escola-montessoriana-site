@@ -41,8 +41,8 @@ export const LandingHero: React.FC<{ eyebrow: string; title: string; subtitle: s
   </div>
 );
 
-export const LandingSection: React.FC<{ heading?: string; children: React.ReactNode; className?: string }> = ({ heading, children, className = '' }) => (
-  <section className={`px-4 sm:px-6 md:px-12 py-8 sm:py-10 overflow-x-hidden ${className}`}>
+export const LandingSection: React.FC<{ heading?: string; children: React.ReactNode; className?: string; id?: string }> = ({ heading, children, className = '', id }) => (
+  <section id={id} className={`px-4 sm:px-6 md:px-12 py-8 sm:py-10 overflow-x-hidden scroll-mt-24 ${className}`}>
     <div className="max-w-3xl mx-auto min-w-0">
       {heading && (
         <h2 className="font-serif text-2xl sm:text-3xl text-montessori-green mb-4 sm:mb-5 break-words">
