@@ -4,7 +4,6 @@ import { Philosophy } from '../components/Philosophy';
 import { Practice } from '../components/Practice';
 import { Horarios } from '../components/Horarios';
 import { AtividadesExtras } from '../components/AtividadesExtras';
-import { Gallery } from '../components/Gallery';
 import { SaibaMais } from '../components/SaibaMais';
 import { Testimonials } from '../components/Testimonials';
 import { ContactForm } from '../components/ContactForm';
@@ -18,7 +17,6 @@ export const Home: React.FC = () => {
       <Practice />
       <Horarios />
       <AtividadesExtras />
-      <Gallery />
       <Testimonials />
       <ContactForm />
     </>

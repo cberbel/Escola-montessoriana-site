@@ -44,15 +44,15 @@ export const AtividadesExtras: React.FC = () => (
   <Section id="atividades" className="bg-white">
     <div className="text-center mb-10 sm:mb-14 min-w-0">
       <div className="w-16 h-1.5 bg-montessori-gold rounded-full mx-auto mb-5 sm:mb-6" />
-      <span className="text-montessori-gold uppercase tracking-[0.2em] font-bold text-xs sm:text-sm mb-3 block">
+      <span className="text-montessori-gold uppercase tracking-[0.2em] font-bold text-base sm:text-xl mb-3 block">
         Atividades complementares
       </span>
       <h2 className="font-serif font-bold text-3xl sm:text-4xl md:text-5xl text-montessori-green px-1 break-words leading-tight">
-        Muito mais que a rotina da sala
+        Além do trabalho na sala montessoriana
       </h2>
       <p className="font-sans text-lg text-montessori-dark mt-4 max-w-2xl mx-auto px-1 leading-relaxed">
-        De manhã e de tarde, ao longo da semana, as crianças vivem atividades que enriquecem o corpo, a arte e o
-        contato com a natureza.
+        Duas vezes ao dia, de manhã e de tarde, ao longo da semana, as crianças vivem atividades que enriquecem o
+        corpo, a arte e o contato com a natureza.
       </p>
     </div>
 
