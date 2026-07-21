@@ -7,7 +7,7 @@ const topics = [
   {
     image: '/images/turmas/agrupada-2.jpg',
     alt: 'Menina concentrada montando a torre rosa na sala Montessori',
-    position: 'center 20%',
+    position: 'center 32%',
     title: 'O Método Montessori',
     text: 'Por que a descoberta de Maria Montessori atravessou um século — e o que ela muda, na prática, na vida do seu filho.',
     to: '/metodo-montessori',
