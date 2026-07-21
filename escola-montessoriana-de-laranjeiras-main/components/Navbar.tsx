@@ -64,6 +64,7 @@ export const Navbar: React.FC = () => {
     { name: 'Turmas', to: '/turmas' },
     { name: 'Depoimentos', to: '/#testimonials' },
     { name: 'Contato', to: '/#contact' },
+    { name: 'Blog', to: '/blog' },
   ];
 
   const mobileMenuContent = mobileMenuOpen && (
