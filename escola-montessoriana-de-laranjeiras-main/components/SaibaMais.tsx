@@ -89,7 +89,7 @@ export const SaibaMais: React.FC = () => (
               />
             </div>
             <div className="p-6 sm:p-8 flex flex-col flex-grow">
-              <h3 className="font-serif text-xl sm:text-2xl text-montessori-green mb-2 sm:mb-3">
+              <h3 className="font-serif font-bold text-xl sm:text-2xl text-montessori-green mb-2 sm:mb-3">
                 {topic.title}
               </h3>
               <p className="text-gray-600 text-base leading-relaxed mb-4 flex-grow">
