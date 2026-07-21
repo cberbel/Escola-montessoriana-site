@@ -23,7 +23,7 @@ export const Benefits: React.FC = () => {
     {
       icon: <Globe size={32} />,
       title: "Imersão no aprendizado de inglês",
-      description: "Professoras fluentes, nativas e brasileiras bilíngues, e aprendizado natural pela vivência diária"
+      description: "Professoras nativas e brasileiras bilíngues, com aprendizado natural pela vivência diária"
     },
     {
       icon: <TreePine size={32} />,
