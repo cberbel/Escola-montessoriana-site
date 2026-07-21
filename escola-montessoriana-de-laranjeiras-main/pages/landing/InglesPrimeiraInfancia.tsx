@@ -5,7 +5,7 @@ import { LandingHero, LandingSection, LandingCTA, Highlight, Bullets, P, usePage
 export const InglesPrimeiraInfancia: React.FC = () => {
   usePageMeta(
     'Inglês na Primeira Infância | Escola Montessoriana de Laranjeiras',
-    'Por que os primeiros anos são a melhor janela para o inglês: aquisição natural com professoras nativas, função executiva do cérebro bilíngue, o custo de oportunidade e o acesso ao conhecimento do mundo.'
+    'Por que os primeiros anos são a melhor janela para o inglês: aquisição natural pela imersão diária, função executiva do cérebro bilíngue, o custo de oportunidade e o acesso ao conhecimento do mundo.'
   );
 
   return (
@@ -98,21 +98,22 @@ export const InglesPrimeiraInfancia: React.FC = () => {
         </Highlight>
       </LandingSection>
 
-      <LandingSection heading="Imersão de verdade, com professoras nativas">
+      <LandingSection heading="Imersão de verdade, todos os dias">
         <P>
           Aula de inglês uma ou duas vezes por semana não cria bilinguismo — cria vocabulário decorado, que some nas
           férias. O que funciona é a imersão: o idioma presente na rotina, todos os dias, em situações reais.
         </P>
         <P>
-          Na Escola Montessoriana, as crianças convivem diariamente com professoras nativas. O inglês aparece nas
-          brincadeiras, nas músicas, nas refeições, no parquinho — exatamente como a língua materna apareceu na vida
-          delas. Sem pressão, sem prova, sem "hora do inglês". A língua simplesmente faz parte da vida.
+          Na Escola Montessoriana, as crianças convivem diariamente com o inglês na voz de professoras fluentes —
+          nativas e brasileiras bilíngues. O idioma aparece nas brincadeiras, nas músicas, nas refeições, no
+          parquinho — exatamente como a língua materna apareceu na vida delas. Sem pressão, sem prova, sem "hora do
+          inglês". A língua simplesmente faz parte da vida.
         </P>
         <P>
           E precisa ser gente de verdade: a pesquisa de Patricia Kuhl mostrou que o bebê aprende os sons de um novo
           idioma com uma pessoa presente e interagindo — e não aprende nada assistindo ao mesmo conteúdo em uma tela,
-          sozinho. Por isso a imersão viva, com professoras nativas, faz toda a diferença — e nenhum aplicativo
-          substitui.
+          sozinho. Por isso a imersão viva, com pessoas reais interagindo todos os dias, faz toda a diferença — e
+          nenhum aplicativo substitui.
         </P>
       </LandingSection>
 
@@ -126,7 +127,7 @@ export const InglesPrimeiraInfancia: React.FC = () => {
 
       <LandingCTA
         heading="Venha ouvir as crianças vivendo em dois idiomas"
-        text="Agende uma visita e veja a imersão acontecendo naturalmente, com professoras nativas, no meio da rotina."
+        text="Agende uma visita e veja a imersão acontecendo naturalmente, no meio da rotina."
       />
     </div>
   );
