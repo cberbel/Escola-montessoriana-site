@@ -82,7 +82,7 @@ export const Acolhimento: React.FC = () => {
         </P>
       </LandingSection>
 
-      <LandingSection heading="A alimentação também é acolhimento">
+      <LandingSection id="alimentacao" heading="A alimentação também é acolhimento">
         <P>
           Cuidar do que entra no corpo da criança é cuidar do humor, do sono, da concentração e da saúde dela. Por isso
           levamos a comida tão a sério quanto o colo. Servimos <strong>comida de verdade</strong>, feita com cuidado:{' '}
