@@ -1,7 +1,6 @@
 import React from 'react';
 import { Quote } from 'lucide-react';
 import { Section } from './ui/Section';
-import { Testimonial } from '../types';
 import { trackWhatsAppClick } from '../utils/tracking';
 
 interface VideoTestimonial {
@@ -11,6 +10,12 @@ interface VideoTestimonial {
   src: string;
   poster: string;
   vertical: boolean;
+}
+
+interface ImageTestimonial {
+  name: string;
+  image: string;
+  quote: string;
 }
 
 export const Testimonials: React.FC = () => {
@@ -47,35 +52,37 @@ export const Testimonials: React.FC = () => {
     });
   };
 
-  const testimonials: Testimonial[] = [
+  const imageTestimonials: ImageTestimonial[] = [
     {
-      id: 1,
       name: "Flávio Azevedo",
-      role: "Cardiologista e Mãe do Pedro (3 anos)",
-      content: "Local maravilhoso, crianças felizes, o responsável é super simpático, gentil com as crianças. Os professores maravilhosos, me sinto seguro de deixar meu filho com pessoas que sempre estão estimulando o desenvolvimento dele.",
-      image: "https://images.unsplash.com/photo-1559839734-2b71ea86b48e?q=80&w=2670&auto=format&fit=crop"
+      image: "/images/depoimentos/flavio.jpg",
+      quote: "Local maravilhoso, crianças felizes, o responsável é super simpático, gentil com as crianças. Os professores maravilhosos, me sinto seguro de deixar meu filho com pessoas que sempre estão estimulando o desenvolvimento dele.",
     },
     {
-      id: 2,
       name: "Luana Chedid",
-      role: "Juiz Federal e Mãe da Sofia (5 anos)",
-      content: "Nossa experiência com a escola foi simplesmente única. Maravilhosa, o Cláudio e todos os professores sempre muito atenciosos. Aurora Yris evoluiu muito nessa escola, só tenho agradecimento a todos.",
-      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=2574&auto=format&fit=crop"
+      image: "/images/depoimentos/luana.jpg",
+      quote: "Nossa experiência com a escola foi simplesmente única. Maravilhosa, o Cláudio e todos os professores sempre muito atenciosos. Aurora Yris evoluiu muito nessa escola, só tenho agradecimento a todos.",
     },
     {
-      id: 3,
       name: "Renata Faria",
-      role: "Mãe",
-      content: "Estamos muito satisfeitos e agradecidos com a Escola Montessoriana. Ela se tornou uma grande rede de apoio, onde encontramos um local respeitoso e acolhedor. O maior acerto é ver a alegria do nosso filho ao chegar na escola e o quanto ele se desenvolve bem a cada dia, mostrando-se sempre confortável, carinhoso e querido por todos! Nosso muito obrigada!",
-      image: "https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?q=80&w=2574&auto=format&fit=crop"
+      image: "/images/depoimentos/renata.jpg",
+      quote: "Estamos muito satisfeitos e agradecidos com a Escola Montessoriana. Ela se tornou uma grande rede de apoio, onde encontramos um local respeitoso e acolhedor. O maior acerto é ver a alegria do nosso filho ao chegar na escola e o quanto ele se desenvolve bem a cada dia, mostrando-se sempre confortável, carinhoso e querido por todos! Nosso muito obrigada!",
     },
     {
-      id: 4,
+      name: "Francisca Sobral",
+      image: "/images/depoimentos/francisca.jpg",
+      quote: "A escola tem excelente estrutura. Professores qualificados e uma administração visionária quanto ao ensino de qualidade. Como mãe, fico muito tranquila em saber que minha filha está aos cuidados de pessoas amorosas e responsáveis. Parabéns a todos da Escola Montessoriana.",
+    },
+    {
+      name: "Bárbara Araújo",
+      image: "/images/depoimentos/barbara.jpg",
+      quote: "Como mãe estou muito surpresa com o desenvolvimento do meu filho. Local acolhedor, ambiente preparado, pensado nos mínimos detalhes.",
+    },
+    {
       name: "Ana Petiz",
-      role: "Mãe",
-      content: "Escola acolhedora e proposta educacional sensacional. Matriculei minha filha com 1 ano e meio e já vi rápidos avanços no desenvolvimento dela. Espaço amplo, limpo e profissionais excelentes. Recomendo!",
-      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=2574&auto=format&fit=crop"
-    }
+      image: "/images/depoimentos/ana.jpg",
+      quote: "Escola acolhedora e proposta educacional sensacional. Matriculei minha filha com 1 ano e meio e já vi rápidos avanços no desenvolvimento dela. Espaço amplo, limpo e profissionais excelentes. Recomendo!",
+    },
   ];
 
   return (
@@ -115,20 +122,16 @@ export const Testimonials: React.FC = () => {
           ))}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-12">
-          {testimonials.map((t) => (
-            <div key={t.id} className="bg-white/5 backdrop-blur-sm border border-white/10 p-6 sm:p-8 rounded-sm hover:bg-white/10 transition-colors min-w-0 break-words">
-              <div className="flex items-start mb-4 sm:mb-6">
-                <Quote className="text-montessori-gold shrink-0 mr-3 sm:mr-4 mt-0.5" size={22} />
-                <p className="font-sans text-base sm:text-lg text-gray-200 italic leading-relaxed">
-                  "{t.content}"
-                </p>
-              </div>
-              <div className="flex items-center">
-                <div>
-                  <h4 className="font-serif text-xl text-white">{t.name}</h4>
-                </div>
-              </div>
+        {/* Depoimentos em card com foto das crianças */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+          {imageTestimonials.map((t) => (
+            <div key={t.name} className="rounded-sm overflow-hidden shadow-lg border border-white/10 bg-white/5">
+              <img
+                src={t.image}
+                alt={`Depoimento de ${t.name}: ${t.quote}`}
+                loading="lazy"
+                className="w-full h-auto block"
+              />
             </div>
           ))}
         </div>
