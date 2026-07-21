@@ -10,7 +10,7 @@ export const Practice: React.FC = () => {
             Diferenciais
           </span>
           <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white mb-1 sm:mb-2">
-            Inglês por imersão todos os dias, com professoras nativas
+            Inglês por imersão todos os dias, com professoras fluentes
           </h2>
           <p className="font-sans text-lg sm:text-xl md:text-2xl text-amber-100 font-semibold max-w-xl">
             Mais um idioma escolhido pela família

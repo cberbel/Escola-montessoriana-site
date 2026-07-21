@@ -148,7 +148,7 @@ export const DesenvolvimentoCerebral: React.FC = () => {
         <Bullets
           items={[
             'Uma professora para cada 3 bebês menores de 18 meses: cada balbucio, cada tentativa, encontra um adulto que observa e responde.',
-            'Imersão diária em inglês com professoras nativas, no auge da janela da linguagem — pelo caminho do "servir e devolver", não da tela.',
+            'Imersão diária em inglês com professoras fluentes, no auge da janela da linguagem — pelo caminho do "servir e devolver", não da tela.',
             'Ambiente preparado Montessori: movimento livre, materiais concretos e manuseáveis — zero telas.',
             'Observação individual: cada criança é acompanhada no seu ritmo, com registros reais do seu desenvolvimento.',
           ]}
