@@ -55,15 +55,16 @@ const topics = [
 ];
 
 export const SaibaMais: React.FC = () => (
-  <Section id="saiba-mais" className="bg-white">
+  <Section id="saiba-mais" className="bg-montessori-green/5 border-t border-montessori-green/10">
     <div className="text-center mb-8 sm:mb-14 min-w-0">
-      <span className="text-montessori-green uppercase tracking-widest font-bold text-xs mb-2 block">
+      <div className="w-16 h-1.5 bg-montessori-gold rounded-full mx-auto mb-5 sm:mb-6" />
+      <span className="text-montessori-gold uppercase tracking-[0.2em] font-bold text-xs sm:text-sm mb-3 block">
         Para decidir com profundidade
       </span>
-      <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-montessori-green px-1 break-words">
+      <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-montessori-green px-1 break-words leading-tight">
         O que toda família deveria saber antes de escolher uma escola
       </h2>
-      <p className="sm:hidden text-gray-500 text-sm mt-3">Arraste para o lado para ver todos →</p>
+      <p className="sm:hidden text-montessori-green/60 text-sm mt-4">Arraste para o lado para ver todos →</p>
     </div>
 
     {/*
