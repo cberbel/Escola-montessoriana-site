@@ -54,6 +54,11 @@ export const InglesPrimeiraInfancia: React.FC = () => {
           quer fazer. Custa dinheiro, custa horas, custa força de vontade — e ainda entrega um resultado inferior, com
           mais esforço e quase sempre com sotaque.
         </P>
+        <LandingImage
+          src="/images/ingles/bebe-atividade.jpg"
+          alt="Bebê da Escola Montessoriana sorrindo durante uma atividade — nessa fase o inglês entra embutido na brincadeira, sem custar tempo extra"
+          portrait
+        />
         <Highlight>
           O idioma que hoje entra brincando, amanhã vira mais uma tarefa na agenda. Aprender inglês cedo não é adiantar
           uma matéria — é aproveitar a única fase em que ele custa quase nada.
