@@ -46,7 +46,7 @@ export const Hero: React.FC = () => {
               Escola Montessoriana
             </h2>
             <p className="font-logo text-montessori-gold font-semibold text-base sm:text-lg md:text-xl mt-1 opacity-95">
-              Educação infantil bilíngue
+              Educação infantil trilíngue
             </p>
           </div>
           <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-white leading-tight mb-4 sm:mb-5 drop-shadow-[0_10px_25px_rgba(15,23,42,0.8)] break-words text-center">
