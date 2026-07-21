@@ -4,6 +4,7 @@ import './index.css';
 import { Main } from './components/Main';
 import { Home } from './pages/Home';
 import { Agendamento } from './pages/Agendamento';
+import { Blog } from './pages/Blog';
 import { MetodoMontessori } from './pages/landing/MetodoMontessori';
 import { Acolhimento } from './pages/landing/Acolhimento';
 import { InglesPrimeiraInfancia } from './pages/landing/InglesPrimeiraInfancia';
@@ -48,6 +49,7 @@ const App: React.FC = () => {
         <Route path="/" element={<Main />}>
           <Route index element={<Home />} />
           <Route path="agendamento" element={<Agendamento />} />
+          <Route path="blog" element={<Blog />} />
           <Route path="metodo-montessori" element={<MetodoMontessori />} />
           <Route path="acolhimento" element={<Acolhimento />} />
           <Route path="ingles-primeira-infancia" element={<InglesPrimeiraInfancia />} />
