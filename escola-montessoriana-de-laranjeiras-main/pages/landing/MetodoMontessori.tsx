@@ -117,7 +117,7 @@ export const MetodoMontessori: React.FC = () => {
           <p>
             Do som à escrita, pelo caminho do corpo: a criança traça a Letra de Lixa com os dedos enquanto ouve o som,
             escreve na areia antes do papel, e descobre que as palavras carregam o mundo. Aqui também vive o nosso
-            diferencial: a imersão diária em inglês com professoras fluentes —{' '}
+            diferencial: a imersão diária em inglês com professoras nativas e bilíngues —{' '}
             <Link to="/ingles-primeira-infancia" className="text-montessori-green font-semibold underline hover:no-underline">
               entenda por que começar cedo
             </Link>.

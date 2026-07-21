@@ -1,19 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { LandingHero, LandingSection, LandingCTA, Highlight, Bullets, P, usePageMeta } from '../../components/landing/Landing';
+import { LandingHero, LandingSection, LandingCTA, Highlight, Bullets, P, LandingImage, usePageMeta } from '../../components/landing/Landing';
 
 export const InglesPrimeiraInfancia: React.FC = () => {
   usePageMeta(
     'Inglês na Primeira Infância | Escola Montessoriana de Laranjeiras',
-    'Por que os primeiros anos são a melhor janela para o inglês: aquisição natural pela imersão diária, função executiva do cérebro bilíngue, o custo de oportunidade e o acesso ao conhecimento do mundo.'
+    'Por que os primeiros anos são a melhor janela para o inglês: aquisição natural pela imersão diária com professoras nativas e bilíngues, função executiva do cérebro bilíngue, o custo de oportunidade e o acesso ao conhecimento do mundo.'
   );
 
   return (
     <div className="bg-white">
       <LandingHero
         eyebrow="Bilinguismo"
-        title="Inglês na primeira infância: a janela que não volta"
-        subtitle="Nenhum adulto aprende um idioma com a facilidade de uma criança pequena. Não é talento — é biologia. E essa janela está aberta exatamente agora."
+        title="Inglês na primeira infância: o momento ideal"
+        subtitle="Nenhum adulto aprende um idioma com a facilidade de uma criança pequena. Não é talento — é biologia. E esse é exatamente o período ideal para começar."
       />
 
       <LandingSection heading="Por que tão cedo?" className="pt-10 sm:pt-14">
@@ -30,6 +30,11 @@ export const InglesPrimeiraInfancia: React.FC = () => {
             Veja a ciência dos períodos sensíveis
           </Link>.
         </P>
+        <LandingImage
+          src="/images/ingles/safira-patio.jpg"
+          alt="Bebê da Escola Montessoriana brincando no pátio, no auge da fase de absorção da linguagem"
+          portrait
+        />
         <Highlight>
           Para a criança pequena, o inglês não é uma matéria. É só mais uma forma natural de falar com pessoas de quem
           ela gosta.
@@ -98,7 +103,7 @@ export const InglesPrimeiraInfancia: React.FC = () => {
         </Highlight>
       </LandingSection>
 
-      <LandingSection heading="Imersão de verdade, todos os dias">
+      <LandingSection heading="Imersão de verdade, com professoras nativas e bilíngues">
         <P>
           Aula de inglês uma ou duas vezes por semana não cria bilinguismo — cria vocabulário decorado, que some nas
           férias. O que funciona é a imersão: o idioma presente na rotina, todos os dias, em situações reais.
@@ -127,7 +132,7 @@ export const InglesPrimeiraInfancia: React.FC = () => {
 
       <LandingCTA
         heading="Venha ouvir as crianças vivendo em dois idiomas"
-        text="Agende uma visita e veja a imersão acontecendo naturalmente, no meio da rotina."
+        text="Agende uma visita e veja a imersão acontecendo naturalmente, com professoras nativas e brasileiras, no meio da rotina."
       />
     </div>
   );
