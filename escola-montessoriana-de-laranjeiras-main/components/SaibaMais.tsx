@@ -7,7 +7,7 @@ const topics = [
   {
     image: '/images/turmas/agrupada-2.jpg',
     alt: 'Menina concentrada montando a torre rosa na sala Montessori',
-    position: 'center 30%',
+    position: 'center 20%',
     title: 'O Método Montessori',
     text: 'Por que a descoberta de Maria Montessori atravessou um século — e o que ela muda, na prática, na vida do seu filho.',
     to: '/metodo-montessori',
@@ -39,7 +39,7 @@ const topics = [
   {
     image: '/images/montessori/sensorial-encaixes.jpg',
     alt: 'Criança trabalhando com material sensorial de encaixes',
-    position: 'center 30%',
+    position: 'center 45%',
     title: 'Os primeiros anos e o cérebro',
     text: 'Mais de 1 milhão de conexões por segundo: o que constrói a arquitetura cerebral do seu filho — e por que a escolha da escola pesa mais que a distância de casa.',
     to: '/desenvolvimento-cerebral',
@@ -84,7 +84,7 @@ export const SaibaMais: React.FC = () => (
                 alt={topic.alt}
                 loading="lazy"
                 style={{ objectPosition: topic.position }}
-                className="w-full h-[58vh] sm:h-56 object-cover group-hover:scale-105 transition-transform duration-500"
+                className="w-full h-[44vh] sm:h-56 object-cover group-hover:scale-105 transition-transform duration-500"
               />
             </div>
             <div className="p-6 sm:p-8 flex flex-col flex-grow">
