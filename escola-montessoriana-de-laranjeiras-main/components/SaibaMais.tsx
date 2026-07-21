@@ -56,45 +56,52 @@ const topics = [
 
 export const SaibaMais: React.FC = () => (
   <Section id="saiba-mais" className="bg-white">
-    <div className="text-center mb-10 sm:mb-14 min-w-0">
+    <div className="text-center mb-8 sm:mb-14 min-w-0">
       <span className="text-montessori-green uppercase tracking-widest font-bold text-xs mb-2 block">
         Para decidir com profundidade
       </span>
       <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-montessori-green px-1 break-words">
         O que toda família deveria saber antes de escolher uma escola
       </h2>
+      <p className="sm:hidden text-gray-500 text-sm mt-3">Arraste para o lado para ver todos →</p>
     </div>
 
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 max-w-5xl mx-auto min-w-0">
-      {topics.map((topic) => (
-        <Link
-          key={topic.to}
-          to={topic.to}
-          className="group bg-montessori-cream border border-montessori-green/10 rounded-sm overflow-hidden hover:shadow-lg hover:border-montessori-green/30 transition-all min-w-0 break-words flex flex-col"
-        >
-          <div className="overflow-hidden">
-            <img
-              src={topic.image}
-              alt={topic.alt}
-              loading="lazy"
-              style={{ objectPosition: topic.position }}
-              className="w-full h-52 sm:h-56 object-cover group-hover:scale-105 transition-transform duration-500"
-            />
-          </div>
-          <div className="p-6 sm:p-8 flex flex-col flex-grow">
-            <h3 className="font-serif text-xl sm:text-2xl text-montessori-green mb-2 sm:mb-3">
-              {topic.title}
-            </h3>
-            <p className="text-gray-600 text-base leading-relaxed mb-4 flex-grow">
-              {topic.text}
-            </p>
-            <span className="inline-flex items-center gap-1.5 text-montessori-green font-semibold group-hover:gap-3 transition-all">
-              Saiba mais
-              <ArrowRight size={18} />
-            </span>
-          </div>
-        </Link>
-      ))}
+    {/*
+      Celular: carrossel horizontal — cada card é uma "tela" que se desliza (snap),
+      com a foto ocupando bastante altura. Desktop: volta a ser grade de 2 colunas.
+    */}
+    <div className="max-w-5xl mx-auto min-w-0">
+      <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory -mx-4 px-4 pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:grid sm:grid-cols-2 sm:gap-8 sm:overflow-visible sm:mx-0 sm:px-0 sm:pb-0">
+        {topics.map((topic) => (
+          <Link
+            key={topic.to}
+            to={topic.to}
+            className="group snap-center shrink-0 basis-[85%] sm:basis-auto bg-montessori-cream border border-montessori-green/10 rounded-sm overflow-hidden hover:shadow-lg hover:border-montessori-green/30 transition-all min-w-0 break-words flex flex-col"
+          >
+            <div className="overflow-hidden">
+              <img
+                src={topic.image}
+                alt={topic.alt}
+                loading="lazy"
+                style={{ objectPosition: topic.position }}
+                className="w-full h-[58vh] sm:h-56 object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+            </div>
+            <div className="p-6 sm:p-8 flex flex-col flex-grow">
+              <h3 className="font-serif text-xl sm:text-2xl text-montessori-green mb-2 sm:mb-3">
+                {topic.title}
+              </h3>
+              <p className="text-gray-600 text-base leading-relaxed mb-4 flex-grow">
+                {topic.text}
+              </p>
+              <span className="inline-flex items-center gap-1.5 text-montessori-green font-semibold group-hover:gap-3 transition-all">
+                Saiba mais
+                <ArrowRight size={18} />
+              </span>
+            </div>
+          </Link>
+        ))}
+      </div>
     </div>
   </Section>
 );
