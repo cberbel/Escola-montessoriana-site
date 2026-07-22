@@ -63,12 +63,12 @@ export const Philosophy: React.FC = () => {
         </div>
         <div className="min-w-0 px-1 text-left">
           <h3 className="font-serif text-2xl sm:text-3xl text-montessori-green mb-3 sm:mb-4">
-            Quem seu filho se torna na nossa escola
+            Quem seu filho se torna na nossa escola?
           </h3>
           <p className="font-sans text-lg md:text-xl text-montessori-dark leading-relaxed">
             Maria Montessori descobriu que, no ambiente certo, toda criança revela o seu melhor.
             Na nossa escola, essa transformação acontece no dia a dia — e os pais reconhecem em
-            casa uma criança...
+            casa uma criança:
           </p>
         </div>
       </div>
