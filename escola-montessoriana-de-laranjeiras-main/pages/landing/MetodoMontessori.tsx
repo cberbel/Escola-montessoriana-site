@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { LandingHero, LandingSection, LandingCTA, LandingImage, Highlight, Bullets, P, usePageMeta } from '../../components/landing/Landing';
+import { LandingHero, LandingSection, LandingCTA, LandingImage, LandingImagePair, Highlight, Bullets, P, usePageMeta } from '../../components/landing/Landing';
 
 /** Área do currículo: título + texto + materiais reais usados na escola */
 const Area: React.FC<{ title: string; children: React.ReactNode; materials?: string }> = ({ title, children, materials }) => (
@@ -96,7 +96,12 @@ export const MetodoMontessori: React.FC = () => {
             lógica e independência. É também aqui que a mão se prepara, movimento a movimento, para a escrita.
           </p>
         </Area>
-        <LandingImage src="/images/montessori/vida-pratica-varal.jpg" alt="Criança pendurando roupas no varal com prendedores, atividade de Vida Prática Montessori" portrait />
+        <LandingImagePair
+          images={[
+            { src: '/images/montessori/vida-pratica-varal.jpg', alt: 'Criança pendurando roupas no varal com prendedores, atividade de Vida Prática Montessori' },
+            { src: '/images/montessori/vida-pratica-tapete.jpg', alt: 'Criança enrolando o tapete sozinha ao terminar seu trabalho, na sala Montessori' },
+          ]}
+        />
 
         <Area
           title="Sensorial"
@@ -108,7 +113,12 @@ export const MetodoMontessori: React.FC = () => {
             toca e o cérebro organiza. É a base silenciosa da inteligência lógica e matemática.
           </p>
         </Area>
-        <LandingImage src="/images/montessori/sensorial-encaixes.jpg" alt="Criança concentrada trabalhando com os Encaixes Sólidos, material sensorial Montessori" portrait />
+        <LandingImagePair
+          images={[
+            { src: '/images/montessori/sensorial-encaixes.jpg', alt: 'Criança concentrada trabalhando com os Encaixes Sólidos, material sensorial Montessori' },
+            { src: '/images/montessori/sensorial-torre-rosa.jpg', alt: 'Duas meninas montando juntas a Torre Rosa combinada com a Escada Marrom, na vertical' },
+          ]}
+        />
 
         <Area
           title="Linguagem"
@@ -123,7 +133,12 @@ export const MetodoMontessori: React.FC = () => {
             </Link>.
           </p>
         </Area>
-        <LandingImage src="/images/montessori/linguagem-escrita.jpg" alt="Criança concentrada escrevendo seu nome, atividade de linguagem Montessori" portrait />
+        <LandingImagePair
+          images={[
+            { src: '/images/montessori/linguagem-escrita.jpg', alt: 'Criança concentrada escrevendo seu nome, atividade de linguagem Montessori' },
+            { src: '/images/montessori/linguagem-caixa-areia.jpg', alt: 'Menino traçando uma letra na Caixa de Areia, com a Letra de Lixa ao lado' },
+          ]}
+        />
 
         <Area
           title="Matemática"
@@ -136,6 +151,7 @@ export const MetodoMontessori: React.FC = () => {
             chega, ele já tem corpo, peso e significado — por isso a matemática Montessori é sólida e sem medo.
           </p>
         </Area>
+        <LandingImage src="/images/montessori/matematica-dourado.jpg" alt="Crianças no tapete com a torre montada de Material Dourado e os cartões de números" />
 
         <Area title="Educação Cósmica">
           <p>
@@ -171,6 +187,10 @@ export const MetodoMontessori: React.FC = () => {
           Num mundo que fragmenta a atenção desde cedo, uma criança capaz de se concentrar por longos períodos carrega
           uma vantagem para a vida inteira.
         </Highlight>
+        <LandingImage src="/images/montessori/concentracao.jpg" alt="Criança de cócoras, absorta, traçando uma forma de metal redonda no chão da sala" portrait />
+        <p className="-mt-2 text-center text-sm text-gray-500">
+          Concentração profunda não se ensina — se protege.
+        </p>
       </LandingSection>
 
       <LandingSection heading="O que muda na criança">

@@ -86,10 +86,10 @@ export const NaturezaEducacaoCosmica: React.FC = () => {
         </P>
         <LandingImagePair
           images={[
-            { src: '/images/natureza/tanque-areia-1.jpg', alt: 'Duas crianças brincando descalças no tanque de areia da escola' },
-            { src: '/images/natureza/tanque-areia-2.jpg', alt: 'Crianças explorando a areia com baldinhos e peneiras no tanque de areia' },
+            { src: '/images/natureza/tanque-areia-real.jpg', alt: 'Quatro crianças de uniforme brincando juntas no tanque de areia da escola' },
+            { src: '/images/natureza/colagem-folhas.jpg', alt: 'Menina sorrindo no pátio mostrando sua colagem feita com folhas de verdade' },
           ]}
-          caption="No tanque de areia: textura, peso e temperatura que só a mão descobre."
+          caption="Areia, folhas, texturas: o mundo de verdade nas mãos."
         />
       </LandingSection>
 
@@ -110,6 +110,13 @@ export const NaturezaEducacaoCosmica: React.FC = () => {
         <p className="-mt-2 mb-6 text-center text-sm text-gray-500">
           Do pátio, a criança levanta os olhos e encontra árvores — é raro, em plena Laranjeiras, ter tanto verde à vista.
         </p>
+        <LandingImagePair
+          images={[
+            { src: '/images/natureza/capoeira-roda.jpg', alt: 'Roda de capoeira no pátio coberto, com o mestre tocando berimbau e as árvores ao fundo' },
+            { src: '/images/natureza/capoeira-bananeira.jpg', alt: 'Crianças fazendo bananeira apoiadas na parede durante a aula de capoeira no pátio' },
+          ]}
+          caption="Capoeira no pátio: berimbau, roda e bananeira debaixo das árvores."
+        />
         <LandingImage src="/images/espaco.png" alt="Sala ampla da Escola Montessoriana, vista de cima, com mesas baixas espalhadas, materiais ao alcance das crianças e janelas para o paredão de pedra verde" />
       </LandingSection>
 

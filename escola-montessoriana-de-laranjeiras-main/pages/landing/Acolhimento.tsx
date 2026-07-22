@@ -1,5 +1,5 @@
 import React from 'react';
-import { LandingHero, LandingSection, LandingCTA, Highlight, Bullets, P, usePageMeta } from '../../components/landing/Landing';
+import { LandingHero, LandingSection, LandingCTA, LandingImage, LandingImagePair, Highlight, Bullets, P, usePageMeta } from '../../components/landing/Landing';
 
 export const Acolhimento: React.FC = () => {
   usePageMeta(
@@ -31,6 +31,13 @@ export const Acolhimento: React.FC = () => {
         <Highlight>
           Nenhuma criança aprende com medo. A segurança emocional não é o oposto do aprendizado — é a condição dele.
         </Highlight>
+        <LandingImagePair
+          images={[
+            { src: '/images/acolhimento/sorriso-professora.jpg', alt: 'Professora e criança abraçadas sorrindo juntas no pátio da escola' },
+            { src: '/images/acolhimento/bebe-tranquilo.jpg', alt: 'Bebê tranquilo explorando um material na sala, com as estantes ao fundo' },
+          ]}
+          caption="O sorriso de quem se sente seguro — é dele que nasce todo o resto."
+        />
       </LandingSection>
 
       <LandingSection heading="Adaptação respeitosa: quem dá o ritmo é a criança">
@@ -45,6 +52,10 @@ export const Acolhimento: React.FC = () => {
           legítima de comunicação, e construímos confiança dia após dia. Adaptação respeitosa não é a criança se render
           à escola — é a escola conquistar, com paciência, a confiança da criança.
         </P>
+        <LandingImage src="/images/acolhimento/adaptacao-artes.jpg" alt="Bebê de avental pintando ao lado da professora, que acompanha de pertinho a atividade" portrait />
+        <p className="-mt-2 text-center text-sm text-gray-500">
+          Um adulto de referência por perto: assim a confiança se constrói, um dia de cada vez.
+        </p>
       </LandingSection>
 
       <LandingSection heading="Damos muito colo" className="bg-montessori-cream/60 py-10 sm:py-14 rounded-sm">
@@ -61,6 +72,10 @@ export const Acolhimento: React.FC = () => {
         <Highlight>
           A independência não nasce da falta de colo. Nasce da certeza de que o colo está sempre disponível.
         </Highlight>
+        <LandingImage src="/images/acolhimento/colo-patio.jpg" alt="Professora em pé no pátio com um bebê no colo, os dois se olhando, com as árvores ao fundo" portrait />
+        <p className="-mt-2 text-center text-sm text-gray-500">
+          Colo de verdade, no meio do verde: a base segura de onde a criança parte para o mundo.
+        </p>
       </LandingSection>
 
       <LandingSection heading="Acolhimento também para a família">

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { LandingHero, LandingSection, LandingCTA, Highlight, Bullets, P, usePageMeta } from '../../components/landing/Landing';
+import { LandingHero, LandingSection, LandingCTA, LandingImage, LandingImagePair, Highlight, Bullets, P, usePageMeta } from '../../components/landing/Landing';
 import { SynapseDiagram } from '../../components/landing/SynapseDiagram';
 import { SensitivePeriodsChart } from '../../components/landing/SensitivePeriodsChart';
 
@@ -36,6 +36,10 @@ export const DesenvolvimentoCerebral: React.FC = () => {
           processo como "arquitetura cerebral": um edifício que se constrói de baixo para cima, e cuja qualidade
           estrutural depende diretamente da qualidade das experiências vividas nesses primeiros anos.
         </P>
+        <LandingImage src="/images/cerebro/bebe-material.jpg" alt="Bebê de 1 ano concentrado encaixando discos coloridos em pinos de madeira, na sala da escola" portrait />
+        <p className="-mt-2 text-center text-sm text-gray-500">
+          Cada encaixe, uma conexão: é assim, pela mão, que a arquitetura se constrói.
+        </p>
       </LandingSection>
 
       <LandingSection heading='"Skills beget skills": por que o atraso se acumula' className="bg-montessori-cream/60 py-10 sm:py-14 rounded-sm">
@@ -50,6 +54,7 @@ export const DesenvolvimentoCerebral: React.FC = () => {
           cedo não parte do zero depois — parte atrás, tentando construir o segundo andar sem o primeiro pronto.
           Cada ano de atraso fica mais caro e mais difícil de recuperar do que o anterior.
         </P>
+        <LandingImage src="/images/cerebro/bebe-encaixes.jpg" alt="Bebê encaixando blocos geométricos coloridos na base de madeira, com concentração" portrait />
         <Highlight>
           Não é sobre "adiantar" a infância. É sobre não perder a janela em que construir essas bases custa
           naturalmente pouco — porque é exatamente para isso que o cérebro dessa idade está preparado.
@@ -85,6 +90,10 @@ export const DesenvolvimentoCerebral: React.FC = () => {
           primeiros anos de vida:
         </P>
         <SensitivePeriodsChart />
+        <LandingImage src="/images/cerebro/leitura-bebes.jpg" alt="Professora lendo um livro ilustrado para três bebês sentados ao seu redor na sala" />
+        <p className="-mt-2 mb-6 text-center text-sm text-gray-500">
+          Linguagem de verdade: uma pessoa real, um livro e bebês respondendo — o "servir e devolver" em ação.
+        </p>
         <Highlight>
           Ouvir não basta: o cérebro do bebê aprende linguagem na relação com outra pessoa, ao vivo, respondendo e
           sendo respondido — é por isso que chamamos de "servir e devolver".
@@ -103,6 +112,13 @@ export const DesenvolvimentoCerebral: React.FC = () => {
           não poupa energia da criança para "coisas mais importantes". Ele tira do cérebro justamente um dos
           combustíveis de que mais precisa nessa fase.
         </P>
+        <LandingImagePair
+          images={[
+            { src: '/images/cerebro/bebes-escada.jpg', alt: 'Três bebês sorrindo no alto da escada Montessori de madeira, dentro da sala' },
+            { src: '/images/cerebro/patio-musica.jpg', alt: 'Aula de movimento e música no pátio coberto, com bebês e professores e as árvores ao fundo' },
+          ]}
+          caption="Subir, dançar, equilibrar: movimento é combustível do cérebro — na sala e no pátio."
+        />
       </LandingSection>
 
       <LandingSection heading="O papel do afeto" className="bg-montessori-cream/60 py-10 sm:py-14 rounded-sm">
