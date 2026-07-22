@@ -89,7 +89,7 @@ export const ClassesEn: React.FC = () => {
           whole world as the object of study.
         </P>
         <a
-          href="/docs/Montessori-Open-Class-informativo.pdf"
+          href="/informativo-open-class.html"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-1.5 text-montessori-green font-semibold hover:gap-3 transition-all"

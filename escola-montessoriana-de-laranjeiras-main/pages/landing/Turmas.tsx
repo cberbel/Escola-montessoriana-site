@@ -92,7 +92,7 @@ export const Turmas: React.FC = () => {
           responsabilidade e o mundo inteiro como objeto de estudo.
         </P>
         <a
-          href="/docs/Montessori-Open-Class-informativo.pdf"
+          href="/informativo-open-class.html"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-1.5 text-montessori-green font-semibold hover:gap-3 transition-all"
