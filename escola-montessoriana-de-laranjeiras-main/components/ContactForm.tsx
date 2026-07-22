@@ -125,6 +125,12 @@ export const ContactForm: React.FC = () => {
 
   return (
     <Section id="contact" className="bg-montessori-cream py-24 border-t border-montessori-green/10">
+      <div className="text-center mb-10 sm:mb-14 min-w-0">
+        <div className="w-16 h-1.5 bg-montessori-gold rounded-full mx-auto mb-5 sm:mb-6" />
+        <h2 className="font-serif font-bold text-3xl sm:text-4xl md:text-5xl text-montessori-green px-1 break-words leading-tight">
+          Contato
+        </h2>
+      </div>
       <iframe
         ref={iframeRef}
         name={IFRAME_NAME}

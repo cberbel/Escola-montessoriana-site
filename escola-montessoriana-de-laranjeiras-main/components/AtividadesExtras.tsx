@@ -3,8 +3,8 @@ import { Section } from './ui/Section';
 
 const activities = [
   {
-    image: '/images/atividades/capoeira.jpg',
-    position: 'center 25%',
+    image: '/images/natureza/capoeira-roda.jpg',
+    position: 'center 45%',
     name: 'Capoeira',
   },
   {
@@ -13,8 +13,8 @@ const activities = [
     name: 'Circo e teatro',
   },
   {
-    image: '/images/atividades/danca.jpg',
-    position: 'center 30%',
+    image: '/images/cerebro/patio-musica.jpg',
+    position: 'center 55%',
     name: 'Dança e movimento',
   },
   {

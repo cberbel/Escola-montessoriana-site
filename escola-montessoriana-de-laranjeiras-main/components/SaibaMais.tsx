@@ -29,9 +29,9 @@ const topics = [
     to: '/desenvolvimento-cerebral',
   },
   {
-    image: '/images/montessori/linguagem-escrita.jpg',
-    alt: 'Menina praticando a escrita com material Montessori',
-    position: 'center 25%',
+    image: '/images/cerebro/leitura-bebes.jpg',
+    alt: 'Professora lendo um livro para três bebês sentados ao redor dela',
+    position: 'center 40%',
     title: 'Inglês na primeira infância',
     text: 'A janela única dos primeiros anos para adquirir outro idioma sem esforço — e os benefícios cognitivos que ficam para a vida.',
     to: '/ingles-primeira-infancia',

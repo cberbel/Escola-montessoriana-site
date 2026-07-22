@@ -55,8 +55,8 @@ export const Philosophy: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 items-center max-w-5xl mx-auto mb-12 sm:mb-16 min-w-0">
         <div className="relative overflow-hidden rounded-sm shadow-lg border-l-4 border-montessori-gold min-w-0">
           <img
-            src="/images/ambiente-preparado.png"
-            alt="Crianças concentradas brincando no tanque de areia da Escola Montessoriana"
+            src="/images/acolhimento/almoco-bebes.jpg"
+            alt="Bebês almoçando juntos na mesa baixa, cada um comendo sozinho com sua colher, acompanhados pelas professoras"
             loading="lazy"
             className="w-full h-64 sm:h-80 object-cover"
           />
