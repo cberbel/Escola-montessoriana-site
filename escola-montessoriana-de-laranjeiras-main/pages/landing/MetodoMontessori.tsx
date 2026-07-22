@@ -54,9 +54,9 @@ export const MetodoMontessori: React.FC = () => {
           e aprendizagem caminham juntos, os primeiros anos são decisivos, e a concentração profunda é o motor do
           desenvolvimento.
         </P>
-        <LandingImage src="/images/montessori/maria-montessori.jpg" alt="Retrato histórico de Maria Montessori, médica e educadora italiana" portrait />
+        <LandingImage src="/images/montessori/maria-montessori.jpg" alt="Maria Montessori idosa chegando a uma escola em Amsterdã, recebida por crianças enfileiradas na calçada" portrait />
         <p className="-mt-2 text-center text-sm text-gray-500">
-          Maria Montessori (1870–1952): médica, cientista e uma das educadoras mais influentes da história.
+          Maria Montessori, aos 80 anos, recebida por crianças em Amsterdã (1951) — uma vida inteira dedicada à infância.
         </p>
         <Highlight>
           "A criança não é um vaso a ser preenchido, mas uma fonte que deixamos jorrar." — Maria Montessori
