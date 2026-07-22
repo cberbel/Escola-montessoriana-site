@@ -54,6 +54,10 @@ export const MetodoMontessori: React.FC = () => {
           e aprendizagem caminham juntos, os primeiros anos são decisivos, e a concentração profunda é o motor do
           desenvolvimento.
         </P>
+        <LandingImage src="/images/montessori/maria-montessori.jpg" alt="Retrato histórico de Maria Montessori, médica e educadora italiana" portrait />
+        <p className="-mt-2 text-center text-sm text-gray-500">
+          Maria Montessori (1870–1952): médica, cientista e uma das educadoras mais influentes da história.
+        </p>
         <Highlight>
           "A criança não é um vaso a ser preenchido, mas uma fonte que deixamos jorrar." — Maria Montessori
         </Highlight>
@@ -102,28 +106,42 @@ export const MetodoMontessori: React.FC = () => {
             { src: '/images/montessori/vida-pratica-tapete.jpg', alt: 'Criança enrolando o tapete sozinha ao terminar seu trabalho, na sala Montessori' },
           ]}
         />
+        <LandingImagePair
+          images={[
+            { src: '/images/montessori/vida-pratica-xicara.jpg', alt: 'Menino concentrado versando líquido de uma caneca para a xícara, exercício de Vida Prática' },
+            { src: '/images/montessori/vida-pratica-estante.jpg', alt: 'Menina observando a estante de Vida Prática, escolhendo com calma o seu próximo trabalho' },
+          ]}
+          caption="Versar sem derramar, escolher com calma: cada gesto é um exercício de precisão e decisão."
+        />
 
         <Area
           title="Sensorial"
           materials="Encaixes Sólidos, Escada Marrom, Caixas de Cores, Cilindros de Cor, Barras Térmicas."
         >
           <p>
-            Dos 0 aos 6 anos, a criança conhece o mundo pelos sentidos. Os materiais sensoriais transformam conceitos
-            abstratos — grande e pequeno, fino e grosso, gradações de cor, texturas e pesos — em experiências que a mão
-            toca e o cérebro organiza. É a base silenciosa da inteligência lógica e matemática.
+            Dos 0 aos 6 anos, a criança conhece o mundo pelos sentidos — e nada chega ao cérebro sem antes passar por
+            eles. Por isso os materiais sensoriais são feitos para o <strong>refinamento dos sentidos</strong>:
+            transformam conceitos abstratos — grande e pequeno, fino e grosso, gradações de cor, texturas e pesos — em
+            experiências que a mão toca e o cérebro organiza. Quanto mais afinados os sentidos, mais rico é o mundo que
+            entra. É a base silenciosa da inteligência lógica e matemática.
           </p>
         </Area>
         <LandingImagePair
           images={[
-            { src: '/images/montessori/sensorial-encaixes.jpg', alt: 'Criança concentrada trabalhando com os Encaixes Sólidos, material sensorial Montessori' },
+            { src: '/images/montessori/sensorial-encaixes-solidos.jpg', alt: 'Dois meninos trabalhando juntos com os quatro blocos dos Encaixes Sólidos dispostos em quadrado no tapete' },
             { src: '/images/montessori/sensorial-torre-rosa.jpg', alt: 'Duas meninas montando juntas a Torre Rosa combinada com a Escada Marrom, na vertical' },
           ]}
         />
 
         <Area
           title="Linguagem"
-          materials="Letras de Lixa, Caixa de Areia, pareamento de objetos e imagens, grafomotricidade, rodas de leitura."
+          materials="Letras de Lixa, Caixa de Areia, pareamento de objetos e imagens, grafomotricidade, insetos de metal, rodas de leitura."
         >
+          <p>
+            A mão se prepara para a escrita muito antes do lápis: exercícios de <strong>preparação indireta</strong>,
+            como o movimento de pinça e o contorno dos insetos de metal, constroem — gesto a gesto — a firmeza e a
+            precisão que a escrita vai exigir.
+          </p>
           <p>
             Do som à escrita, pelo caminho do corpo: a criança traça a Letra de Lixa com os dedos enquanto ouve o som,
             escreve na areia antes do papel, e descobre que as palavras carregam o mundo. Aqui também vive o nosso
