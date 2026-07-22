@@ -104,11 +104,16 @@ export const Acolhimento: React.FC = () => {
           <strong>sem óleo vegetal, sem sal refinado e sem açúcar</strong>. No lugar deles, alimentos frescos e
           integrais, gorduras de verdade e temperos naturais.
         </P>
+        <LandingImage src="/images/acolhimento/almoco-juntos.jpg" alt="Crianças pequenas almoçando juntas na mesa baixa da sala, cada uma com seu prato, com duas professoras acompanhando" />
         <P>
           E a refeição é, ela mesma, um momento de acolhimento e aprendizado. As crianças pequenas almoçam juntas, à
           mesa, no seu ritmo. Aprendem a comer sozinhas, a se servir, a experimentar sabores novos — com autonomia e
           prazer, sem pressão e sem chantagem. Comer bem, aqui, é também um jeito de conviver e de se cuidar.
         </P>
+        <LandingImage src="/images/acolhimento/almoco-bebes.jpg" alt="Bebês comendo sozinhos com suas colheres na mesa baixa, acompanhados de perto pelas professoras" />
+        <p className="-mt-2 text-center text-sm text-gray-500">
+          Desde bebês, cada um com seu prato e sua colher: comer sozinho também é conquista.
+        </p>
       </LandingSection>
 
       <LandingCTA
