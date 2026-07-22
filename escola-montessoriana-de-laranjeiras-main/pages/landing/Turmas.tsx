@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { LandingHero, LandingSection, LandingCTA, LandingImage, Highlight, P, usePageMeta } from '../../components/landing/Landing';
+import { LandingHero, LandingSection, LandingCTA, LandingImage, Highlight, Bullets, P, usePageMeta } from '../../components/landing/Landing';
 
 /** Cabeçalho de uma turma: nome + faixa etária em destaque */
 const TurmaHeading: React.FC<{ nome: string; faixa: string }> = ({ nome, faixa }) => (
@@ -89,13 +89,19 @@ export const Turmas: React.FC = () => {
 
       <LandingSection heading="Horários e frequência">
         <P>
-          Sabemos que cada família tem uma rotina. Por isso trabalhamos com <strong>período integral e meio período</strong>,
-          com opções de <strong>frequência reduzida</strong> (meio período ou dias alternados) e flexibilidade para
-          adaptar os horários à realidade de cada casa — o mesmo acolhimento que atravessa toda a escola.
+          Funcionamos das <strong>7h30 às 19h</strong>, com três formatos de período — válidos para todas as turmas:
         </P>
+        <Bullets
+          items={[
+            <><strong>Meio período:</strong> matutino, das 8h às 12h, ou vespertino, das 13h às 17h.</>,
+            <><strong>Integral:</strong> das 8h às 17h, com almoço e momento de descanso.</>,
+            <><strong>Estendido:</strong> das 7h30 às 19h, para famílias que precisam de mais tempo.</>,
+          ]}
+        />
         <P>
-          Os horários de entrada e saída e a melhor combinação de frequência para o seu filho a gente alinha com você,
-          pessoalmente. Fale com a gente para montar a rotina ideal.
+          Além do período, há opções de <strong>frequência reduzida</strong> (dias alternados) e flexibilidade para
+          adaptar entradas e saídas à realidade de cada casa — o mesmo acolhimento que atravessa toda a escola. A melhor
+          combinação para o seu filho a gente monta junto com você.
         </P>
       </LandingSection>
 
