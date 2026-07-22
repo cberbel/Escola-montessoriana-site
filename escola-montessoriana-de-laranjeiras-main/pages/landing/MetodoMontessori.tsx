@@ -54,9 +54,9 @@ export const MetodoMontessori: React.FC = () => {
           e aprendizagem caminham juntos, os primeiros anos são decisivos, e a concentração profunda é o motor do
           desenvolvimento.
         </P>
-        <LandingImage src="/images/montessori/maria-montessori.jpg" alt="Maria Montessori idosa chegando a uma escola em Amsterdã, recebida por crianças enfileiradas na calçada" portrait />
+        <LandingImage src="/images/montessori/maria-montessori.jpg" alt="Maria Montessori idosa, sorrindo, sentada numa escola cercada de crianças que a observam de perto" portrait />
         <p className="-mt-2 text-center text-sm text-gray-500">
-          Maria Montessori, aos 80 anos, recebida por crianças em Amsterdã (1951) — uma vida inteira dedicada à infância.
+          Maria Montessori entre crianças em Londres, 1946 — uma vida inteira dedicada à infância.
         </p>
         <Highlight>
           "A criança não é um vaso a ser preenchido, mas uma fonte que deixamos jorrar." — Maria Montessori
