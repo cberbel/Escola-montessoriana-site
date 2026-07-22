@@ -33,10 +33,22 @@ export const Turmas: React.FC = () => {
           funciona.
         </P>
         <P>
-          As crianças maiores consolidam o que sabem ao ajudar as menores — não há aprendizado mais profundo do que
-          ensinar. As menores, por sua vez, se espelham nas maiores e são puxadas para cima, sem pressão. No lugar da
-          competição de "todos fazendo a mesma coisa ao mesmo tempo", nasce a cooperação, o cuidado e o respeito ao
-          ritmo de cada um.
+          Pense bem: a turma separada por ano de nascimento é uma <strong>invenção da escola</strong> — essa
+          discriminação por idade não existe em nenhum outro lugar da vida. Em casa, no prédio, na praça, as crianças
+          crescem entre irmãos, primos, vizinhos e amigos de idades variadas: é assim que a convivência acontece de
+          verdade.
+        </P>
+        <P>
+          A classe agrupada também respeita o <strong>ritmo de cada criança em cada área</strong>. Quando ela está
+          adiantada em alguma dimensão, encontra naturalmente colegas num grau mais avançado para acompanhá-la. E
+          naquilo em que tem mais dificuldade, tem colegas mais novos com quem compartilhar e trocar experiências — e
+          consolidar o que sabe.
+        </P>
+        <P>
+          E as trocas transformam os dois lados: as crianças maiores consolidam o que sabem ao ajudar as menores — não
+          há aprendizado mais profundo do que ensinar. As menores, por sua vez, se espelham nas maiores e são puxadas
+          para cima, sem pressão. No lugar da competição de "todos fazendo a mesma coisa ao mesmo tempo", nasce a
+          cooperação, o cuidado e o respeito ao ritmo de cada um.
         </P>
         <Highlight>
           Idades misturadas formam uma pequena comunidade — mais parecida com a vida real do que com uma linha de
@@ -79,12 +91,14 @@ export const Turmas: React.FC = () => {
           "o quê", mas "por quê". É a fase do raciocínio, da imaginação e do trabalho em grupo — com autonomia,
           responsabilidade e o mundo inteiro como objeto de estudo.
         </P>
-        <Link
-          to="/agrupada-3"
+        <a
+          href="/docs/Montessori-Open-Class-informativo.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
           className="inline-flex items-center gap-1.5 text-montessori-green font-semibold hover:gap-3 transition-all"
         >
           Saiba mais sobre a Agrupada 3 →
-        </Link>
+        </a>
       </LandingSection>
 
       <LandingSection heading="Horários e frequência">
