@@ -4,8 +4,14 @@
  */
 export function trackWhatsAppClick(): void {
   if (typeof window === 'undefined') return;
-  const fn = (window as unknown as { trackWhatsAppConversion?: () => void }).trackWhatsAppConversion;
-  if (typeof fn === 'function') fn();
+  const w = window as unknown as {
+    trackWhatsAppConversion?: () => void;
+    dataLayer?: Record<string, unknown>[];
+  };
+  if (typeof w.trackWhatsAppConversion === 'function') w.trackWhatsAppConversion();
+  // Evento para o GTM: permite criar tags/conversões no painel, sem mexer no código
+  w.dataLayer = w.dataLayer || [];
+  w.dataLayer.push({ event: 'whatsapp_click', page_path: window.location.pathname });
 }
 
 /**
