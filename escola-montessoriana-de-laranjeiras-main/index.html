@@ -95,21 +95,26 @@
           y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
         })(window, document, "clarity", "script", "vk1vrttpc1");
 
-        // Google Analytics
+        // Google Ads + Google Analytics 4
+        // GA4_ID vazio = GA4 desativado. Ao criar a propriedade em analytics.google.com,
+        // basta colar aqui o ID de métricas (formato G-XXXXXXXXXX).
+        var GA4_ID = '';
         var gtagScript = document.createElement('script');
         gtagScript.async = true;
         gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=AW-16743400376';
         document.head.appendChild(gtagScript);
-        
+
         gtagScript.onload = function() {
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
           gtag('config', 'AW-16743400376');
+          if (GA4_ID) gtag('config', GA4_ID);
           var prev = window.trackWhatsAppConversion;
           window.trackWhatsAppConversion = function() {
             if (prev) prev();
             gtag('event', 'conversion', {'send_to': 'AW-16743400376/psM9CKCH4PUbELiH8K8-'});
+            if (GA4_ID) gtag('event', 'whatsapp_click');
           };
         };
 
