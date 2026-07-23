@@ -24,10 +24,12 @@ export function trackFormSubmit(): void {
   if (typeof window === 'undefined') return;
   const w = window as unknown as {
     fbq?: (...args: unknown[]) => void;
+    gtag?: (...args: unknown[]) => void;
     dataLayer?: Record<string, unknown>[];
     trackWhatsAppConversion?: () => void;
   };
   if (typeof w.fbq === 'function') w.fbq('track', 'Lead');
+  if (typeof w.gtag === 'function') w.gtag('event', 'generate_lead');
   w.dataLayer = w.dataLayer || [];
   w.dataLayer.push({ event: 'form_submit', page_path: window.location.pathname });
 }

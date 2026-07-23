@@ -95,10 +95,8 @@
           y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
         })(window, document, "clarity", "script", "vk1vrttpc1");
 
-        // Google Ads + Google Analytics 4
-        // GA4_ID vazio = GA4 desativado. Ao criar a propriedade em analytics.google.com,
-        // basta colar aqui o ID de métricas (formato G-XXXXXXXXXX).
-        var GA4_ID = '';
+        // Google Ads + Google Analytics 4 (propriedade "site escola")
+        var GA4_ID = 'G-79X03K7F7F';
         var gtagScript = document.createElement('script');
         gtagScript.async = true;
         gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=AW-16743400376';
@@ -110,6 +108,7 @@
           gtag('js', new Date());
           gtag('config', 'AW-16743400376');
           if (GA4_ID) gtag('config', GA4_ID);
+          window.gtag = gtag;
           var prev = window.trackWhatsAppConversion;
           window.trackWhatsAppConversion = function() {
             if (prev) prev();
