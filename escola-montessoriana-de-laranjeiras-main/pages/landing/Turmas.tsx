@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { LandingHero, LandingSection, LandingCTA, LandingImage, Highlight, P, usePageMeta } from '../../components/landing/Landing';
+import { LandingHero, LandingSection, LandingCTA, LandingImage, Highlight, Bullets, P, usePageMeta } from '../../components/landing/Landing';
 
 /** Cabeçalho de uma turma: nome + faixa etária em destaque */
 const TurmaHeading: React.FC<{ nome: string; faixa: string }> = ({ nome, faixa }) => (
@@ -33,10 +33,22 @@ export const Turmas: React.FC = () => {
           funciona.
         </P>
         <P>
-          As crianças maiores consolidam o que sabem ao ajudar as menores — não há aprendizado mais profundo do que
-          ensinar. As menores, por sua vez, se espelham nas maiores e são puxadas para cima, sem pressão. No lugar da
-          competição de "todos fazendo a mesma coisa ao mesmo tempo", nasce a cooperação, o cuidado e o respeito ao
-          ritmo de cada um.
+          Pense bem: a turma separada por ano de nascimento é uma <strong>invenção da escola</strong> — essa
+          discriminação por idade não existe em nenhum outro lugar da vida. Em casa, no prédio, na praça, as crianças
+          crescem entre irmãos, primos, vizinhos e amigos de idades variadas: é assim que a convivência acontece de
+          verdade.
+        </P>
+        <P>
+          A classe agrupada também respeita o <strong>ritmo de cada criança em cada área</strong>. Quando ela está
+          adiantada em alguma dimensão, encontra naturalmente colegas num grau mais avançado para acompanhá-la. E
+          naquilo em que tem mais dificuldade, tem colegas mais novos com quem compartilhar e trocar experiências — e
+          consolidar o que sabe.
+        </P>
+        <P>
+          E as trocas transformam os dois lados: as crianças maiores consolidam o que sabem ao ajudar as menores — não
+          há aprendizado mais profundo do que ensinar. As menores, por sua vez, se espelham nas maiores e são puxadas
+          para cima, sem pressão. No lugar da competição de "todos fazendo a mesma coisa ao mesmo tempo", nasce a
+          cooperação, o cuidado e o respeito ao ritmo de cada um.
         </P>
         <Highlight>
           Idades misturadas formam uma pequena comunidade — mais parecida com a vida real do que com uma linha de
@@ -79,23 +91,31 @@ export const Turmas: React.FC = () => {
           "o quê", mas "por quê". É a fase do raciocínio, da imaginação e do trabalho em grupo — com autonomia,
           responsabilidade e o mundo inteiro como objeto de estudo.
         </P>
-        <Link
-          to="/agrupada-3"
+        <a
+          href="/informativo-open-class.html"
+          target="_blank"
+          rel="noopener noreferrer"
           className="inline-flex items-center gap-1.5 text-montessori-green font-semibold hover:gap-3 transition-all"
         >
           Saiba mais sobre a Agrupada 3 →
-        </Link>
+        </a>
       </LandingSection>
 
       <LandingSection heading="Horários e frequência">
         <P>
-          Sabemos que cada família tem uma rotina. Por isso trabalhamos com <strong>período integral e meio período</strong>,
-          com opções de <strong>frequência reduzida</strong> (meio período ou dias alternados) e flexibilidade para
-          adaptar os horários à realidade de cada casa — o mesmo acolhimento que atravessa toda a escola.
+          Funcionamos das <strong>7h30 às 19h</strong>, com três formatos de período — válidos para todas as turmas:
         </P>
+        <Bullets
+          items={[
+            <><strong>Meio período:</strong> matutino, das 8h às 12h, ou vespertino, das 13h às 17h.</>,
+            <><strong>Integral:</strong> das 8h às 17h, com almoço e momento de descanso.</>,
+            <><strong>Estendido:</strong> das 7h30 às 19h, para famílias que precisam de mais tempo.</>,
+          ]}
+        />
         <P>
-          Os horários de entrada e saída e a melhor combinação de frequência para o seu filho a gente alinha com você,
-          pessoalmente. Fale com a gente para montar a rotina ideal.
+          Além do período, há opções de <strong>frequência reduzida</strong> (dias alternados) e flexibilidade para
+          adaptar entradas e saídas à realidade de cada casa — o mesmo acolhimento que atravessa toda a escola. A melhor
+          combinação para o seu filho a gente monta junto com você.
         </P>
       </LandingSection>
 

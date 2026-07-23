@@ -58,13 +58,14 @@ export const Navbar: React.FC = () => {
   const navLinks = [
     { name: 'O Método', to: '/metodo-montessori' },
     { name: 'Acolhimento', to: '/acolhimento' },
-    { name: 'O cérebro do seu filho', to: '/desenvolvimento-cerebral' },
-    { name: 'Imersão no inglês', to: '/ingles-primeira-infancia' },
+    { name: 'Cérebro', to: '/desenvolvimento-cerebral' },
+    { name: 'Inglês', to: '/ingles-primeira-infancia' },
     { name: 'Natureza', to: '/natureza-educacao-cosmica' },
     { name: 'Turmas', to: '/turmas' },
     { name: 'Depoimentos', to: '/#testimonials' },
     { name: 'Contato', to: '/#contact' },
     { name: 'Blog', to: '/blog' },
+    { name: 'EN', to: '/en' },
   ];
 
   const mobileMenuContent = mobileMenuOpen && (

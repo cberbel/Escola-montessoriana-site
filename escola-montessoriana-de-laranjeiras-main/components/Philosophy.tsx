@@ -44,7 +44,7 @@ export const Philosophy: React.FC = () => {
           A Filosofia Montessori
         </span>
         <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-montessori-green mb-4 sm:mb-6">
-          Educação para a vida real, no ritmo do seu filho
+          Educação para a vida real, respeitando o próprio ritmo
         </h2>
         <p className="font-sans text-lg md:text-xl text-montessori-dark font-semibold max-w-2xl mx-auto px-1 leading-relaxed">
           No Montessori a criança aprende seguindo seus interesses, em um ambiente preparado para o desenvolvimento infantil.
@@ -55,19 +55,20 @@ export const Philosophy: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 items-center max-w-5xl mx-auto mb-12 sm:mb-16 min-w-0">
         <div className="relative overflow-hidden rounded-sm shadow-lg border-l-4 border-montessori-gold min-w-0">
           <img
-            src="/images/ambiente-preparado.png"
-            alt="Crianças concentradas brincando no tanque de areia da Escola Montessoriana"
+            src="/images/acolhimento/almoco-bebes.jpg"
+            alt="Bebês almoçando juntos na mesa baixa, cada um comendo sozinho com sua colher, acompanhados pelas professoras"
             loading="lazy"
             className="w-full h-64 sm:h-80 object-cover"
           />
         </div>
         <div className="min-w-0 px-1 text-left">
           <h3 className="font-serif text-2xl sm:text-3xl text-montessori-green mb-3 sm:mb-4">
-            Como será o seu filho?
+            Quem seu filho se torna na nossa escola?
           </h3>
           <p className="font-sans text-lg md:text-xl text-montessori-dark leading-relaxed">
-            Maria Montessori observou que, no ambiente certo, toda criança revela o seu melhor.
-            É uma transformação que os pais percebem em casa: uma criança...
+            Maria Montessori descobriu que, no ambiente certo, toda criança revela o seu melhor.
+            Na nossa escola, essa transformação acontece no dia a dia — e os pais reconhecem em
+            casa uma criança:
           </p>
         </div>
       </div>

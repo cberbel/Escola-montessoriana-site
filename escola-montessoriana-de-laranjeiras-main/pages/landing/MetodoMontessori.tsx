@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { LandingHero, LandingSection, LandingCTA, LandingImage, Highlight, Bullets, P, usePageMeta } from '../../components/landing/Landing';
+import { LandingHero, LandingSection, LandingCTA, LandingImage, LandingImagePair, Highlight, Bullets, P, usePageMeta } from '../../components/landing/Landing';
 
 /** Área do currículo: título + texto + materiais reais usados na escola */
 const Area: React.FC<{ title: string; children: React.ReactNode; materials?: string }> = ({ title, children, materials }) => (
@@ -54,6 +54,10 @@ export const MetodoMontessori: React.FC = () => {
           e aprendizagem caminham juntos, os primeiros anos são decisivos, e a concentração profunda é o motor do
           desenvolvimento.
         </P>
+        <LandingImage src="/images/montessori/maria-montessori.jpg" alt="Maria Montessori idosa, sorrindo, sentada numa escola cercada de crianças que a observam de perto" portrait />
+        <p className="-mt-2 text-center text-sm text-gray-500">
+          Maria Montessori entre crianças em Londres, 1946 — uma vida inteira dedicada à infância.
+        </p>
         <Highlight>
           "A criança não é um vaso a ser preenchido, mas uma fonte que deixamos jorrar." — Maria Montessori
         </Highlight>
@@ -96,24 +100,48 @@ export const MetodoMontessori: React.FC = () => {
             lógica e independência. É também aqui que a mão se prepara, movimento a movimento, para a escrita.
           </p>
         </Area>
-        <LandingImage src="/images/montessori/vida-pratica-varal.jpg" alt="Criança pendurando roupas no varal com prendedores, atividade de Vida Prática Montessori" portrait />
+        <LandingImagePair
+          images={[
+            { src: '/images/montessori/vida-pratica-varal.jpg', alt: 'Criança pendurando roupas no varal com prendedores, atividade de Vida Prática Montessori' },
+            { src: '/images/montessori/vida-pratica-tapete.jpg', alt: 'Criança enrolando o tapete sozinha ao terminar seu trabalho, na sala Montessori' },
+          ]}
+        />
+        <LandingImagePair
+          images={[
+            { src: '/images/montessori/vida-pratica-xicara.jpg', alt: 'Menino concentrado versando líquido de uma caneca para a xícara, exercício de Vida Prática' },
+            { src: '/images/montessori/vida-pratica-estante.jpg', alt: 'Menina observando a estante de Vida Prática, escolhendo com calma o seu próximo trabalho' },
+          ]}
+          caption="Versar sem derramar, escolher com calma: cada gesto é um exercício de precisão e decisão."
+        />
 
         <Area
           title="Sensorial"
           materials="Encaixes Sólidos, Escada Marrom, Caixas de Cores, Cilindros de Cor, Barras Térmicas."
         >
           <p>
-            Dos 0 aos 6 anos, a criança conhece o mundo pelos sentidos. Os materiais sensoriais transformam conceitos
-            abstratos — grande e pequeno, fino e grosso, gradações de cor, texturas e pesos — em experiências que a mão
-            toca e o cérebro organiza. É a base silenciosa da inteligência lógica e matemática.
+            Dos 0 aos 6 anos, a criança conhece o mundo pelos sentidos — e nada chega ao cérebro sem antes passar por
+            eles. Por isso os materiais sensoriais são feitos para o <strong>refinamento dos sentidos</strong>:
+            transformam conceitos abstratos — grande e pequeno, fino e grosso, gradações de cor, texturas e pesos — em
+            experiências que a mão toca e o cérebro organiza. Quanto mais afinados os sentidos, mais rico é o mundo que
+            entra. É a base silenciosa da inteligência lógica e matemática.
           </p>
         </Area>
-        <LandingImage src="/images/montessori/sensorial-encaixes.jpg" alt="Criança concentrada trabalhando com os Encaixes Sólidos, material sensorial Montessori" portrait />
+        <LandingImagePair
+          images={[
+            { src: '/images/montessori/sensorial-encaixes-solidos.jpg', alt: 'Dois meninos trabalhando juntos com os quatro blocos dos Encaixes Sólidos dispostos em quadrado no tapete' },
+            { src: '/images/montessori/sensorial-torre-rosa.jpg', alt: 'Duas meninas montando juntas a Torre Rosa combinada com a Escada Marrom, na vertical' },
+          ]}
+        />
 
         <Area
           title="Linguagem"
-          materials="Letras de Lixa, Caixa de Areia, pareamento de objetos e imagens, grafomotricidade, rodas de leitura."
+          materials="Letras de Lixa, Caixa de Areia, pareamento de objetos e imagens, grafomotricidade, insetos de metal, rodas de leitura."
         >
+          <p>
+            A mão se prepara para a escrita muito antes do lápis: exercícios de <strong>preparação indireta</strong>,
+            como o movimento de pinça e o contorno dos insetos de metal, constroem — gesto a gesto — a firmeza e a
+            precisão que a escrita vai exigir.
+          </p>
           <p>
             Do som à escrita, pelo caminho do corpo: a criança traça a Letra de Lixa com os dedos enquanto ouve o som,
             escreve na areia antes do papel, e descobre que as palavras carregam o mundo. Aqui também vive o nosso
@@ -123,7 +151,12 @@ export const MetodoMontessori: React.FC = () => {
             </Link>.
           </p>
         </Area>
-        <LandingImage src="/images/montessori/linguagem-escrita.jpg" alt="Criança concentrada escrevendo seu nome, atividade de linguagem Montessori" portrait />
+        <LandingImagePair
+          images={[
+            { src: '/images/montessori/linguagem-escrita.jpg', alt: 'Criança concentrada escrevendo seu nome, atividade de linguagem Montessori' },
+            { src: '/images/montessori/linguagem-caixa-areia.jpg', alt: 'Menino traçando uma letra na Caixa de Areia, com a Letra de Lixa ao lado' },
+          ]}
+        />
 
         <Area
           title="Matemática"
@@ -136,6 +169,7 @@ export const MetodoMontessori: React.FC = () => {
             chega, ele já tem corpo, peso e significado — por isso a matemática Montessori é sólida e sem medo.
           </p>
         </Area>
+        <LandingImage src="/images/montessori/matematica-dourado.jpg" alt="Crianças no tapete com a torre montada de Material Dourado e os cartões de números" />
 
         <Area title="Educação Cósmica">
           <p>
@@ -171,6 +205,10 @@ export const MetodoMontessori: React.FC = () => {
           Num mundo que fragmenta a atenção desde cedo, uma criança capaz de se concentrar por longos períodos carrega
           uma vantagem para a vida inteira.
         </Highlight>
+        <LandingImage src="/images/montessori/concentracao.jpg" alt="Criança de cócoras, absorta, traçando uma forma de metal redonda no chão da sala" portrait />
+        <p className="-mt-2 text-center text-sm text-gray-500">
+          Concentração profunda não se ensina — se protege.
+        </p>
       </LandingSection>
 
       <LandingSection heading="O que muda na criança">
