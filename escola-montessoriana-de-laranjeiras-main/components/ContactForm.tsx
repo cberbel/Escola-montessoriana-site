@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Section } from './ui/Section';
 import { Button } from './ui/Button';
 import { Send, CheckCircle, Calendar } from 'lucide-react';
-import { trackWhatsAppClick } from '../utils/tracking';
+import { trackWhatsAppClick, trackFormSubmit } from '../utils/tracking';
 
 const WHATSAPP_ESCOLA = '5521993311000';
 const FORMSUBMIT_EMAIL = 'contato@escolamontessoriana.com.br';
@@ -98,6 +98,7 @@ export const ContactForm: React.FC = () => {
 
     try {
       submitViaFormPost(formState, IFRAME_NAME);
+      trackFormSubmit();
       setTimeout(() => {
         setSubmitted(true);
         setLoading(false);
