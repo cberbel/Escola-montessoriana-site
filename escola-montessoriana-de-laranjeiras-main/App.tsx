@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import './index.css';
+import { trackPageView } from './utils/tracking';
 import { Main } from './components/Main';
 import { Home } from './pages/Home';
 import { Agendamento } from './pages/Agendamento';
@@ -20,6 +21,18 @@ import { Agrupada3 } from './pages/landing/Agrupada3';
  */
 const ScrollToTop: React.FC = () => {
   const { pathname, hash } = useLocation();
+
+  // PageView a cada troca de página (SPA). Pula o 1º render, pois o carregamento
+  // inicial já é contado pelo Pixel/GTM no index.html.
+  const isFirstLoad = useRef(true);
+  useEffect(() => {
+    if (isFirstLoad.current) {
+      isFirstLoad.current = false;
+      return;
+    }
+    trackPageView(pathname + hash);
+  }, [pathname]);
+
   useEffect(() => {
     if (!hash) {
       window.scrollTo(0, 0);
