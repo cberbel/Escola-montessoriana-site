@@ -38,25 +38,31 @@
              Q186 166 174 152
              Q158 132 158 96 Z" fill="#fbe3d4"/>
 
-    <!-- Orelhas -->
-    <path d="M158 104 Q150 106 152 118 Q156 124 162 120 Z" fill="#fbe3d4"/>
-    <path d="M242 104 Q250 106 248 118 Q244 124 238 120 Z" fill="#fbe3d4"/>
+    <!-- Orelhas (tamanho médio/normal) -->
+    <path d="M156 106 Q146 110 149 124 Q155 132 164 124 Z" fill="#fbe3d4"/>
+    <path d="M244 106 Q254 110 251 124 Q245 132 236 124 Z" fill="#fbe3d4"/>
 
-    <!-- Olhos (estilo anime) -->
+    <!-- Olhos (estilo anime) - heterocromia: vermelho e azul -->
     <g stroke-width="2">
       <path d="M170 112 Q180 104 192 112 L192 126 Q180 132 170 126 Z" fill="#ffffff"/>
       <path d="M208 112 Q220 104 230 112 L230 126 Q220 132 208 126 Z" fill="#ffffff"/>
-      <ellipse cx="182" cy="119" rx="6" ry="8" fill="#3a3a3a"/>
-      <ellipse cx="218" cy="119" rx="6" ry="8" fill="#3a3a3a"/>
+      <!-- Olho vermelho (esquerdo) -->
+      <ellipse cx="182" cy="119" rx="6" ry="8" fill="#d92626"/>
+      <ellipse cx="182" cy="120" rx="3" ry="4.5" fill="#7a1010" stroke="none"/>
+      <!-- Olho azul (direito) -->
+      <ellipse cx="218" cy="119" rx="6" ry="8" fill="#2f6fd9"/>
+      <ellipse cx="218" cy="120" rx="3" ry="4.5" fill="#123a7a" stroke="none"/>
+      <!-- Brilhos -->
       <circle cx="184" cy="116" r="2" fill="#ffffff" stroke="none"/>
       <circle cx="220" cy="116" r="2" fill="#ffffff" stroke="none"/>
     </g>
     <!-- Sobrancelhas -->
     <path d="M170 104 Q180 100 192 104" fill="none" stroke-width="2.5"/>
     <path d="M208 104 Q220 100 230 104" fill="none" stroke-width="2.5"/>
-    <!-- Nariz e boca -->
-    <path d="M200 128 L197 136" fill="none" stroke-width="2"/>
-    <path d="M190 144 Q200 150 210 144" fill="none" stroke-width="2"/>
+    <!-- Nariz pequeno -->
+    <path d="M199 130 Q197 134 200 135" fill="none" stroke-width="1.8"/>
+    <!-- Boca fechada, humilde/suave -->
+    <path d="M191 145 Q200 149 209 145" fill="none" stroke-width="2"/>
 
     <!-- ===== Cabelo branco com contorno preto ===== -->
     <path d="M150 108
