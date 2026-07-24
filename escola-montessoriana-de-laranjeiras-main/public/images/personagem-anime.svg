@@ -21,13 +21,30 @@
       <stop offset="0" stop-color="#2d2d2d"/>
       <stop offset="1" stop-color="#000000"/>
     </linearGradient>
+    <!-- Pele castanha com sombreamento (realismo suave) -->
+    <radialGradient id="skinFace" cx="0.42" cy="0.4" r="0.75">
+      <stop offset="0" stop-color="#c68e63"/>
+      <stop offset="0.6" stop-color="#b5794e"/>
+      <stop offset="1" stop-color="#9c6238"/>
+    </radialGradient>
+    <linearGradient id="skinLimb" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#bd8256"/>
+      <stop offset="1" stop-color="#9c6238"/>
+    </linearGradient>
+    <!-- Sombra suave para dar profundidade -->
+    <radialGradient id="cheek" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#c9724f" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#c9724f" stop-opacity="0"/>
+    </radialGradient>
   </defs>
 
   <!-- ================= PERSONAGEM ================= -->
   <g stroke="#000000" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
 
     <!-- Pescoço -->
-    <path d="M182 150 L182 178 Q200 190 218 178 L218 150 Z" fill="#f6d7c4"/>
+    <path d="M182 150 L182 178 Q200 190 218 178 L218 150 Z" fill="#9c6238"/>
+    <!-- Sombra do queixo no pescoço -->
+    <path d="M182 152 Q200 166 218 152 Q200 160 182 152 Z" fill="#7d4d2a" stroke="none" opacity="0.6"/>
 
     <!-- ===== Rosto ===== -->
     <path d="M158 96
@@ -36,11 +53,16 @@
              Q242 132 226 152
              Q214 166 200 168
              Q186 166 174 152
-             Q158 132 158 96 Z" fill="#fbe3d4"/>
+             Q158 132 158 96 Z" fill="url(#skinFace)"/>
+    <!-- Bochechas suaves (realismo) -->
+    <ellipse cx="176" cy="132" rx="12" ry="9" fill="url(#cheek)" stroke="none"/>
+    <ellipse cx="224" cy="132" rx="12" ry="9" fill="url(#cheek)" stroke="none"/>
+    <!-- Sombreamento lateral do rosto -->
+    <path d="M226 100 Q234 124 220 150 Q230 124 224 102 Z" fill="#8a5530" stroke="none" opacity="0.4"/>
 
     <!-- Orelhas (tamanho médio/normal) -->
-    <path d="M156 106 Q146 110 149 124 Q155 132 164 124 Z" fill="#fbe3d4"/>
-    <path d="M244 106 Q254 110 251 124 Q245 132 236 124 Z" fill="#fbe3d4"/>
+    <path d="M156 106 Q146 110 149 124 Q155 132 164 124 Z" fill="url(#skinLimb)"/>
+    <path d="M244 106 Q254 110 251 124 Q245 132 236 124 Z" fill="url(#skinLimb)"/>
 
     <!-- Olhos (estilo anime) - heterocromia: vermelho e azul -->
     <g stroke-width="2">
@@ -118,8 +140,8 @@
     <path d="M140 214 Q126 250 132 300 L150 300 Q146 256 158 220 Z" fill="url(#jacketShade)"/>
     <path d="M260 214 Q274 250 268 300 L250 300 Q254 256 242 220 Z" fill="url(#jacketShade)"/>
     <!-- Mãos -->
-    <ellipse cx="140" cy="312" rx="12" ry="15" fill="#fbe3d4"/>
-    <ellipse cx="260" cy="312" rx="12" ry="15" fill="#fbe3d4"/>
+    <ellipse cx="140" cy="312" rx="12" ry="15" fill="url(#skinLimb)"/>
+    <ellipse cx="260" cy="312" rx="12" ry="15" fill="url(#skinLimb)"/>
 
     <!-- ===== Cinto preto ===== -->
     <rect x="163" y="356" width="74" height="18" rx="3" fill="#0a0a0a"/>
