@@ -1,0 +1,148 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 640" width="400" height="640" role="img" aria-label="Personagem de anime com cabelo branco de contorno preto, jaqueta preta, roupa preta, calça preta, cinto preto e botas pretas">
+  <defs>
+    <!-- Sombreamento do cabelo branco -->
+    <linearGradient id="hairShade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="0.7" stop-color="#f2f2f2"/>
+      <stop offset="1" stop-color="#d9d9d9"/>
+    </linearGradient>
+    <!-- Preto com leve brilho para as roupas -->
+    <linearGradient id="clothShade" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2a2a2a"/>
+      <stop offset="0.5" stop-color="#141414"/>
+      <stop offset="1" stop-color="#050505"/>
+    </linearGradient>
+    <linearGradient id="jacketShade" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#333333"/>
+      <stop offset="0.55" stop-color="#181818"/>
+      <stop offset="1" stop-color="#000000"/>
+    </linearGradient>
+    <linearGradient id="bootShade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2d2d2d"/>
+      <stop offset="1" stop-color="#000000"/>
+    </linearGradient>
+  </defs>
+
+  <!-- ================= PERSONAGEM ================= -->
+  <g stroke="#000000" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
+
+    <!-- Pescoço -->
+    <path d="M182 150 L182 178 Q200 190 218 178 L218 150 Z" fill="#f6d7c4"/>
+
+    <!-- ===== Rosto ===== -->
+    <path d="M158 96
+             Q158 60 200 58
+             Q242 60 242 96
+             Q242 132 226 152
+             Q214 166 200 168
+             Q186 166 174 152
+             Q158 132 158 96 Z" fill="#fbe3d4"/>
+
+    <!-- Orelhas -->
+    <path d="M158 104 Q150 106 152 118 Q156 124 162 120 Z" fill="#fbe3d4"/>
+    <path d="M242 104 Q250 106 248 118 Q244 124 238 120 Z" fill="#fbe3d4"/>
+
+    <!-- Olhos (estilo anime) -->
+    <g stroke-width="2">
+      <path d="M170 112 Q180 104 192 112 L192 126 Q180 132 170 126 Z" fill="#ffffff"/>
+      <path d="M208 112 Q220 104 230 112 L230 126 Q220 132 208 126 Z" fill="#ffffff"/>
+      <ellipse cx="182" cy="119" rx="6" ry="8" fill="#3a3a3a"/>
+      <ellipse cx="218" cy="119" rx="6" ry="8" fill="#3a3a3a"/>
+      <circle cx="184" cy="116" r="2" fill="#ffffff" stroke="none"/>
+      <circle cx="220" cy="116" r="2" fill="#ffffff" stroke="none"/>
+    </g>
+    <!-- Sobrancelhas -->
+    <path d="M170 104 Q180 100 192 104" fill="none" stroke-width="2.5"/>
+    <path d="M208 104 Q220 100 230 104" fill="none" stroke-width="2.5"/>
+    <!-- Nariz e boca -->
+    <path d="M200 128 L197 136" fill="none" stroke-width="2"/>
+    <path d="M190 144 Q200 150 210 144" fill="none" stroke-width="2"/>
+
+    <!-- ===== Cabelo branco com contorno preto ===== -->
+    <path d="M150 108
+             Q140 70 168 48
+             Q182 38 200 40
+             Q218 38 232 48
+             Q260 70 250 108
+             Q246 92 236 84
+             Q240 100 232 112
+             Q234 92 222 80
+             Q226 70 210 66
+             L216 86
+             Q206 72 198 72
+             Q190 74 194 90
+             L182 70
+             Q182 84 176 92
+             Q172 76 162 74
+             Q170 92 166 108
+             Q158 92 150 108 Z"
+          fill="url(#hairShade)"/>
+    <!-- Mechas laterais -->
+    <path d="M158 104 Q150 140 160 168 Q166 150 166 120 Z" fill="url(#hairShade)"/>
+    <path d="M242 104 Q250 140 240 168 Q234 150 234 120 Z" fill="url(#hairShade)"/>
+
+    <!-- ===== Jaqueta preta (aberta) ===== -->
+    <!-- Torso / camiseta preta por baixo -->
+    <path d="M175 180
+             Q200 196 225 180
+             L232 250
+             Q200 262 168 250 Z" fill="url(#clothShade)"/>
+
+    <!-- Ombros e corpo da jaqueta -->
+    <path d="M172 176
+             Q150 186 140 214
+             L134 300
+             Q134 330 150 356
+             L168 356
+             L166 250
+             L175 182 Z" fill="url(#jacketShade)"/>
+    <path d="M228 176
+             Q250 186 260 214
+             L266 300
+             Q266 330 250 356
+             L232 356
+             L234 250
+             L225 182 Z" fill="url(#jacketShade)"/>
+
+    <!-- Gola da jaqueta -->
+    <path d="M175 180 L200 210 L188 182 Q182 178 175 180 Z" fill="#000000"/>
+    <path d="M225 180 L200 210 L212 182 Q218 178 225 180 Z" fill="#000000"/>
+
+    <!-- Braços (mangas pretas) -->
+    <path d="M140 214 Q126 250 132 300 L150 300 Q146 256 158 220 Z" fill="url(#jacketShade)"/>
+    <path d="M260 214 Q274 250 268 300 L250 300 Q254 256 242 220 Z" fill="url(#jacketShade)"/>
+    <!-- Mãos -->
+    <ellipse cx="140" cy="312" rx="12" ry="15" fill="#fbe3d4"/>
+    <ellipse cx="260" cy="312" rx="12" ry="15" fill="#fbe3d4"/>
+
+    <!-- ===== Cinto preto ===== -->
+    <rect x="163" y="356" width="74" height="18" rx="3" fill="#0a0a0a"/>
+    <rect x="192" y="358" width="16" height="14" rx="2" fill="#2b2b2b" stroke-width="2"/>
+
+    <!-- ===== Calça preta ===== -->
+    <path d="M165 374
+             L160 520
+             L192 520
+             L200 400
+             L208 520
+             L240 520
+             L235 374
+             Q200 388 165 374 Z" fill="url(#clothShade)"/>
+    <!-- Vinco central -->
+    <path d="M200 380 L200 512" fill="none" stroke-width="1.5" opacity="0.5"/>
+
+    <!-- ===== Botas pretas ===== -->
+    <path d="M158 518 L162 560 Q162 580 152 584 L188 584 Q194 580 192 560 L194 518 Z" fill="url(#bootShade)"/>
+    <path d="M206 518 L208 560 Q206 580 212 584 L248 584 Q238 580 238 560 L242 518 Z" fill="url(#bootShade)"/>
+    <!-- Solado -->
+    <rect x="148" y="582" width="48" height="10" rx="3" fill="#000000"/>
+    <rect x="204" y="582" width="48" height="10" rx="3" fill="#000000"/>
+    <!-- Detalhe dos cadarços -->
+    <g stroke="#3a3a3a" stroke-width="2">
+      <path d="M168 528 L184 532"/>
+      <path d="M168 540 L184 544"/>
+      <path d="M216 528 L232 532"/>
+      <path d="M216 540 L232 544"/>
+    </g>
+  </g>
+</svg>
