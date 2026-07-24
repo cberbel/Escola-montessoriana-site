@@ -169,7 +169,12 @@ export const MetodoMontessori: React.FC = () => {
             chega, ele já tem corpo, peso e significado — por isso a matemática Montessori é sólida e sem medo.
           </p>
         </Area>
-        <LandingImage src="/images/montessori/matematica-dourado.jpg" alt="Crianças no tapete com a torre montada de Material Dourado e os cartões de números" />
+        <LandingImagePair
+          images={[
+            { src: '/images/montessori/matematica-dourado.jpg', alt: 'Crianças no tapete com a torre montada de Material Dourado e os cartões de números' },
+            { src: '/images/montessori/matematica-cartoes.jpg', alt: 'Menino sorrindo ao lado dos cartões de números de 1 a 1000 e do cubo do milhar, do sistema decimal Montessori' },
+          ]}
+        />
 
         <Area title="Educação Cósmica">
           <p>
