@@ -171,7 +171,12 @@ export const MontessoriMethodEn: React.FC = () => {
             and fearless.
           </p>
         </Area>
-        <LandingImage src="/images/montessori/matematica-dourado.jpg" alt="Children on the mat with the Golden Beads tower and the number cards" />
+        <LandingImagePair
+          images={[
+            { src: '/images/montessori/matematica-dourado.jpg', alt: 'Children on the mat with the Golden Beads tower and the number cards' },
+            { src: '/images/montessori/matematica-1000.jpg', alt: 'Boy seated on the mat with the 1-to-1000 counting material: number cards, golden bars and the thousand cube' },
+          ]}
+        />
 
         <Area title="Cosmic Education">
           <p>
