@@ -15,6 +15,15 @@ import { NaturezaEducacaoCosmica } from './pages/landing/NaturezaEducacaoCosmica
 import { Turmas } from './pages/landing/Turmas';
 import { Agrupada3 } from './pages/landing/Agrupada3';
 import { MainEn } from './components/en/MainEn';
+import { MainFr } from './components/fr/MainFr';
+import { HomeFr } from './pages/fr/HomeFr';
+import { MontessoriMethodFr } from './pages/fr/MontessoriMethodFr';
+import { WelcomingFr } from './pages/fr/WelcomingFr';
+import { BrainFr } from './pages/fr/BrainFr';
+import { EnglishImmersionFr } from './pages/fr/EnglishImmersionFr';
+import { NatureFr } from './pages/fr/NatureFr';
+import { ClassesFr } from './pages/fr/ClassesFr';
+import { ScheduleVisitFr } from './pages/fr/ScheduleVisitFr';
 import { HomeEn } from './pages/en/HomeEn';
 import { MontessoriMethodEn } from './pages/en/MontessoriMethodEn';
 import { WelcomingEn } from './pages/en/WelcomingEn';
@@ -99,6 +108,16 @@ const App: React.FC = () => {
           <Route path="nature-cosmic-education" element={<NatureEn />} />
           <Route path="classes" element={<ClassesEn />} />
           <Route path="schedule-visit" element={<ScheduleVisitEn />} />
+        </Route>
+        <Route path="/fr" element={<MainFr />}>
+          <Route index element={<HomeFr />} />
+          <Route path="methode-montessori" element={<MontessoriMethodFr />} />
+          <Route path="bienveillance" element={<WelcomingFr />} />
+          <Route path="cerveau-de-votre-enfant" element={<BrainFr />} />
+          <Route path="immersion-anglais" element={<EnglishImmersionFr />} />
+          <Route path="nature-education-cosmique" element={<NatureFr />} />
+          <Route path="ambiances" element={<ClassesFr />} />
+          <Route path="planifier-visite" element={<ScheduleVisitFr />} />
         </Route>
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
