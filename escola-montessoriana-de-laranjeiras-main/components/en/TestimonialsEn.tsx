@@ -16,6 +16,14 @@ export const TestimonialsEn: React.FC = () => {
   const videoTestimonials: VideoTestimonial[] = [
     {
       id: 1,
+      name: 'Fran',
+      role: "Estephany's mother",
+      src: '/videos/depoimento-fran.mp4',
+      poster: '/images/thumb-depoimento-fran.jpg',
+      vertical: true
+    },
+    {
+      id: 2,
       name: 'Jean & Anastácia',
       role: "Nicolas's parents",
       src: '/videos/depoimento-jean.mp4',
@@ -23,7 +31,7 @@ export const TestimonialsEn: React.FC = () => {
       vertical: false
     },
     {
-      id: 2,
+      id: 3,
       name: 'Manu',
       role: "Nina's mother",
       src: '/videos/depoimento-manu.mp4',
@@ -31,7 +39,7 @@ export const TestimonialsEn: React.FC = () => {
       vertical: true
     },
     {
-      id: 3,
+      id: 4,
       name: "Madalena's father",
       role: '',
       src: '/videos/depoimento-madalena.mp4',
