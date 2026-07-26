@@ -5,6 +5,7 @@ import { QuandoMatricular } from './QuandoMatricular';
 import { AdaptacaoRespeitosa } from './AdaptacaoRespeitosa';
 import { BilinguismoMitos } from './BilinguismoMitos';
 import { ZeroTelas } from './ZeroTelas';
+import { EscolaPertoDeCasa } from './EscolaPertoDeCasa';
 
 export interface BlogPostMeta {
   slug: string;
@@ -20,13 +21,24 @@ export interface BlogPostMeta {
 /** Registro central dos artigos (mais recentes primeiro): alimenta a lista, as rotas e o sitemap. */
 export const blogPosts: BlogPostMeta[] = [
   {
+    slug: 'erro-escolher-escola-perto-de-casa',
+    title: 'O erro mais comum na escolha da escola infantil: a escolinha perto de casa',
+    excerpt:
+      'Arquitetura cerebral, skills beget skills, o diferencial Montessori — e a conta real entre minutos de trajeto e as 1.800 horas por ano dentro da escola.',
+    image: '/images/espaco.jpg',
+    imageAlt: 'Espaço amplo e preparado da Escola Montessoriana de Laranjeiras',
+    dateDisplay: '26 de julho de 2026',
+    readingTime: '7 min',
+    Component: EscolaPertoDeCasa,
+  },
+  {
     slug: 'zero-telas-primeira-infancia',
     title: 'Zero telas na primeira infância: por que fomos além da recomendação oficial',
     excerpt:
       'Cortes rápidos demais, excesso de dopamina e de estímulo, e o custo de não trabalhar no concreto — e por que "zero até os 2" pode ser pouco.',
     image: '/images/montessori/concentracao.jpg',
     imageAlt: 'Criança pequena profundamente concentrada em um trabalho manual com material concreto',
-    dateDisplay: '26 de julho de 2026',
+    dateDisplay: '25 de julho de 2026',
     readingTime: '7 min',
     Component: ZeroTelas,
   },
