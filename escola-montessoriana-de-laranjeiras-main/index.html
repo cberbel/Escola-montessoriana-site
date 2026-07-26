@@ -145,7 +145,7 @@
           window.trackWhatsAppConversion = function() {
             if (prev) prev();
             gtag('event', 'conversion', {'send_to': 'AW-16743400376/psM9CKCH4PUbELiH8K8-'});
-            if (GA4_ID) gtag('event', 'whatsapp_click');
+            // O evento whatsapp_click do GA4 (com button_id) é disparado por trackWhatsAppClick()
           };
         };
 

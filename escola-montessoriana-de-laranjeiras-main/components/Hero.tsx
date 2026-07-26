@@ -45,7 +45,7 @@ export const Hero: React.FC = () => {
             <h2 className="font-logo text-montessori-gold font-bold text-2xl sm:text-3xl md:text-4xl leading-tight tracking-tight">
               Escola Montessoriana
             </h2>
-            <p className="font-logo text-montessori-gold font-semibold text-base sm:text-lg md:text-xl mt-1 opacity-95">
+            <p className="font-logo text-montessori-gold font-bold text-lg sm:text-xl md:text-2xl mt-1 [text-shadow:0_1px_3px_rgba(0,0,0,0.85),0_2px_6px_rgba(0,0,0,0.6)]">
               Educação infantil trilíngue
             </p>
           </div>
@@ -67,7 +67,7 @@ export const Hero: React.FC = () => {
               href="https://wa.me/5521993311000?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20a%20Escola%20Montessoriana."
               target="_blank"
               rel="noopener noreferrer"
-              onClick={trackWhatsAppClick}
+              onClick={() => trackWhatsAppClick('hero')}
               className="inline-flex items-center justify-center gap-2 min-h-[52px] px-8 sm:px-10 py-4 text-lg font-serif tracking-wide transition-all duration-300 rounded-sm touch-manipulation bg-[#25D366] text-white hover:bg-[#20bd5a] border-2 border-[#25D366] hover:border-[#20bd5a] focus:outline focus:ring-2 focus:ring-[#25D366] focus:ring-offset-2 focus:ring-offset-montessori-green/60 shadow-lg hover:shadow-xl font-semibold"
             >
               <WhatsAppIcon size={24} />

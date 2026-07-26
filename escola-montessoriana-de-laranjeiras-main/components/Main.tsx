@@ -70,7 +70,7 @@ export const Main: React.FC = () => {
               href="https://wa.me/5521964551080"
               target="_blank"
               rel="noopener noreferrer"
-              onClick={trackWhatsAppClick}
+              onClick={() => trackWhatsAppClick('rodape')}
               className="flex items-center space-x-3 text-gray-300 hover:text-yellow-400 transition-colors"
             >
               <WhatsAppIcon size={20} className="text-yellow-400 shrink-0" />

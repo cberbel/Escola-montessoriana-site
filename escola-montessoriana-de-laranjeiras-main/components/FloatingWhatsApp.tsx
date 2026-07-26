@@ -14,7 +14,7 @@ export const FloatingWhatsApp: React.FC = () => (
     href={WHATSAPP_URL}
     target="_blank"
     rel="noopener noreferrer"
-    onClick={trackWhatsAppClick}
+    onClick={() => trackWhatsAppClick('botao-flutuante')}
     className="fixed bottom-6 right-6 z-40 flex items-center gap-3 bg-[#25D366] text-white px-4 py-3 rounded-full shadow-lg hover:bg-[#20bd5a] hover:shadow-xl transition-all duration-300 hover:scale-105 min-h-[56px] touch-manipulation"
     aria-label="Fale conosco no WhatsApp - Agende sua visita"
   >
