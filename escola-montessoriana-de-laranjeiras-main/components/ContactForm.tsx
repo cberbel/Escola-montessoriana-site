@@ -118,7 +118,7 @@ export const ContactForm: React.FC = () => {
 
   const handleSubmitWhatsApp = (e: React.FormEvent) => {
     e.preventDefault();
-    trackWhatsAppClick();
+    trackWhatsAppClick('formulario-whatsapp');
     const message = buildWhatsAppMessage(formState);
     window.open(`https://wa.me/${WHATSAPP_ESCOLA}?text=${encodeURIComponent(message)}`, '_blank');
     setSubmitted(true);
@@ -296,7 +296,7 @@ export const ContactForm: React.FC = () => {
                     type="button"
                     onClick={() => {
                       setError(null);
-                      trackWhatsAppClick();
+                      trackWhatsAppClick('formulario-whatsapp');
                       const message = buildWhatsAppMessage(formState);
                       window.open(`https://wa.me/${WHATSAPP_ESCOLA}?text=${encodeURIComponent(message)}`, '_blank');
                     }}
@@ -334,7 +334,7 @@ export const ContactForm: React.FC = () => {
                   <button
                     type="button"
                     onClick={() => {
-                      trackWhatsAppClick();
+                      trackWhatsAppClick('formulario-whatsapp');
                       const message = buildWhatsAppMessage(formState);
                       window.open(`https://wa.me/${WHATSAPP_ESCOLA}?text=${encodeURIComponent(message)}`, '_blank');
                     }}
@@ -365,7 +365,7 @@ export const ContactForm: React.FC = () => {
           href="https://wa.me/5521993311000?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20visita%20%C3%A0%20Escola%20Montessoriana."
           target="_blank"
           rel="noopener noreferrer"
-          onClick={trackWhatsAppClick}
+          onClick={() => trackWhatsAppClick('contato-cta')}
           className="inline-flex items-center justify-center gap-2 min-h-[52px] px-8 py-4 text-base font-semibold tracking-wide transition-all duration-300 rounded-sm touch-manipulation bg-[#25D366] text-white hover:bg-[#20bd5a] focus:outline focus:ring-2 focus:ring-[#25D366] focus:ring-offset-2 shadow-lg hover:shadow-xl"
         >
           <Calendar size={22} strokeWidth={2} />

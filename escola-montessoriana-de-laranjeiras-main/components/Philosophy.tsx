@@ -1,10 +1,15 @@
 import React from 'react';
-import { Focus, Sun, Heart, Hand, BookOpen, Compass } from 'lucide-react';
+import { Focus, Sun, Heart, Hand, BookOpen, Compass, Globe } from 'lucide-react';
 import { Section } from './ui/Section';
 import { trackWhatsAppClick } from '../utils/tracking';
 
 export const Philosophy: React.FC = () => {
   const traits = [
+    {
+      icon: <Globe size={32} />,
+      title: "Com inglês fluente para a vida toda",
+      text: "Vive o inglês todos os dias, por imersão, na fase em que o cérebro absorve idiomas sem esforço. O que hoje entra como brincadeira se torna uma fluência natural — sem sotaque e sem cursinho — para a vida inteira."
+    },
     {
       icon: <Focus size={32} />,
       title: "Que se concentra",
@@ -63,7 +68,7 @@ export const Philosophy: React.FC = () => {
         </div>
         <div className="min-w-0 px-1 text-left">
           <h3 className="font-serif text-2xl sm:text-3xl text-montessori-green mb-3 sm:mb-4">
-            Quem seu filho se torna na nossa escola?
+            Quem seu filho se torna na Escola Montessoriana trilíngue?
           </h3>
           <p className="font-sans text-lg md:text-xl text-montessori-dark leading-relaxed">
             Maria Montessori descobriu que, no ambiente certo, toda criança revela o seu melhor.
@@ -94,7 +99,7 @@ export const Philosophy: React.FC = () => {
           href="https://wa.me/5521993311000?text=Ol%C3%A1!%20Gostaria%20de%20conhecer%20a%20escola%20e%20agendar%20uma%20visita."
           target="_blank"
           rel="noopener noreferrer"
-          onClick={trackWhatsAppClick}
+          onClick={() => trackWhatsAppClick('filosofia')}
           className="inline-flex items-center justify-center gap-2 min-h-[48px] px-8 py-3 bg-[#25D366] text-white font-semibold rounded-sm hover:bg-[#20bd5a] transition-colors shadow-md hover:shadow-lg"
         >
           Quero agendar uma visita

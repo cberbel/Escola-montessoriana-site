@@ -85,7 +85,7 @@ export const Blog: React.FC = () => {
               href="https://wa.me/5521993311000?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20visita%20%C3%A0%20Escola%20Montessoriana."
               target="_blank"
               rel="noopener noreferrer"
-              onClick={trackWhatsAppClick}
+              onClick={() => trackWhatsAppClick('blog')}
               className="inline-flex items-center justify-center gap-2 min-h-[52px] px-8 py-4 border-2 border-white/80 text-white font-semibold rounded-sm hover:bg-white/10 transition-colors w-full sm:w-auto"
             >
               <Calendar size={20} strokeWidth={2} />

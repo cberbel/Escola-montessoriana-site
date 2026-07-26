@@ -1,17 +1,23 @@
 /**
  * Dispara conversão (Meta Pixel + Google) ao clicar em qualquer botão/link do WhatsApp.
  * Deve ser chamado em todo clique que leva ao WhatsApp.
+ * @param source identifica QUAL botão foi clicado (ex.: 'hero', 'menu', 'rodape'),
+ *               permitindo o ranking de botões no GA4/GTM pelo parâmetro button_id.
  */
-export function trackWhatsAppClick(): void {
+export function trackWhatsAppClick(source?: string): void {
   if (typeof window === 'undefined') return;
   const w = window as unknown as {
     trackWhatsAppConversion?: () => void;
+    gtag?: (...args: unknown[]) => void;
     dataLayer?: Record<string, unknown>[];
   };
+  const button = typeof source === 'string' && source ? source : 'nao-identificado';
   if (typeof w.trackWhatsAppConversion === 'function') w.trackWhatsAppConversion();
+  // GA4: evento com o parâmetro button_id (crie a dimensão personalizada button_id para os relatórios)
+  if (typeof w.gtag === 'function') w.gtag('event', 'whatsapp_click', { button_id: button });
   // Evento para o GTM: permite criar tags/conversões no painel, sem mexer no código
   w.dataLayer = w.dataLayer || [];
-  w.dataLayer.push({ event: 'whatsapp_click', page_path: window.location.pathname });
+  w.dataLayer.push({ event: 'whatsapp_click', page_path: window.location.pathname, button_id: button });
 }
 
 /**

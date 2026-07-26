@@ -13,8 +13,8 @@ export const Home: React.FC = () => {
     <>
       <Hero />
       <Philosophy />
-      <SaibaMais />
       <Practice />
+      <SaibaMais />
       <Horarios />
       <AtividadesExtras />
       <Testimonials />
