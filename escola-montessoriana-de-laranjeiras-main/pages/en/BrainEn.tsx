@@ -57,8 +57,8 @@ export const BrainEn: React.FC = () => {
         </P>
         <LandingImage src="/images/cerebro/bebe-encaixes.jpg" alt="Baby concentrating while fitting colored geometric blocks onto a wooden base" portrait />
         <Highlight>
-          This is not about rushing childhood. It is about not missing the window when building these foundations
-          costs naturally little — because that is exactly what the brain at this age is prepared to do.
+          This is not about rushing childhood. It is about not missing the window when these foundations can be built
+          with the least effort — because that is exactly what the brain at this age is designed to do.
         </Highlight>
       </LandingSection>
 

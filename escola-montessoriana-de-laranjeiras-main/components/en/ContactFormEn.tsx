@@ -26,7 +26,7 @@ function buildWhatsAppMessage(data: FormState) {
     `Child's name: ${data.childName}`,
     `Child's age: ${data.childAge}`,
     `Phone: ${data.phone}`,
-    `E-mail: ${data.email}`,
+    `Email: ${data.email}`,
     data.neighborhood.trim() ? `Neighborhood: ${data.neighborhood.trim()}` : '',
     data.comments.trim() ? `Comments: ${data.comments.trim()}` : ''
   ].filter(Boolean);
@@ -97,7 +97,7 @@ export const ContactFormEn: React.FC = () => {
         setLoading(false);
       }, 1800);
     } catch {
-      setError('Could not send. Please try WhatsApp.');
+      setError('Something went wrong. Please try WhatsApp instead.');
       setLoading(false);
     }
   };
@@ -137,14 +137,14 @@ export const ContactFormEn: React.FC = () => {
               Talk to us
             </h3>
             <p className="text-montessori-cream/80 text-base sm:text-lg mb-4 leading-relaxed">
-              Fill in the form and we will get back to you shortly. No commitment.
+              Fill out the form and we'll get back to you shortly. No strings attached.
             </p>
             <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-4 gap-1 text-base text-yellow-400 uppercase tracking-wider font-bold mb-6">
               <span>• Quick reply</span>
               <span>• We speak English</span>
             </div>
             <p className="text-white/90 text-sm">
-              Fill in the details below and click &quot;Send&quot;. Your message goes straight to the school&apos;s e-mail.
+              Fill out the form below and click &quot;Send&quot; — your message goes straight to the school&apos;s inbox.
             </p>
           </div>
         </div>
@@ -154,7 +154,7 @@ export const ContactFormEn: React.FC = () => {
             <div className="h-full flex flex-col items-center justify-center text-center animate-fadeIn">
               <CheckCircle size={64} className="text-yellow-400 mb-4" />
               <h3 className="font-serif text-2xl text-montessori-green mb-2">Message sent</h3>
-              <p className="text-gray-600 mb-6">Your message has been sent. We will reply shortly.</p>
+              <p className="text-gray-600 mb-6">Thank you! We'll get back to you shortly.</p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-6">
@@ -192,10 +192,10 @@ export const ContactFormEn: React.FC = () => {
 
               <div>
                 <label htmlFor="email-en" className={labelClass}>
-                  E-mail <span className="text-red-500">*</span>
+                  Email <span className="text-red-500">*</span>
                 </label>
                 <input type="email" id="email-en" name="email" required autoComplete="email"
-                  value={formState.email} onChange={handleChange} className={inputClass} placeholder="Your e-mail" />
+                  value={formState.email} onChange={handleChange} className={inputClass} placeholder="Your email" />
               </div>
 
               <div>
@@ -243,7 +243,7 @@ export const ContactFormEn: React.FC = () => {
               </p>
 
               <p className="text-sm text-center text-gray-400 mt-4">
-                Your data is safe. We never send spam.
+                Your information is safe with us. No spam, ever.
               </p>
             </form>
           )}

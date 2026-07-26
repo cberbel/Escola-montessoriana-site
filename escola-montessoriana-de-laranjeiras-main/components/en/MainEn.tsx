@@ -48,7 +48,7 @@ export const MainEn: React.FC = () => {
               de Laranjeiras
             </h3>
             <p className="text-amber-200/95 text-base sm:text-lg font-normal max-w-xs leading-relaxed">
-              Helping children build the men and women they will become.
+              Helping children become the adults they are meant to be.
             </p>
             <div className="pt-4">
               <iframe

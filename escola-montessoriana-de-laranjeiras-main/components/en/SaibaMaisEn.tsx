@@ -17,7 +17,7 @@ const topics = [
     alt: 'Smiling baby on the psychomotor structure at the school',
     position: 'center 40%',
     title: 'Welcoming Care',
-    text: 'Emotional safety is the foundation of development: respectful adaptation, plenty of cuddles and flexibility for the family. Why welcoming comes before teaching.',
+    text: 'Emotional safety is the foundation of development: a gentle settling-in period, plenty of cuddles and flexibility for the family. Why a warm welcome comes before any teaching.',
     to: '/en/welcoming',
   },
   {
@@ -33,7 +33,7 @@ const topics = [
     alt: 'Teacher reading a book to three babies sitting around her',
     position: 'center 40%',
     title: 'English in early childhood',
-    text: 'The unique window of the first years to acquire another language effortlessly — and the cognitive benefits that last a lifetime.',
+    text: 'The early years are a unique window for picking up another language effortlessly — with cognitive benefits that last a lifetime.',
     to: '/en/english-immersion',
   },
   {
@@ -49,7 +49,7 @@ const topics = [
     alt: 'Group of children wearing leaf crowns in the green area of the school',
     position: 'center 30%',
     title: 'Nature and cosmic education',
-    text: 'Wide, tree-filled grounds and permaculture lessons with a vegetable garden and worm farm: how nature shapes intelligence and a sense of belonging to the world.',
+    text: 'Spacious, tree-filled grounds and permaculture classes with a vegetable garden and worm farm: how nature shapes intelligence and a sense of belonging to the world.',
     to: '/en/nature-cosmic-education',
   },
 ];
@@ -59,12 +59,12 @@ export const SaibaMaisEn: React.FC = () => (
     <div className="text-center mb-8 sm:mb-14 min-w-0">
       <div className="w-16 h-1.5 bg-montessori-gold rounded-full mx-auto mb-5 sm:mb-6" />
       <span className="text-montessori-gold uppercase tracking-[0.2em] font-bold text-xs sm:text-sm mb-3 block">
-        To decide with depth
+        Choose with confidence
       </span>
       <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-montessori-green px-1 break-words leading-tight">
         What every family should know before choosing a school
       </h2>
-      <p className="sm:hidden text-montessori-green/60 text-sm mt-4">Swipe sideways to see all →</p>
+      <p className="sm:hidden text-montessori-green/60 text-sm mt-4">Swipe to see them all →</p>
     </div>
 
     <div className="max-w-5xl mx-auto min-w-0">

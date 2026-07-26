@@ -68,7 +68,7 @@ export const HeroEn: React.FC = () => {
               className="inline-flex items-center justify-center gap-2 min-h-[52px] px-8 sm:px-10 py-4 text-lg font-serif tracking-wide transition-all duration-300 rounded-sm touch-manipulation bg-[#25D366] text-white hover:bg-[#20bd5a] border-2 border-[#25D366] hover:border-[#20bd5a] focus:outline focus:ring-2 focus:ring-[#25D366] focus:ring-offset-2 focus:ring-offset-montessori-green/60 shadow-lg hover:shadow-xl font-semibold"
             >
               <WhatsAppIcon size={24} />
-              I want to know more
+              Tell me more
             </a>
             <a
               href="#method"

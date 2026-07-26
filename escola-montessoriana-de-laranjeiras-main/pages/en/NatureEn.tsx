@@ -87,23 +87,23 @@ export const NatureEn: React.FC = () => {
         </P>
         <LandingImagePair
           images={[
-            { src: '/images/natureza/tanque-areia-real.jpg', alt: 'Four children in uniform playing together in the school sand pit' },
+            { src: '/images/natureza/tanque-areia-real.jpg', alt: 'Four children in uniform playing together in the school sandbox' },
             { src: '/images/natureza/colagem-folhas.jpg', alt: 'Girl smiling in the patio showing her collage made with real leaves' },
           ]}
           caption="Sand, leaves, textures: the real world in their hands."
         />
       </LandingSection>
 
-      <LandingSection heading="Wide space means freedom of movement">
+      <LandingSection heading="Room to move — by design">
         <P>
           Maria Montessori was a pioneer in stating what neuroscience later confirmed: movement and intelligence
           develop together. The child who crawls, climbs, runs, carries and balances is building the brain through the
           body.
         </P>
         <P>
-          That is why our spaces are wide by design, not by accident: spacious classrooms with a view of the green,
+          That is why our spaces are generous by design, not by accident: spacious classrooms with a view of the green,
           where movement is free; a covered, tree-surrounded patio; and activities — capoeira, circus, dance and
-          movement, psychomotor education — that turn the body into an instrument of learning.
+          movement, gross-motor play — that turn the body into an instrument of learning.
         </P>
         <LandingImage src="/images/natureza/patio-bolhas.jpg" portrait alt="Children popping soap bubbles in the wide covered patio, with trees and flowers visible above the safety net" />
         <LandingImage src="/images/natureza/maos-tinta.jpg" portrait alt="Boy showing his painted hands in the covered patio, with trees in the background" />
@@ -195,7 +195,7 @@ export const NatureEn: React.FC = () => {
           items={[
             'Tree-filled grounds in the heart of Laranjeiras — a green refuge in the rhythm of the city.',
             'Permaculture lessons in the routine: vegetable garden, worm farm and, soon, native stingless bees.',
-            'Outdoor time every day, with a sand pit and free exploration.',
+            'Outdoor time every day, with a sandbox and free exploration.',
             'Wide spaces and free movement, inside and outside the classroom.',
             'Zero screens: concrete experience instead of passive stimulation.',
           ]}

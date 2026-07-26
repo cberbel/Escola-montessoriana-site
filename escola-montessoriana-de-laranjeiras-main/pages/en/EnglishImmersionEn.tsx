@@ -25,8 +25,8 @@ export const EnglishImmersionEn: React.FC = () => {
         </P>
         <P>
           The capacity to distinguish and reproduce the sounds of any language peaks in early childhood and declines
-          with the years. That is why those who start early speak without accent and without effort — while those who
-          start late study for years to achieve less.{' '}
+          with the years. That is why those who start early speak without an accent and without effort — while those
+          who start late study for years to achieve less.{' '}
           <Link to="/en/your-childs-brain" className="text-montessori-green font-semibold underline hover:no-underline">
             See the science of sensitive periods
           </Link>.
@@ -117,10 +117,10 @@ export const EnglishImmersionEn: React.FC = () => {
           situations.
         </P>
         <P>
-          At Escola Montessoriana, children live with English every day in the voices of fluent teachers — native
-          speakers and bilingual Brazilians. The language shows up in games, in songs, at meals, on the playground —
-          exactly the way their mother tongue entered their lives. No pressure, no tests, no "English o'clock". The
-          language simply becomes part of life.
+          At Escola Montessoriana, children are surrounded by English every day in the voices of fluent teachers —
+          native speakers and bilingual Brazilians. The language shows up in games, in songs, at meals, on the
+          playground — exactly the way their mother tongue entered their lives. No pressure, no tests, no "now it's
+          English time". The language simply becomes part of life.
         </P>
         <P>
           And it must be real people: Patricia Kuhl's research showed that babies learn the sounds of a new language
@@ -134,7 +134,7 @@ export const EnglishImmersionEn: React.FC = () => {
         <P>
           Families who wish can choose one more language for their child: French, Mandarin, Spanish, Italian or
           German. The same immersion logic applies to the third language — and the same early-childhood window too.
-          The earlier, the more natural, the cheaper and the more lasting. That is what makes us a truly{' '}
+          The earlier it starts, the more natural, effortless and lasting it is. That is what makes us a truly{' '}
           <strong>trilingual school</strong>: Portuguese, English, and a third language chosen by the family.
         </P>
       </LandingSection>

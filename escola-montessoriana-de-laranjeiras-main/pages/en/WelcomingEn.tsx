@@ -5,14 +5,14 @@ import { LandingHeroEn, LandingCTAEn } from '../../components/landing/LandingEn'
 export const WelcomingEn: React.FC = () => {
   usePageMeta(
     'Welcoming Care | Escola Montessoriana de Laranjeiras',
-    'Total welcoming care: emotional safety as the foundation of development, respectful adaptation at the child’s pace, plenty of cuddles, flexibility for the family and real food — no seed oils, refined salt or sugar.'
+    'Warm, attentive care: emotional safety as the foundation of development, a gentle settling-in period at the child’s pace, plenty of cuddles, flexibility for the family and real food — no seed oils, refined salt or sugar.'
   );
 
   return (
     <div className="bg-white">
       <LandingHeroEn
         eyebrow="Welcoming care"
-        title="Total welcoming: a child only blossoms when they feel safe"
+        title="Truly welcomed: a child only blossoms when they feel safe"
         subtitle="Before any curriculum comes the cuddle. Here, every child — and every family — is received with time, respect and genuine affection."
       />
 
@@ -41,16 +41,16 @@ export const WelcomingEn: React.FC = () => {
         />
       </LandingSection>
 
-      <LandingSection heading="Respectful adaptation: the child sets the pace">
+      <LandingSection heading="A gentle settling-in: the child sets the pace">
         <P>
           Arriving somewhere new, full of unfamiliar faces, is big for an adult — imagine for someone who is one, two,
-          three years old. That is why our adaptation is never an imposition. We do not "pull" the child from the
+          three years old. That is why our settling-in period is never forced. We do not "pull" the child from the
           parents' arms, and we do not set the same countdown of days for everyone.
         </P>
         <P>
           We do the opposite: <strong>we follow the child</strong>. The start is gradual, with a trusted adult present
-          in the beginning, moving forward at each child's own pace. We watch the signals, we respect crying as a
-          legitimate form of communication, and we build trust day by day. Respectful adaptation is not the child
+          at first, moving forward at each child's own pace. We watch the signals, we respect crying as a
+          legitimate form of communication, and we build trust day by day. Settling in is not the child
           surrendering to the school — it is the school patiently earning the child's trust.
         </P>
         <LandingImage src="/images/acolhimento/adaptacao-artes.jpg" alt="Baby in an apron painting next to the teacher, who follows the activity up close" portrait />
@@ -68,11 +68,10 @@ export const WelcomingEn: React.FC = () => {
         <P>
           And it is from that secure base that the courage to separate, explore and become independent is born. A child
           only lets go with confidence when they know they have somewhere to return to. That is why, here, cuddles are
-          taken seriously: they are a direct investment in the autonomy the Montessori method values so much.
+          taken seriously: they are a direct investment in the independence the Montessori method values so much.
         </P>
         <Highlight>
-          Independence is not born from the lack of a lap to sit on. It is born from the certainty that the lap is
-          always available.
+          Independence is not born from being denied comfort. It is born from knowing that comfort is always there.
         </Highlight>
         <LandingImage src="/images/acolhimento/colo-patio.jpg" alt="Teacher standing in the patio holding a baby, the two looking at each other, with trees in the background" portrait />
         <p className="-mt-2 text-center text-sm text-gray-500">
@@ -88,8 +87,8 @@ export const WelcomingEn: React.FC = () => {
         </P>
         <Bullets
           items={[
-            <><strong>Reduced schedules:</strong> half-day and alternate-day options, for families who want a gentler transition or a lighter routine.</>,
-            <><strong>Flexible hours:</strong> we adapt what we can to each family's reality, instead of squeezing everyone into the same rigid grid.</>,
+            <><strong>Part-time options:</strong> half-day and alternate-day schedules, for families who want a gentler transition or a lighter routine.</>,
+            <><strong>Flexible hours:</strong> we adapt what we can to each family's reality, instead of squeezing everyone into the same rigid schedule.</>,
             <><strong>Open communication:</strong> you know how your child's day went, with transparency and no runaround.</>,
             <><strong>Partnership, not replacement:</strong> the school walks alongside the family, respecting each home's choices and moment.</>,
           ]}
@@ -100,7 +99,7 @@ export const WelcomingEn: React.FC = () => {
         </P>
       </LandingSection>
 
-      <LandingSection id="food" heading="Food is welcoming too">
+      <LandingSection id="food" heading="Food is care, too">
         <P>
           Caring for what goes into a child's body is caring for their mood, sleep, concentration and health. That is
           why we take food as seriously as we take cuddles. We serve <strong>real food</strong>, cooked with care:{' '}
@@ -110,19 +109,19 @@ export const WelcomingEn: React.FC = () => {
         <LandingImage src="/images/acolhimento/almoco-juntos.jpg" alt="Young children having lunch together at the low classroom table, each with their own plate, with two teachers close by" />
         <P>
           And the meal itself is a moment of welcoming and learning. The little ones eat lunch together, at the table,
-          at their own pace. They learn to eat by themselves, to serve themselves, to try new flavors — with autonomy
-          and pleasure, without pressure and without bargaining. Eating well, here, is also a way of living together
-          and caring for oneself.
+          at their own pace. They learn to eat by themselves, to serve themselves, to try new flavors — with
+          independence and enjoyment, no pressure and no bargaining. Eating well, here, is also a way of being together
+          and caring for yourself.
         </P>
         <LandingImage src="/images/acolhimento/almoco-bebes.jpg" alt="Babies feeding themselves with their spoons at the low table, closely accompanied by the teachers" />
         <p className="-mt-2 text-center text-sm text-gray-500">
-          From babyhood, each with their own plate and spoon: eating by yourself is an achievement too.
+          From the baby group on, each with their own plate and spoon: eating on your own is an achievement too.
         </p>
       </LandingSection>
 
       <LandingCTAEn
         heading="Come feel the welcome for yourself"
-        text="The warmth of a school doesn't fit in a text — you feel it in the air, in the cuddles, in the way you are received. Book a visit and watch your child be welcomed."
+        text="You can't put the warmth of a school into words — you feel it in the air, in the cuddles, in the way you're received. Book a visit and watch your child be welcomed."
       />
     </div>
   );

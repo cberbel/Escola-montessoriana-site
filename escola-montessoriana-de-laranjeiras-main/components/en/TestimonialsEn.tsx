@@ -62,7 +62,7 @@ export const TestimonialsEn: React.FC = () => {
 
       <div className="relative z-10 max-w-5xl mx-auto min-w-0">
         <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl text-center mb-4 sm:mb-6 text-montessori-cream px-1">
-          The choice of families who value care and independence.
+          Chosen by families who value care and independence.
         </h2>
         <p className="text-center text-white/70 text-sm sm:text-base mb-10 sm:mb-14">
           Video testimonials from our parents (in Portuguese, with English subtitles).
