@@ -10,10 +10,19 @@ const L: React.FC<{ to: string; children: React.ReactNode }> = ({ to, children }
 const distancias = [
   { local: 'Praça São Salvador', distancia: '~1,1 km', carro: '4–6 min', pe: '~15 min' },
   { local: 'Rua Conde de Baependi', distancia: '~1,4 km', carro: '5–7 min', pe: '~18 min' },
+  { local: 'Alto do Cosme Velho', distancia: '~1,8 km', carro: '6–9 min', pe: '~25 min' },
   { local: 'Catete (Largo do Machado)', distancia: '~1,9 km', carro: '6–9 min', pe: '~24 min' },
   { local: 'Glória', distancia: '~2,8 km', carro: '10–15 min', pe: '—' },
-  { local: 'Praia do Flamengo', distancia: '~2,9 km', carro: '~15 min', pe: '—' },
+  { local: 'Praia do Flamengo', distancia: '~2,9 km', carro: '10–15 min', pe: '—' },
   { local: 'Largo dos Leões (Humaitá)', distancia: '~3,4 km', carro: '10–14 min', pe: '—' },
+  { local: 'Praia de Botafogo', distancia: '~3,5 km', carro: '10–15 min', pe: '—' },
+  { local: 'Santa Teresa (Curvelo)', distancia: '~3,6 km', carro: '12–16 min', pe: '—' },
+  { local: 'Santa Teresa (Largo do Guimarães)', distancia: '~4,2 km', carro: '13–18 min', pe: '—' },
+  { local: 'Centro (Cinelândia)', distancia: '~4,5 km', carro: '12–18 min', pe: '—' },
+  { local: 'Urca', distancia: '~5,0 km', carro: '14–18 min', pe: '—' },
+  { local: 'Copacabana (Rua Belfort Roxo)', distancia: '~5,5 km', carro: '15–20 min', pe: '—' },
+  { local: 'Leme', distancia: '~6,0 km', carro: '16–22 min', pe: '—' },
+  { local: 'Porto Maravilha', distancia: '~6,5 km', carro: '15–20 min', pe: '—' },
 ];
 
 export const EscolaPertoDeCasa: React.FC = () => (
@@ -118,8 +127,10 @@ export const EscolaPertoDeCasa: React.FC = () => (
     </div>
     <P>
       Da Praça São Salvador ou da Conde de Baependi, o "longe" são <strong>5 minutos de carro</strong> — menos tempo
-      do que se gasta procurando desenho na TV. Do Catete e do Largo dos Leões, cabe num café. A pergunta honesta
-      não é "quanto tempo a mais eu gasto?", e sim:{' '}
+      do que se gasta procurando desenho na TV. Do Catete, do Cosme Velho e do Largo dos Leões, cabe num café. E
+      mesmo de Santa Teresa, da Urca, do Centro, do começo de Copacabana ou do Porto Maravilha, estamos falando de
+      um trajeto de <strong>15 a 20 minutos</strong> — o tempo de ouvir três músicas com seu filho no carro. A
+      pergunta honesta não é "quanto tempo a mais eu gasto?", e sim:{' '}
       <strong>"o que meu filho recebe nas 8 horas seguintes em troca desses minutos?"</strong>
     </P>
     <LandingImage src="/images/natureza/patio-verde.jpg" alt="Crianças observando o verde no pátio da escola" portrait />
