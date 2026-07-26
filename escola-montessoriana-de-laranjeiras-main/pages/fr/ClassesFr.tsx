@@ -92,12 +92,12 @@ export const ClassesFr: React.FC = () => {
           l'autonomie, de la responsabilité et le monde entier comme objet d'étude.
         </P>
         <a
-          href="/informativo-open-class-en.html"
+          href="/informativo-open-class-fr.html"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-1.5 text-montessori-green font-semibold hover:gap-3 transition-all"
         >
-          En savoir plus sur l'Agrupada 3 (brochure Open Class, en anglais) →
+          En savoir plus sur l'Agrupada 3 (brochure Open Class) →
         </a>
       </LandingSection>
 
