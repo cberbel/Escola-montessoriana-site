@@ -11,7 +11,11 @@ export const QuandoMatricular: React.FC = () => (
   <BlogLayout
     title="Com quantos meses colocar o bebê na escola? O que diz a ciência"
     metaDescription="Qual a melhor idade para matricular o bebê na escola infantil? O que a neurociência mostra sobre os primeiros anos, por que a qualidade importa mais que a idade, e como saber se a família está pronta."
+<<<<<<< HEAD
     dateDisplay="16 de julho de 2026"
+=======
+    dateDisplay="julho de 2026"
+>>>>>>> origin/main
     readingTime="6 min"
     image="/images/cerebro/leitura-bebes.jpg"
     imageAlt="Professora lendo um livro ilustrado para bebês atentos sentados ao seu redor"
