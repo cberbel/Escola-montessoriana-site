@@ -11,11 +11,7 @@ export const MontessoriParaBebes: React.FC = () => (
   <BlogLayout
     title="Método Montessori para bebês: como funciona na prática"
     metaDescription="O que é o método Montessori para bebês e crianças pequenas: mente absorvente, ambiente preparado, vida prática, materiais sensoriais e o que muda no desenvolvimento — explicado por quem vive isso todos os dias."
-<<<<<<< HEAD
     dateDisplay="18 de julho de 2026"
-=======
-    dateDisplay="julho de 2026"
->>>>>>> origin/main
     readingTime="6 min"
     image="/images/cerebro/bebe-material.jpg"
     imageAlt="Bebê concentrado encaixando discos coloridos em pinos de madeira numa sala Montessori"
