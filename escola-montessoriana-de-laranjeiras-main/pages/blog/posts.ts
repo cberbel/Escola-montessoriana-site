@@ -2,6 +2,9 @@ import React from 'react';
 import { ComoEscolherEscolaInfantil } from './ComoEscolherEscolaInfantil';
 import { MontessoriParaBebes } from './MontessoriParaBebes';
 import { QuandoMatricular } from './QuandoMatricular';
+import { AdaptacaoRespeitosa } from './AdaptacaoRespeitosa';
+import { BilinguismoMitos } from './BilinguismoMitos';
+import { ZeroTelas } from './ZeroTelas';
 
 export interface BlogPostMeta {
   slug: string;
@@ -14,8 +17,41 @@ export interface BlogPostMeta {
   Component: React.FC;
 }
 
-/** Registro central dos artigos: alimenta a lista do blog, as rotas e o sitemap. */
+/** Registro central dos artigos (mais recentes primeiro): alimenta a lista, as rotas e o sitemap. */
 export const blogPosts: BlogPostMeta[] = [
+  {
+    slug: 'zero-telas-primeira-infancia',
+    title: 'Zero telas na primeira infância: por que fomos além da recomendação oficial',
+    excerpt:
+      'Cortes rápidos demais, excesso de dopamina e de estímulo, e o custo de não trabalhar no concreto — e por que "zero até os 2" pode ser pouco.',
+    image: '/images/montessori/concentracao.jpg',
+    imageAlt: 'Criança pequena profundamente concentrada em um trabalho manual com material concreto',
+    dateDisplay: '26 de julho de 2026',
+    readingTime: '7 min',
+    Component: ZeroTelas,
+  },
+  {
+    slug: 'bilinguismo-infantil-mitos-e-verdades',
+    title: 'Bilinguismo na infância: 5 mitos que ainda confundem os pais',
+    excerpt:
+      'Confunde as línguas? Atrasa a fala? Precisa de pai nativo? O que a ciência diz sobre criar um filho com dois idiomas — sem achismo.',
+    image: '/images/cerebro/patio-musica.jpg',
+    imageAlt: 'Crianças pequenas em roda de música no pátio da escola',
+    dateDisplay: '24 de julho de 2026',
+    readingTime: '6 min',
+    Component: BilinguismoMitos,
+  },
+  {
+    slug: 'adaptacao-escolar-respeitosa',
+    title: 'Adaptação escolar sem trauma: como é uma adaptação respeitosa',
+    excerpt:
+      'O passo a passo do primeiro dia, o papel dos pais, o que fazemos com o choro — seguindo o tempo da criança, sem imposições.',
+    image: '/images/acolhimento/sorriso-professora.jpg',
+    imageAlt: 'Professora sorrindo acolhe criança pequena na sala durante a adaptação',
+    dateDisplay: '22 de julho de 2026',
+    readingTime: '6 min',
+    Component: AdaptacaoRespeitosa,
+  },
   {
     slug: 'como-escolher-escola-infantil-laranjeiras',
     title: 'Como escolher uma escola infantil em Laranjeiras: o guia para pais',
@@ -23,7 +59,7 @@ export const blogPosts: BlogPostMeta[] = [
       'O que observar na visita, as perguntas que poucos pais fazem e os sinais de alerta — um roteiro prático para decidir com segurança.',
     image: '/images/acolhimento/colo-patio.jpg',
     imageAlt: 'Professora com bebê no colo no pátio arborizado da escola',
-    dateDisplay: 'julho de 2026',
+    dateDisplay: '20 de julho de 2026',
     readingTime: '7 min',
     Component: ComoEscolherEscolaInfantil,
   },
@@ -34,7 +70,7 @@ export const blogPosts: BlogPostMeta[] = [
       'Mente absorvente, ambiente preparado, vida prática e o que muda no desenvolvimento — sem teoria abstrata, com exemplos do dia a dia.',
     image: '/images/cerebro/bebe-material.jpg',
     imageAlt: 'Bebê concentrado encaixando discos coloridos em pinos de madeira',
-    dateDisplay: 'julho de 2026',
+    dateDisplay: '18 de julho de 2026',
     readingTime: '6 min',
     Component: MontessoriParaBebes,
   },
@@ -45,7 +81,7 @@ export const blogPosts: BlogPostMeta[] = [
       'A pergunta que toda família faz — respondida com neurociência, sem culpa: qualidade importa mais que idade, e a adaptação faz toda a diferença.',
     image: '/images/cerebro/leitura-bebes.jpg',
     imageAlt: 'Professora lendo um livro ilustrado para bebês atentos',
-    dateDisplay: 'julho de 2026',
+    dateDisplay: '16 de julho de 2026',
     readingTime: '6 min',
     Component: QuandoMatricular,
   },
