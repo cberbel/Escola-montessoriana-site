@@ -11,7 +11,7 @@ export const ZeroTelas: React.FC = () => (
   <BlogLayout
     title="Zero telas na primeira infância: por que fomos além da recomendação oficial"
     metaDescription="O que as telas fazem com o cérebro da criança pequena: cortes rápidos demais, excesso de dopamina e de estímulo, e o custo de oportunidade de não trabalhar no concreto. E por que 'zero até os 2' pode ser pouco."
-    dateDisplay="26 de julho de 2026"
+    dateDisplay="25 de julho de 2026"
     readingTime="7 min"
     image="/images/montessori/concentracao.jpg"
     imageAlt="Criança pequena profundamente concentrada em um trabalho manual com material concreto"
