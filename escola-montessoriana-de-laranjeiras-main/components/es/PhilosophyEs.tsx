@@ -62,6 +62,7 @@ export const PhilosophyEs: React.FC = () => {
             src="/images/Crianca-brincando.jpg"
             alt="Niños con los brazos en alto, encantados, persiguiendo burbujas de jabón en el patio de la escuela"
             loading="lazy"
+            style={{ objectPosition: 'center 30%' }}
             className="w-full h-64 sm:h-80 object-cover"
           />
         </div>
