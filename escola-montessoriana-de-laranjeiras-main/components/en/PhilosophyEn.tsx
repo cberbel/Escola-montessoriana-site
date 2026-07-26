@@ -7,8 +7,8 @@ export const PhilosophyEn: React.FC = () => {
   const traits = [
     {
       icon: <Globe size={32} />,
-      title: 'With fluent English for life',
-      text: 'Lives English every day, through immersion, at the age when the brain absorbs languages effortlessly. What enters as play today becomes natural fluency — no accent, no language courses — for their whole life.'
+      title: 'Fluent in English for life',
+      text: 'Lives in English every day, through immersion, at the age when the brain absorbs languages effortlessly. What begins as play today becomes natural, lifelong fluency — no accent, no language classes needed later.'
     },
     {
       icon: <Focus size={32} />,
