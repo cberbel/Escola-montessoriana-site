@@ -38,7 +38,19 @@
   </url>
   <url>
     <loc>https://www.escolamontessoriana.com.br/blog</loc>
-    <priority>0.5</priority>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.escolamontessoriana.com.br/blog/como-escolher-escola-infantil-laranjeiras</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.escolamontessoriana.com.br/blog/metodo-montessori-para-bebes</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.escolamontessoriana.com.br/blog/quando-matricular-bebe-na-escola</loc>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.escolamontessoriana.com.br/en</loc>

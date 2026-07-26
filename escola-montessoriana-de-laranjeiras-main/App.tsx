@@ -6,6 +6,7 @@ import { Main } from './components/Main';
 import { Home } from './pages/Home';
 import { Agendamento } from './pages/Agendamento';
 import { Blog } from './pages/Blog';
+import { blogPosts } from './pages/blog/posts';
 import { MetodoMontessori } from './pages/landing/MetodoMontessori';
 import { Acolhimento } from './pages/landing/Acolhimento';
 import { InglesPrimeiraInfancia } from './pages/landing/InglesPrimeiraInfancia';
@@ -78,6 +79,9 @@ const App: React.FC = () => {
           <Route index element={<Home />} />
           <Route path="agendamento" element={<Agendamento />} />
           <Route path="blog" element={<Blog />} />
+          {blogPosts.map((post) => (
+            <Route key={post.slug} path={`blog/${post.slug}`} element={<post.Component />} />
+          ))}
           <Route path="metodo-montessori" element={<MetodoMontessori />} />
           <Route path="acolhimento" element={<Acolhimento />} />
           <Route path="ingles-primeira-infancia" element={<InglesPrimeiraInfancia />} />
