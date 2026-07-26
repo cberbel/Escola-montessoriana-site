@@ -32,6 +32,15 @@ import { EnglishImmersionEn } from './pages/en/EnglishImmersionEn';
 import { NatureEn } from './pages/en/NatureEn';
 import { ClassesEn } from './pages/en/ClassesEn';
 import { ScheduleVisitEn } from './pages/en/ScheduleVisitEn';
+import { MainEs } from './components/es/MainEs';
+import { HomeEs } from './pages/es/HomeEs';
+import { MetodoMontessoriEs } from './pages/es/MetodoMontessoriEs';
+import { AcogidaEs } from './pages/es/AcogidaEs';
+import { CerebroEs } from './pages/es/CerebroEs';
+import { InmersionInglesEs } from './pages/es/InmersionInglesEs';
+import { NaturalezaEs } from './pages/es/NaturalezaEs';
+import { GruposEs } from './pages/es/GruposEs';
+import { AgendarVisitaEs } from './pages/es/AgendarVisitaEs';
 
 /**
  * A cada troca de rota: rola para o topo, ou — quando a URL tem uma âncora (#...) —
@@ -118,6 +127,16 @@ const App: React.FC = () => {
           <Route path="nature-education-cosmique" element={<NatureFr />} />
           <Route path="ambiances" element={<ClassesFr />} />
           <Route path="planifier-visite" element={<ScheduleVisitFr />} />
+        </Route>
+        <Route path="/es" element={<MainEs />}>
+          <Route index element={<HomeEs />} />
+          <Route path="metodo-montessori" element={<MetodoMontessoriEs />} />
+          <Route path="acogida" element={<AcogidaEs />} />
+          <Route path="el-cerebro-de-tu-hijo" element={<CerebroEs />} />
+          <Route path="inmersion-en-ingles" element={<InmersionInglesEs />} />
+          <Route path="naturaleza-educacion-cosmica" element={<NaturalezaEs />} />
+          <Route path="grupos" element={<GruposEs />} />
+          <Route path="agendar-visita" element={<AgendarVisitaEs />} />
         </Route>
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>

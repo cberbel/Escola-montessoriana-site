@@ -66,6 +66,7 @@ export const NavbarEs: React.FC = () => {
     { name: 'Contacto', to: '/es#contact' },
     { name: 'PT', to: '/' },
     { name: 'EN', to: '/en' },
+    { name: 'FR', to: '/fr' },
   ];
 
   const mobileMenuContent = mobileMenuOpen && (
@@ -86,7 +87,7 @@ export const NavbarEs: React.FC = () => {
             onClick={() => setMobileMenuOpen(false)}
             className="text-white text-base font-medium py-4 px-5 min-h-[48px] flex items-center touch-manipulation active:bg-white/10 transition-colors border-b border-white/5 [text-shadow:0_1px_2px_rgba(0,0,0,0.9)]"
           >
-            {link.name === 'PT' ? 'Português (PT)' : link.name === 'EN' ? 'English (EN)' : link.name}
+            {link.name === 'PT' ? 'Português (PT)' : link.name === 'EN' ? 'English (EN)' : link.name === 'FR' ? 'Français (FR)' : link.name}
           </Link>
         ))}
         <a

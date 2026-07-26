@@ -66,6 +66,7 @@ export const Navbar: React.FC = () => {
     { name: 'Contato', to: '/#contact' },
     { name: 'Blog', to: '/blog' },
     { name: 'EN', to: '/en' },
+    { name: 'ES', to: '/es' },
     { name: 'FR', to: '/fr' },
   ];
 
