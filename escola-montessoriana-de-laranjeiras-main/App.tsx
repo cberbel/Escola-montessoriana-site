@@ -42,6 +42,12 @@ const ScrollToTop: React.FC = () => {
     trackPageView(pathname + hash);
   }, [pathname]);
 
+  // Canonical por página: aponta sempre para o domínio oficial + rota atual (SEO).
+  useEffect(() => {
+    const link = document.querySelector('link[rel="canonical"]');
+    if (link) link.setAttribute('href', `https://www.escolamontessoriana.com.br${pathname === '/' ? '/' : pathname}`);
+  }, [pathname]);
+
   useEffect(() => {
     if (!hash) {
       window.scrollTo(0, 0);
