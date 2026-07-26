@@ -92,7 +92,7 @@ export const NavbarEn: React.FC = () => {
           href={WHATSAPP_VISIT_EN}
           target="_blank"
           rel="noopener noreferrer"
-          onClick={() => { trackWhatsAppClick(); setMobileMenuOpen(false); }}
+          onClick={() => { trackWhatsAppClick('menu-mobile'); setMobileMenuOpen(false); }}
           className="bg-montessori-gold text-montessori-dark text-center font-semibold py-4 px-5 min-h-[48px] flex items-center justify-center mx-4 mt-4 mb-2 rounded-sm touch-manipulation active:bg-[#c5a805] transition-colors [text-shadow:0_1px_2px_rgba(0,0,0,0.4)]"
         >
           Book a Visit
@@ -142,7 +142,7 @@ export const NavbarEn: React.FC = () => {
             href={WHATSAPP_VISIT_EN}
             target="_blank"
             rel="noopener noreferrer"
-            onClick={trackWhatsAppClick}
+            onClick={() => trackWhatsAppClick('menu')}
             className="bg-montessori-gold text-white px-4 py-2 rounded-sm text-sm font-semibold hover:bg-[#c5a805] transition-colors inline-block whitespace-nowrap [text-shadow:0_1px_2px_rgba(0,0,0,0.4)] shadow-md"
           >
             Book a Visit

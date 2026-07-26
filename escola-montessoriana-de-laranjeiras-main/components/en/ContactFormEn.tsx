@@ -107,7 +107,7 @@ export const ContactFormEn: React.FC = () => {
   };
 
   const openWhatsApp = () => {
-    trackWhatsAppClick();
+    trackWhatsAppClick('formulario-whatsapp');
     const message = buildWhatsAppMessage(formState);
     window.open(`https://wa.me/${WHATSAPP_ESCOLA}?text=${encodeURIComponent(message)}`, '_blank');
   };
@@ -261,7 +261,7 @@ export const ContactFormEn: React.FC = () => {
           href="https://wa.me/5521993311000?text=Hello!%20I%20would%20like%20to%20schedule%20a%20visit%20to%20Escola%20Montessoriana."
           target="_blank"
           rel="noopener noreferrer"
-          onClick={trackWhatsAppClick}
+          onClick={() => trackWhatsAppClick('contato-cta')}
           className="inline-flex items-center justify-center gap-2 min-h-[52px] px-8 py-4 text-base font-semibold tracking-wide transition-all duration-300 rounded-sm touch-manipulation bg-[#25D366] text-white hover:bg-[#20bd5a] focus:outline focus:ring-2 focus:ring-[#25D366] focus:ring-offset-2 shadow-lg hover:shadow-xl"
         >
           Book my visit on WhatsApp

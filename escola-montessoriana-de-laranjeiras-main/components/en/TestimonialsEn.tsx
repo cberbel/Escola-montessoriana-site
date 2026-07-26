@@ -18,32 +18,32 @@ export const TestimonialsEn: React.FC = () => {
       id: 1,
       name: 'Fran',
       role: "Estephany's mother",
-      src: '/videos/depoimento-fran.mp4',
-      poster: '/images/thumb-depoimento-fran.jpg',
+      src: '/videos/depoimento-fran-en.mp4',
+      poster: '/images/thumb-depoimento-fran-en.jpg',
       vertical: true
     },
     {
       id: 2,
       name: 'Jean & Anastácia',
       role: "Nicolas's parents",
-      src: '/videos/depoimento-jean.mp4',
-      poster: '/images/thumb-depoimento-jean.jpg',
+      src: '/videos/depoimento-jean-en.mp4',
+      poster: '/images/thumb-depoimento-jean-en.jpg',
       vertical: false
     },
     {
       id: 3,
       name: 'Manu',
       role: "Nina's mother",
-      src: '/videos/depoimento-manu.mp4',
-      poster: '/images/thumb-depoimento-manu.jpg',
+      src: '/videos/depoimento-manu-en.mp4',
+      poster: '/images/thumb-depoimento-manu-en.jpg',
       vertical: true
     },
     {
       id: 4,
       name: "Madalena's father",
       role: '',
-      src: '/videos/depoimento-madalena.mp4',
-      poster: '/images/thumb-depoimento-madalena.jpg',
+      src: '/videos/depoimento-madalena-en.mp4',
+      poster: '/images/thumb-depoimento-madalena-en.jpg',
       vertical: true
     }
   ];
@@ -65,7 +65,7 @@ export const TestimonialsEn: React.FC = () => {
           The choice of families who value care and independence.
         </h2>
         <p className="text-center text-white/70 text-sm sm:text-base mb-10 sm:mb-14">
-          Video testimonials from our parents (in Portuguese, with subtitles).
+          Video testimonials from our parents (in Portuguese, with English subtitles).
         </p>
 
         <div className="flex flex-wrap justify-center items-start gap-6 sm:gap-8 mb-12 sm:mb-16">
@@ -98,7 +98,7 @@ export const TestimonialsEn: React.FC = () => {
             href="https://wa.me/5521993311000?text=Hello!%20I%20would%20like%20to%20schedule%20a%20visit%20to%20Escola%20Montessoriana."
             target="_blank"
             rel="noopener noreferrer"
-            onClick={trackWhatsAppClick}
+            onClick={() => trackWhatsAppClick('depoimentos')}
             className="inline-flex items-center justify-center min-h-[52px] px-8 py-4 bg-[#25D366] text-white font-semibold rounded-sm hover:bg-[#20bd5a] transition-colors shadow-lg hover:shadow-xl"
           >
             Book my visit
