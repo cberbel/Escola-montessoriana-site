@@ -91,12 +91,12 @@ export const GruposEs: React.FC = () => {
           responsabilidad y el mundo entero como objeto de estudio.
         </P>
         <a
-          href="/informativo-open-class.html"
+          href="/informativo-open-class-es.html"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-1.5 text-montessori-green font-semibold hover:gap-3 transition-all"
         >
-          Conoce más sobre la Agrupada 3 (folleto Open Class, en portugués) →
+          Conoce más sobre la Agrupada 3 (folleto Open Class) →
         </a>
       </LandingSection>
 
