@@ -11,7 +11,7 @@ export const ComoEscolherEscolaInfantil: React.FC = () => (
   <BlogLayout
     title="Como escolher uma escola infantil em Laranjeiras: o guia para pais"
     metaDescription="O que observar ao escolher uma escola de educação infantil em Laranjeiras, RJ: proporção de adultos por criança, projeto pedagógico, alimentação, telas, espaço externo — e as perguntas certas para fazer na visita."
-    dateDisplay="julho de 2026"
+    dateDisplay="20 de julho de 2026"
     readingTime="7 min"
     image="/images/acolhimento/colo-patio.jpg"
     imageAlt="Professora com bebê no colo no pátio arborizado de uma escola infantil em Laranjeiras"
