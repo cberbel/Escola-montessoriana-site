@@ -73,6 +73,34 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://www.escolamontessoriana.com.br/es</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.escolamontessoriana.com.br/es/metodo-montessori</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.escolamontessoriana.com.br/es/acogida</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.escolamontessoriana.com.br/es/el-cerebro-de-tu-hijo</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.escolamontessoriana.com.br/es/inmersion-en-ingles</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.escolamontessoriana.com.br/es/naturaleza-educacion-cosmica</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.escolamontessoriana.com.br/es/grupos</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://www.escolamontessoriana.com.br/fr</loc>
     <priority>0.7</priority>
   </url>
