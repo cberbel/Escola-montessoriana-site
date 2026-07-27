@@ -17,7 +17,7 @@ const topics = [
     alt: "Bébé souriant sur la structure de motricité de l'école",
     position: 'center 40%',
     title: "L'accueil bienveillant",
-    text: "La sécurité affective est le socle du développement : une adaptation en douceur, beaucoup de câlins et de la souplesse pour la famille. Pourquoi l'accueil passe avant tout enseignement.",
+    text: "La sécurité affective est le socle du développement : une adaptation en douceur, beaucoup de câlins et de la souplesse pour la famille. Pourquoi l'accueil passe avant les apprentissages.",
     to: '/fr/bienveillance',
   },
   {
@@ -25,7 +25,7 @@ const topics = [
     alt: 'Enfant travaillant avec les emboîtements sensoriels',
     position: 'center 45%',
     title: 'Les premières années et le cerveau',
-    text: "Plus d'un million de nouvelles connexions par seconde : ce qui construit l'architecture cérébrale de votre enfant — et pourquoi le choix de l'école compte plus que la distance de la maison.",
+    text: "Plus d'un million de nouvelles connexions par seconde : ce qui construit l'architecture cérébrale de votre enfant — et pourquoi le choix de l'école compte bien plus que les minutes de trajet.",
     to: '/fr/cerveau-de-votre-enfant',
   },
   {
@@ -41,7 +41,7 @@ const topics = [
     alt: "Enfant plantant dans le potager de l'école",
     position: 'center',
     title: 'Une alimentation saine',
-    text: "De la vraie nourriture — sans huiles raffinées, sans sel raffiné, sans sucre. Les enfants déjeunent ensemble et mangent seuls : le repas fait partie de l'éducation.",
+    text: "Une cuisine maison, saine et naturelle — sans huiles raffinées, sans sel raffiné, sans sucre. Les enfants déjeunent ensemble et mangent seuls : le repas aussi fait partie de l'éducation.",
     to: '/fr/bienveillance#food',
   },
   {

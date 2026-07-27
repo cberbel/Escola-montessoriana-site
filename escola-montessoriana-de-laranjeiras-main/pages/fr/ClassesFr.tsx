@@ -28,9 +28,9 @@ export const ClassesFr: React.FC = () => {
 
       <LandingSection heading="Pourquoi mélanger les âges" className="pt-10 sm:pt-14">
         <P>
-          En Montessori, les classes ne sont pas découpées année par année — ce sont des <strong>groupes couvrant
-          plusieurs âges</strong>, qui partagent la même ambiance pendant un cycle de plusieurs années. Ce n'est pas
-          un hasard : c'est ainsi que fonctionne la nature de l'enfance.
+          Dans une école Montessori, il n'y a pas de classes par année de naissance : les enfants sont réunis en{' '}
+          <strong>groupes d'âges mélangés</strong>, qui partagent la même ambiance pendant un cycle de plusieurs
+          années. Rien d'un hasard — c'est ainsi que l'enfance fonctionne.
         </P>
         <P>
           Pensez-y : la classe découpée par année de naissance est une <strong>invention de l'école</strong> — cette
@@ -101,7 +101,7 @@ export const ClassesFr: React.FC = () => {
         </a>
       </LandingSection>
 
-      <LandingSection heading="Horaires et fréquentation">
+      <LandingSection heading="Horaires et formules">
         <P>
           Nous sommes ouverts de <strong>7h30 à 19h</strong>, avec trois formules — valables pour tous les groupes :
         </P>
@@ -114,14 +114,14 @@ export const ClassesFr: React.FC = () => {
         />
         <P>
           Au-delà de la formule quotidienne, il existe des options à <strong>temps partiel</strong> (jours alternés)
-          et de la souplesse pour adapter dépose et reprise à la réalité de chaque foyer — le même esprit
-          d'accueil qui traverse toute l'école. Nous trouverons ensemble la formule idéale pour votre enfant.
+          et de la souplesse pour adapter les heures d'arrivée et de départ à la réalité de chaque foyer — le même
+          esprit d'accueil qui traverse toute l'école. Nous trouverons ensemble la formule idéale pour votre enfant.
         </P>
       </LandingSection>
 
       <LandingCTAFr
         heading="Venez voir les ambiances de près"
-        text="Chaque ambiance a sa lumière, son odeur et son rythme. Planifiez une visite et découvrez le groupe de votre enfant."
+        text="Chaque ambiance a sa lumière, son odeur et son rythme. Réservez une visite et découvrez le groupe de votre enfant."
       />
     </div>
   );

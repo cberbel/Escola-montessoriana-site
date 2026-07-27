@@ -19,7 +19,7 @@ const periods = [
     icon: <Sunset size={28} />,
     name: 'Horaires étendus',
     times: ['7h30 à 19h'],
-    note: 'Dépose plus tôt et reprise plus tard, pour les familles qui en ont besoin.',
+    note: 'Arrivée plus tôt, départ plus tard, pour les familles qui en ont besoin.',
   },
 ];
 
@@ -59,8 +59,8 @@ export const HorariosFr: React.FC = () => (
     </div>
 
     <p className="text-center text-montessori-dark mt-8 sm:mt-10 font-medium px-1">
-      <span className="text-montessori-green font-bold">Horaires flexibles :</span> nous adaptons les heures de dépose
-      et de reprise aux besoins de votre famille.
+      <span className="text-montessori-green font-bold">Horaires souples :</span> nous adaptons les heures d'arrivée
+      et de départ aux besoins de votre famille.
     </p>
   </Section>
 );

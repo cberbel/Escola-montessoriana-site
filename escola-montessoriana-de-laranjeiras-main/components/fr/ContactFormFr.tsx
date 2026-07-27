@@ -256,7 +256,7 @@ export const ContactFormFr: React.FC = () => {
           Envie de voir l'école de vos propres yeux ?
         </p>
         <p className="text-montessori-dark/80 text-base mb-5">
-          Planifiez une visite. Sans engagement. Nous répondons en quelques minutes.
+          Réservez une visite. Sans engagement. Nous répondons en quelques minutes.
         </p>
         <a
           href="https://wa.me/5521993311000?text=Bonjour%20!%20Je%20souhaiterais%20planifier%20une%20visite%20de%20l%27Escola%20Montessoriana."
@@ -265,7 +265,7 @@ export const ContactFormFr: React.FC = () => {
           onClick={() => trackWhatsAppClick('contato-cta')}
           className="inline-flex items-center justify-center gap-2 min-h-[52px] px-8 py-4 text-base font-semibold tracking-wide transition-all duration-300 rounded-sm touch-manipulation bg-[#25D366] text-white hover:bg-[#20bd5a] focus:outline focus:ring-2 focus:ring-[#25D366] focus:ring-offset-2 shadow-lg hover:shadow-xl"
         >
-          Planifier ma visite sur WhatsApp
+          Réserver ma visite sur WhatsApp
         </a>
       </div>
     </Section>

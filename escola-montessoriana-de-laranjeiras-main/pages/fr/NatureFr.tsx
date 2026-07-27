@@ -41,7 +41,7 @@ export const NatureFr: React.FC = () => {
         <P>
           <strong>Au lombricomposteur</strong>, les restes du goûter deviennent de la terre fertile grâce au travail
           des vers — la tâche cosmique au creux de la main. Les enfants observent, touchent et suivent la
-          transformation semaine après semaine. Regardez un vrai atelier (en portugais) :
+          transformation semaine après semaine. Regardez un atelier en images (en portugais) :
         </P>
         <div className="max-w-xs mx-auto my-6">
           <div className="aspect-[9/16] overflow-hidden rounded-sm shadow-lg bg-black">
@@ -186,8 +186,8 @@ export const NatureFr: React.FC = () => {
         </Tema>
 
         <Highlight>
-          De cette perception naissent le soin des autres, la responsabilité environnementale et le sens du but — non
-          par des sermons, mais par l'expérience vécue.
+          De cette perception naissent le soin des autres, la responsabilité environnementale et le sentiment d'avoir
+          un rôle à jouer — non par des sermons, mais par l'expérience vécue.
         </Highlight>
         <LandingImage src="/images/natureza/grupo-natureza.jpg" alt="Groupe d'enfants souriants avec des couronnes de feuilles sur la tête, aux côtés de l'éducateur de permaculture, devant le mur de pierre" />
         <p className="-mt-2 text-center text-sm text-gray-500">
@@ -209,7 +209,7 @@ export const NatureFr: React.FC = () => {
 
       <LandingCTAFr
         heading="Venez respirer cet espace en personne"
-        text="Les photos aident, mais le vert, les sons et l'ampleur ne se comprennent qu'en vrai. Planifiez une visite."
+        text="Les photos aident, mais la verdure, les sons et l'ampleur des lieux ne se comprennent qu'en vrai. Réservez une visite."
       />
     </div>
   );

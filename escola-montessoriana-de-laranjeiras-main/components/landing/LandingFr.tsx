@@ -45,7 +45,7 @@ export const LandingCTAFr: React.FC<{ heading: string; text: string }> = ({ head
           className="inline-flex items-center justify-center gap-2 min-h-[52px] px-8 py-4 bg-[#25D366] text-white font-semibold rounded-sm hover:bg-[#20bd5a] transition-colors shadow-lg hover:shadow-xl w-full sm:w-auto"
         >
           <Calendar size={20} strokeWidth={2} />
-          Planifier ma visite
+          Réserver ma visite
         </a>
         <Link
           to="/fr/planifier-visite"

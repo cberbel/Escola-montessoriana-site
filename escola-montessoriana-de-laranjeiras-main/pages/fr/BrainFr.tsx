@@ -98,7 +98,7 @@ export const BrainFr: React.FC = () => {
         <SensitivePeriodsChart />
         <LandingImage src="/images/cerebro/leitura-bebes.jpg" alt="Éducatrice lisant un album illustré à trois bébés assis autour d'elle dans l'ambiance" />
         <p className="-mt-2 mb-6 text-center text-sm text-gray-500">
-          Du vrai langage : une vraie personne, un livre, et des bébés qui répondent — le « servir et renvoyer » en action.
+          Du langage vivant : une personne en chair et en os, un livre, et des bébés qui répondent — le « serve and return » en action.
         </p>
         <Highlight>
           Entendre ne suffit pas : le cerveau d'un bébé apprend le langage dans la relation avec une autre personne,
@@ -115,8 +115,8 @@ export const BrainFr: React.FC = () => {
           l'attention et à la planification.
         </P>
         <P>
-          C'est pourquoi un environnement qui restreint le mouvement — plus de chaise, plus d'écrans, moins
-          d'exploration libre — ne « garde » pas l'énergie de l'enfant pour des choses plus importantes. Il prive le
+          C'est pourquoi un environnement qui restreint le mouvement — davantage de temps assis, davantage d'écrans,
+          moins d'exploration libre — ne « garde » pas l'énergie de l'enfant pour des choses plus importantes. Il prive le
           cerveau de l'un des carburants dont il a le plus besoin à cet âge. La motricité libre n'est pas un luxe :
           c'est une nécessité.
         </P>
@@ -160,7 +160,7 @@ export const BrainFr: React.FC = () => {
         </P>
         <Bullets
           items={[
-            <><strong>Faites le calcul des heures.</strong> Dix ou quinze minutes de trajet en plus — contre 8, 9, 10 heures par jour que votre enfant vit à l'intérieur de l'école. Qu'est-ce qui pèse le plus dans sa vie : les quelques minutes en voiture, ou les milliers d'heures d'expériences qui construisent son cerveau ?</>,
+            <><strong>Faites le compte des heures.</strong> Dix ou quinze minutes de trajet en plus — contre 8, 9, 10 heures par jour que votre enfant passe à l'intérieur de l'école. Qu'est-ce qui pèse le plus dans sa vie : quelques minutes de voiture, ou des milliers d'heures d'expériences qui construisent son cerveau ?</>,
             <><strong>Cette fenêtre ne se rouvre pas.</strong> Comme l'ont montré les travaux de Charles Nelson, plus le bon environnement arrive tôt, plus la récupération possible est grande — et l'inverse est vrai aussi. Les compétences appellent les compétences : ce qui ne se construit pas maintenant devient plus difficile à construire ensuite.</>,
             <><strong>« Bien gardé » n'est pas « en plein développement ».</strong> Un lieu propre et gentil, c'est le minimum. La vraie question : que se passe-t-il pour le langage, le mouvement et l'attachement de mon enfant pendant les 8 heures par jour qu'il y passe ?</>,
           ]}
@@ -176,9 +176,9 @@ export const BrainFr: React.FC = () => {
         <Bullets
           items={[
             'Une éducatrice pour 3 bébés de moins de 18 mois : chaque babillage, chaque tentative, rencontre un adulte qui observe et répond.',
-            "L'immersion en anglais au quotidien avec des enseignantes natives et bilingues, au sommet de la fenêtre du langage — par la relation, pas par les écrans.",
+            "L'immersion en anglais au quotidien avec des enseignantes anglophones et bilingues, en plein cœur de la fenêtre du langage — par la relation, pas par les écrans.",
             "Une ambiance Montessori préparée : motricité libre, matériel concret à manipuler — zéro écran.",
-            "Une observation individuelle : chaque enfant est suivi à son rythme, avec de vrais relevés de son développement.",
+            "Une observation individuelle : chaque enfant est suivi à son rythme, avec un suivi attentif de son développement.",
           ]}
         />
       </LandingSection>

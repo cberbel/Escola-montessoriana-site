@@ -20,9 +20,9 @@ const FloatingWhatsAppFr: React.FC = () => (
     rel="noopener noreferrer"
     onClick={() => trackWhatsAppClick('botao-flutuante')}
     className="fixed bottom-6 right-6 z-40 flex items-center gap-3 bg-[#25D366] text-white px-4 py-3 rounded-full shadow-lg hover:bg-[#20bd5a] hover:shadow-xl transition-all duration-300 hover:scale-105 min-h-[56px] touch-manipulation"
-    aria-label="Écrivez-nous sur WhatsApp - Planifiez votre visite"
+    aria-label="Écrivez-nous sur WhatsApp - Réservez votre visite"
   >
-    <span className="hidden sm:inline font-semibold text-sm whitespace-nowrap">Planifier une visite</span>
+    <span className="hidden sm:inline font-semibold text-sm whitespace-nowrap">Réserver une visite</span>
     <span className="flex items-center justify-center w-10 h-10 rounded-full bg-white/20">
       <WhatsAppIcon size={26} />
     </span>

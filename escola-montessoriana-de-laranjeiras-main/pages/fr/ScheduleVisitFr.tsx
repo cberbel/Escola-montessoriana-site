@@ -10,7 +10,7 @@ const CALENDLY_CONTAINER_ID = 'calendly-inline-container-fr';
 
 export const ScheduleVisitFr: React.FC = () => {
   usePageMeta(
-    'Planifier une visite | Escola Montessoriana de Laranjeiras',
+    'Réserver une visite | Escola Montessoriana de Laranjeiras',
     "Choisissez un créneau pour visiter notre école Montessori à Laranjeiras, Rio de Janeiro. Nous parlons français et anglais."
   );
 
@@ -81,7 +81,7 @@ export const ScheduleVisitFr: React.FC = () => {
           </Link>
 
           <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-montessori-green mb-3 sm:mb-4">
-            Planifiez votre visite
+            Réservez votre visite
           </h1>
           <p className="text-base sm:text-lg text-gray-600 max-w-2xl">
             Choisissez un créneau qui vous convient pour visiter l'école, voir les ambiances en plein travail et

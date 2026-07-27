@@ -50,7 +50,7 @@ export const MontessoriMethodFr: React.FC = () => {
           trouve l'environnement qu'il lui faut.
         </P>
         <P>
-          Trois fois nominée au prix Nobel de la paix, Maria Montessori a vu sa pédagogie essaimer dans plus de 140
+          Proposée trois fois pour le prix Nobel de la paix, Maria Montessori a vu sa pédagogie essaimer dans plus de 140
           pays. Plus d'un siècle après, les neurosciences ne cessent de confirmer ce qu'elle avait découvert par
           l'observation : le mouvement et l'apprentissage vont de pair, les premières années sont décisives, et la
           concentration profonde est le moteur du développement.
@@ -70,7 +70,7 @@ export const MontessoriMethodFr: React.FC = () => {
             <><strong>L'ambiance préparée :</strong> tout dans la classe — mobilier, matériel, hauteurs — est pensé pour que l'enfant s'en serve seul, sans dépendre d'un adulte à chaque pas.</>,
             <><strong>Autonomie et indépendance :</strong> l'enfant choisit ses activités et apprend à prendre soin de lui, des autres et de l'espace. L'estime de soi ne se donne pas ; elle se construit.</>,
             <><strong>La liberté dans un cadre :</strong> la liberté n'est pas l'absence de règles — c'est pouvoir choisir à l'intérieur d'un cadre clair et sûr, que l'enfant comprend et respecte.</>,
-            <><strong>Les périodes sensibles :</strong> chaque étape de l'enfance ouvre des fenêtres où certains apprentissages se font presque sans effort — le langage, l'ordre, le mouvement, le raffinement des sens. La pédagogie saisit chaque fenêtre au bon moment.</>,
+            <><strong>Les périodes sensibles :</strong> chaque étape de l'enfance ouvre des fenêtres où certains apprentissages se font presque sans effort — le langage, l'ordre, le mouvement, l'affinement des sens. La pédagogie saisit chaque fenêtre au bon moment.</>,
             <><strong>Un matériel scientifique :</strong> le matériel Montessori isole une difficulté à la fois et intègre le contrôle de l'erreur — l'enfant s'en aperçoit et se corrige seul, sans dépendre de l'approbation de l'adulte.</>,
             <><strong>L'adulte comme guide :</strong> l'éducatrice observe chaque enfant individuellement et présente le bon matériel au bon moment. C'est cela qui rend l'éducation réellement personnalisée.</>,
           ]}
@@ -122,7 +122,7 @@ export const MontessoriMethodFr: React.FC = () => {
         >
           <p>
             De 0 à 6 ans, l'enfant découvre le monde par les sens — et rien n'atteint le cerveau sans passer d'abord
-            par eux. C'est pourquoi le matériel sensoriel est conçu pour le <strong>raffinement des sens</strong> :
+            par eux. C'est pourquoi le matériel sensoriel est conçu pour l'<strong>affinement des sens</strong> :
             il transforme des concepts abstraits — grand et petit, épais et fin, dégradés de couleurs, textures et
             poids — en expériences que la main touche et que le cerveau organise. Plus les sens sont affûtés, plus le
             monde qui entre est riche. C'est le socle silencieux de l'intelligence logique et mathématique.
@@ -148,7 +148,7 @@ export const MontessoriMethodFr: React.FC = () => {
             Du son à l'écriture, en passant par le corps : l'enfant suit la lettre rugueuse du bout des doigts en
             entendant le son, écrit dans le sable avant le papier, et découvre que les mots portent le monde. C'est
             ici aussi que vit notre grande particularité : l'immersion en anglais au quotidien avec des enseignantes
-            natives et bilingues —{' '}
+            anglophones et bilingues —{' '}
             <Link to="/fr/immersion-anglais" className="text-montessori-green font-semibold underline hover:no-underline">
               découvrez pourquoi commencer tôt change tout
             </Link>.
@@ -166,11 +166,11 @@ export const MontessoriMethodFr: React.FC = () => {
           materials="Fuseaux, chiffres rugueux, barres rouges et bleues, perles dorées."
         >
           <p>
-            En Montessori, les mathématiques entrent par les mains : l'enfant tient la quantité avant de connaître le
+            Dans la pédagogie Montessori, les mathématiques entrent par les mains : l'enfant tient la quantité avant de connaître le
             symbole — il empile, compare, compte avec du matériel concret. Ce sont des abstractions matérialisées :
             chaque concept mathématique reçoit un corps physique que l'enfant manipule avant de le retrouver sur le
             papier. Quand le nombre abstrait arrive, il a déjà un corps, un poids et un sens — c'est pour cela que les
-            mathématiques Montessori sont solides et sans peur.
+            mathématiques Montessori sont solides — et n'ont jamais rien d'effrayant.
           </p>
         </Area>
         <LandingImagePair
@@ -249,14 +249,14 @@ export const MontessoriMethodFr: React.FC = () => {
         </div>
         <P>
           Larry Page et Sergey Brin, les fondateurs de Google, ont publiquement attribué à leur éducation Montessori
-          leur capacité à penser par eux-mêmes, à questionner l'ordre établi et à rester motivés de l'intérieur — les
+          leur capacité à penser par eux-mêmes, à remettre en question l'ordre établi et à rester motivés par eux-mêmes — les
           qualités mêmes que l'avenir exigera de nos enfants.
         </P>
       </LandingSection>
 
       <LandingCTAFr
         heading="Voyez la méthode en action"
-        text="Aucun texte ne remplace la vue d'une ambiance Montessori au travail. Planifiez une visite et observez les enfants travailler."
+        text="Aucun texte ne remplace la vue d'une ambiance Montessori au travail. Réservez une visite et observez les enfants travailler."
       />
     </div>
   );

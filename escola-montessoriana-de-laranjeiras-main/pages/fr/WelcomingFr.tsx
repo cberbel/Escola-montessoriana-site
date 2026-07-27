@@ -5,14 +5,14 @@ import { LandingHeroFr, LandingCTAFr } from '../../components/landing/LandingFr'
 export const WelcomingFr: React.FC = () => {
   usePageMeta(
     'Bienveillance et accueil | Escola Montessoriana de Laranjeiras',
-    "Un accueil chaleureux et bienveillant : la sécurité affective comme socle du développement, une période d'adaptation en douceur au rythme de l'enfant, beaucoup de câlins, de la souplesse pour la famille et une vraie alimentation — sans huiles raffinées, sans sel raffiné, sans sucre."
+    "Un accueil chaleureux et bienveillant : la sécurité affective comme socle du développement, une période d'adaptation en douceur au rythme de l'enfant, beaucoup de câlins, de la souplesse pour la famille et une cuisine maison saine — sans huiles raffinées, sans sel raffiné, sans sucre."
   );
 
   return (
     <div className="bg-white">
       <LandingHeroFr
         eyebrow="Bienveillance"
-        title="Vraiment accueilli : un enfant ne s'épanouit que lorsqu'il se sent en sécurité"
+        title="Un enfant ne s'épanouit que lorsqu'il se sent en sécurité"
         subtitle="Avant tout programme, il y a les bras qui accueillent. Ici, chaque enfant — et chaque famille — est reçu avec du temps, du respect et une affection sincère."
       />
 
@@ -20,7 +20,7 @@ export const WelcomingFr: React.FC = () => {
         <P>
           Il existe, dans la nature de l'enfant, un ordre qu'aucune école ne devrait ignorer : <strong>d'abord la
           sécurité, ensuite les apprentissages</strong>. Un enfant qui ne se sent pas en sécurité vit en état d'alerte —
-          son corps bascule en mode survie, le fameux « combat ou fuite ». Dans cet état, presque toute l'énergie du
+          son corps bascule en mode survie, le fameux réflexe de « lutte ou fuite ». Dans cet état, presque toute l'énergie du
           cerveau sert à se défendre d'une menace, et il n'en reste presque rien pour explorer, se concentrer,
           apprendre.
         </P>
@@ -53,7 +53,7 @@ export const WelcomingFr: React.FC = () => {
         <P>
           Nous faisons l'inverse : <strong>nous suivons l'enfant</strong>. Le début est progressif, avec un adulte de
           confiance présent les premiers temps, puis on avance au rythme de chacun. Nous observons les signaux, nous
-          respectons les pleurs comme un vrai langage, et nous construisons la confiance jour après jour. L'adaptation,
+          respectons les pleurs comme un langage à part entière, et nous construisons la confiance jour après jour. L'adaptation,
           ce n'est pas l'enfant qui capitule devant l'école — c'est l'école qui gagne patiemment la confiance de
           l'enfant.
         </P>
@@ -80,7 +80,7 @@ export const WelcomingFr: React.FC = () => {
         </Highlight>
         <LandingImage src="/images/acolhimento/colo-patio.jpg" alt="Éducatrice debout dans la cour, un bébé dans les bras, les deux se regardant, des arbres en arrière-plan" portrait />
         <p className="-mt-2 text-center text-sm text-gray-500">
-          Un vrai câlin, entouré de verdure : la base sécurisante depuis laquelle l'enfant part à la conquête du monde.
+          Un câlin, un vrai, entouré de verdure : la base sécurisante depuis laquelle l'enfant part à la conquête du monde.
         </p>
       </LandingSection>
 
@@ -89,7 +89,7 @@ export const WelcomingFr: React.FC = () => {
           Confier son enfant à d'autres mains est l'un des pas les plus délicats qu'une famille puisse faire. Nous le
           savons — et nous accueillons les parents avec le même soin que les enfants. Pour les familles francophones et
           internationales : <strong>nous parlons français et anglais</strong>, et plusieurs de nos enseignantes sont
-          natives ou bilingues.
+          anglophones de naissance ou bilingues.
         </P>
         <Bullets
           items={[
@@ -105,11 +105,11 @@ export const WelcomingFr: React.FC = () => {
         </P>
       </LandingSection>
 
-      <LandingSection id="food" heading="L'alimentation aussi, c'est prendre soin">
+      <LandingSection id="food" heading="Bien nourrir, c'est aussi prendre soin">
         <P>
           Veiller à ce qui entre dans le corps d'un enfant, c'est veiller à son humeur, son sommeil, sa concentration
-          et sa santé. C'est pourquoi nous prenons l'alimentation aussi au sérieux que les câlins. Nous servons de la{' '}
-          <strong>vraie nourriture</strong>, cuisinée avec soin : <strong>sans huiles raffinées, sans sel raffiné,
+          et sa santé. C'est pourquoi nous prenons l'alimentation aussi au sérieux que les câlins. Nous servons une{' '}
+          <strong>cuisine maison</strong>, préparée avec soin : <strong>sans huiles raffinées, sans sel raffiné,
           sans sucre</strong>. À la place : des ingrédients frais et complets, de bonnes graisses et des assaisonnements
           naturels.
         </P>
@@ -128,7 +128,7 @@ export const WelcomingFr: React.FC = () => {
 
       <LandingCTAFr
         heading="Venez ressentir cet accueil par vous-même"
-        text="La chaleur d'une école ne tient pas dans un texte — elle se respire, dans les câlins, dans la façon dont on vous reçoit. Planifiez une visite et regardez votre enfant être accueilli."
+        text="La chaleur d'une école ne tient pas dans un texte — elle se respire, dans les câlins, dans la façon dont on vous reçoit. Réservez une visite et regardez votre enfant se faire accueillir."
       />
     </div>
   );

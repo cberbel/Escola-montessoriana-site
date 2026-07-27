@@ -6,7 +6,7 @@ import { LandingHeroFr, LandingCTAFr } from '../../components/landing/LandingFr'
 export const EnglishImmersionFr: React.FC = () => {
   usePageMeta(
     "L'anglais dès la petite enfance | Escola Montessoriana de Laranjeiras",
-    "Pourquoi les premières années sont la meilleure fenêtre pour l'anglais : acquisition naturelle par immersion quotidienne avec des enseignantes natives et bilingues, les bénéfices du cerveau bilingue sur les fonctions exécutives, et l'accès au savoir du monde."
+    "Pourquoi les premières années sont la meilleure fenêtre pour l'anglais : acquisition naturelle par immersion quotidienne avec des enseignantes anglophones et bilingues, les bénéfices du cerveau bilingue sur les fonctions exécutives, et l'accès au savoir du monde."
   );
 
   return (
@@ -50,7 +50,7 @@ export const EnglishImmersionFr: React.FC = () => {
           temps et en effort, est pratiquement <strong>nul</strong>.
         </P>
         <P>
-          Quelques années plus tard, tout change. L'emploi du temps du grand enfant se remplit — sport, musique,
+          Quelques années plus tard, tout change. L'emploi du temps de l'enfant plus grand se remplit — sport, musique,
           devoirs, copains, vie sociale. L'anglais cesse d'être quelque chose que l'on vit et devient <strong>une
           activité de plus</strong> à caser dans la semaine : un cours supplémentaire, un créneau qui entre en
           concurrence avec tout ce que l'enfant a aussi envie de faire. Cela coûte de l'argent, des heures, de la
@@ -112,7 +112,7 @@ export const EnglishImmersionFr: React.FC = () => {
         </Highlight>
       </LandingSection>
 
-      <LandingSection heading="Une vraie immersion, avec des enseignantes natives et bilingues">
+      <LandingSection heading="Une immersion complète, avec des enseignantes anglophones et bilingues">
         <P>
           Un cours d'anglais une ou deux fois par semaine ne crée pas de bilinguisme — il crée du vocabulaire appris
           par cœur qui s'évapore pendant les vacances. Ce qui fonctionne, c'est l'immersion : la langue présente dans
@@ -120,15 +120,15 @@ export const EnglishImmersionFr: React.FC = () => {
         </P>
         <P>
           À l'Escola Montessoriana, les enfants baignent dans l'anglais chaque jour, porté par la voix d'enseignantes
-          qui le parlent couramment — natives et Brésiliennes bilingues. La langue surgit dans les jeux, les chansons,
+          qui le parlent couramment — anglophones de naissance et Brésiliennes bilingues. La langue surgit dans les jeux, les chansons,
           les repas, la cour — exactement comme leur langue maternelle est entrée dans leur vie. Sans pression, sans
           contrôles, sans « c'est l'heure de l'anglais ». La langue devient simplement une partie de la vie.
         </P>
         <P>
-          Et il faut de vraies personnes : les recherches de Patricia Kuhl ont montré que les bébés apprennent les
+          Et il faut des personnes en chair et en os : les recherches de Patricia Kuhl ont montré que les bébés apprennent les
           sons d'une nouvelle langue auprès d'une personne présente qui interagit — et n'apprennent rien en regardant
-          le même contenu sur un écran, seuls. C'est pourquoi l'immersion en direct, avec de vraies personnes chaque
-          jour, fait toute la différence — et aucune application ne peut la remplacer.
+          le même contenu sur un écran, seuls. C'est pourquoi l'immersion en direct, au contact de personnes réelles
+          chaque jour, fait toute la différence — et aucune application ne peut la remplacer.
         </P>
       </LandingSection>
 
@@ -145,7 +145,7 @@ export const EnglishImmersionFr: React.FC = () => {
 
       <LandingCTAFr
         heading="Venez écouter des enfants vivre en deux langues"
-        text="Planifiez une visite et observez l'immersion se faire naturellement, avec des enseignantes natives et brésiliennes, au beau milieu du quotidien."
+        text="Réservez une visite et observez l'immersion se faire naturellement, avec des enseignantes anglophones et brésiliennes, au beau milieu du quotidien."
       />
     </div>
   );

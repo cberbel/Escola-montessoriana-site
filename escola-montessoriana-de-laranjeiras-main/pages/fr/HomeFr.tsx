@@ -12,7 +12,7 @@ import { usePageMeta } from '../../components/landing/Landing';
 export const HomeFr: React.FC = () => {
   usePageMeta(
     'Escola Montessoriana de Laranjeiras | École Montessori trilingue à Rio de Janeiro',
-    "École Montessori à Laranjeiras, Rio de Janeiro. Immersion en anglais au quotidien avec des enseignantes natives et bilingues, alimentation saine, zéro écran et un cadre chaleureux et verdoyant. Planifiez votre visite."
+    "École Montessori à Laranjeiras, Rio de Janeiro. Immersion en anglais au quotidien avec des enseignantes anglophones et bilingues, cuisine maison, zéro écran et un cadre chaleureux et verdoyant. Réservez votre visite."
   );
 
   return (

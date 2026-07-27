@@ -40,7 +40,7 @@ export const TestimonialsFr: React.FC = () => {
     },
     {
       id: 4,
-      name: 'Papa de Madalena',
+      name: 'Le papa de Madalena',
       role: '',
       src: '/videos/depoimento-madalena-en.mp4',
       poster: '/images/thumb-depoimento-madalena-en.jpg',
@@ -101,7 +101,7 @@ export const TestimonialsFr: React.FC = () => {
             onClick={() => trackWhatsAppClick('depoimentos')}
             className="inline-flex items-center justify-center min-h-[52px] px-8 py-4 bg-[#25D366] text-white font-semibold rounded-sm hover:bg-[#20bd5a] transition-colors shadow-lg hover:shadow-xl"
           >
-            Planifier ma visite
+            Réserver ma visite
           </a>
         </div>
       </div>
