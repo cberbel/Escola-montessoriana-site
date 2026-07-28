@@ -120,7 +120,7 @@ export const EnglishImmersionFr: React.FC = () => {
         </P>
         <P>
           À l'Escola Montessoriana, les enfants baignent dans l'anglais chaque jour, porté par la voix d'enseignantes
-          qui le parlent couramment — anglophones de naissance et Brésiliennes bilingues. La langue surgit dans les jeux, les chansons,
+          qui le parlent couramment — de langue maternelle anglaise et des Brésiliennes bilingues. La langue surgit dans les jeux, les chansons,
           les repas, la cour — exactement comme leur langue maternelle est entrée dans leur vie. Sans pression, sans
           contrôles, sans « c'est l'heure de l'anglais ». La langue devient simplement une partie de la vie.
         </P>

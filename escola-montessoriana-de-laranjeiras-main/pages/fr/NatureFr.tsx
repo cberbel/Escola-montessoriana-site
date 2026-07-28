@@ -68,8 +68,8 @@ export const NatureFr: React.FC = () => {
           caption="La tâche cosmique au creux de la main : les restes du goûter deviennent de la terre fertile, et le ver de terre devient un ami."
         />
         <P>
-          <strong>Et bientôt, des abeilles natives sans dard :</strong> nous préparons l'arrivée d'un méliponaire avec
-          des abeilles brésiliennes comme la jataí — sans dard, sans danger pour les enfants, et parmi les
+          <strong>Et bientôt, des abeilles indigènes sans aiguillon :</strong> nous préparons l'arrivée d'un méliponaire avec
+          des abeilles brésiliennes comme la jataí — sans aiguillon, sans danger pour les enfants, et parmi les
           principales pollinisatrices de notre flore. Les enfants suivront de tout près le travail de l'une des
           créatures les plus importantes de la planète.
         </P>
@@ -199,7 +199,7 @@ export const NatureFr: React.FC = () => {
         <Bullets
           items={[
             'Un terrain arboré en plein cœur de Laranjeiras — un refuge de verdure dans le rythme de la ville.',
-            'Des ateliers de permaculture au quotidien : potager, lombricomposteur et, bientôt, des abeilles natives sans dard.',
+            'Des ateliers de permaculture au quotidien : potager, lombricomposteur et, bientôt, des abeilles indigènes sans aiguillon.',
             'Du temps dehors chaque jour, avec bac à sable et exploration libre.',
             "De grands espaces et la motricité libre, dans l'ambiance comme au dehors.",
             "Zéro écran : de l'expérience concrète plutôt que de la stimulation passive.",

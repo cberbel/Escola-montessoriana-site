@@ -5,7 +5,7 @@ import { Section } from '../ui/Section';
 const periods = [
   {
     icon: <Sun size={28} />,
-    name: 'Mi-temps',
+    name: 'Demi-journée',
     times: ['Matin · 8h à 12h', 'Après-midi · 13h à 17h'],
     note: "Votre enfant vient le matin ou l'après-midi.",
   },

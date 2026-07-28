@@ -107,7 +107,7 @@ export const ClassesFr: React.FC = () => {
         </P>
         <Bullets
           items={[
-            <><strong>Mi-temps :</strong> le matin, de 8h à 12h, ou l'après-midi, de 13h à 17h.</>,
+            <><strong>Demi-journée :</strong> le matin, de 8h à 12h, ou l'après-midi, de 13h à 17h.</>,
             <><strong>Journée complète :</strong> de 8h à 17h, avec déjeuner et sieste.</>,
             <><strong>Horaires étendus :</strong> de 7h30 à 19h, pour les familles qui en ont besoin.</>,
           ]}

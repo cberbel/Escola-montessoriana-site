@@ -23,7 +23,7 @@ export const PhilosophyFr: React.FC = () => {
     {
       icon: <Heart size={32} />,
       title: 'Attentionné',
-      text: "Il traite ses camarades, les adultes et son environnement avec soin et respect. La politesse ne se décrète pas : elle naît de la vie en groupe, où l'enfant reçoit le même respect que celui qu'on lui apprend à offrir."
+      text: "Il traite ses camarades, les adultes et son environnement avec soin et respect. La politesse ne se décrète pas : elle naît de la vie en groupe, où l'enfant reçoit le même respect que celui qu'on lui apprend à témoigner."
     },
     {
       icon: <Hand size={32} />,

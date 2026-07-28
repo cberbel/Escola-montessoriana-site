@@ -5,7 +5,7 @@ import { LandingHeroFr, LandingCTAFr } from '../../components/landing/LandingFr'
 export const WelcomingFr: React.FC = () => {
   usePageMeta(
     'Bienveillance et accueil | Escola Montessoriana de Laranjeiras',
-    "Un accueil chaleureux et bienveillant : la sécurité affective comme socle du développement, une période d'adaptation en douceur au rythme de l'enfant, beaucoup de câlins, de la souplesse pour la famille et une cuisine maison saine — sans huiles raffinées, sans sel raffiné, sans sucre."
+    "Un accueil chaleureux et bienveillant : la sécurité affective comme socle du développement, une période d'adaptation en douceur au rythme de l'enfant, beaucoup de câlins, de la souplesse pour la famille et une cuisine maison saine — sans huiles végétales raffinées, sans sel raffiné, sans sucre."
   );
 
   return (
@@ -87,13 +87,13 @@ export const WelcomingFr: React.FC = () => {
       <LandingSection heading="Accueillir la famille aussi">
         <P>
           Confier son enfant à d'autres mains est l'un des pas les plus délicats qu'une famille puisse faire. Nous le
-          savons — et nous accueillons les parents avec le même soin que les enfants. Pour les familles francophones et
-          internationales : <strong>nous parlons français et anglais</strong>, et plusieurs de nos enseignantes sont
-          anglophones de naissance ou bilingues.
+          savons — et nous accueillons les parents avec le même soin que les enfants. Pour les familles
+          internationales : <strong>nous parlons anglais</strong>, et plusieurs de nos enseignantes sont de langue
+          maternelle anglaise ou bilingues.
         </P>
         <Bullets
           items={[
-            <><strong>Temps partiel :</strong> mi-temps et jours alternés, pour les familles qui souhaitent une transition plus douce ou un rythme plus léger.</>,
+            <><strong>Temps partiel :</strong> demi-journées et jours alternés, pour les familles qui souhaitent une transition plus douce ou un rythme plus léger.</>,
             <><strong>Horaires souples :</strong> nous nous adaptons autant que possible à la réalité de chaque famille, au lieu de faire entrer tout le monde dans le même moule.</>,
             <><strong>Communication transparente :</strong> vous savez comment s'est passée la journée de votre enfant, sans détours.</>,
             <><strong>Un partenariat, pas un remplacement :</strong> l'école chemine aux côtés de la famille, dans le respect des choix et du moment de chaque foyer.</>,
@@ -109,14 +109,14 @@ export const WelcomingFr: React.FC = () => {
         <P>
           Veiller à ce qui entre dans le corps d'un enfant, c'est veiller à son humeur, son sommeil, sa concentration
           et sa santé. C'est pourquoi nous prenons l'alimentation aussi au sérieux que les câlins. Nous servons une{' '}
-          <strong>cuisine maison</strong>, préparée avec soin : <strong>sans huiles raffinées, sans sel raffiné,
-          sans sucre</strong>. À la place : des ingrédients frais et complets, de bonnes graisses et des assaisonnements
+          <strong>cuisine maison</strong>, préparée avec soin : <strong>sans huiles végétales raffinées, sans sel
+          raffiné, sans sucre</strong>. À la place : des ingrédients frais et complets, de bonnes graisses et des assaisonnements
           naturels.
         </P>
         <LandingImage src="/images/acolhimento/almoco-juntos.jpg" alt="Jeunes enfants déjeunant ensemble à la table basse de l'ambiance, chacun avec son assiette, deux éducatrices tout près" />
         <P>
-          Et le repas lui-même est un moment d'accueil et d'apprentissage. Les petits déjeunent ensemble, à table, à
-          leur rythme. Ils apprennent à manger seuls, à se servir, à goûter de nouvelles saveurs — avec autonomie et
+          Et le repas lui-même est un moment d'accueil et d'apprentissage. Les petits prennent leur déjeuner ensemble,
+          à table, à leur rythme. Ils apprennent à manger seuls, à se servir, à goûter de nouvelles saveurs — avec autonomie et
           plaisir, sans pression et sans marchandage. Bien manger, ici, c'est aussi une manière de vivre ensemble et
           de prendre soin de soi.
         </P>
