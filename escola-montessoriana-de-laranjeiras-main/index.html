@@ -141,9 +141,14 @@
         primeiroScript.parentNode.insertBefore(fb, primeiroScript);
 
         // Google Ads + Google Analytics 4 (propriedade "site escola")
+        // ATENÇÃO: o id da URL precisa ser o do GA4 (G-...), não o do Ads (AW-...).
+        // Carregando com o id do Ads, o gtag criava container só para o Ads e os
+        // eventos personalizados (whatsapp_click, generate_lead, schedule_visit)
+        // eram descartados — chegava ao GA4 apenas o page_view espelhado.
+        // O Ads continua funcionando pelo gtag('config','AW-...') feito no <head>.
         var g = document.createElement('script');
         g.async = true;
-        g.src = 'https://www.googletagmanager.com/gtag/js?id=AW-16743400376';
+        g.src = 'https://www.googletagmanager.com/gtag/js?id=G-79X03K7F7F';
         document.head.appendChild(g);
       });
     </script>
