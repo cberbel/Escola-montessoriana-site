@@ -43,7 +43,7 @@ export const MetodoMontessoriEs: React.FC = () => {
 
       <LandingSection heading="Quién fue Maria Montessori" className="pt-10 sm:pt-14">
         <P>
-          Maria Montessori (1870–1952) fue una de las primeras mujeres en recibirse de médica en Italia. Científica
+          Maria Montessori (1870–1952) fue una de las primeras mujeres en graduarse como médica en Italia. Científica
           antes que educadora, hizo lo que nadie más estaba haciendo: observar a los niños con rigor científico, sin
           apuro y sin prejuicios. Lo que vio lo cambió todo: el niño no es un adulto en miniatura al que hay que
           "enseñarle" todo el tiempo, sino un ser que se construye a sí mismo, siempre que encuentre el ambiente

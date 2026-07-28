@@ -5,7 +5,7 @@ import { LandingHeroEs, LandingCTAEs } from '../../components/landing/LandingEs'
 export const AcogidaEs: React.FC = () => {
   usePageMeta(
     'Acogida | Escola Montessoriana de Laranjeiras',
-    'Cuidado cálido y atento: la seguridad emocional como base del desarrollo, un período de adaptación al ritmo del niño, muchos brazos, flexibilidad para la familia y comida de verdad — sin aceites de semillas, sal refinada ni azúcar.'
+    'Cuidado cálido y atento: la seguridad emocional como base del desarrollo, un período de adaptación al ritmo del niño, mucho afecto, flexibilidad para la familia y comida de verdad — sin aceites de semillas, sal refinada ni azúcar.'
   );
 
   return (
@@ -13,7 +13,7 @@ export const AcogidaEs: React.FC = () => {
       <LandingHeroEs
         eyebrow="Acogida"
         title="Recibido de verdad: un niño solo florece cuando se siente seguro"
-        subtitle="Antes que cualquier currículo vienen los brazos. Aquí, cada niño — y cada familia — es recibido con tiempo, respeto y cariño genuino."
+        subtitle="Antes que cualquier currículo está el afecto. Aquí, cada niño — y cada familia — es recibido con tiempo, respeto y cariño genuino."
       />
 
       <LandingSection heading="La seguridad es la base de todo desarrollo" className="pt-10 sm:pt-14">
@@ -59,11 +59,11 @@ export const AcogidaEs: React.FC = () => {
         </p>
       </LandingSection>
 
-      <LandingSection heading="Damos muchos brazos" className="bg-montessori-cream/60 py-10 sm:py-14 rounded-sm">
+      <LandingSection heading="Brazos, todos los que hagan falta" className="bg-montessori-cream/60 py-10 sm:py-14 rounded-sm">
         <P>
-          Los brazos no malcrían. Los brazos no estorban la independencia. Es exactamente al revés: el niño cuyas
-          necesidades son atendidas — al que alzan cuando lo necesita, consuelan cuando llora, ven cuando llama —
-          construye una seguridad interior que lo acompaña toda la vida.
+          Alzar a un niño en brazos no lo malcría, y no le estorba la independencia. Es exactamente al revés: el niño
+          cuyas necesidades son atendidas — al que alzan cuando lo necesita, consuelan cuando llora, miran cuando
+          llama — construye una seguridad interior que lo acompaña toda la vida.
         </P>
         <P>
           Y es desde esa base segura que nace el coraje de separarse, explorar y volverse independiente. Un niño solo
@@ -102,7 +102,7 @@ export const AcogidaEs: React.FC = () => {
       <LandingSection id="food" heading="La comida también es cuidado">
         <P>
           Cuidar lo que entra al cuerpo de un niño es cuidar su ánimo, su sueño, su concentración y su salud. Por eso
-          nos tomamos la comida tan en serio como los brazos. Servimos <strong>comida de verdad</strong>, cocinada con
+          nos tomamos la comida tan en serio como los mimos. Servimos <strong>comida de verdad</strong>, cocinada con
           cariño: <strong>sin aceites de semillas, sin sal refinada y sin azúcar</strong>. En su lugar: ingredientes
           frescos e integrales, grasas de verdad y condimentos naturales.
         </P>
@@ -110,7 +110,7 @@ export const AcogidaEs: React.FC = () => {
         <P>
           Y la comida en sí es un momento de acogida y de aprendizaje. Los pequeños almuerzan juntos, en la mesa, a su
           propio ritmo. Aprenden a comer solos, a servirse, a probar sabores nuevos — con independencia y con gusto,
-          sin presiones y sin regateos. Comer bien, aquí, también es una forma de estar juntos y de cuidarse.
+          sin presiones y sin negociar cada bocado. Comer bien, aquí, también es una forma de estar juntos y de cuidarse.
         </P>
         <LandingImage src="/images/acolhimento/almoco-bebes.jpg" alt="Bebés comiendo solos con sus cucharas en la mesa baja, acompañados de cerca por las maestras" />
         <p className="-mt-2 text-center text-sm text-gray-500">
@@ -120,7 +120,7 @@ export const AcogidaEs: React.FC = () => {
 
       <LandingCTAEs
         heading="Ven a sentir la acogida en persona"
-        text="El calor de una escuela no cabe en palabras — se siente en el aire, en los brazos, en cómo te reciben. Agenda una visita y mira cómo acogen a tu hijo."
+        text="El calor de una escuela no cabe en palabras — se siente en el aire, en el modo de alzar a un niño, en cómo te reciben. Agenda una visita y mira cómo acogen a tu hijo."
       />
     </div>
   );

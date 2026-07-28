@@ -17,7 +17,7 @@ export const PracticeEs: React.FC = () => {
           </p>
           <ul className="font-sans text-base sm:text-lg text-white/90 space-y-2 sm:space-y-3 max-w-xl list-none [&>li]:relative [&>li]:pl-6 [&>li]:before:content-['•'] [&>li]:before:absolute [&>li]:before:left-0 [&>li]:before:text-montessori-gold [&>li]:before:font-bold">
             <li>Francés, mandarín, español, italiano o alemán.</li>
-            <li>Tu hijo alcanza una fluidez real, con todos los beneficios cognitivos de aprender idiomas desde pequeño.</li>
+            <li>Tu hijo llega a hablar con fluidez real, con todos los beneficios cognitivos de aprender idiomas desde pequeño.</li>
           </ul>
         </div>
         <div className="min-w-0 w-full md:w-auto">

@@ -43,10 +43,10 @@ export const CerebroEs: React.FC = () => {
         </p>
       </LandingSection>
 
-      <LandingSection heading='"Las habilidades engendran habilidades": por qué el atraso se acumula' className="bg-montessori-cream/60 py-10 sm:py-14 rounded-sm">
+      <LandingSection heading='"Las habilidades generan habilidades": por qué el atraso se acumula' className="bg-montessori-cream/60 py-10 sm:py-14 rounded-sm">
         <P>
           Uno de los hallazgos más importantes de la economía de la educación — del Premio Nobel James Heckman — es
-          que la habilidad engendra habilidad, y la motivación engendra motivación. Capacidades fundamentales como la
+          que la habilidad genera más habilidad, y la motivación genera más motivación. Capacidades fundamentales como la
           atención, la autorregulación y la comunicación, construidas en los primeros años, son la base sobre la que
           después se apoyan habilidades más complejas: el razonamiento, la lectura, las relaciones sociales.
         </P>
@@ -144,7 +144,7 @@ export const CerebroEs: React.FC = () => {
         </Highlight>
       </LandingSection>
 
-      <LandingSection heading={'"Pero hay un jardín aquí a la vuelta..."'}>
+      <LandingSection heading={'"Pero hay una guardería a la vuelta de casa..."'}>
         <P>
           Es la duda más honesta que escuchamos — y merece una respuesta honesta. La comodidad importa, sobre todo en
           la rutina cargada de los padres con hijos pequeños. Pero a la luz de lo que la ciencia muestra sobre la
@@ -154,7 +154,7 @@ export const CerebroEs: React.FC = () => {
         <Bullets
           items={[
             <><strong>Haz la cuenta de las horas.</strong> Diez o quince minutos más de trayecto — contra 8, 9, 10 horas al día que tu hijo vive dentro de la escuela. ¿Qué pesa más en su vida: los pocos minutos en el auto, o las miles de horas de experiencias construyendo su cerebro?</>,
-            <><strong>Esta ventana no vuelve.</strong> Como mostró el trabajo de Charles Nelson, cuanto antes llega el ambiente adecuado, mayor es la recuperación posible — y lo inverso también vale. Las habilidades engendran habilidades: lo que no se construye ahora se vuelve más difícil de construir después.</>,
+            <><strong>Esta ventana no vuelve.</strong> Como mostró el trabajo de Charles Nelson, cuanto antes llega el ambiente adecuado, mayor es la recuperación posible — y lo inverso también vale. Las habilidades generan habilidades: lo que no se construye ahora se vuelve más difícil de construir después.</>,
             <><strong>"Bien cuidado" no es lo mismo que desarrollándose.</strong> Un lugar limpio y amable es lo mínimo. La pregunta correcta es: ¿qué pasa con el lenguaje, el movimiento y el apego de mi hijo durante las 8 horas al día que pasa ahí?</>,
           ]}
         />

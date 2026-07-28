@@ -8,31 +8,31 @@ export const PhilosophyEs: React.FC = () => {
     {
       icon: <Globe size={32} />,
       title: 'Con inglés fluido para toda la vida',
-      text: 'Vive en inglés todos los días, por inmersión, a la edad en que el cerebro absorbe los idiomas sin esfuerzo. Lo que hoy empieza como juego se convierte en una fluidez natural para toda la vida: sin acento y sin necesidad de academias más adelante.'
+      text: 'Vive en inglés todos los días, por inmersión, a la edad en que el cerebro absorbe los idiomas sin esfuerzo. Lo que hoy empieza como juego se convierte en una fluidez natural para toda la vida: sin acento y sin tener que ponerse al día con cursos de inglés más adelante.'
     },
     {
       icon: <Focus size={32} />,
       title: 'Que se concentra',
-      text: 'Se sumerge en lo que está haciendo y sigue con la actividad hasta terminarla. La concentración profunda es la base de todo aprendizaje, y se construye día a día en un ambiente preparado para eso.'
+      text: 'Se mete de lleno en lo que está haciendo y no lo suelta hasta terminarlo. La concentración profunda es la base de todo aprendizaje, y se construye día a día en un ambiente preparado para eso.'
     },
     {
       icon: <Sun size={32} />,
       title: 'Seguro de sí mismo',
-      text: 'Confía en su propia capacidad porque logra las cosas por sí solo. Cada desafío superado a su propio ritmo, sin apuros ni comparaciones, fortalece la confianza para enfrentar el siguiente.'
+      text: 'Confía en su propia capacidad porque hace las cosas por sí mismo. Cada desafío superado a su propio ritmo, sin apuros ni comparaciones, fortalece la confianza para enfrentar el siguiente.'
     },
     {
       icon: <Heart size={32} />,
       title: 'Amable',
-      text: 'Trata a sus compañeros, a los adultos y al ambiente con cuidado y respeto. La cortesía no se impone: nace de la vida en una comunidad donde el niño recibe el mismo respeto que aprende a ofrecer.'
+      text: 'Trata a sus compañeros, a los adultos y al ambiente con cuidado y respeto. La cortesía no se impone: nace de la vida en una comunidad donde el niño recibe el mismo respeto que aprende a dar.'
     },
     {
       icon: <Hand size={32} />,
       title: 'Autónomo en el día a día',
-      text: 'Se viste, come solo, ordena sus cosas y cuida el espacio que lo rodea. La autonomía práctica le da al niño el orgullo genuino de quien puede cuidarse a sí mismo y aportar a los demás.'
+      text: 'Se viste, come solo, ordena sus cosas y cuida el espacio que lo rodea. La autonomía práctica le da al niño el orgullo genuino de quien puede valerse por sí mismo y además ayudar a los demás.'
     },
     {
       icon: <BookOpen size={32} />,
-      title: 'Que ama aprender',
+      title: 'Que disfruta aprender',
       text: 'Aprende porque quiere, siguiendo la curiosidad natural de todo niño. Cuando el aprendizaje nace del interés, no necesita premios ni presiones — y dura toda la vida.'
     },
     {

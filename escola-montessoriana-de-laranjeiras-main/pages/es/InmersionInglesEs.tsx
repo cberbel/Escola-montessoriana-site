@@ -87,7 +87,7 @@ export const InmersionInglesEs: React.FC = () => {
           Las funciones ejecutivas predicen el éxito escolar y profesional mejor que el propio coeficiente
           intelectual — y, como toda habilidad fundamental, se construyen con más facilidad en los primeros años.{' '}
           <Link to="/es/el-cerebro-de-tu-hijo" className="text-montessori-green font-semibold underline hover:no-underline">
-            Es el principio de "las habilidades engendran habilidades"
+            Es el principio de "las habilidades generan habilidades"
           </Link>: cuanto antes se construye esta base, más se apoya en ella todo lo que viene después.
         </P>
       </LandingSection>

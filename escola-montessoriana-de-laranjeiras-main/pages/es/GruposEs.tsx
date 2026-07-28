@@ -45,8 +45,8 @@ export const GruposEs: React.FC = () => {
         </P>
         <P>
           Y los intercambios transforman a los dos lados: los mayores consolidan lo que saben ayudando a los más
-          chicos — no hay aprendizaje más profundo que enseñar. Los menores, a su vez, se miran en los mayores y son
-          impulsados hacia arriba, sin presión. En lugar de la competencia de "todos haciendo lo mismo al mismo
+          chicos — no hay aprendizaje más profundo que enseñar. Los menores, a su vez, miran a los mayores y eso los
+          impulsa hacia adelante, sin presión. En lugar de la competencia de "todos haciendo lo mismo al mismo
           tiempo", crecen la cooperación, el cuidado y el respeto por el ritmo de cada uno.
         </P>
         <Highlight>
@@ -60,7 +60,7 @@ export const GruposEs: React.FC = () => {
         <P>
           El primer ambiente fuera de casa. Aquí todo está pensado para que los bebés y los niños muy pequeños
           exploren con seguridad: estructuras de movimiento y de trepar, materiales al alcance de las manos pequeñas y
-          muchos brazos. Es la etapa de caminar, de hablar, de la independencia que asoma — vestirse, comer solo,
+          muchos mimos. Es la etapa de caminar, de hablar, de la independencia que asoma — vestirse, comer solo,
           cuidarse — y del lenguaje, que florece cuando al niño se lo escucha y se lo respeta.
         </P>
         <LandingImage src="/images/turmas/agrupada-1.jpg" alt="Bebé sonriente de pie en la estructura de psicomotricidad de madera del salón de la Agrupada 1" portrait />

@@ -17,7 +17,7 @@ const topics = [
     alt: 'Bebé sonriente en la estructura de psicomotricidad de la escuela',
     position: 'center 40%',
     title: 'Acogida',
-    text: 'La seguridad emocional es la base del desarrollo: un período de adaptación respetuoso, muchos brazos y flexibilidad para la familia. Por qué la acogida viene antes que cualquier enseñanza.',
+    text: 'La seguridad emocional es la base del desarrollo: un período de adaptación respetuoso, muchos mimos y flexibilidad para la familia. Por qué la acogida viene antes que cualquier enseñanza.',
     to: '/es/acogida',
   },
   {

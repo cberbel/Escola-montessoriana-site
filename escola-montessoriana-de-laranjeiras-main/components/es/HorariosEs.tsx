@@ -34,7 +34,7 @@ export const HorariosEs: React.FC = () => (
         Un horario que se adapta a la rutina de tu familia
       </h2>
       <p className="font-sans text-lg text-montessori-dark mt-4 max-w-2xl mx-auto px-1 leading-relaxed">
-        Abrimos de <strong>7:30 a 19:00</strong>. Elige la jornada que mejor le quede a tu día.
+        Abrimos de <strong>7:30 a 19:00</strong>. Elige la jornada que mejor se adapte a tu día.
       </p>
     </div>
 
