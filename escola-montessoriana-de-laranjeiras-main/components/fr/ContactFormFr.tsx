@@ -141,7 +141,7 @@ export const ContactFormFr: React.FC = () => {
             </p>
             <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-4 gap-1 text-base text-yellow-400 uppercase tracking-wider font-bold mb-6">
               <span>• Réponse rapide</span>
-              <span>• Sans engagement</span>
+              <span>• Nous parlons français et anglais</span>
             </div>
             <p className="text-white/90 text-sm">
               Renseignez vos coordonnées ci-dessous et cliquez sur « Envoyer » — votre message arrive directement dans

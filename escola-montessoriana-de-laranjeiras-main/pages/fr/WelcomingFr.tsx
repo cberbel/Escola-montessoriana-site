@@ -87,9 +87,9 @@ export const WelcomingFr: React.FC = () => {
       <LandingSection heading="Accueillir la famille aussi">
         <P>
           Confier son enfant à d'autres mains est l'un des pas les plus délicats qu'une famille puisse faire. Nous le
-          savons — et nous accueillons les parents avec le même soin que les enfants. Pour les familles
-          internationales : <strong>nous parlons anglais</strong>, et plusieurs de nos enseignantes sont de langue
-          maternelle anglaise ou bilingues.
+          savons — et nous accueillons les parents avec le même soin que les enfants. Pour les familles francophones et
+          internationales : <strong>nous parlons français et anglais</strong>, et plusieurs de nos enseignantes sont de
+          langue maternelle anglaise ou bilingues.
         </P>
         <Bullets
           items={[
