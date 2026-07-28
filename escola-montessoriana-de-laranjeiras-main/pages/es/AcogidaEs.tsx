@@ -82,8 +82,9 @@ export const AcogidaEs: React.FC = () => {
       <LandingSection heading="Acogemos también a la familia">
         <P>
           Confiar tu hijo a otras manos es uno de los pasos más delicados que da una familia. Lo sabemos — y recibimos
-          a los padres con el mismo cuidado con que recibimos a los niños. Para las familias extranjeras:{' '}
-          <strong>hablamos inglés</strong>, y varias de nuestras docentes son nativas o bilingües.
+          a los padres con el mismo cuidado con que recibimos a los niños. Para las familias hispanohablantes e
+          internacionales: <strong>hablamos español e inglés</strong>, y varias de nuestras docentes son de lengua
+          materna inglesa o bilingües.
         </P>
         <Bullets
           items={[

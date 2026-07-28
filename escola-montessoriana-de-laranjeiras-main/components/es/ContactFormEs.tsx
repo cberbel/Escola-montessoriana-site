@@ -141,7 +141,7 @@ export const ContactFormEs: React.FC = () => {
             </p>
             <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-4 gap-1 text-base text-yellow-400 uppercase tracking-wider font-bold mb-6">
               <span>• Respuesta rápida</span>
-              <span>• Sin compromiso</span>
+              <span>• Hablamos español</span>
             </div>
             <p className="text-white/90 text-sm">
               Completa el formulario y haz clic en &quot;Enviar&quot;: tu mensaje llega directo al correo de la escuela.
