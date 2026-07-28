@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import './index.css';
-import { trackPageView } from './utils/tracking';
+import { trackPageView, listenCalendlyScheduled } from './utils/tracking';
 import { Main } from './components/Main';
 import { Home } from './pages/Home';
 import { Agendamento } from './pages/Agendamento';
@@ -89,6 +89,10 @@ const ScrollToTop: React.FC = () => {
 };
 
 const App: React.FC = () => {
+  // Conversão de agendamento: o Calendly (em qualquer idioma) avisa por postMessage
+  // quando a visita é efetivamente marcada. Um listener só, para o site inteiro.
+  useEffect(() => listenCalendlyScheduled(), []);
+
   return (
     <BrowserRouter>
       <ScrollToTop />
