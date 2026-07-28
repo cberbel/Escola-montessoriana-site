@@ -7,7 +7,7 @@ export const PhilosophyFr: React.FC = () => {
   const traits = [
     {
       icon: <Globe size={32} />,
-      title: "L'anglais courant, pour la vie",
+      title: "Parlant couramment l'anglais",
       text: "Il baigne chaque jour dans l'anglais, par immersion, à l'âge où le cerveau absorbe les langues sans effort. Ce qui passe aujourd'hui par le jeu deviendra une aisance naturelle, pour toute la vie — sans accent et sans années de cours plus tard."
     },
     {
@@ -68,7 +68,7 @@ export const PhilosophyFr: React.FC = () => {
         </div>
         <div className="min-w-0 px-1 text-left">
           <h3 className="font-serif text-2xl sm:text-3xl text-montessori-green mb-3 sm:mb-4">
-            Qui votre enfant devient-il à l'école Montessori trilingue ?
+            Comment votre enfant s'épanouit-il dans une école Montessori trilingue ?
           </h3>
           <p className="font-sans text-lg md:text-xl text-montessori-dark leading-relaxed">
             Maria Montessori a découvert que, dans le bon environnement, chaque enfant révèle le meilleur de lui-même.
