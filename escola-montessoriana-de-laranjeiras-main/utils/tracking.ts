@@ -35,11 +35,11 @@ export function trackFormSubmit(): void {
     trackWhatsAppConversion?: () => void;
   };
   if (typeof w.fbq === 'function') w.fbq('track', 'Lead');
-  if (typeof w.gtag === 'function') {
-    w.gtag('event', 'generate_lead');
-    // Conversão do Google Ads: um formulário enviado vale o mesmo que um contato no WhatsApp
-    w.gtag('event', 'conversion', { send_to: 'AW-16743400376/psM9CKCH4PUbELiH8K8-' });
-  }
+  if (typeof w.gtag === 'function') w.gtag('event', 'generate_lead');
+  // A conversão do Google Ads é disparada pelo GTM (tag "tag formulario", acionador
+  // "Evento - form_submit"), que lê o push abaixo. Não dispare aqui também: até jul/2026
+  // este ponto enviava a conversão de "Contato no Whatsapp" — herança de quando o
+  // formulário era enviado pelo WhatsApp — o que contava envios de formulário na ação errada.
   w.dataLayer = w.dataLayer || [];
   w.dataLayer.push({ event: 'form_submit', page_path: window.location.pathname });
 }
