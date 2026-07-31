@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import './index.css';
 import { trackPageView, listenCalendlyScheduled } from './utils/tracking';
+import { capturarGclid } from './utils/gclid';
 import { Main } from './components/Main';
 import { Home } from './pages/Home';
 import { Agendamento } from './pages/Agendamento';
@@ -92,6 +93,10 @@ const App: React.FC = () => {
   // Conversão de agendamento: o Calendly (em qualquer idioma) avisa por postMessage
   // quando a visita é efetivamente marcada. Um listener só, para o site inteiro.
   useEffect(() => listenCalendlyScheduled(), []);
+
+  // Guarda o GCLID que veio na URL do anúncio. Roda uma vez, antes de qualquer
+  // navegação interna apagar o parâmetro.
+  useEffect(() => capturarGclid(), []);
 
   return (
     <BrowserRouter>
