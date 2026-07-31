@@ -16,6 +16,8 @@ type FormState = {
   email: string;
   neighborhood: string;
   comments: string;
+  /** Honeypot: invisivel para pessoas, preenchido por bots. Se vier com valor, o envio e descartado. */
+  honey: string;
 };
 
 function buildWhatsAppMessage(data: FormState) {
@@ -51,7 +53,9 @@ function submitViaFormPost(data: FormState, iframeName: string) {
     _subject: 'Contact site (FR) – Escola Montessoriana',
     _replyto: data.email,
     _captcha: 'false',
-    _template: 'table'
+    _template: 'table',
+    // Honeypot do FormSubmit: se um bot preencher o campo oculto, o envio e descartado no servidor
+    _honey: data.honey
   };
   for (const [name, value] of Object.entries(fields)) {
     const input = document.createElement('input');
@@ -77,7 +81,8 @@ export const ContactFormFr: React.FC = () => {
     phone: '',
     email: '',
     neighborhood: '',
-    comments: ''
+    comments: '',
+    honey: ''
   });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -87,6 +92,14 @@ export const ContactFormFr: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Bot: campo oculto preenchido. Encerra sem enviar e SEM disparar a conversao,
+    // para que trafego automatizado nao entre na contagem do Google Ads.
+    if (formState.honey) {
+      setSubmitted(true);
+      return;
+    }
+
     setError(null);
     setLoading(true);
     try {
@@ -159,6 +172,9 @@ export const ContactFormFr: React.FC = () => {
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-6">
+              {/* Honeypot: fora da tela e do foco. Pessoas nao veem nem tabulam ate aqui; bots preenchem. */}
+              <input type="text" name="honey" value={formState.honey} onChange={handleChange}
+                className="absolute w-0 h-0 opacity-0 -left-[9999px]" tabIndex={-1} autoComplete="off" aria-hidden />
               <div>
                 <label htmlFor="responsibleName-fr" className={labelClass}>
                   Nom du parent <span className="text-red-500">*</span>
