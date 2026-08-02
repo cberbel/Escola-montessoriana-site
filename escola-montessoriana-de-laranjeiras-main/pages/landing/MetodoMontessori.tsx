@@ -187,9 +187,68 @@ export const MetodoMontessori: React.FC = () => {
           </p>
         </Area>
 
+        <Area
+          title="Artes"
+          materials="Tintas guache e aquarela, pincéis, giz de cera, colagem, massinha, papel machê e materiais da natureza."
+        >
+          <p>
+            Antes de dominar a palavra, a criança já se expressa pela mão. Na arte, ela dá forma ao que sente e ao
+            que imagina — a alegria, a saudade, o medo, a descoberta — e vai aprendendo que existem muitas linguagens
+            para dizer quem ela é. É trabalho de <strong>expressão e de sentimento</strong>, não de "trabalhinho
+            bonito para a parede".
+          </p>
+          <p>
+            Ao mesmo tempo, a criança se <strong>familiariza com os meios</strong>: a tinta que escorre, o pincel que
+            obedece (ou não), o giz, a cola, o papel que rasga, a textura da massinha. Cada material tem um
+            comportamento próprio, e conhecê-los é ampliar o <strong>repertório</strong> — de cores, de formas, de
+            possibilidades. E há ainda o ganho silencioso que atravessa todo o currículo Montessori: pintar, recortar
+            e modelar <strong>exercitam as mãos</strong>, refinando a coordenação que mais tarde sustenta a escrita.
+          </p>
+          <p>
+            Como em tudo no método, o que importa é o processo, não o produto: ninguém corrige o desenho da criança
+            nem pinta por ela. O resultado são crianças que criam com confiança — e adoram mostrar o que fizeram.
+          </p>
+        </Area>
+        <LandingImagePair
+          images={[
+            { src: '/images/acolhimento/adaptacao-artes.jpg', alt: 'Bebê de avental rosa explorando tinta e massa com as mãos, na atividade de artes' },
+            { src: '/images/montessori/artes-thadeu.jpg', alt: 'Menino concentrado pintando com pincel e aquarela na mesa da sala' },
+          ]}
+        />
+        <LandingImagePair
+          images={[
+            { src: '/images/montessori/artes-safira.jpg', alt: 'Bebê pintando com as mãos usando as cores primárias sobre o papel' },
+            { src: '/images/natureza/colagem-folhas.jpg', alt: 'Menina sorrindo mostrando sua colagem feita com folhas colhidas no pátio' },
+          ]}
+          caption="Dos primeiros contatos com a tinta à obra que se mostra com orgulho: expressão desde bebê."
+        />
+        <LandingImagePair
+          images={[
+            { src: '/images/montessori/artes-theo-lapis.jpg', alt: 'Aluno do Fundamental desenhando com lápis sobre malha quadriculada' },
+            { src: '/images/montessori/artes-theo-pedras.jpg', alt: 'Aluno do Fundamental desenhando pedras preciosas observando as imagens de um livro' },
+          ]}
+          caption="Nos maiores, a arte ganha técnica e pesquisa: observação, desenho e projetos próprios."
+        />
+        <p className="text-gray-700 text-base sm:text-lg leading-relaxed mb-3">
+          E tem mais: no nosso <strong>Open Class</strong> (a programação de atividades abertas), as crianças têm aula
+          de artes com o artista <strong>Marco Cavalcanti</strong> — além de teatro, mosaico e papel machê.{' '}
+          <a
+            href="/informativo-open-class.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-montessori-green font-semibold underline hover:no-underline"
+          >
+            Veja o informativo do Open Class
+          </a>. No{' '}
+          <Link to="/agrupada-3" className="text-montessori-green font-semibold underline hover:no-underline">
+            Ensino Fundamental
+          </Link>
+          , esse caminho continua — com mais técnica, mais projeto e a mesma liberdade de criar.
+        </p>
+
         <Area title="E ao redor de tudo">
           <p>
-            Artes, musicalização, socioemocional (a Casa dos Bonecos, onde a criança elabora o mundo brincando) e as
+            Musicalização, socioemocional (a Casa dos Bonecos, onde a criança elabora o mundo brincando) e as
             atividades extras — capoeira, circo, dança e movimento, psicomotricidade e contação de histórias.
           </p>
         </Area>
