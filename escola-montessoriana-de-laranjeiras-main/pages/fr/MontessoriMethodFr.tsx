@@ -191,9 +191,70 @@ export const MontessoriMethodFr: React.FC = () => {
           </p>
         </Area>
 
+        <Area
+          title="Arts plastiques"
+          materials="Gouache et aquarelle, pinceaux, craies, collage, pâte à modeler, papier mâché et matériaux de la nature."
+        >
+          <p>
+            Bien avant de maîtriser les mots, l'enfant s'exprime avec ses mains. Par l'art, il donne forme à ce
+            qu'il ressent et imagine — la joie, le manque, la peur, la découverte — et apprend qu'il existe bien des
+            langages pour dire qui il est. C'est un travail d'<strong>expression et de sentiment</strong>, pas un
+            « joli bricolage pour le mur ».
+          </p>
+          <p>
+            En même temps, l'enfant <strong>se familiarise avec les médiums</strong> : la peinture qui coule, le
+            pinceau qui obéit (ou pas), la craie, la colle, le papier qui se déchire, la texture de la pâte. Chaque
+            matériau a son comportement propre, et les connaître, c'est élargir son <strong>répertoire</strong> — de
+            couleurs, de formes, de possibles. Sans oublier le gain silencieux qui traverse tout le programme
+            Montessori : peindre, découper et modeler <strong>exercent les mains</strong>, en affinant la
+            coordination qui soutiendra plus tard l'écriture.
+          </p>
+          <p>
+            Comme pour tout dans la méthode, c'est le processus qui compte, pas le produit : personne ne corrige le
+            dessin de l'enfant ni ne peint à sa place. Le résultat : des enfants qui créent avec confiance — et
+            adorent montrer ce qu'ils ont fait.
+          </p>
+        </Area>
+        <LandingImagePair
+          images={[
+            { src: '/images/acolhimento/adaptacao-artes.jpg', alt: 'Bébé en tablier rose explorant la peinture avec les mains pendant l\'activité d\'arts' },
+            { src: '/images/montessori/artes-thadeu.jpg', alt: 'Garçon concentré peignant au pinceau et à l\'aquarelle à la table de la classe' },
+          ]}
+        />
+        <LandingImagePair
+          images={[
+            { src: '/images/montessori/artes-safira.jpg', alt: 'Bébé peignant avec les doigts aux couleurs primaires sur le papier' },
+            { src: '/images/natureza/colagem-folhas.jpg', alt: 'Fillette souriante montrant son collage de feuilles ramassées dans la cour' },
+          ]}
+          caption="Des premiers contacts avec la peinture à l'œuvre montrée avec fierté : l'expression dès le plus jeune âge."
+        />
+        <LandingImagePair
+          images={[
+            { src: '/images/montessori/artes-theo-lapis.jpg', alt: 'Élève du primaire dessinant au crayon sur une grille' },
+            { src: '/images/montessori/artes-theo-pedras.jpg', alt: 'Élève du primaire dessinant des pierres précieuses en observant les images d\'un livre' },
+          ]}
+          caption="Chez les plus grands, l'art gagne en technique et en recherche : observation, dessin et projets personnels."
+        />
+        <p className="text-gray-700 text-base sm:text-lg leading-relaxed mb-3">
+          Et ce n'est pas tout : dans notre programme <strong>Open Class</strong>, les enfants ont des cours d'arts
+          avec l'artiste <strong>Marco Cavalcanti</strong> — ainsi que théâtre, mosaïque et papier mâché.{' '}
+          <a
+            href="/informativo-open-class.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-montessori-green font-semibold underline hover:no-underline"
+          >
+            Voir le programme Open Class (en portugais)
+          </a>. En{' '}
+          <Link to="/fr/ambiances" className="text-montessori-green font-semibold underline hover:no-underline">
+            élémentaire
+          </Link>
+          , ce chemin continue — avec plus de technique, plus de projets et la même liberté de créer.
+        </p>
+
         <Area title="Et tout autour">
           <p>
-            Les arts, la musique, les compétences socio-émotionnelles (la maison de poupées, où les enfants rejouent
+            La musique, les compétences socio-émotionnelles (la maison de poupées, où les enfants rejouent
             le monde pour l'apprivoiser) et les ateliers — capoeira, cirque, danse et mouvement, motricité et contes.
           </p>
         </Area>

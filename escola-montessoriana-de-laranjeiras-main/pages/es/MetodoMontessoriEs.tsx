@@ -190,9 +190,69 @@ export const MetodoMontessoriEs: React.FC = () => {
           </p>
         </Area>
 
+        <Area
+          title="Artes"
+          materials="Témperas y acuarelas, pinceles, crayones, collage, plastilina, papel maché y materiales de la naturaleza."
+        >
+          <p>
+            Mucho antes de dominar la palabra, el niño se expresa con las manos. En el arte, da forma a lo que
+            siente y a lo que imagina — la alegría, la nostalgia, el miedo, el descubrimiento — y va aprendiendo que
+            existen muchos lenguajes para decir quién es. Es un trabajo de <strong>expresión y de sentimiento</strong>,
+            no una "manualidad bonita para la pared".
+          </p>
+          <p>
+            Al mismo tiempo, el niño <strong>se familiariza con los medios</strong>: la pintura que gotea, el pincel
+            que obedece (o no), la tiza, el pegamento, el papel que se rasga, la textura de la plastilina. Cada
+            material tiene su propio comportamiento, y conocerlos es ampliar el <strong>repertorio</strong> — de
+            colores, de formas, de posibilidades. Y está la ganancia silenciosa que atraviesa todo el currículo
+            Montessori: pintar, recortar y modelar <strong>ejercitan las manos</strong>, refinando la coordinación
+            que más tarde sostiene la escritura.
+          </p>
+          <p>
+            Como en todo el método, lo que importa es el proceso, no el producto: nadie corrige el dibujo del niño
+            ni pinta por él. El resultado son niños que crean con confianza — y adoran mostrar lo que hicieron.
+          </p>
+        </Area>
+        <LandingImagePair
+          images={[
+            { src: '/images/acolhimento/adaptacao-artes.jpg', alt: 'Bebé con delantal rosa explorando pintura con las manos en la actividad de artes' },
+            { src: '/images/montessori/artes-thadeu.jpg', alt: 'Niño concentrado pintando con pincel y acuarela en la mesa del aula' },
+          ]}
+        />
+        <LandingImagePair
+          images={[
+            { src: '/images/montessori/artes-safira.jpg', alt: 'Bebé pintando con los dedos con colores primarios sobre el papel' },
+            { src: '/images/natureza/colagem-folhas.jpg', alt: 'Niña sonriendo mostrando su collage hecho con hojas recogidas en el patio' },
+          ]}
+          caption="De los primeros contactos con la pintura a la obra que se muestra con orgullo: expresión desde bebé."
+        />
+        <LandingImagePair
+          images={[
+            { src: '/images/montessori/artes-theo-lapis.jpg', alt: 'Alumno de primaria dibujando con lápiz sobre una cuadrícula' },
+            { src: '/images/montessori/artes-theo-pedras.jpg', alt: 'Alumno de primaria dibujando piedras preciosas observando las imágenes de un libro' },
+          ]}
+          caption="En los mayores, el arte gana técnica e investigación: observación, dibujo y proyectos propios."
+        />
+        <p className="text-gray-700 text-base sm:text-lg leading-relaxed mb-3">
+          Y hay más: en nuestro programa <strong>Open Class</strong>, los niños tienen clases de arte con el artista{' '}
+          <strong>Marco Cavalcanti</strong> — además de teatro, mosaico y papel maché.{' '}
+          <a
+            href="/informativo-open-class.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-montessori-green font-semibold underline hover:no-underline"
+          >
+            Ver el programa del Open Class (en portugués)
+          </a>. En{' '}
+          <Link to="/es/grupos" className="text-montessori-green font-semibold underline hover:no-underline">
+            Primaria
+          </Link>
+          , ese camino continúa — con más técnica, más proyectos y la misma libertad de crear.
+        </p>
+
         <Area title="Y alrededor de todo eso">
           <p>
-            Artes, música, aprendizaje socioemocional (la Casa de Muñecas, donde los niños procesan el mundo a través
+            Música, aprendizaje socioemocional (la Casa de Muñecas, donde los niños procesan el mundo a través
             del juego) y las actividades complementarias: capoeira, circo, danza y movimiento, psicomotricidad y
             cuentacuentos.
           </p>

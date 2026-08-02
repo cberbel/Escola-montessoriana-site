@@ -189,9 +189,69 @@ export const MontessoriMethodEn: React.FC = () => {
           </p>
         </Area>
 
+        <Area
+          title="Arts"
+          materials="Gouache and watercolor paints, brushes, crayons, collage, modeling clay, papier-mâché and natural materials."
+        >
+          <p>
+            Long before mastering words, children express themselves with their hands. Through art, they give shape
+            to what they feel and imagine — joy, longing, fear, discovery — and learn that there are many languages
+            for saying who they are. It is work of <strong>expression and feeling</strong>, not "a cute craft for the
+            wall".
+          </p>
+          <p>
+            At the same time, children <strong>get to know the media</strong>: paint that drips, a brush that obeys
+            (or doesn't), chalk, glue, paper that tears, the texture of clay. Each material behaves in its own way,
+            and knowing them expands the child's <strong>repertoire</strong> — of colors, shapes and possibilities.
+            And there is the quiet gain that runs through the whole Montessori curriculum: painting, cutting and
+            modeling <strong>exercise the hands</strong>, refining the coordination that will later support writing.
+          </p>
+          <p>
+            As with everything in the method, the process matters more than the product: nobody corrects a child's
+            drawing or paints for them. The result is children who create with confidence — and love showing what
+            they made.
+          </p>
+        </Area>
+        <LandingImagePair
+          images={[
+            { src: '/images/acolhimento/adaptacao-artes.jpg', alt: 'Baby in a pink apron exploring paint and dough with her hands during the art activity' },
+            { src: '/images/montessori/artes-thadeu.jpg', alt: 'Boy concentrating while painting with brush and watercolor at the classroom table' },
+          ]}
+        />
+        <LandingImagePair
+          images={[
+            { src: '/images/montessori/artes-safira.jpg', alt: 'Baby finger-painting with primary colors on paper' },
+            { src: '/images/natureza/colagem-folhas.jpg', alt: 'Girl smiling and showing her collage made with leaves gathered in the courtyard' },
+          ]}
+          caption="From the first encounters with paint to the artwork shown off with pride: expression from babyhood."
+        />
+        <LandingImagePair
+          images={[
+            { src: '/images/montessori/artes-theo-lapis.jpg', alt: 'Elementary student drawing with pencil on a grid' },
+            { src: '/images/montessori/artes-theo-pedras.jpg', alt: 'Elementary student drawing gemstones while studying pictures in a book' },
+          ]}
+          caption="With the older children, art gains technique and research: observation, drawing and personal projects."
+        />
+        <p className="text-gray-700 text-base sm:text-lg leading-relaxed mb-3">
+          And there is more: in our <strong>Open Class</strong> program, children have art classes with the artist{' '}
+          <strong>Marco Cavalcanti</strong> — plus theater, mosaic and papier-mâché.{' '}
+          <a
+            href="/informativo-open-class.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-montessori-green font-semibold underline hover:no-underline"
+          >
+            See the Open Class flyer (in Portuguese)
+          </a>. In{' '}
+          <Link to="/en/classes" className="text-montessori-green font-semibold underline hover:no-underline">
+            Elementary
+          </Link>
+          , this path continues — with more technique, more projects and the same freedom to create.
+        </p>
+
         <Area title="And all around it">
           <p>
-            Arts, music, social-emotional learning (the Dolls' House, where children process the world through play)
+            Music, social-emotional learning (the Dolls' House, where children process the world through play)
             and the enrichment activities — capoeira, circus, dance and movement, gross-motor play and
             storytelling.
           </p>
