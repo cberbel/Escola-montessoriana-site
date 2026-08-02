@@ -36,8 +36,51 @@ export function trackFormSubmit(): void {
   };
   if (typeof w.fbq === 'function') w.fbq('track', 'Lead');
   if (typeof w.gtag === 'function') w.gtag('event', 'generate_lead');
+  // A conversão do Google Ads é disparada pelo GTM (tag "tag formulario", acionador
+  // "Evento - form_submit"), que lê o push abaixo. Não dispare aqui também: até jul/2026
+  // este ponto enviava a conversão de "Contato no Whatsapp" — herança de quando o
+  // formulário era enviado pelo WhatsApp — o que contava envios de formulário na ação errada.
   w.dataLayer = w.dataLayer || [];
   w.dataLayer.push({ event: 'form_submit', page_path: window.location.pathname });
+}
+
+/**
+ * Dispara conversão quando a família AGENDA UMA VISITA pelo Calendly.
+ * É a conversão mais valiosa do site: a pessoa marcou dia e hora para vir conhecer.
+ * - GA4: evento 'schedule_visit' (marque como evento principal na propriedade)
+ * - Meta Pixel: evento padrão 'Schedule'
+ * - GTM: evento 'schedule_visit' no dataLayer
+ */
+export function trackVisitScheduled(): void {
+  if (typeof window === 'undefined') return;
+  const w = window as unknown as {
+    fbq?: (...args: unknown[]) => void;
+    gtag?: (...args: unknown[]) => void;
+    dataLayer?: Record<string, unknown>[];
+  };
+  if (typeof w.fbq === 'function') w.fbq('track', 'Schedule');
+  if (typeof w.gtag === 'function') w.gtag('event', 'schedule_visit');
+  w.dataLayer = w.dataLayer || [];
+  w.dataLayer.push({ event: 'schedule_visit', page_path: window.location.pathname });
+}
+
+/**
+ * Escuta o Calendly (widget incorporado) e dispara a conversão quando o
+ * agendamento é concluído. O Calendly avisa a página hospedeira por postMessage;
+ * o evento que interessa é 'calendly.event_scheduled'.
+ * Retorna a função de limpeza do listener.
+ */
+export function listenCalendlyScheduled(): () => void {
+  if (typeof window === 'undefined') return () => {};
+  const handler = (e: MessageEvent) => {
+    if (typeof e.origin === 'string' && !e.origin.includes('calendly.com')) return;
+    const data = e.data as { event?: string } | null;
+    if (data && typeof data.event === 'string' && data.event === 'calendly.event_scheduled') {
+      trackVisitScheduled();
+    }
+  };
+  window.addEventListener('message', handler);
+  return () => window.removeEventListener('message', handler);
 }
 
 /**

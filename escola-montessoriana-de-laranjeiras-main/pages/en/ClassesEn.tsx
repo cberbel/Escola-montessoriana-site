@@ -57,7 +57,7 @@ export const ClassesEn: React.FC = () => {
         <TurmaHeading nome="Agrupada 1" faixa="9 months to 3 years" />
         <P>
           The first environment outside the home. Everything here is designed for babies and very young children to
-          explore safely: movement and psychomotor structures, materials within reach of little hands, and plenty of
+          explore safely: movement and climbing structures, materials within reach of little hands, and plenty of
           cuddles. It is the phase of walking, talking, budding independence — dressing, eating by themselves, caring
           for themselves — and of language, which blossoms when the child is heard and respected.
         </P>
@@ -89,28 +89,28 @@ export const ClassesEn: React.FC = () => {
           whole world as the object of study.
         </P>
         <a
-          href="/informativo-open-class.html"
+          href="/informativo-open-class-en.html"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-1.5 text-montessori-green font-semibold hover:gap-3 transition-all"
         >
-          Learn more about Agrupada 3 (brochure in Portuguese) →
+          Learn more about Agrupada 3 (Open Class brochure) →
         </a>
       </LandingSection>
 
       <LandingSection heading="Schedules and attendance">
         <P>
-          We are open from <strong>7:30am to 7pm</strong>, with three period formats — valid for all classes:
+          We are open from <strong>7:30am to 7pm</strong>, with three schedule options — valid for all classes:
         </P>
         <Bullets
           items={[
-            <><strong>Half day:</strong> morning, 8am to 12pm, or afternoon, 1pm to 5pm.</>,
-            <><strong>Full day:</strong> 8am to 5pm, with lunch and rest time.</>,
+            <><strong>Half-day:</strong> morning, 8am to 12pm, or afternoon, 1pm to 5pm.</>,
+            <><strong>Full-day:</strong> 8am to 5pm, with lunch and nap time.</>,
             <><strong>Extended day:</strong> 7:30am to 7pm, for families who need more time.</>,
           ]}
         />
         <P>
-          Beyond the period, there are <strong>reduced attendance</strong> options (alternate days) and flexibility to
+          Beyond the daily schedule, there are <strong>part-time</strong> options (alternate days) and flexibility to
           adapt drop-off and pick-up to each home's reality — the same welcoming spirit that runs through the whole
           school. We will find the best fit for your child together with you.
         </P>

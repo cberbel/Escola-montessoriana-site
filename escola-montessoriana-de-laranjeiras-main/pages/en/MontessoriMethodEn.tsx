@@ -60,7 +60,7 @@ export const MontessoriMethodEn: React.FC = () => {
           Maria Montessori among children in London, 1946 — a whole life devoted to childhood.
         </p>
         <Highlight>
-          "The child is not a vase to be filled, but a spring to be allowed to flow." — Maria Montessori
+          "The child is not a vessel to be filled, but a spring to be allowed to flow." — Maria Montessori
         </Highlight>
       </LandingSection>
 
@@ -192,7 +192,7 @@ export const MontessoriMethodEn: React.FC = () => {
         <Area title="And all around it">
           <p>
             Arts, music, social-emotional learning (the Dolls' House, where children process the world through play)
-            and the enrichment activities — capoeira, circus, dance and movement, psychomotor education and
+            and the enrichment activities — capoeira, circus, dance and movement, gross-motor play and
             storytelling.
           </p>
         </Area>

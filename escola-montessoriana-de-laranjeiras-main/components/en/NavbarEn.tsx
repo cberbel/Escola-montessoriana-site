@@ -65,6 +65,8 @@ export const NavbarEn: React.FC = () => {
     { name: 'Classes', to: '/en/classes' },
     { name: 'Contact', to: '/en#contact' },
     { name: 'PT', to: '/' },
+    { name: 'ES', to: '/es' },
+    { name: 'FR', to: '/fr' },
   ];
 
   const mobileMenuContent = mobileMenuOpen && (
@@ -85,14 +87,14 @@ export const NavbarEn: React.FC = () => {
             onClick={() => setMobileMenuOpen(false)}
             className="text-white text-base font-medium py-4 px-5 min-h-[48px] flex items-center touch-manipulation active:bg-white/10 transition-colors border-b border-white/5 [text-shadow:0_1px_2px_rgba(0,0,0,0.9)]"
           >
-            {link.name === 'PT' ? 'Português (PT)' : link.name}
+            {link.name === 'PT' ? 'Português (PT)' : link.name === 'ES' ? 'Español (ES)' : link.name === 'FR' ? 'Français (FR)' : link.name}
           </Link>
         ))}
         <a
           href={WHATSAPP_VISIT_EN}
           target="_blank"
           rel="noopener noreferrer"
-          onClick={() => { trackWhatsAppClick(); setMobileMenuOpen(false); }}
+          onClick={() => { trackWhatsAppClick('menu-mobile'); setMobileMenuOpen(false); }}
           className="bg-montessori-gold text-montessori-dark text-center font-semibold py-4 px-5 min-h-[48px] flex items-center justify-center mx-4 mt-4 mb-2 rounded-sm touch-manipulation active:bg-[#c5a805] transition-colors [text-shadow:0_1px_2px_rgba(0,0,0,0.4)]"
         >
           Book a Visit
@@ -142,7 +144,7 @@ export const NavbarEn: React.FC = () => {
             href={WHATSAPP_VISIT_EN}
             target="_blank"
             rel="noopener noreferrer"
-            onClick={trackWhatsAppClick}
+            onClick={() => trackWhatsAppClick('menu')}
             className="bg-montessori-gold text-white px-4 py-2 rounded-sm text-sm font-semibold hover:bg-[#c5a805] transition-colors inline-block whitespace-nowrap [text-shadow:0_1px_2px_rgba(0,0,0,0.4)] shadow-md"
           >
             Book a Visit

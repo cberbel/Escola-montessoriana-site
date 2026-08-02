@@ -46,11 +46,15 @@ export const Hero: React.FC = () => {
               Escola Montessoriana
             </h2>
             <p className="font-logo text-montessori-gold font-bold text-lg sm:text-xl md:text-2xl mt-1 [text-shadow:0_1px_3px_rgba(0,0,0,0.85),0_2px_6px_rgba(0,0,0,0.6)]">
+<<<<<<< HEAD
               Educação infantil trilíngue
+=======
+              Educação Infantil Trilíngue
+>>>>>>> origin/main
             </p>
           </div>
           <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-white leading-tight mb-4 sm:mb-5 drop-shadow-[0_10px_25px_rgba(15,23,42,0.8)] break-words text-center">
-            Acolhimento e autonomia para seu filho
+            Acolhimento e Autonomia para seu Filho
           </h1>
           <p className="font-sans text-base sm:text-lg md:text-xl text-gray-50 mb-5 sm:mb-6 max-w-2xl mx-auto font-normal leading-relaxed break-words">
             Formando jovens curiosos, confiantes e capazes, prontos para explorar o mundo.

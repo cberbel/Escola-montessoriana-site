@@ -18,7 +18,7 @@ const FloatingWhatsAppEn: React.FC = () => (
     href={WHATSAPP_VISIT_EN}
     target="_blank"
     rel="noopener noreferrer"
-    onClick={trackWhatsAppClick}
+    onClick={() => trackWhatsAppClick('botao-flutuante')}
     className="fixed bottom-6 right-6 z-40 flex items-center gap-3 bg-[#25D366] text-white px-4 py-3 rounded-full shadow-lg hover:bg-[#20bd5a] hover:shadow-xl transition-all duration-300 hover:scale-105 min-h-[56px] touch-manipulation"
     aria-label="Chat with us on WhatsApp - Book your visit"
   >
@@ -48,7 +48,7 @@ export const MainEn: React.FC = () => {
               de Laranjeiras
             </h3>
             <p className="text-amber-200/95 text-base sm:text-lg font-normal max-w-xs leading-relaxed">
-              Helping children build the men and women they will become.
+              Helping children become the adults they are meant to be.
             </p>
             <div className="pt-4">
               <iframe
@@ -88,7 +88,7 @@ export const MainEn: React.FC = () => {
               href="https://wa.me/5521964551080"
               target="_blank"
               rel="noopener noreferrer"
-              onClick={trackWhatsAppClick}
+              onClick={() => trackWhatsAppClick('rodape')}
               className="flex items-center space-x-3 text-gray-300 hover:text-yellow-400 transition-colors"
             >
               <WhatsAppIcon size={20} className="text-yellow-400 shrink-0" />

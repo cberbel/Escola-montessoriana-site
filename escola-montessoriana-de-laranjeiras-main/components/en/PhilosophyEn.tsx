@@ -1,10 +1,15 @@
 import React from 'react';
-import { Focus, Sun, Heart, Hand, BookOpen, Compass } from 'lucide-react';
+import { Focus, Sun, Heart, Hand, BookOpen, Compass, Globe } from 'lucide-react';
 import { Section } from '../ui/Section';
 import { trackWhatsAppClick } from '../../utils/tracking';
 
 export const PhilosophyEn: React.FC = () => {
   const traits = [
+    {
+      icon: <Globe size={32} />,
+      title: 'Fluent in English for life',
+      text: 'Lives in English every day, through immersion, at the age when the brain absorbs languages effortlessly. What begins as play today becomes natural, lifelong fluency — no accent, no language classes needed later.'
+    },
     {
       icon: <Focus size={32} />,
       title: 'Focused',
@@ -54,15 +59,16 @@ export const PhilosophyEn: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 items-center max-w-5xl mx-auto mb-12 sm:mb-16 min-w-0">
         <div className="relative overflow-hidden rounded-sm shadow-lg border-l-4 border-montessori-gold min-w-0">
           <img
-            src="/images/acolhimento/almoco-bebes.jpg"
-            alt="Babies having lunch together at a low table, each eating with their own spoon, with teachers close by"
+            src="/images/Crianca-brincando.jpg"
+            alt="Children with their arms in the air, delighted, chasing soap bubbles in the school patio"
             loading="lazy"
+            style={{ objectPosition: 'center 30%' }}
             className="w-full h-64 sm:h-80 object-cover"
           />
         </div>
         <div className="min-w-0 px-1 text-left">
           <h3 className="font-serif text-2xl sm:text-3xl text-montessori-green mb-3 sm:mb-4">
-            Who does your child become at our school?
+            Who does your child become at the trilingual Montessori school?
           </h3>
           <p className="font-sans text-lg md:text-xl text-montessori-dark leading-relaxed">
             Maria Montessori discovered that, in the right environment, every child reveals their best.
@@ -92,7 +98,7 @@ export const PhilosophyEn: React.FC = () => {
           href="https://wa.me/5521993311000?text=Hello!%20I%20would%20like%20to%20visit%20the%20school."
           target="_blank"
           rel="noopener noreferrer"
-          onClick={trackWhatsAppClick}
+          onClick={() => trackWhatsAppClick('filosofia')}
           className="inline-flex items-center justify-center gap-2 min-h-[48px] px-8 py-3 bg-[#25D366] text-white font-semibold rounded-sm hover:bg-[#20bd5a] transition-colors shadow-md hover:shadow-lg"
         >
           I want to book a visit

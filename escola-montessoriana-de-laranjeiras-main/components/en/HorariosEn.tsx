@@ -5,15 +5,15 @@ import { Section } from '../ui/Section';
 const periods = [
   {
     icon: <Sun size={28} />,
-    name: 'Half day',
+    name: 'Half-day',
     times: ['Morning · 8am to 12pm', 'Afternoon · 1pm to 5pm'],
-    note: 'The child attends one shift — morning or afternoon.',
+    note: 'Your child attends mornings or afternoons.',
   },
   {
     icon: <CalendarClock size={28} />,
-    name: 'Full day',
+    name: 'Full-day',
     times: ['8am to 5pm'],
-    note: 'The whole day at school, with lunch and rest time.',
+    note: 'A full day at school, with lunch and nap time.',
   },
   {
     icon: <Sunset size={28} />,
@@ -28,13 +28,13 @@ export const HorariosEn: React.FC = () => (
     <div className="text-center mb-10 sm:mb-14 min-w-0">
       <div className="w-16 h-1.5 bg-montessori-gold rounded-full mx-auto mb-5 sm:mb-6" />
       <span className="text-montessori-gold uppercase tracking-[0.2em] font-bold text-xs sm:text-sm mb-3 block">
-        Opening hours
+        School hours
       </span>
       <h2 className="font-serif font-bold text-3xl sm:text-4xl md:text-5xl text-montessori-green px-1 break-words leading-tight">
         A schedule that fits your family's routine
       </h2>
       <p className="font-sans text-lg text-montessori-dark mt-4 max-w-2xl mx-auto px-1 leading-relaxed">
-        We are open from <strong>7:30am to 7pm</strong>. Choose the period that best fits your day.
+        We are open from <strong>7:30am to 7pm</strong>. Choose the schedule that best fits your day.
       </p>
     </div>
 

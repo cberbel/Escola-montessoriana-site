@@ -39,12 +39,12 @@ export const HeroEn: React.FC = () => {
             <h2 className="font-logo text-montessori-gold font-bold text-2xl sm:text-3xl md:text-4xl leading-tight tracking-tight">
               Escola Montessoriana
             </h2>
-            <p className="font-logo text-montessori-gold font-semibold text-base sm:text-lg md:text-xl mt-1 opacity-95">
-              Trilingual Montessori education in Rio
+            <p className="font-logo text-montessori-gold font-bold text-lg sm:text-xl md:text-2xl mt-1 [text-shadow:0_1px_3px_rgba(0,0,0,0.85),0_2px_6px_rgba(0,0,0,0.6)]">
+              Trilingual Montessori Education in Rio
             </p>
           </div>
           <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-white leading-tight mb-4 sm:mb-5 drop-shadow-[0_10px_25px_rgba(15,23,42,0.8)] break-words text-center">
-            Warmth and independence for your child
+            Warmth and Independence for Your Child
           </h1>
           <p className="font-sans text-base sm:text-lg md:text-xl text-gray-50 mb-5 sm:mb-6 max-w-2xl mx-auto font-normal leading-relaxed break-words">
             Raising curious, confident and capable children, ready to explore the world.
@@ -64,11 +64,11 @@ export const HeroEn: React.FC = () => {
               href="https://wa.me/5521993311000?text=Hello!%20I%20would%20like%20to%20know%20more%20about%20Escola%20Montessoriana."
               target="_blank"
               rel="noopener noreferrer"
-              onClick={trackWhatsAppClick}
+              onClick={() => trackWhatsAppClick('hero')}
               className="inline-flex items-center justify-center gap-2 min-h-[52px] px-8 sm:px-10 py-4 text-lg font-serif tracking-wide transition-all duration-300 rounded-sm touch-manipulation bg-[#25D366] text-white hover:bg-[#20bd5a] border-2 border-[#25D366] hover:border-[#20bd5a] focus:outline focus:ring-2 focus:ring-[#25D366] focus:ring-offset-2 focus:ring-offset-montessori-green/60 shadow-lg hover:shadow-xl font-semibold"
             >
               <WhatsAppIcon size={24} />
-              I want to know more
+              Tell me more
             </a>
             <a
               href="#method"
