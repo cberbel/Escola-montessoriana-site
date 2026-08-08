@@ -16,7 +16,12 @@
 
 const CHAVE_GCLID = 'alm_gclid';
 const CHAVE_REF = 'alm_ref';
+const CHAVE_REGISTRADO = 'alm_ref_registrado';
 const VALIDADE_MS = 90 * 24 * 60 * 60 * 1000; // 90 dias
+
+/** Projeto Supabase ponto-escola-montessoriana. Chave publicável — feita para o navegador. */
+const SUPABASE_URL = 'https://rmpnqrvsmxhnrwlgqmdp.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_bg4n-MXnoYVWomRN90WTOg_HOdq3_9G';
 
 type RegistroGclid = {
   gclid: string;
@@ -49,8 +54,83 @@ function gravarJson(chave: string, valor: unknown): void {
 export function capturarGclid(): void {
   if (typeof window === 'undefined') return;
   const daUrl = new URLSearchParams(window.location.search).get('gclid');
-  if (!daUrl) return;
-  gravarJson(CHAVE_GCLID, { gclid: daUrl, ts: Date.now() } satisfies RegistroGclid);
+  if (daUrl) {
+    gravarJson(CHAVE_GCLID, { gclid: daUrl, ts: Date.now() } satisfies RegistroGclid);
+    try { window.localStorage.removeItem(CHAVE_REGISTRADO); } catch { /* sem storage */ }
+  }
+  // Registra o par código → GCLID no banco. Feito no carregamento, e não no clique,
+  // porque um POST disparado durante a navegação para o WhatsApp seria cancelado.
+  void registrarClique();
+}
+
+/**
+ * Grava o par `ref → gclid` em public.cliques_anuncio. É o que permite ao webhook
+ * do WhatsApp descobrir qual clique originou a conversa: o código curto viaja na
+ * mensagem, o GCLID (longo demais para isso) fica guardado aqui.
+ * Roda uma única vez por GCLID. Falha em silêncio: medição nunca quebra o site.
+ */
+async function registrarClique(): Promise<void> {
+  const gclid = obterGclid();
+  if (!gclid) return;
+  if (lerJson<string>(CHAVE_REGISTRADO) === gclid) return;
+
+  const ref = obterOuCriarRef();
+  if (!ref) return;
+
+  try {
+    const r = await fetch(`${SUPABASE_URL}/rest/v1/cliques_anuncio`, {
+      method: 'POST',
+      headers: {
+        apikey: SUPABASE_KEY,
+        Authorization: `Bearer ${SUPABASE_KEY}`,
+        'Content-Type': 'application/json',
+        // Insert puro, sem `resolution=ignore-duplicates`: aquele header transforma o
+        // POST em upsert, e upsert exigiria também política de UPDATE no RLS.
+        Prefer: 'return=minimal'
+      },
+      body: JSON.stringify({ ref, gclid })
+    });
+    // 409 = o par já está gravado, que é exatamente o resultado desejado.
+    if (r.ok || r.status === 409) gravarJson(CHAVE_REGISTRADO, gclid);
+  } catch {
+    /* offline ou bloqueado: tenta de novo no próximo carregamento */
+  }
+}
+
+/** Protocolo a carimbar na mensagem — só existe se a visita veio de um anúncio. */
+export function protocoloAtual(): string | null {
+  if (!obterGclid()) return null;
+  const ref = obterOuCriarRef();
+  return ref ? `[#${ref}]` : null;
+}
+
+/**
+ * Carimba o protocolo no texto pré-preenchido de qualquer link do WhatsApp da página.
+ * Intercepta o clique na fase de captura e reescreve o href antes da navegação —
+ * assim vale para todos os botões, inclusive os que forem criados depois.
+ * Visitante que não veio de anúncio não recebe carimbo nenhum.
+ * Retorna a função de limpeza do listener.
+ */
+export function carimbarLinksWhatsApp(): () => void {
+  if (typeof document === 'undefined') return () => {};
+  const aoClicar = (e: MouseEvent) => {
+    const alvo = e.target as HTMLElement | null;
+    const link = alvo?.closest?.('a[href*="wa.me"]') as HTMLAnchorElement | null;
+    if (!link) return;
+    const protocolo = protocoloAtual();
+    if (!protocolo) return;
+    try {
+      const url = new URL(link.href);
+      const texto = url.searchParams.get('text') ?? '';
+      if (texto.includes(protocolo)) return; // já carimbado
+      url.searchParams.set('text', `${texto}\n\nProtocolo: ${protocolo.slice(2, -1)}`);
+      link.href = url.toString();
+    } catch {
+      /* href fora do padrão: segue sem carimbo */
+    }
+  };
+  document.addEventListener('click', aoClicar, true);
+  return () => document.removeEventListener('click', aoClicar, true);
 }
 
 /** Devolve o GCLID guardado, ou null se não houver ou já tiver passado de 90 dias. */

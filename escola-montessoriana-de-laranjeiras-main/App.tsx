@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import './index.css';
 import { trackPageView, listenCalendlyScheduled } from './utils/tracking';
-import { capturarGclid } from './utils/gclid';
+import { capturarGclid, carimbarLinksWhatsApp } from './utils/gclid';
 import { Main } from './components/Main';
 import { Home } from './pages/Home';
 import { Agendamento } from './pages/Agendamento';
@@ -94,9 +94,13 @@ const App: React.FC = () => {
   // quando a visita é efetivamente marcada. Um listener só, para o site inteiro.
   useEffect(() => listenCalendlyScheduled(), []);
 
-  // Guarda o GCLID que veio na URL do anúncio. Roda uma vez, antes de qualquer
-  // navegação interna apagar o parâmetro.
+  // Guarda o GCLID que veio na URL do anúncio e registra o par código → GCLID.
+  // Roda uma vez, antes de qualquer navegação interna apagar o parâmetro.
   useEffect(() => capturarGclid(), []);
+
+  // Carimba o protocolo nas mensagens do WhatsApp de quem chegou por anúncio,
+  // para o webhook conseguir ligar a conversa ao clique.
+  useEffect(() => carimbarLinksWhatsApp(), []);
 
   return (
     <BrowserRouter>
