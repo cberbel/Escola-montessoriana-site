@@ -194,10 +194,14 @@ $$;
 
 -- Cadastro feito pelo próprio funcionário. Entra como PENDENTE (aprovado = false):
 -- não consegue bater ponto até o administrador aprovar e definir o horário.
+--
+-- O search_path inclui "extensions" porque no Supabase o pgcrypto é instalado lá,
+-- e sem isso o crypt()/gen_salt() abaixo não são encontrados. Em um Postgres comum
+-- (pgcrypto no public) um schema inexistente no search_path é ignorado sem erro.
 create or replace function autocadastro(
   p_nome text, p_cargo text, p_login text, p_senha text, p_pin text
 ) returns json
-language plpgsql security definer set search_path = public as $$
+language plpgsql security definer set search_path = public, extensions as $$
 declare v_login text;
 begin
   v_login := _normalizar_login(p_login);
