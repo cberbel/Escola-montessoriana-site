@@ -11,6 +11,7 @@ import {
   MapPinOff,
   Loader2,
   CloudOff,
+  Check,
 } from 'lucide-react';
 import { Batida, Funcionario } from './types';
 import { idDispositivo, obterPosicao, rpc, temConfig } from './api';
@@ -97,12 +98,12 @@ export const PontoFuncionario: React.FC<{ modoCompartilhado?: boolean }> = ({ mo
     setFase('pin');
   }
 
+  // PINs têm de 4 a 6 números, então não dá para enviar sozinho ao 4º dígito
+  // (o PIN de alguém poderia ser o começo do PIN de outra pessoa): a pessoa confirma.
   function digitar(digito: string) {
     setErro('');
-    if (pin.length >= 4) return;
-    const novo = pin + digito;
-    setPin(novo);
-    if (novo.length === 4) entrar(novo);
+    if (pin.length >= 6) return;
+    setPin(pin + digito);
   }
 
   async function registrar() {
@@ -179,8 +180,8 @@ export const PontoFuncionario: React.FC<{ modoCompartilhado?: boolean }> = ({ mo
             {fase === 'pin' && (
               <div className="w-full max-w-xs">
                 <p className="text-center text-lg mb-4">Digite seu PIN para entrar</p>
-                <div className="flex justify-center gap-3 mb-4" aria-label="PIN digitado">
-                  {[0, 1, 2, 3].map((i) => (
+                <div className="flex justify-center gap-3 mb-4 h-4" aria-label="PIN digitado">
+                  {Array.from({ length: Math.max(4, pin.length) }, (_, i) => (
                     <span
                       key={i}
                       className={`w-4 h-4 rounded-full border-2 border-ponto-azul ${
@@ -194,12 +195,24 @@ export const PontoFuncionario: React.FC<{ modoCompartilhado?: boolean }> = ({ mo
                   {['1', '2', '3', '4', '5', '6', '7', '8', '9'].map((d) => (
                     <TeclaPin key={d} onClick={() => digitar(d)}>{d}</TeclaPin>
                   ))}
-                  <span />
-                  <TeclaPin onClick={() => digitar('0')}>0</TeclaPin>
                   <TeclaPin onClick={() => { setPin(pin.slice(0, -1)); setErro(''); }} ariaLabel="Apagar">
                     <Delete size={22} className="mx-auto" />
                   </TeclaPin>
+                  <TeclaPin onClick={() => digitar('0')}>0</TeclaPin>
+                  <TeclaPin
+                    onClick={() => pin.length >= 4 && entrar(pin)}
+                    ariaLabel="Confirmar PIN"
+                    desabilitada={pin.length < 4}
+                  >
+                    <Check size={24} className="mx-auto" />
+                  </TeclaPin>
                 </div>
+                <Link
+                  to="/cadastro"
+                  className="block text-center text-sm text-ponto-azul underline hover:no-underline mt-6"
+                >
+                  Primeiro acesso? Faça seu cadastro
+                </Link>
               </div>
             )}
 
@@ -295,15 +308,17 @@ const ConfigPendente: React.FC = () => (
   </div>
 );
 
-const TeclaPin: React.FC<{ onClick: () => void; children: React.ReactNode; ariaLabel?: string }> = ({
-  onClick,
-  children,
-  ariaLabel,
-}) => (
+const TeclaPin: React.FC<{
+  onClick: () => void;
+  children: React.ReactNode;
+  ariaLabel?: string;
+  desabilitada?: boolean;
+}> = ({ onClick, children, ariaLabel, desabilitada = false }) => (
   <button
     onClick={onClick}
     aria-label={ariaLabel}
-    className="bg-white rounded-xl shadow text-2xl font-bold py-4 hover:bg-ponto-claro active:scale-95 transition-all"
+    disabled={desabilitada}
+    className="bg-white rounded-xl shadow text-2xl font-bold py-4 hover:bg-ponto-claro active:scale-95 transition-all disabled:opacity-40 disabled:active:scale-100"
   >
     {children}
   </button>

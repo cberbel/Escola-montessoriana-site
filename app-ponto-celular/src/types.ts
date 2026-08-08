@@ -8,6 +8,9 @@ export interface Funcionario {
   hora_saida?: string | null;
   dias_semana?: number[]; // 0=domingo .. 6=sábado
   data_admissao?: string | null; // "AAAA-MM-DD"
+  login?: string | null; // e-mail ou CPF informado no auto-cadastro
+  aprovado?: boolean; // false = aguardando aprovação da direção
+  criado_em?: string;
 }
 
 export interface MetricaHoras {

@@ -5,6 +5,7 @@ import './index.css';
 import { AppConfig, definirConfig } from './api';
 import { PontoFuncionario } from './PontoFuncionario';
 import { AdminNuvem } from './AdminNuvem';
+import { Cadastro } from './Cadastro';
 
 async function iniciar() {
   let cfg: AppConfig = { supabaseUrl: '', supabaseAnonKey: '' };
@@ -21,6 +22,7 @@ async function iniciar() {
         <Routes>
           <Route path="/" element={<PontoFuncionario />} />
           <Route path="/estacao" element={<PontoFuncionario modoCompartilhado />} />
+          <Route path="/cadastro" element={<Cadastro />} />
           <Route path="/admin" element={<AdminNuvem />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>

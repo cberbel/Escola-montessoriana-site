@@ -30,7 +30,12 @@ create table if not exists funcionarios (
   hora_entrada time,
   hora_saida time,
   dias_semana int[] not null default '{1,2,3,4,5}', -- 0=domingo .. 6=sábado (padrão PostgreSQL)
-  data_admissao date
+  data_admissao date,
+  -- Auto-cadastro: a pessoa se cadastra (login + senha + PIN) e fica pendente
+  -- até o administrador aprovar. Só aprovados conseguem bater ponto.
+  login text,               -- e-mail ou CPF, único entre os cadastros
+  senha_hash text,          -- bcrypt (nunca a senha em texto puro)
+  aprovado boolean not null default true
 );
 
 create table if not exists registros (
@@ -54,6 +59,12 @@ alter table funcionarios add column if not exists dias_semana int[] not null def
 alter table funcionarios add column if not exists data_admissao date;
 update funcionarios set data_admissao = criado_em::date where data_admissao is null;
 alter table registros add column if not exists dispositivo text;
+
+-- Auto-cadastro (funcionários criados antes disso seguem aprovados).
+alter table funcionarios add column if not exists login text;
+alter table funcionarios add column if not exists senha_hash text;
+alter table funcionarios add column if not exists aprovado boolean not null default true;
+create unique index if not exists idx_funcionarios_login on funcionarios (lower(login)) where login is not null;
 
 -- Tabelas trancadas: sem policies, o papel anon não lê nem escreve nada direto.
 alter table config enable row level security;
@@ -168,6 +179,60 @@ begin
   return json_build_object('ok', true, 'metricas', resultado);
 end $$;
 
+-- ---------- Auto-cadastro do funcionário ----------
+
+-- Normaliza o login: CPF vira só dígitos; e-mail vira minúsculas sem espaços.
+create or replace function _normalizar_login(p_login text) returns text
+language sql immutable as $$
+  select case
+    when length(regexp_replace(coalesce(p_login, ''), '\D', '', 'g')) = 11
+         and coalesce(p_login, '') !~ '@'
+      then regexp_replace(p_login, '\D', '', 'g')
+    else lower(btrim(coalesce(p_login, '')))
+  end;
+$$;
+
+-- Cadastro feito pelo próprio funcionário. Entra como PENDENTE (aprovado = false):
+-- não consegue bater ponto até o administrador aprovar e definir o horário.
+create or replace function autocadastro(
+  p_nome text, p_cargo text, p_login text, p_senha text, p_pin text
+) returns json
+language plpgsql security definer set search_path = public as $$
+declare v_login text;
+begin
+  v_login := _normalizar_login(p_login);
+
+  if p_nome is null or btrim(p_nome) = '' then
+    return json_build_object('ok', false, 'erro', 'Informe seu nome completo.');
+  end if;
+  if v_login = '' then
+    return json_build_object('ok', false, 'erro', 'Informe seu e-mail ou CPF.');
+  end if;
+  -- Aceita e-mail simples ou CPF com 11 dígitos.
+  if v_login !~ '^[^@[:space:]]+@[^@[:space:]]+\.[^@[:space:]]+$' and v_login !~ '^\d{11}$' then
+    return json_build_object('ok', false, 'erro', 'Informe um e-mail válido ou um CPF com 11 dígitos.');
+  end if;
+  if p_senha is null or length(p_senha) < 6 then
+    return json_build_object('ok', false, 'erro', 'A senha deve ter pelo menos 6 caracteres.');
+  end if;
+  if p_pin !~ '^\d{4,6}$' then
+    return json_build_object('ok', false, 'erro', 'O PIN deve ter de 4 a 6 números.');
+  end if;
+  if exists (select 1 from funcionarios where lower(login) = v_login) then
+    return json_build_object('ok', false, 'erro', 'Já existe um cadastro com este e-mail/CPF.');
+  end if;
+  -- PIN precisa ser único entre quem já pode bater ponto e entre os pendentes.
+  if exists (select 1 from funcionarios where pin = p_pin and ativo) then
+    return json_build_object('ok', false, 'erro', 'Este PIN já está em uso. Escolha outro.');
+  end if;
+
+  insert into funcionarios (nome, cargo, pin, ativo, aprovado, login, senha_hash, data_admissao)
+  values (btrim(p_nome), coalesce(btrim(p_cargo), ''), p_pin, true, false,
+          v_login, crypt(p_senha, gen_salt('bf')), current_date);
+
+  return json_build_object('ok', true);
+end $$;
+
 -- ---------- Funcionário (celular) ----------
 
 create or replace function entrar_funcionario(p_pin text) returns json
@@ -177,6 +242,10 @@ begin
   select * into f from funcionarios where pin = p_pin and ativo limit 1;
   if f.id is null then
     return json_build_object('ok', false, 'erro', 'PIN não encontrado.');
+  end if;
+  if not f.aprovado then
+    return json_build_object('ok', false, 'erro',
+      'Seu cadastro ainda está aguardando aprovação da direção.');
   end if;
   return json_build_object(
     'ok', true,
@@ -202,6 +271,10 @@ begin
   select * into f from funcionarios where pin = p_pin and ativo limit 1;
   if f.id is null then
     return json_build_object('ok', false, 'erro', 'PIN não encontrado.');
+  end if;
+  if not f.aprovado then
+    return json_build_object('ok', false, 'erro',
+      'Seu cadastro ainda está aguardando aprovação da direção.');
   end if;
   select max(ts) into v_ultima from registros where funcionario_id = f.id;
   if v_ultima is not null and now() - v_ultima < interval '1 minute' then
@@ -241,8 +314,56 @@ begin
     select json_agg(json_build_object(
       'id', f.id, 'nome', f.nome, 'cargo', f.cargo, 'pin', f.pin, 'ativo', f.ativo,
       'hora_entrada', f.hora_entrada, 'hora_saida', f.hora_saida,
-      'dias_semana', f.dias_semana, 'data_admissao', f.data_admissao) order by f.nome)
+      'dias_semana', f.dias_semana, 'data_admissao', f.data_admissao,
+      'login', f.login, 'aprovado', f.aprovado, 'criado_em', f.criado_em)
+      order by f.aprovado, f.criado_em, f.nome)
     from funcionarios f), '[]'::json));
+end $$;
+
+-- Aprova um cadastro pendente, já definindo o horário esperado (só o admin define
+-- horário — se o próprio funcionário definisse, o controle de atrasos perderia sentido).
+create or replace function admin_aprovar_funcionario(
+  p_pin_admin text, p_id uuid,
+  p_hora_entrada time default null, p_hora_saida time default null,
+  p_dias_semana int[] default '{1,2,3,4,5}', p_data_admissao date default null
+) returns json
+language plpgsql security definer set search_path = public as $$
+declare v_ativos int;
+begin
+  if not _pin_admin_ok(p_pin_admin) then
+    return json_build_object('ok', false, 'erro', 'PIN de administrador incorreto.');
+  end if;
+  if p_hora_entrada is not null and p_hora_saida is not null and p_hora_saida <= p_hora_entrada then
+    return json_build_object('ok', false, 'erro', 'O horário de saída deve ser depois do de entrada.');
+  end if;
+  select count(*) into v_ativos from funcionarios where ativo and aprovado and id <> p_id;
+  if v_ativos >= 25 then
+    return json_build_object('ok', false, 'erro', 'Limite de 25 funcionários ativos atingido.');
+  end if;
+  update funcionarios
+  set aprovado = true,
+    hora_entrada = p_hora_entrada, hora_saida = p_hora_saida,
+    dias_semana = coalesce(p_dias_semana, '{1,2,3,4,5}'),
+    data_admissao = coalesce(p_data_admissao, data_admissao, current_date)
+  where id = p_id and not aprovado;
+  if not found then
+    return json_build_object('ok', false, 'erro', 'Cadastro não encontrado ou já aprovado.');
+  end if;
+  return json_build_object('ok', true);
+end $$;
+
+-- Recusa (exclui) um cadastro que ainda está pendente.
+create or replace function admin_recusar_funcionario(p_pin_admin text, p_id uuid) returns json
+language plpgsql security definer set search_path = public as $$
+begin
+  if not _pin_admin_ok(p_pin_admin) then
+    return json_build_object('ok', false, 'erro', 'PIN de administrador incorreto.');
+  end if;
+  delete from funcionarios where id = p_id and not aprovado;
+  if not found then
+    return json_build_object('ok', false, 'erro', 'Cadastro não encontrado ou já aprovado.');
+  end if;
+  return json_build_object('ok', true);
 end $$;
 
 create or replace function admin_salvar_funcionario(
@@ -259,8 +380,8 @@ begin
   if p_nome is null or btrim(p_nome) = '' then
     return json_build_object('ok', false, 'erro', 'Informe o nome.');
   end if;
-  if p_pin !~ '^\d{4}$' then
-    return json_build_object('ok', false, 'erro', 'O PIN deve ter exatamente 4 números.');
+  if p_pin !~ '^\d{4,6}$' then
+    return json_build_object('ok', false, 'erro', 'O PIN deve ter de 4 a 6 números.');
   end if;
   if p_hora_entrada is not null and p_hora_saida is not null and p_hora_saida <= p_hora_entrada then
     return json_build_object('ok', false, 'erro', 'O horário de saída deve ser depois do de entrada.');
@@ -268,7 +389,8 @@ begin
   if p_ativo and exists (select 1 from funcionarios where ativo and pin = p_pin and (p_id is null or id <> p_id)) then
     return json_build_object('ok', false, 'erro', 'Este PIN já está em uso por outro funcionário.');
   end if;
-  select count(*) into v_ativos from funcionarios where ativo and (p_id is null or id <> p_id);
+  -- Pendentes de aprovação não ocupam vaga no limite de 25.
+  select count(*) into v_ativos from funcionarios where ativo and aprovado and (p_id is null or id <> p_id);
   if p_ativo and v_ativos >= 25 then
     return json_build_object('ok', false, 'erro', 'Limite de 25 funcionários ativos atingido.');
   end if;

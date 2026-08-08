@@ -16,6 +16,9 @@ import {
   Crosshair,
   Wallet,
   Smartphone,
+  UserPlus,
+  Check,
+  X,
 } from 'lucide-react';
 import { Funcionario, LIMITE_FUNCIONARIOS, LocalEscola, MetricaHoras, RegistroAdmin } from './types';
 import { obterPosicao, rpc, temConfig } from './api';
@@ -244,7 +247,34 @@ const AbaFuncionarios: React.FC<{ pinAdmin: string }> = ({ pinAdmin }) => {
 
   useEffect(() => { carregar(); }, [carregar]);
 
-  const ativos = (funcionarios ?? []).filter((f) => f.ativo).length;
+  // Pendentes não ocupam vaga no limite — só entram na conta depois de aprovados.
+  const aprovados = (funcionarios ?? []).filter((f) => f.ativo && f.aprovado !== false);
+  const pendentes = (funcionarios ?? []).filter((f) => f.aprovado === false);
+  const ativos = aprovados.length;
+
+  async function aprovar(
+    id: string,
+    dados: { horaEntrada: string; horaSaida: string; diasSemana: number[]; dataAdmissao: string }
+  ): Promise<string> {
+    const r = await rpc<RespostaBase>('admin_aprovar_funcionario', {
+      p_pin_admin: pinAdmin,
+      p_id: id,
+      p_hora_entrada: dados.horaEntrada || null,
+      p_hora_saida: dados.horaSaida || null,
+      p_dias_semana: dados.diasSemana,
+      p_data_admissao: dados.dataAdmissao || null,
+    });
+    if (!r.ok) return r.erro ?? 'Erro ao aprovar.';
+    await carregar();
+    return '';
+  }
+
+  async function recusar(f: Funcionario) {
+    if (!confirm(`Recusar e excluir o cadastro de ${f.nome}?`)) return;
+    const r = await rpc<RespostaBase>('admin_recusar_funcionario', { p_pin_admin: pinAdmin, p_id: f.id });
+    if (!r.ok) alert(r.erro ?? 'Erro ao recusar.');
+    await carregar();
+  }
 
   async function salvar(
     dados: {
@@ -315,10 +345,28 @@ const AbaFuncionarios: React.FC<{ pinAdmin: string }> = ({ pinAdmin }) => {
         />
       )}
 
+      {pendentes.length > 0 && (
+        <div className="mb-6">
+          <h2 className="flex items-center gap-2 font-bold uppercase tracking-wide text-sm text-amber-800 mb-2">
+            <UserPlus size={16} />
+            Aguardando aprovação ({pendentes.length})
+          </h2>
+          {pendentes.map((f) => (
+            <CartaoPendente
+              key={f.id}
+              funcionario={f}
+              onAprovar={(dados) => aprovar(f.id, dados)}
+              onRecusar={() => recusar(f)}
+            />
+          ))}
+        </div>
+      )}
+
       <div className="bg-white rounded-2xl shadow overflow-hidden">
-        {funcionarios.length === 0 ? (
+        {aprovados.length === 0 ? (
           <p className="p-6 text-ponto-cinza">
-            Nenhum funcionário cadastrado. Clique em “Novo funcionário” para começar.
+            Nenhum funcionário aprovado ainda. Aprove os cadastros acima ou clique em “Novo
+            funcionário”.
           </p>
         ) : (
           <div className="overflow-x-auto">
@@ -334,7 +382,7 @@ const AbaFuncionarios: React.FC<{ pinAdmin: string }> = ({ pinAdmin }) => {
                 </tr>
               </thead>
               <tbody>
-                {funcionarios.map((f) => (
+                {aprovados.map((f) => (
                   <tr key={f.id} className="border-t border-ponto-claro">
                     <td className="px-4 py-3 font-bold">{f.nome}</td>
                     <td className="px-4 py-3">{f.cargo || '—'}</td>
@@ -379,6 +427,134 @@ const AbaFuncionarios: React.FC<{ pinAdmin: string }> = ({ pinAdmin }) => {
   );
 };
 
+/**
+ * Cadastro feito pelo próprio funcionário, aguardando aprovação. O horário esperado
+ * é definido aqui, pelo administrador — se a pessoa definisse o próprio horário,
+ * o controle de atrasos e o banco de horas perderiam o sentido.
+ */
+const CartaoPendente: React.FC<{
+  funcionario: Funcionario;
+  onAprovar: (dados: {
+    horaEntrada: string; horaSaida: string; diasSemana: number[]; dataAdmissao: string;
+  }) => Promise<string>;
+  onRecusar: () => void;
+}> = ({ funcionario, onAprovar, onRecusar }) => {
+  const [horaEntrada, setHoraEntrada] = useState('');
+  const [horaSaida, setHoraSaida] = useState('');
+  const [diasSemana, setDiasSemana] = useState<number[]>([1, 2, 3, 4, 5]);
+  const [dataAdmissao, setDataAdmissao] = useState(
+    funcionario.data_admissao ?? new Date().toISOString().slice(0, 10)
+  );
+  const [erro, setErro] = useState('');
+  const [salvando, setSalvando] = useState(false);
+
+  function alternarDia(dia: number) {
+    setDiasSemana((atual) =>
+      atual.includes(dia) ? atual.filter((d) => d !== dia) : [...atual, dia].sort((a, b) => a - b)
+    );
+  }
+
+  async function aprovar() {
+    setErro('');
+    if ((horaEntrada && !horaSaida) || (!horaEntrada && horaSaida)) {
+      return setErro('Informe entrada e saída, ou deixe os dois em branco.');
+    }
+    if (horaEntrada && horaSaida && horaSaida <= horaEntrada) {
+      return setErro('O horário de saída deve ser depois do de entrada.');
+    }
+    setSalvando(true);
+    const msg = await onAprovar({ horaEntrada, horaSaida, diasSemana, dataAdmissao });
+    setSalvando(false);
+    if (msg) setErro(msg);
+  }
+
+  return (
+    <div className="bg-white rounded-2xl shadow border-l-4 border-amber-400 p-4 mb-3">
+      <div className="flex items-start justify-between gap-3 flex-wrap mb-3">
+        <div>
+          <p className="font-bold text-lg">{funcionario.nome}</p>
+          <p className="text-sm text-ponto-cinza">
+            {funcionario.cargo || 'Sem cargo informado'}
+            {funcionario.login && <> · {funcionario.login}</>}
+            {' · '}PIN {funcionario.pin}
+          </p>
+        </div>
+        <span className="text-xs font-bold px-2 py-1 rounded-full bg-amber-100 text-amber-800">
+          Aguardando aprovação
+        </span>
+      </div>
+
+      <p className="text-sm text-ponto-cinza mb-2">
+        Defina o horário esperado (opcional — sem ele, a pessoa não entra no banco de horas):
+      </p>
+      <div className="grid gap-3 sm:grid-cols-4 mb-3">
+        <label className="text-sm text-ponto-cinza">
+          Entrada
+          <input
+            type="time"
+            value={horaEntrada}
+            onChange={(e) => setHoraEntrada(e.target.value)}
+            className="mt-1 w-full border-2 border-ponto-cinza/30 rounded-lg px-3 py-2 focus:border-ponto-azul outline-none"
+          />
+        </label>
+        <label className="text-sm text-ponto-cinza">
+          Saída
+          <input
+            type="time"
+            value={horaSaida}
+            onChange={(e) => setHoraSaida(e.target.value)}
+            className="mt-1 w-full border-2 border-ponto-cinza/30 rounded-lg px-3 py-2 focus:border-ponto-azul outline-none"
+          />
+        </label>
+        <label className="text-sm text-ponto-cinza sm:col-span-2">
+          Admitido(a) em
+          <input
+            type="date"
+            value={dataAdmissao}
+            onChange={(e) => setDataAdmissao(e.target.value)}
+            className="mt-1 w-full border-2 border-ponto-cinza/30 rounded-lg px-3 py-2 focus:border-ponto-azul outline-none"
+          />
+        </label>
+      </div>
+      <div className="mb-3">
+        <p className="text-sm text-ponto-cinza mb-1">Dias trabalhados</p>
+        <div className="flex flex-wrap gap-2">
+          {NOMES_DIAS_SEMANA.map((rotulo, dia) => (
+            <button
+              key={dia}
+              type="button"
+              onClick={() => alternarDia(dia)}
+              className={`px-3 py-1 rounded-full text-sm font-bold ${
+                diasSemana.includes(dia) ? 'bg-ponto-azul text-white' : 'bg-ponto-claro text-ponto-cinza'
+              }`}
+            >
+              {rotulo}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {erro && <p className="text-red-600 mb-3">{erro}</p>}
+
+      <div className="flex gap-2 flex-wrap">
+        <button
+          onClick={aprovar}
+          disabled={salvando}
+          className="flex items-center gap-2 bg-green-700 text-white font-bold px-5 py-2 rounded-full hover:bg-green-800 transition-colors disabled:opacity-60"
+        >
+          <Check size={18} /> {salvando ? 'Aprovando…' : 'Aprovar'}
+        </button>
+        <button
+          onClick={onRecusar}
+          className="flex items-center gap-2 text-red-600 hover:text-red-800 font-bold px-3 py-2"
+        >
+          <X size={18} /> Recusar
+        </button>
+      </div>
+    </div>
+  );
+};
+
 const FormFuncionario: React.FC<{
   inicial?: Funcionario;
   onSalvar: (dados: {
@@ -408,7 +584,7 @@ const FormFuncionario: React.FC<{
   async function enviar(e: React.FormEvent) {
     e.preventDefault();
     if (!nome.trim()) return setErro('Informe o nome.');
-    if (!/^\d{4}$/.test(pin)) return setErro('O PIN deve ter exatamente 4 números.');
+    if (!/^\d{4,6}$/.test(pin)) return setErro('O PIN deve ter de 4 a 6 números.');
     if ((horaEntrada && !horaSaida) || (!horaEntrada && horaSaida)) {
       return setErro('Informe entrada e saída, ou deixe os dois em branco.');
     }
@@ -440,10 +616,10 @@ const FormFuncionario: React.FC<{
         className="border-2 border-ponto-cinza/30 rounded-lg px-3 py-2 focus:border-ponto-azul outline-none"
       />
       <input
-        placeholder="PIN (4 números)"
+        placeholder="PIN (4 a 6 números)"
         value={pin}
         inputMode="numeric"
-        maxLength={4}
+        maxLength={6}
         onChange={(e) => setPin(e.target.value.replace(/\D/g, ''))}
         className="border-2 border-ponto-cinza/30 rounded-lg px-3 py-2 focus:border-ponto-azul outline-none tabular-nums"
       />
