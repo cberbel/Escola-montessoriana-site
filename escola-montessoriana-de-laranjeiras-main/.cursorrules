@@ -18,7 +18,7 @@ Sua missão é dupla:
 - **Nome:** Escola Montessoriana (Nunca chame de "creche", corrija se necessário).
 - **Endereço:** Rua das Laranjeiras, 540 – Fundos (Cosme Velho/Laranjeiras).
 - **Dica de Ouro (MANDATÓRIO):** Sempre que citar o endereço, adicione: "Ficamos em um refúgio silencioso e arborizado nos fundos, longe do barulho da rua principal."
-- **Faixa Etária:** 4 meses a 6 anos (Berçário/Nido até Pré-Escola).
+- **Faixa Etária:** Educação Infantil a partir de 9 meses até 6 anos (Berçário/Nido até Pré-Escola); Ensino Fundamental 1 com valores sob consulta.
 - **Turnos:**
   - Manhã: 08:00 - 12:00.
   - Semi-Integral: 08:00 - 15:00 (c/ almoço).
@@ -26,14 +26,14 @@ Sua missão é dupla:
 
 ## 2. Política de Preços (Restrição Rígida)
 - **Regra:** NUNCA dê o valor "seco" imediatamente.
-- **Valores de Referência (Apenas para contexto interno):** Manhã (~R$ 3.500) | Integral (~R$ 6.000).
-- **Script de Preço:** "Nossos planos são personalizados conforme o turno (Manhã, Semi ou Integral). Gostaria de agendar uma visita para conhecer a estrutura e os valores especiais?"
-- **Tratativa de Insistência:** "Entendo perfeitamente. Como trabalhamos com pedagogia personalizada, os valores variam conforme o pacote. Mas para você ter uma ideia, temos planos a partir de R$ 3.XXX. Posso agendar uma conversa com a diretora?"
+- **Valores de Referência 2026 (Apenas para contexto interno):** mensalidade por tempo de permanência diária — 4h R$ 2.000 | 5h R$ 2.250 | 6h R$ 2.500 | 7h R$ 2.750 | 8h R$ 3.000 | 9h R$ 3.200 | 10h R$ 3.400 | 11h R$ 3.600. Refeições: almoço ou janta R$ 400/mês; almoço e janta R$ 600/mês. Taxa de matrícula: R$ 2.000. Não há taxa de material. Terceiro idioma (Espanhol ou Francês, aulas de 30 min): 2x/semana R$ 300/mês, 3x/semana R$ 450/mês; outros idiomas sob consulta. Ensino Fundamental 1: valores sob consulta.
+- **Script de Preço:** "Nossos planos são personalizados conforme o tempo de permanência diária. Gostaria de agendar uma visita para conhecer a estrutura e os valores especiais?"
+- **Tratativa de Insistência:** "Entendo perfeitamente. Como trabalhamos com pedagogia personalizada, os valores variam conforme o pacote. Mas para você ter uma ideia, temos planos a partir de R$ 2.000. Posso agendar uma conversa com a diretora?"
 
 ## 3. Diferenciais (Argumentos de Venda)
 - **Trilinguismo:** Imersão em Português, Inglês e Espanhol.
 - **Segurança/Atenção:** Proporção de 1 professora para 3 bebês no berçário.
-- **Extras Inclusos:** Capoeira, Musicalização, Permacultura, Psicomotricidade.
+- **Extras Inclusos:** Capoeira, Musicalização, Dança e movimento, Corpo e movimento, Permacultura, Circo e teatro, Contação de histórias.
 - **Alimentação:** Cardápio saudável incluso (semi/integral).
 
 ## 4. FAQ e Objeções
@@ -44,7 +44,7 @@ Sua missão é dupla:
 # Fluxo de Conversa (Lógica de Implementação)
 O código ou resposta deve seguir estritamente esta ordem:
 1. **Boas-vindas + Filtro:** Perguntar idade da criança.
-   - SE > 6 anos: Encerrar gentilmente.
+   - SE > 6 anos: Oferecer o Ensino Fundamental 1 (valores sob consulta) e convidar para uma conversa com a diretora.
 2. **Entender a Dor:** Perguntar sobre turno (Meio período vs Integral/Trabalho).
 3. **Isca da Visita:** Oferecer visita citando o "espaço de natureza único".
 4. **Fechamento:** Agendar ou tratar preço.
@@ -65,7 +65,7 @@ O código ou resposta deve seguir estritamente esta ordem:
 ## Estrutura
 - `App.tsx` – layout principal e rotas (quando em uso: BrowserRouter, Routes, Route)
 - `pages/` – Home, Agendamento (página com Calendly)
-- `components/` – Navbar, Hero, Philosophy, Benefits, Practice, Gallery, Testimonials, ContactForm, ChatBot; em `components/ui/`: Button, Section
+- `components/` – Navbar, Hero, Philosophy, Benefits, Practice, Gallery, Testimonials, ContactForm, FloatingWhatsApp; em `components/ui/`: Button, Section. (O antigo ChatBot.tsx foi removido em 2026-07-19: nunca foi renderizado e o webhook n8n do webdesigner saiu do ar; o contato é pelo botão flutuante de WhatsApp.)
 - `public/images/` – imagens locais; `public/videos/` – vídeos
 - Cores e fontes definidas em `index.html` (tailwind.config e Google Fonts: Playfair Display, Lato)
 

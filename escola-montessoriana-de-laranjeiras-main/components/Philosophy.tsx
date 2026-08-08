@@ -1,82 +1,110 @@
 import React from 'react';
-import { Brain, TreePine } from 'lucide-react';
+import { Focus, Sun, Heart, Hand, BookOpen, Compass, Globe } from 'lucide-react';
 import { Section } from './ui/Section';
 import { trackWhatsAppClick } from '../utils/tracking';
 
-/** Ícone minimalista: globo (mundo / linguagem global) */
-const GlobeMinimalIcon: React.FC<{ size?: number; className?: string }> = ({ size = 32, className = '' }) => (
-  <svg width={size} height={size} viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" className={className}>
-    <circle cx="16" cy="16" r="10" />
-    <ellipse cx="16" cy="16" rx="10" ry="4" />
-    <line x1="6" y1="16" x2="26" y2="16" />
-  </svg>
-);
-
 export const Philosophy: React.FC = () => {
-  const points = [
+  const traits = [
     {
-      icon: <Brain size={32} />,
-      title: "O momento certo da infância",
-      text: "Os primeiros anos de vida são decisivos para a formação do pensamento, da linguagem e da personalidade. Um ambiente adequado nesse período permite que o desenvolvimento aconteça de forma natural e consistente."
+      icon: <Globe size={32} />,
+      title: "Com inglês fluente para a vida toda",
+      text: "Vive o inglês todos os dias, por imersão, na fase em que o cérebro absorve idiomas sem esforço. O que hoje entra como brincadeira se torna uma fluência natural — sem sotaque e sem cursinho — para a vida inteira."
     },
     {
-      icon: <GlobeMinimalIcon size={32} />,
-      title: "Linguagem e autonomia para o mundo",
-      text: "A linguagem é vivida no dia a dia, nas relações e em experiências reais. Conviver com diferentes idiomas e praticar a autonomia desde cedo fortalecem a comunicação, a confiança e a capacidade de agir no mundo."
+      icon: <Focus size={32} />,
+      title: "Que se concentra",
+      text: "Mergulha no que está fazendo e permanece na atividade até terminar. A concentração profunda é a base de todo aprendizado — e ela se constrói todos os dias, em um ambiente preparado para isso."
     },
     {
-      icon: <TreePine size={32} />,
-      title: "Um ambiente que protege e sustenta",
-      text: "Tranquilidade, previsibilidade e cuidado são essenciais para o desenvolvimento infantil. Oferecemos um espaço preparado, protegido e acolhedor onde a criança pode se concentrar, explorar e crescer com segurança."
+      icon: <Sun size={32} />,
+      title: "Confiante",
+      text: "Acredita na própria capacidade porque conquista as coisas por si mesma. Cada desafio vencido no seu ritmo — sem pressa e sem comparações — fortalece a segurança para enfrentar o próximo."
+    },
+    {
+      icon: <Heart size={32} />,
+      title: "Gentil",
+      text: "Trata colegas, adultos e o ambiente com cuidado e respeito. A cortesia não é imposta: nasce da convivência em uma comunidade onde a criança é tratada com o mesmo respeito que aprende a oferecer."
+    },
+    {
+      icon: <Hand size={32} />,
+      title: "Apta a fazer suas tarefas",
+      text: "Veste-se, alimenta-se, organiza seus pertences e cuida do espaço ao seu redor. A independência prática dá à criança o orgulho legítimo de quem sabe cuidar de si e contribuir com os outros."
+    },
+    {
+      icon: <BookOpen size={32} />,
+      title: "Que ama aprender",
+      text: "Aprende porque quer, seguindo a curiosidade que é natural de toda criança. Quando o aprendizado nasce do interesse, ele não precisa de prêmios nem cobranças — e dura para a vida inteira."
+    },
+    {
+      icon: <Compass size={32} />,
+      title: "Com disciplina interior",
+      text: "Escolhe, começa e termina o que se propôs a fazer. A verdadeira disciplina não vem de fora, da obediência: vem de dentro, do hábito de agir com propósito e liberdade com limites."
     }
   ];
 
   return (
     <Section id="method" className="bg-montessori-cream">
-      <div className="text-center mb-10 sm:mb-16 min-w-0">
+      <div className="text-center mb-10 sm:mb-14 min-w-0">
         <span className="text-montessori-green tracking-widest font-bold text-sm sm:text-base mb-2 block">
-          Diferenciais
+          A Filosofia Montessori
         </span>
         <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-montessori-green mb-4 sm:mb-6">
-          Montessori oferece educação para a vida real, de forma personalizada
+          Educação para a vida real, respeitando o próprio ritmo
         </h2>
-        <p className="font-sans text-lg md:text-xl text-montessori-dark font-semibold max-w-2xl mx-auto mb-5 sm:mb-6 px-1 leading-relaxed">
-          A criança aprende no seu ritmo, seguindo seus interesses, dentro de um ambiente preparado para o desenvolvimento infantil.
+        <p className="font-sans text-lg md:text-xl text-montessori-dark font-semibold max-w-2xl mx-auto px-1 leading-relaxed">
+          No Montessori a criança aprende seguindo seus interesses, em um ambiente preparado para o desenvolvimento infantil.
         </p>
-        <ul className="font-sans text-lg md:text-xl text-montessori-dark max-w-2xl mx-auto list-none space-y-2 sm:space-y-3 mb-6 sm:mb-8 px-1 text-left break-words [&>li]:relative [&>li]:pl-6 [&>li]:before:content-['•'] [&>li]:before:absolute [&>li]:before:left-0 [&>li]:before:text-montessori-gold [&>li]:before:font-bold">
-          <li>Liberdade com limites.</li>
-          <li>Autonomia e independência desde cedo.</li>
-          <li>Foco no desenvolvimento da concentração.</li>
-          <li>Ambiente cientificamente preparado.</li>
-          <li>Bem diferente do modelo fabril da escola convencional.</li>
-        </ul>
-        <div className="mt-8 sm:mt-10">
-          <a
-            href="https://wa.me/5521993311000?text=Ol%C3%A1!%20Gostaria%20de%20conhecer%20a%20escola%20e%20agendar%20uma%20visita."
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={trackWhatsAppClick}
-            className="inline-flex items-center justify-center gap-2 min-h-[48px] px-8 py-3 bg-[#25D366] text-white font-semibold rounded-sm hover:bg-[#20bd5a] transition-colors shadow-md hover:shadow-lg"
-          >
-            Quero agendar uma visita
-          </a>
+      </div>
+
+      {/* A criança transformada: foto de concentração + introdução */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 items-center max-w-5xl mx-auto mb-12 sm:mb-16 min-w-0">
+        <div className="relative overflow-hidden rounded-sm shadow-lg border-l-4 border-montessori-gold min-w-0">
+          <img
+            src="/images/Crianca-brincando.jpg"
+            alt="Crianças com os braços para o alto, encantadas, caçando bolhas de sabão no pátio da escola"
+            loading="lazy"
+            style={{ objectPosition: 'center 30%' }}
+            className="w-full h-64 sm:h-80 object-cover"
+          />
+        </div>
+        <div className="min-w-0 px-1 text-left">
+          <h3 className="font-serif text-2xl sm:text-3xl text-montessori-green mb-3 sm:mb-4">
+            Quem seu filho se torna na Escola Montessoriana trilíngue?
+          </h3>
+          <p className="font-sans text-lg md:text-xl text-montessori-dark leading-relaxed">
+            Maria Montessori descobriu que, no ambiente certo, toda criança revela o seu melhor.
+            Na nossa escola, essa transformação acontece no dia a dia — e os pais reconhecem em
+            casa uma criança:
+          </p>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-12 min-w-0">
-        {points.map((point, index) => (
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 max-w-5xl mx-auto min-w-0">
+        {traits.map((trait, index) => (
           <div key={index} className="flex flex-col items-center text-center group min-w-0">
             <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white border-2 border-yellow-400 flex items-center justify-center text-montessori-green mb-4 sm:mb-6 shadow-sm group-hover:bg-montessori-green group-hover:text-yellow-400 transition-colors duration-300 [&>svg]:w-8 [&>svg]:h-8 sm:[&>svg]:w-[32px] sm:[&>svg]:h-[32px]">
-              {point.icon}
+              {trait.icon}
             </div>
             <h3 className="font-serif text-xl sm:text-2xl text-montessori-green mb-3 sm:mb-4">
-              {point.title}
+              {trait.title}
             </h3>
             <p className="text-gray-600 leading-relaxed text-base break-words">
-              {point.text}
+              {trait.text}
             </p>
           </div>
         ))}
+      </div>
+
+      <div className="text-center mt-12 sm:mt-16">
+        <a
+          href="https://wa.me/5521993311000?text=Ol%C3%A1!%20Gostaria%20de%20conhecer%20a%20escola%20e%20agendar%20uma%20visita."
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={() => trackWhatsAppClick('filosofia')}
+          className="inline-flex items-center justify-center gap-2 min-h-[48px] px-8 py-3 bg-[#25D366] text-white font-semibold rounded-sm hover:bg-[#20bd5a] transition-colors shadow-md hover:shadow-lg"
+        >
+          Quero agendar uma visita
+        </a>
       </div>
     </Section>
   );

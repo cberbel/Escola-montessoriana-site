@@ -12,7 +12,7 @@ export const AgendamentoContato: React.FC = () => (
         href="https://wa.me/5521993311000"
         target="_blank"
         rel="noopener noreferrer"
-        onClick={trackWhatsAppClick}
+        onClick={() => trackWhatsAppClick('agendamento')}
         className="bg-white bg-opacity-10 backdrop-blur-sm border border-white border-opacity-20 rounded-sm p-6 hover:bg-white hover:bg-opacity-20 transition-all group min-w-0 break-words min-h-[44px] flex flex-col touch-manipulation"
       >
         <div className="flex items-center space-x-4 mb-4">

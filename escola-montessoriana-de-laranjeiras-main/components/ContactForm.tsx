@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Section } from './ui/Section';
 import { Button } from './ui/Button';
 import { Send, CheckCircle, Calendar } from 'lucide-react';
-import { trackWhatsAppClick } from '../utils/tracking';
+import { trackWhatsAppClick, trackFormSubmit } from '../utils/tracking';
 
 const WHATSAPP_ESCOLA = '5521993311000';
 const FORMSUBMIT_EMAIL = 'contato@escolamontessoriana.com.br';
@@ -25,6 +25,8 @@ type FormState = {
   email: string;
   neighborhood: string;
   comments: string;
+  /** Honeypot: invisível para pessoas, preenchido por bots. Se vier com valor, o envio é descartado. */
+  honey: string;
 };
 
 function buildWhatsAppMessage(data: FormState) {
@@ -61,7 +63,9 @@ function submitViaFormPost(data: FormState, iframeName: string) {
     _subject: 'Contato pelo site – Escola Montessoriana',
     _replyto: data.email,
     _captcha: 'false',
-    _template: 'table'
+    _template: 'table',
+    // Honeypot do FormSubmit: se um bot preencher o campo oculto, o envio é descartado no servidor
+    _honey: data.honey
   };
   for (const [name, value] of Object.entries(fields)) {
     const input = document.createElement('input');
@@ -76,14 +80,15 @@ function submitViaFormPost(data: FormState, iframeName: string) {
 }
 
 export const ContactForm: React.FC = () => {
-  const [formState, setFormState] = useState({
+  const [formState, setFormState] = useState<FormState>({
     responsibleName: '',
     childName: '',
     childAge: '',
     phone: '',
     email: '',
     neighborhood: '',
-    comments: ''
+    comments: '',
+    honey: ''
   });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -93,11 +98,20 @@ export const ContactForm: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Bot: campo oculto preenchido. Encerra sem enviar e SEM disparar a conversão,
+    // para que tráfego automatizado não entre na contagem do Google Ads.
+    if (formState.honey) {
+      setSubmitted(true);
+      return;
+    }
+
     setError(null);
     setLoading(true);
 
     try {
       submitViaFormPost(formState, IFRAME_NAME);
+      trackFormSubmit();
       setTimeout(() => {
         setSubmitted(true);
         setLoading(false);
@@ -117,7 +131,7 @@ export const ContactForm: React.FC = () => {
 
   const handleSubmitWhatsApp = (e: React.FormEvent) => {
     e.preventDefault();
-    trackWhatsAppClick();
+    trackWhatsAppClick('formulario-whatsapp');
     const message = buildWhatsAppMessage(formState);
     window.open(`https://wa.me/${WHATSAPP_ESCOLA}?text=${encodeURIComponent(message)}`, '_blank');
     setSubmitted(true);
@@ -125,6 +139,12 @@ export const ContactForm: React.FC = () => {
 
   return (
     <Section id="contact" className="bg-montessori-cream py-24 border-t border-montessori-green/10">
+      <div className="text-center mb-10 sm:mb-14 min-w-0">
+        <div className="w-16 h-1.5 bg-montessori-gold rounded-full mx-auto mb-5 sm:mb-6" />
+        <h2 className="font-serif font-bold text-3xl sm:text-4xl md:text-5xl text-montessori-green px-1 break-words leading-tight">
+          Contato
+        </h2>
+      </div>
       <iframe
         ref={iframeRef}
         name={IFRAME_NAME}
@@ -169,6 +189,17 @@ export const ContactForm: React.FC = () => {
             </div>
           ) : (
             <form onSubmit={USE_WHATSAPP_ONLY ? handleSubmitWhatsApp : handleSubmit} className="space-y-6">
+              {/* Honeypot: fora da tela e do foco. Pessoas não veem nem tabulam até aqui; bots preenchem. */}
+              <input
+                type="text"
+                name="honey"
+                value={formState.honey}
+                onChange={handleChange}
+                className="absolute w-0 h-0 opacity-0 -left-[9999px]"
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden
+              />
               <div>
                 <label htmlFor="responsibleName" className="block text-base font-bold text-gray-700 uppercase tracking-wide mb-2">
                   Nome completo do responsável <span className="text-red-500">*</span>
@@ -289,7 +320,7 @@ export const ContactForm: React.FC = () => {
                     type="button"
                     onClick={() => {
                       setError(null);
-                      trackWhatsAppClick();
+                      trackWhatsAppClick('formulario-whatsapp');
                       const message = buildWhatsAppMessage(formState);
                       window.open(`https://wa.me/${WHATSAPP_ESCOLA}?text=${encodeURIComponent(message)}`, '_blank');
                     }}
@@ -327,7 +358,7 @@ export const ContactForm: React.FC = () => {
                   <button
                     type="button"
                     onClick={() => {
-                      trackWhatsAppClick();
+                      trackWhatsAppClick('formulario-whatsapp');
                       const message = buildWhatsAppMessage(formState);
                       window.open(`https://wa.me/${WHATSAPP_ESCOLA}?text=${encodeURIComponent(message)}`, '_blank');
                     }}
@@ -358,7 +389,7 @@ export const ContactForm: React.FC = () => {
           href="https://wa.me/5521993311000?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20visita%20%C3%A0%20Escola%20Montessoriana."
           target="_blank"
           rel="noopener noreferrer"
-          onClick={trackWhatsAppClick}
+          onClick={() => trackWhatsAppClick('contato-cta')}
           className="inline-flex items-center justify-center gap-2 min-h-[52px] px-8 py-4 text-base font-semibold tracking-wide transition-all duration-300 rounded-sm touch-manipulation bg-[#25D366] text-white hover:bg-[#20bd5a] focus:outline focus:ring-2 focus:ring-[#25D366] focus:ring-offset-2 shadow-lg hover:shadow-xl"
         >
           <Calendar size={22} strokeWidth={2} />
