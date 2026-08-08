@@ -11,6 +11,51 @@ Contêiner GTM: **GTM-56ZSQTXF** · Projeto Supabase: **ponto-escola-montessoria
 
 ---
 
+## 04–06/08/2026
+
+### YouTube — 5 vídeos publicados como "não listado"
+
+Canal **Escola Montessoriana** (`UCVwqQLLbz8k8Ae9xzwLDjNA`). Recortes feitos com FFmpeg
+a partir de material que já estava no site, para atender o formato horizontal que o
+PMax exigia. Todos marcados como **não é conteúdo para crianças** (material dirigido a
+pais) — declaração confirmada pelo Cláudio.
+
+| Vídeo | Link | Origem |
+|---|---|---|
+| manu abertura horizontal | `youtu.be/wP3-WHE8tO0` | depoimento-manu.mp4, corte 0–21,5s |
+| manu fecho horizontal | `youtu.be/op-5GJ8ydpg` | depoimento-manu.mp4, corte 146,2–167,2s |
+| video1 horizontal | `youtu.be/S-QkeGbKAgg` | public/videos/video1.mp4, corte 0–28s |
+| video2 horizontal | `youtu.be/FmdVYCtSWk8` | public/videos/video2.mp4 |
+| video3 horizontal | `youtu.be/1D17BafzN8w` | public/videos/video3.mp4 |
+
+Os originais eram todos verticais 9:16; o horizontal foi montado com fundo desfocado e
+o vídeo centralizado. Arquivos de origem em `Documents\pmax-google-ads\videos`.
+
+**Desfazer:** YouTube Studio → Conteúdo → selecionar → excluir (ou mudar para privado).
+
+### Google Ads — 5 vídeos adicionados ao grupo de recursos da PMax
+
+Grupo "Grupo de recursos 1", campanha `[ALM] [C3] [PMAX]`. Passou de 3 para **8 vídeos**.
+
+Motivo: o painel de qualidade do anúncio marcava tudo como suficiente (imagens, títulos,
+descrições, sitelinks) **menos vídeos**, com a dica *"adicione vídeos quadrados e
+horizontais"*. Depois de adicionar o primeiro horizontal, o alerta encolheu para apenas
+*"adicione vídeos quadrados"* — confirmando que a metade horizontal foi resolvida.
+
+O grupo entrou em **"Pendente — em revisão"**, normal para recursos novos.
+
+**Desfazer:** grupo de recursos → Editar → Vídeos → Editar → desmarcar os 5 → Salvar.
+
+> **Ainda falta:** os 5 vídeos **quadrados (1:1)** estão prontos em
+> `Documents\pmax-google-ads\videos` mas não foram enviados ao YouTube. Enquanto não
+> forem, a qualidade não chega a "Excelente".
+
+> **Não foi feito:** as 20 imagens preparadas em `Documents\pmax-google-ads` não foram
+> adicionadas. O painel já marca "Imagens" como suficiente, então não mudariam a nota —
+> só acrescentariam variedade.
+
+---
+
 ## 31/07/2026
 
 ### Supabase — colunas `gclid` e `ref` em `crm.leads`
