@@ -11,6 +11,63 @@ Contêiner GTM: **GTM-56ZSQTXF** · Projeto Supabase: **ponto-escola-montessoria
 
 ---
 
+## 07–08/08/2026
+
+### A cadeia clique → conversa → conversão offline entrou no ar
+
+Cinco peças que só funcionam juntas. Antes disto, o Google otimizava para *clique no
+botão do WhatsApp*; agora existe caminho para otimizar por *conversa respondida*.
+
+```
+anúncio → ?gclid=... → site grava (ref → gclid) → carimbo na mensagem
+        → trigger lê o protocolo → lead ganha gclid → view monta o CSV
+```
+
+**1. Site — carimbo do protocolo (`4a4ddaa`)**
+Interceptador global de cliques reescreve o `href` de qualquer link `wa.me` antes da
+navegação, acrescentando `Protocolo: XXXXXX`. Vale para os 7+ botões sem editar cada
+componente. Quem não veio de anúncio não recebe carimbo.
+*O formato visível ao cliente foi aprovado pelo Cláudio em 08/08.*
+**Desfazer:** `git revert 4a4ddaa`
+
+**2. Supabase — trigger `crm.vincular_gclid()`** (migration `trigger_vincular_gclid_ao_lead`)
+Trigger `mensagens_vincular_gclid` em `crm.mensagens`. Lê o protocolo na mensagem,
+busca o GCLID em `public.cliques_anuncio` e grava `ref`/`gclid` no lead, marcando
+`origem = 'google_ads'`.
+
+Foi escolhido no lugar de alterar o `whatsapp-bot` porque aquela função estava em
+desenvolvimento ativo (v19 → v24 em poucos dias) e um deploy meu sobrescreveria o
+trabalho em curso. Tem `exception when others then return new`: se a medição falhar,
+o atendimento continua.
+**Desfazer:** `drop trigger mensagens_vincular_gclid on crm.mensagens;`
+
+**3. Supabase — view `crm.conversoes_offline`** (migrations `view_conversoes_offline_google_ads`
+e `view_conversoes_offline_robusta`)
+Monta as colunas do CSV de upload do Google Ads. Critério de conversão: **2 mensagens
+de entrada e pelo menos 1 de saída** — ou seja, o lead respondeu depois da resposta da
+escola. O horário da conversão é o da 2ª mensagem dele.
+**Desfazer:** `drop view crm.conversoes_offline;`
+
+**4. Supabase — views de simulação do bot** (migration `placar_simulacao_bot`)
+`crm.simulacao_conversas` e `crm.placar_simulacao`. Placar por rodada de simulação, para
+medir se o bot melhorou. Linha de base: 30 conversas simuladas, 0 agendamentos.
+**Desfazer:** `drop view crm.placar_simulacao; drop view crm.simulacao_conversas;`
+
+**5. `crm.config.prompt_sistema`** — 8 edições pontuais no prompt do bot.
+**Desfazer:** a versão anterior está inteira em `prompt_sistema_backup_20260807`.
+
+> **Dois bugs achados no teste ponta a ponta e corrigidos:**
+> - O header `Prefer: resolution=ignore-duplicates` transformava o POST do site em
+>   *upsert*, que exige política de UPDATE no RLS — resultado, 401. Trocado por insert
+>   puro, tratando 409 como sucesso.
+> - O site carimbava `Protocolo: XXXXXX` e o trigger procurava `[#XXXXXX]`. Nunca teriam
+>   se encontrado. Migration `corrige_regex_protocolo` fez o trigger aceitar as duas formas.
+
+> **Ainda inerte.** Os botões do site apontam para `993311000`, que é o número pessoal do
+> Cláudio e não passa pelo bot. Nada disso conta conversão até a troca para `992973454`.
+
+---
+
 ## 04–06/08/2026
 
 ### YouTube — 5 vídeos publicados como "não listado"
@@ -204,13 +261,23 @@ Duas ações foram barradas pelo sistema de permissões e ficaram para o Cláudi
 
 ## Pendente
 
-1. **Semana de 03/08** — trocar `993311000` → `992973454` nos 7 botões do site, passar a
-   gravar `ref → gclid` no Supabase e incluir `Protocolo: XXXXXX` na mensagem. Os três
-   juntos: separados não funcionam.
-2. **`whatsapp-bot`** — aplicar o trecho que lê o protocolo e grava `gclid` no lead
-   (~12 linhas, substitui o `detectarOrigem` atual). Não foi feito deploy para não
-   atropelar o desenvolvimento em curso.
-3. **Subir conversão offline** no Google Ads — começar por CSV (funciona hoje, sem token)
-   e pedir o developer token da API em paralelo.
+1. **Trocar `993311000` → `992973454`** nos 7 botões do site e no recurso de mensagem da
+   PMax. **É o que falta para tudo acima sair do papel:** o número de hoje é o pessoal do
+   Cláudio e não passa pelo bot, então nenhuma conversa é registrada e nenhuma conversão
+   é medida.
+2. **Vídeos quadrados (1:1)** — os 5 arquivos `*-quadrado.mp4` estão prontos em
+   `Documents\pmax-google-ads\videos` e não foram enviados ao YouTube. Enquanto não forem,
+   a qualidade do grupo de recursos não chega a "Excelente". Falta também excluir o
+   rascunho interrompido "video3 horizontal" no YouTube Studio.
+3. **Subir conversão offline** no Google Ads — CSV semanal a partir de
+   `crm.conversoes_offline`, em Ferramentas → Uploads. Funciona hoje, sem token. Pedir o
+   developer token da API em paralelo, para automatizar depois.
 4. **Depois de 3–4 semanas de dado novo** — rebaixar "Contato no Whatsapp" para secundária
    e a conversão passa a ser "respondeu".
+5. **Nova rodada de simulação do bot** — depende do `META_VERIFY_TOKEN`, que está com o
+   Cláudio. Linha de base a bater: 30 conversas, 0 agendamentos.
+6. **Duas avaliações abertas em `crm.avaliacoes`** — enviar a tabela de preços como arquivo
+   (exige mudança no bot: o `enviarWhatsApp` atual só manda texto) e o texto de adaptação.
+
+*Resolvido de outro jeito:* a alteração no `whatsapp-bot` para ler o protocolo virou o
+trigger `mensagens_vincular_gclid` — não é mais necessária.
