@@ -46,12 +46,23 @@ Volume que passa por ele (5 a 11/08): 1.790 impressões, 130 cliques, R$ 410,13,
 12,11% de taxa de conversão. Mensagem inicial e call-to-action ("Fale com a gente")
 não foram tocadas.
 
-**Ficaram como estavam — os 2 recursos de "Ligar para"** (`21993311000`), nas mesmas
-duas campanhas. Decisão do Cláudio em 12/08. Vale reavaliar: nos mesmos 7 dias deram
-340 impressões de chamada, 17 cliques e **R$ 61,82 gastos para 0 ligações telefônicas**.
-
 **Desfazer:** Campanhas → Recursos → filtro "Mensagem" → editar → voltar para
 `(21)993311000`.
+
+### Google Ads — os 2 recursos de "Ligar para" foram pausados
+
+Continuam com o `21993311000` no campo, mas agora estão **Pausada** nas duas campanhas
+(`[ALM] [C3] [PMAX]` e `[ALM] [C3] Campanha de Leads`).
+
+O motivo não foi o número, e sim o retorno: em 5 a 11/08 deram 340 impressões de
+chamada e 17 cliques a R$ 3,64 — **R$ 61,82 para 0 ligações telefônicas**. Trocar o
+número não resolveria, porque o `992973454` é a linha do bot de WhatsApp e não atende
+chamada de voz. Pausar foi a escolha do Cláudio em 12/08 sobre desativar o gasto em
+vez de redirecioná-lo.
+
+Preferido a "Remover" por ser reversível sem recriar o recurso.
+
+**Desfazer:** Campanhas → Recursos → filtro "Ligar para" → selecionar os 2 → Ativar.
 
 ---
 
@@ -307,8 +318,8 @@ Duas ações foram barradas pelo sistema de permissões e ficaram para o Cláudi
 
 1. ~~**Trocar `993311000` → `992973454`** nos botões do site e no recurso de mensagem da
    PMax~~ — **feito em 12/08/2026.** A cadeia de medição montada em 07–08/08 deixou de
-   ser inerte. Sobra um resíduo: os 2 recursos de **"Ligar para"** ainda apontam para o
-   `993311000` (ver entrada de 12/08).
+   ser inerte. Os 2 recursos de "Ligar para" ainda têm o `993311000` no campo, mas foram
+   pausados, então não há mais porta de entrada apontando para o número antigo.
 2. **Vídeos quadrados (1:1)** — os 5 arquivos `*-quadrado.mp4` estão prontos em
    `Documents\pmax-google-ads\videos` e não foram enviados ao YouTube. Enquanto não forem,
    a qualidade do grupo de recursos não chega a "Excelente". Falta também excluir o
