@@ -72,12 +72,12 @@ O código ou resposta deve seguir estritamente esta ordem:
 ## Convenções
 - Conteúdo e mensagens em **português (pt-BR)**.
 - Navegação interna: usar **Link** do `react-router-dom` (ex.: logo para `/`, botão para `/agendamento`).
-- Links externos: WhatsApp (`wa.me/5521993311000`), Google Maps (endereço da escola), Instagram, Calendly – usar `target="_blank"` e `rel="noopener noreferrer"`.
+- Links externos: WhatsApp (`wa.me/5521992973454`), Google Maps (endereço da escola), Instagram, Calendly – usar `target="_blank"` e `rel="noopener noreferrer"`.
 - Manter identidade visual: azul (montessori-green) como cor principal e toques em amarelo/dourado (`text-yellow-400`, `border-yellow-400`) em elementos de destaque.
 - Novos componentes em **React (TSX)** e TypeScript; estilos com classes Tailwind.
 
 ## Contato / dados do site
-- Telefone/WhatsApp: +55 (21) 99331-1000
+- Telefone/WhatsApp: +55 (21) 99297-3454
 - E-mail: contato@escolamontessoriana.com.br
 - Endereço: Rua das Laranjeiras, 540, fundos – Laranjeiras, Rio de Janeiro - RJ
 - Instagram: @escola_montessoriana

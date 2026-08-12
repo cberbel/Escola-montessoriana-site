@@ -98,7 +98,7 @@ export const AgendarVisitaEs: React.FC = () => {
             ¿Prefieres WhatsApp? Escríbenos y te respondemos en minutos.
           </p>
           <a
-            href="https://wa.me/5521993311000?text=%C2%A1Hola!%20Me%20gustar%C3%ADa%20agendar%20una%20visita%20a%20la%20Escola%20Montessoriana."
+            href="https://wa.me/5521992973454?text=%C2%A1Hola!%20Me%20gustar%C3%ADa%20agendar%20una%20visita%20a%20la%20Escola%20Montessoriana."
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => trackWhatsAppClick('agendamento')}

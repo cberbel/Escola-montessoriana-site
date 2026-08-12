@@ -4,7 +4,7 @@ import { Button } from '../ui/Button';
 import { Send, CheckCircle } from 'lucide-react';
 import { trackWhatsAppClick, trackFormSubmit } from '../../utils/tracking';
 
-const WHATSAPP_ESCOLA = '5521993311000';
+const WHATSAPP_ESCOLA = '5521992973454';
 const FORMSUBMIT_EMAIL = 'contato@escolamontessoriana.com.br';
 const FORMSUBMIT_URL = `https://formsubmit.co/${FORMSUBMIT_EMAIL}`;
 
@@ -275,7 +275,7 @@ export const ContactFormFr: React.FC = () => {
           Réservez une visite. Sans engagement. Nous répondons en quelques minutes.
         </p>
         <a
-          href="https://wa.me/5521993311000?text=Bonjour%20!%20Je%20souhaiterais%20planifier%20une%20visite%20de%20l%27Escola%20Montessoriana."
+          href="https://wa.me/5521992973454?text=Bonjour%20!%20Je%20souhaiterais%20planifier%20une%20visite%20de%20l%27Escola%20Montessoriana."
           target="_blank"
           rel="noopener noreferrer"
           onClick={() => trackWhatsAppClick('contato-cta')}

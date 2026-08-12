@@ -1,7 +1,7 @@
 import React from 'react';
 import { trackWhatsAppClick } from '../utils/tracking';
 
-const WHATSAPP_URL = 'https://wa.me/5521993311000?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20visita%20%C3%A0%20Escola%20Montessoriana.';
+const WHATSAPP_URL = 'https://wa.me/5521992973454?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20visita%20%C3%A0%20Escola%20Montessoriana.';
 
 const WhatsAppIcon = ({ size = 28 }: { size?: number }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">

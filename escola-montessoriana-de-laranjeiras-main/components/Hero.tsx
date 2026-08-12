@@ -64,7 +64,7 @@ export const Hero: React.FC = () => {
 
           <div className="flex flex-col gap-3 sm:gap-4 justify-center items-center">
             <a
-              href="https://wa.me/5521993311000?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20a%20Escola%20Montessoriana."
+              href="https://wa.me/5521992973454?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20a%20Escola%20Montessoriana."
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => trackWhatsAppClick('hero')}

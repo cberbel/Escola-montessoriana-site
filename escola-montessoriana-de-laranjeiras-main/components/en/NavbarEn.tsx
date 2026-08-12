@@ -5,7 +5,7 @@ import { Menu, X } from 'lucide-react';
 import { trackWhatsAppClick } from '../../utils/tracking';
 
 const WHATSAPP_VISIT_EN =
-  'https://wa.me/5521993311000?text=Hello!%20I%20would%20like%20to%20schedule%20a%20visit%20to%20Escola%20Montessoriana.';
+  'https://wa.me/5521992973454?text=Hello!%20I%20would%20like%20to%20schedule%20a%20visit%20to%20Escola%20Montessoriana.';
 
 export const NavbarEn: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);

@@ -109,7 +109,7 @@ export const LandingCTA: React.FC<{ heading: string; text: string }> = ({ headin
       <p className="text-montessori-cream/90 text-base sm:text-lg mb-7 leading-relaxed">{text}</p>
       <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center">
         <a
-          href="https://wa.me/5521993311000?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20visita%20%C3%A0%20Escola%20Montessoriana."
+          href="https://wa.me/5521992973454?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20visita%20%C3%A0%20Escola%20Montessoriana."
           target="_blank"
           rel="noopener noreferrer"
           onClick={() => trackWhatsAppClick('cta-landing')}

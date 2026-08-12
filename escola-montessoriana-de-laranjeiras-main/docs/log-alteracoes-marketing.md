@@ -11,6 +11,31 @@ Contêiner GTM: **GTM-56ZSQTXF** · Projeto Supabase: **ponto-escola-montessoria
 
 ---
 
+## 12/08/2026
+
+### Site — botões de WhatsApp passaram para o número do bot (`992973454`)
+
+Era o item 1 do "Pendente" e o que destravava toda a cadeia de medição montada em
+07–08/08: até aqui os botões levavam ao `993311000`, número pessoal do Cláudio, que não
+passa pelo bot — nenhuma conversa entrava em `crm.mensagens`, então o trigger
+`mensagens_vincular_gclid` nunca disparava e `crm.conversoes_offline` ficava vazia.
+
+Troca de `5521993311000` → `5521992973454` em **34 arquivos**: os botões de CTA dos 4
+idiomas (Hero, Navbar, Philosophy, Testimonials, ContactForm, FloatingWhatsApp, Landing,
+Blog, ScheduleVisit, AgendamentoContato), a constante `WHATSAPP_ESCOLA` dos formulários
+e a referência em `.cursorrules`.
+
+**Não foi mexido:** o `96455-1080` do rodapé e das páginas `informativo*.html` — decisão
+do Cláudio em 12/08. Continua sendo o número de onde os informativos são enviados
+("é só responder esta mensagem"), então quem chega por ali não cai no bot.
+
+O `carimbarLinksWhatsApp` continua valendo sem alteração: ele intercepta qualquer link
+`wa.me`, não um número específico.
+
+**Desfazer:** `git revert <hash>`
+
+---
+
 ## 07–08/08/2026
 
 ### A cadeia clique → conversa → conversão offline entrou no ar
@@ -261,10 +286,10 @@ Duas ações foram barradas pelo sistema de permissões e ficaram para o Cláudi
 
 ## Pendente
 
-1. **Trocar `993311000` → `992973454`** nos 7 botões do site e no recurso de mensagem da
-   PMax. **É o que falta para tudo acima sair do papel:** o número de hoje é o pessoal do
-   Cláudio e não passa pelo bot, então nenhuma conversa é registrada e nenhuma conversão
-   é medida.
+1. ~~**Trocar `993311000` → `992973454`** nos botões do site~~ — **feito em 12/08/2026.**
+   Falta a outra metade: o **recurso de mensagem da PMax** no Google Ads, que ainda leva
+   ao número antigo. Enquanto não trocar, o contato vindo por esse recurso não passa pelo
+   bot e não é medido.
 2. **Vídeos quadrados (1:1)** — os 5 arquivos `*-quadrado.mp4` estão prontos em
    `Documents\pmax-google-ads\videos` e não foram enviados ao YouTube. Enquanto não forem,
    a qualidade do grupo de recursos não chega a "Excelente". Falta também excluir o

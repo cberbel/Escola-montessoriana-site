@@ -98,7 +98,7 @@ export const ScheduleVisitEn: React.FC = () => {
             Prefer WhatsApp? Send us a message and we will reply in minutes.
           </p>
           <a
-            href="https://wa.me/5521993311000?text=Hello!%20I%20would%20like%20to%20schedule%20a%20visit%20to%20Escola%20Montessoriana."
+            href="https://wa.me/5521992973454?text=Hello!%20I%20would%20like%20to%20schedule%20a%20visit%20to%20Escola%20Montessoriana."
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => trackWhatsAppClick('agendamento')}

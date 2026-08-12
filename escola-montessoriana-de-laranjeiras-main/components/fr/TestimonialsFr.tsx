@@ -95,7 +95,7 @@ export const TestimonialsFr: React.FC = () => {
         <div className="text-center mt-4 sm:mt-8">
           <p className="text-white/90 text-lg mb-4 font-medium">Rejoignez les familles qui nous font déjà confiance.</p>
           <a
-            href="https://wa.me/5521993311000?text=Bonjour%20!%20Je%20souhaiterais%20planifier%20une%20visite%20de%20l%27Escola%20Montessoriana."
+            href="https://wa.me/5521992973454?text=Bonjour%20!%20Je%20souhaiterais%20planifier%20une%20visite%20de%20l%27Escola%20Montessoriana."
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => trackWhatsAppClick('depoimentos')}
