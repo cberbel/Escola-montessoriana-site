@@ -4,7 +4,7 @@ import { ArrowLeft, Calendar } from 'lucide-react';
 import { trackWhatsAppClick } from '../../utils/tracking';
 
 const WHATSAPP_VISIT_ES =
-  'https://wa.me/5521992973454?text=%C2%A1Hola!%20Me%20gustar%C3%ADa%20agendar%20una%20visita%20a%20la%20Escola%20Montessoriana.';
+  'https://wa.me/5521992973454?text=Me%20gustar%C3%ADa%20m%C3%A1s%20informaci%C3%B3n%20sobre%20la%20Escola%20Montessoriana%20de%20Laranjeiras.';
 
 /** Hero de landing en español: mismo visual que LandingHero, el enlace vuelve a /es. */
 export const LandingHeroEs: React.FC<{ eyebrow: string; title: string; subtitle: string }> = ({ eyebrow, title, subtitle }) => (

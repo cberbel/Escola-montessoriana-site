@@ -5,7 +5,7 @@ import { trackWhatsAppClick } from '../../utils/tracking';
 import { MapPin, Instagram, Mail } from 'lucide-react';
 
 const WHATSAPP_VISIT_ES =
-  'https://wa.me/5521992973454?text=%C2%A1Hola!%20Me%20gustar%C3%ADa%20agendar%20una%20visita%20a%20la%20Escola%20Montessoriana.';
+  'https://wa.me/5521992973454?text=Me%20gustar%C3%ADa%20m%C3%A1s%20informaci%C3%B3n%20sobre%20la%20Escola%20Montessoriana%20de%20Laranjeiras.';
 
 const WhatsAppIcon = ({ size = 20, className = '' }: { size?: number; className?: string }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" className={className}>

@@ -97,7 +97,7 @@ export const Philosophy: React.FC = () => {
 
       <div className="text-center mt-12 sm:mt-16">
         <a
-          href="https://wa.me/5521992973454?text=Ol%C3%A1!%20Gostaria%20de%20conhecer%20a%20escola%20e%20agendar%20uma%20visita."
+          href="https://wa.me/5521992973454?text=Eu%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20a%20Escola%20Montessoriana%20de%20Laranjeiras."
           target="_blank"
           rel="noopener noreferrer"
           onClick={() => trackWhatsAppClick('filosofia')}
