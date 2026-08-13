@@ -159,6 +159,39 @@ Dois efeitos que valem acompanhar:
 **Desfazer:** entrar na campanha → Públicos-alvo, palavras-chave e conteúdo →
 Programação de anúncios → editar → remover a linha (ícone ✕) → Salvar. Volta para 24h.
 
+### Bot — "Dona Maria" virou "Maria" e a apresentação encurtou
+
+Alterados `crm.config.prompt_sistema` (36.412 → 36.300 caracteres) e
+`crm.config.prompt_exemplos` (2.355 → 2.169).
+
+**Antes:** *"Olá! Que bom ter você por aqui, obrigada pelo seu contato 😊 Eu sou a Dona
+Maria, assistente virtual da Escola Montessoriana de Laranjeiras. Posso tirar as suas
+dúvidas, agendar a sua visita à escola e, quando for preciso, peço para a coordenação
+entrar em contato com você. Me conta: o que você gostaria de saber? E qual é a idade da
+sua criança?"*
+
+**Depois:** *"Olá! Que bom ter você por aqui, obrigada pelo seu contato 😊 Eu sou a Maria,
+da Escola Montessoriana de Laranjeiras. Me conta: como posso te ajudar? E qual é a idade
+da sua criança?"*
+
+O que mudou, a pedido do Cláudio em 12/08:
+- **`Dona Maria` → `Maria`** nas 9 ocorrências, inclusive na regra de "se perguntarem seu
+  nome" e nos rótulos de fala dos exemplos.
+- Saiu o rótulo **"assistente virtual"** da apresentação e a **lista do que ela faz**. A
+  instrução passou de "quatro coisas" para três: cumprimenta, se apresenta, pergunta como
+  ajudar e a idade da criança. Foram acrescentadas duas proibições explícitas, porque só
+  encurtar a redação de referência não segura o modelo.
+
+**Regra nova de transparência.** Sem o "assistente virtual" não sobrava nada no prompt
+dizendo à família que do outro lado tem um robô. A regra do nome agora diz: ela nunca se
+anuncia como IA, mas se perguntarem **direto** se é pessoa, robô ou inteligência
+artificial, responde a verdade com naturalidade e segue ajudando — e nunca afirma ser
+humana. Decisão do Cláudio em 12/08, entre isso e não ter regra nenhuma.
+
+**Desfazer:** `update crm.config set valor = (select valor from crm.config where chave =
+'prompt_sistema_backup_20260813_4') where chave = 'prompt_sistema';` e o equivalente com
+`prompt_exemplos_backup_20260813` para `prompt_exemplos`.
+
 ---
 
 ## 07–08/08/2026
