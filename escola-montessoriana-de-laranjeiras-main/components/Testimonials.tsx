@@ -62,11 +62,6 @@ export const Testimonials: React.FC = () => {
 
   const imageTestimonials: ImageTestimonial[] = [
     {
-      name: "Flávio Azevedo",
-      image: "/images/depoimentos/flavio.jpg",
-      quote: "Local maravilhoso, crianças felizes, o responsável é super simpático, gentil com as crianças. Os professores maravilhosos, me sinto seguro de deixar meu filho com pessoas que sempre estão estimulando o desenvolvimento dele.",
-    },
-    {
       name: "Luana Chedid",
       image: "/images/depoimentos/luana.jpg",
       quote: "Nossa experiência com a escola foi simplesmente única. Maravilhosa, o Cláudio e todos os professores sempre muito atenciosos. Aurora Yris evoluiu muito nessa escola, só tenho agradecimento a todos.",
@@ -80,11 +75,6 @@ export const Testimonials: React.FC = () => {
       name: "Francisca Sobral",
       image: "/images/depoimentos/francisca.jpg",
       quote: "A escola tem excelente estrutura. Professores qualificados e uma administração visionária quanto ao ensino de qualidade. Como mãe, fico muito tranquila em saber que minha filha está aos cuidados de pessoas amorosas e responsáveis. Parabéns a todos da Escola Montessoriana.",
-    },
-    {
-      name: "Bárbara Araújo",
-      image: "/images/depoimentos/barbara.jpg",
-      quote: "Como mãe estou muito surpresa com o desenvolvimento do meu filho. Local acolhedor, ambiente preparado, pensado nos mínimos detalhes.",
     },
     {
       name: "Ana Petiz",
