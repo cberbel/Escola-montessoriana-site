@@ -12,7 +12,10 @@ export const HeroEs: React.FC = () => {
   const bgImageUrl = '/images/hero-criancas.jpg';
 
   return (
-    <div className="relative min-h-screen w-full flex items-center justify-center md:items-start md:pt-[8.5rem] md:justify-center md:pb-16">
+    {/* Altura: no celular o hero para em 82vh para que a próxima seção apareça na
+        borda da tela e convide a rolar. Metade dos visitantes não passava de 5% da
+        página — a tela cheia era o teto. No desktop segue tela cheia. */}
+    <div className="relative min-h-[82vh] md:min-h-screen w-full flex items-center justify-center md:items-start md:pt-[8.5rem] md:justify-center md:pb-16">
       <div
         className="absolute inset-0 z-0 overflow-hidden bg-montessori-green"
         style={{
@@ -35,14 +38,18 @@ export const HeroEs: React.FC = () => {
 
       <div className="relative z-20 px-4 sm:px-6 max-w-4xl mx-auto min-w-0 w-full mt-[7.5rem] sm:mt-[8rem] md:mt-0 pt-4 sm:pt-0 pb-8 sm:pb-10 text-center">
         <div className="inline-block text-left px-4 sm:px-8 py-4 sm:py-6 rounded-2xl sm:rounded-[28px] bg-gradient-to-b from-montessori-dark/40 via-montessori-dark/25 to-montessori-dark/5 shadow-[0_18px_45px_rgba(15,23,42,0.35)] backdrop-blur-sm sm:backdrop-blur-md border border-white/5 sm:border-white/10">
-          <div className="mb-4 sm:mb-5 text-center">
+          {/* O nome da escola é o ponto mais tocado da home no celular (135 toques em
+              7 dias) e não levava a lugar nenhum — entrava na conta de "cliques mortos"
+              do Clarity. Agora o toque rola para o conteúdo, que é justamente o que
+              quase ninguém alcança. */}
+          <a href="#method" className="block mb-4 sm:mb-5 text-center rounded-lg focus:outline focus:ring-2 focus:ring-montessori-gold focus:ring-offset-2 focus:ring-offset-montessori-green/60">
             <h2 className="font-logo text-montessori-gold font-bold text-2xl sm:text-3xl md:text-4xl leading-tight tracking-tight">
               Escola Montessoriana
             </h2>
             <p className="font-logo text-montessori-gold font-bold text-lg sm:text-xl md:text-2xl mt-1 [text-shadow:0_1px_3px_rgba(0,0,0,0.85),0_2px_6px_rgba(0,0,0,0.6)]">
               Educación Montessori trilingüe en Río
             </p>
-          </div>
+          </a>
           <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-white leading-tight mb-4 sm:mb-5 drop-shadow-[0_10px_25px_rgba(15,23,42,0.8)] break-words text-center">
             Cariño e independencia para tu hijo
           </h1>
