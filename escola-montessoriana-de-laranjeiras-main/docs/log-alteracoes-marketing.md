@@ -11,6 +11,76 @@ Contêiner GTM: **GTM-56ZSQTXF** · Projeto Supabase: **ponto-escola-montessoria
 
 ---
 
+## 13/08/2026
+
+### Google Ads — a mensagem do anúncio deixou de ser igual à do site
+
+Recurso de Mensagem (WhatsApp), id do recurso **268477598670**, editado de
+*"Gostaria de mais informações sobre a Escola Montessoriana de Laranjeiras"* para:
+
+> **Olá, eu gostaria de saber mais sobre a Escola Montessoriana de Laranjeiras.**
+
+O site, no mesmo commit, passou a usar *"Olá, eu gostaria de **mais informações**
+sobre a Escola Montessoriana de Laranjeiras."* — as duas aberturas ficam próximas o
+bastante para não soar estranho ao pai e diferentes o bastante para o bot separar.
+
+**Por que era preciso:** o carimbo `Protocolo:` é escrito por um interceptador de
+cliques que roda **na página**. Quem clica no botão de mensagem dentro do anúncio vai
+direto ao WhatsApp sem tocar no site, então chegava com texto idêntico ao de um contato
+orgânico e caía em `origem = 'whatsapp'`. Parte do retorno dos anúncios estava sendo
+creditada ao orgânico.
+
+**O volume está quase todo na Pesquisa, não na PMax.** Nos 7 dias até 12/08 o recurso
+somou 141 cliques: **140 da `[ALM] [C3] Campanha de Leads`** (R$ 442,57, CTR 8,07%,
+13,39% de taxa de conversão, R$ 23,61 por conversão) contra **1 da `[ALM] [C3] [PMAX]`**
+(R$ 1,21). Ou seja, o buraco de atribuição estava afetando justamente a campanha de
+melhor desempenho.
+
+Continua sendo **um único recurso compartilhado**, então a edição valeu para as duas
+campanhas de uma vez. Voltou para "Pendente / Em análise", como em qualquer edição.
+Número `(21)992973454` e call-to-action "Fale com a gente" não foram tocados.
+
+Isto **não desfaz** o `67be748` de 12/08: o que aquele commit tirou foi o "quero agendar
+uma visita", que jogava o bot cedo demais no fluxo de agendamento. As duas aberturas
+seguem pedindo informação.
+
+**Desfazer:** Campanhas → Recursos → filtro "Mensagem" → Editar → voltar o texto.
+
+### Supabase — trigger que marca a origem pela frase do anúncio (PENDENTE)
+
+Sem ele a separação acima não vira dado: o texto novo chega, mas ninguém o lê. SQL
+pronto em `C:\Users\USER\Documents\bot-escola\marca-origem-do-anuncio.sql` — cria
+`crm.marcar_origem_anuncio_mensagem()` e o trigger `mensagens_marcar_origem_anuncio`,
+que marcam `origem = 'google_ads_mensagem'` quando a entrada casa com "gostaria de saber
+mais sobre". Quem tem `gclid` não é tocado: aquele caminho é melhor, porque identifica a
+campanha.
+
+**Aplicar pelo SQL Editor do Supabase** — o classificador do Claude Code bloqueia
+migrations. O rollback está comentado no fim do arquivo.
+
+### Supabase — correção da regra de conversão offline (PENDENTE)
+
+`crm.conversoes_offline` exigia `entradas >= 2 and saidas >= 1` **sem verificar a ordem
+das mensagens**. Duas bolhas seguidas do lead antes de qualquer resposta já contavam como
+conversão — comprovado no primeiro caso real (teste da Charlotte, 13/08 00:41: 2 entradas
+em 8 segundos, ambas anteriores à 1ª resposta do bot, e virou conversão).
+
+É o mesmo erro do evento `Contact` da Meta: ensina o Google a comprar quem manda mensagem.
+SQL corrigido em `C:\Users\USER\Documents\bot-escola\corrige-conversao-offline.sql`,
+exigindo uma entrada **posterior** à primeira saída.
+
+**Aplicar antes do primeiro upload de CSV** — conversão errada enviada vira aprendizado
+que não se apaga.
+
+### Site — hero mais curto, nome da escola clicável e preload da foto
+
+Ver commit `893742f` (e `4376aa8`, que corrigiu o JSX quebrado do primeiro). Motivação
+medida no Clarity, 7 dias, 1.186 sessões, 95% celular: metade dos visitantes não passa de
+5% da home; 225 pessoas somem entre 5% e 10%, no fim do hero; 135 dos 850 toques semanais
+caem no nome da escola, que não era clicável; LCP de 3,1s no celular.
+
+---
+
 ## 12/08/2026
 
 ### Site — botões de WhatsApp passaram para o número do bot (`992973454`)
