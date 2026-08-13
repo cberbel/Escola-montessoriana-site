@@ -89,7 +89,7 @@ export const Blog: React.FC = () => {
               className="inline-flex items-center justify-center gap-2 min-h-[52px] px-8 py-4 border-2 border-white/80 text-white font-semibold rounded-sm hover:bg-white/10 transition-colors w-full sm:w-auto"
             >
               <Calendar size={20} strokeWidth={2} />
-              Agendar uma visita
+              Quero saber mais
             </a>
           </div>
         </div>

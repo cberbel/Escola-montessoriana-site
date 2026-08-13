@@ -9,7 +9,7 @@ export const AgendamentoContato: React.FC = () => (
     </h2>
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8 min-w-0">
       <a
-        href="https://wa.me/5521992973454"
+        href="https://wa.me/5521992973454?text=Ol%C3%A1%2C%20eu%20gostaria%20de%20agendar%20uma%20visita%20%C3%A0%20Escola%20Montessoriana%20de%20Laranjeiras."
         target="_blank"
         rel="noopener noreferrer"
         onClick={() => trackWhatsAppClick('agendamento')}
