@@ -64,6 +64,31 @@ Preferido a "Remover" por ser reversível sem recriar o recurso.
 
 **Desfazer:** Campanhas → Recursos → filtro "Ligar para" → selecionar os 2 → Ativar.
 
+### Google Ads — anúncios passam a rodar só das 06:00 às 22:30
+
+Programação de anúncios criada nas **duas campanhas ativas**, todos os dias da semana:
+
+| Campanha | ID | Tipo | Orçamento |
+|---|---|---|---|
+| `[ALM] [C3] Campanha de Leads` | 23074264076 | Pesquisa | R$ 80,00/dia |
+| `[ALM] [C3] [PMAX]` | 21811674402 | Performance Max | R$ 74,00/dia |
+
+Antes as duas rodavam 24h. O horário é sempre o **fuso da conta, GMT-03:00 (Brasília)**,
+não o do usuário que vê o anúncio.
+
+Combina com a decisão de concentrar o contato no bot de WhatsApp: fora dessa janela
+o clique cairia numa conversa que só seria vista horas depois.
+
+Dois efeitos que valem acompanhar:
+- O orçamento diário agora é distribuído dentro da janela ativa (16,5h em vez de 24h),
+  então o ritmo de gasto por hora sobe. A `Campanha de Leads` já estava "Limitada pelo
+  orçamento" antes desta mudança.
+- Ao salvar, o Google avisa que **redefine os dados de performance por horário**. Não
+  havia histórico segmentado antes, então nada de útil foi perdido.
+
+**Desfazer:** entrar na campanha → Públicos-alvo, palavras-chave e conteúdo →
+Programação de anúncios → editar → remover a linha (ícone ✕) → Salvar. Volta para 24h.
+
 ---
 
 ## 07–08/08/2026
