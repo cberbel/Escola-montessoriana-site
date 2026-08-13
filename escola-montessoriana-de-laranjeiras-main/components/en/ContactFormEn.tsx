@@ -274,7 +274,7 @@ export const ContactFormEn: React.FC = () => {
           Book a visit. No commitment. We reply in minutes.
         </p>
         <a
-          href="https://wa.me/5521992973454?text=I%20would%20like%20more%20information%20about%20Escola%20Montessoriana%20de%20Laranjeiras."
+          href="https://wa.me/5521992973454?text=Hello%2C%20I%20would%20like%20more%20information%20about%20Escola%20Montessoriana%20de%20Laranjeiras."
           target="_blank"
           rel="noopener noreferrer"
           onClick={() => trackWhatsAppClick('contato-cta')}

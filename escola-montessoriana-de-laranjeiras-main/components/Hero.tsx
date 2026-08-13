@@ -11,10 +11,10 @@ const WhatsAppIcon = ({ size = 20, className = '' }: { size?: number; className?
 export const Hero: React.FC = () => {
   const bgImageUrl = '/images/hero-criancas.jpg';
 
+  // Altura: no celular o hero para em 82vh para que a próxima seção apareça na
+  // borda da tela e convide a rolar. Metade dos visitantes não passava de 5% da
+  // página — a tela cheia era o teto. No desktop segue tela cheia.
   return (
-    {/* Altura: no celular o hero para em 82vh para que a próxima seção apareça na
-        borda da tela e convide a rolar. Metade dos visitantes não passava de 5% da
-        página — a tela cheia era o teto. No desktop segue tela cheia. */}
     <div className="relative min-h-[82vh] md:min-h-screen w-full flex items-center justify-center md:items-start md:pt-[8.5rem] md:justify-center md:pb-16">
       {/* Background: foto da escola com fallback em azul profundo */}
       <div
@@ -72,7 +72,7 @@ export const Hero: React.FC = () => {
 
           <div className="flex flex-col gap-3 sm:gap-4 justify-center items-center">
             <a
-              href="https://wa.me/5521992973454?text=Eu%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20a%20Escola%20Montessoriana%20de%20Laranjeiras."
+              href="https://wa.me/5521992973454?text=Ol%C3%A1%2C%20eu%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20a%20Escola%20Montessoriana%20de%20Laranjeiras."
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => trackWhatsAppClick('hero')}
