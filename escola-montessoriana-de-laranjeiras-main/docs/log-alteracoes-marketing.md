@@ -46,19 +46,66 @@ seguem pedindo informação.
 
 **Desfazer:** Campanhas → Recursos → filtro "Mensagem" → Editar → voltar o texto.
 
-### Supabase — trigger que marca a origem pela frase do anúncio (PENDENTE)
+### GA4 — revisão completa da propriedade
 
-Sem ele a separação acima não vira dado: o texto novo chega, mas ninguém o lê. SQL
-pronto em `C:\Users\USER\Documents\bot-escola\marca-origem-do-anuncio.sql` — cria
+Propriedade **p512296575** (`G-79X03K7F7F`), conta a374452523.
+
+**Já estava certo:** retenção em 14 meses (máximo do plano gratuito), medição aprimorada
+ligada, dimensão personalizada `button_id` ("Botao de contato"), Google Ads e Search
+Console vinculados, Clarity integrado, os 12 eventos chegando.
+
+**1. Dois eventos marcados como principais.** A propriedade tinha **zero** — a lista de
+principais só continha `close_convert_lead`, `purchase` e `qualify_lead`, três modelos do
+GA4 que nunca receberam dado. Agora `generate_lead` e `schedule_visit` estão marcados.
+`whatsapp_click` foi deixado de fora **de propósito**: marcar não faz mal, mas importá-lo
+como conversão no Google Ads seria voltar a otimizar por clique, o oposto do que a
+conversão offline veio corrigir.
+**Desfazer:** Admin → Exibição de dados → Eventos → clicar na estrela de novo.
+
+**2. Tráfego interno passou a ser realmente excluído.** O filtro `Internal Traffic`
+existia com operação "Excluir", mas em estado **Teste** — que não exclui nada, só marca —
+e, pior, **sem nenhuma regra de IP**: não havia o que excluir. Criada a regra
+`Claudio - rede atual` (traffic_type `internal`, CIDR `189.60.4.217/32`) e o filtro foi
+mudado para **Ativo**. O GA4 avisa que a mudança não é retroativa: o histórico sujo
+continua sujo, a limpeza vale daqui pra frente.
+**Falta o IP da escola** se for diferente do de casa — cada rede precisa da sua regra.
+**Desfazer:** Admin → Filtros de dados → menu → Desativar filtro (ou voltar para Teste).
+
+**3. Identificada a segunda propriedade GA4 que recebe os dados do site.** Medido no site
+ao vivo: `page_view` e `scroll` vão para `G-79X03K7F7F` **e** para `G-DZY8KGYHCB`. O
+segundo ID não está no código nem no dataLayer — é um **destino da Tag do Google
+`GT-WBL98HJ2`**, incluído em **23/07/2026**. É uma propriedade da própria conta do
+Cláudio (**p546790314**, stream 15308334282), com o mesmo nome de stream "site escola",
+duplicada por acidente e sem nenhuma das configurações (sem `button_id`, sem eventos
+principais, sem vinculações).
+
+Não há contagem dupla nos relatórios da p512296575 — cada uma recebe um `page_view` por
+página. **Não foi removida:** o Google exige atribuir o destino a outra tag antes de
+soltá-lo, e a alternativa (excluir a propriedade duplicada) é decisão do Cláudio.
+
+**4. Achados registrados, sem ação ainda:**
+- `informativo-open-class.html` aparece como **"sem tag"** no diagnóstico de cobertura
+  (54 páginas monitoradas, 1 sem tag, 4 sem dados recentes que são previews da Vercel).
+  Os 8 informativos são HTML estático fora do React — provavelmente nenhum tem a tag.
+  Hoje só o Clarity (projeto `xtdm72hodk`) os enxerga.
+- **`button_id` vem `(not set)` em 1/3 dos cliques**: 243 de 708 em 28 dias, e 100 de 323
+  nos últimos 7 — não é resíduo do período anterior à criação da dimensão.
+- **BigQuery não vinculado.** Gratuito neste volume, guardaria o dado bruto além dos 14
+  meses e permitiria cruzar comportamento no site com as conversas do Supabase.
+- Conta com **um único administrador** (risco de perda de acesso).
+
+### Supabase — trigger que marca a origem pela frase do anúncio (APLICADO 13/08)
+
+SQL em `C:\Users\USER\Documents\bot-escola\marca-origem-do-anuncio.sql` — cria
 `crm.marcar_origem_anuncio_mensagem()` e o trigger `mensagens_marcar_origem_anuncio`,
 que marcam `origem = 'google_ads_mensagem'` quando a entrada casa com "gostaria de saber
 mais sobre". Quem tem `gclid` não é tocado: aquele caminho é melhor, porque identifica a
 campanha.
 
-**Aplicar pelo SQL Editor do Supabase** — o classificador do Claude Code bloqueia
-migrations. O rollback está comentado no fim do arquivo.
+Testado depois de aplicar: só a frase do anúncio dispara; a do site, a de agendamento e
+mensagem livre não. O rollback está comentado no fim do arquivo.
 
-### Supabase — correção da regra de conversão offline (PENDENTE)
+### Supabase — correção da regra de conversão offline (APLICADO 13/08)
 
 `crm.conversoes_offline` exigia `entradas >= 2 and saidas >= 1` **sem verificar a ordem
 das mensagens**. Duas bolhas seguidas do lead antes de qualquer resposta já contavam como
@@ -69,8 +116,14 @@ em 8 segundos, ambas anteriores à 1ª resposta do bot, e virou conversão).
 SQL corrigido em `C:\Users\USER\Documents\bot-escola\corrige-conversao-offline.sql`,
 exigindo uma entrada **posterior** à primeira saída.
 
-**Aplicar antes do primeiro upload de CSV** — conversão errada enviada vira aprendizado
-que não se apaga.
+Aplicado antes de qualquer upload de CSV — conversão errada enviada vira aprendizado que
+não se apaga. Depois da correção `crm.conversoes_offline` voltou a 0 linhas: a conversão
+falsa do teste da Charlotte saiu, como devia.
+
+> **Como aplicar SQL neste projeto:** o classificador do Claude Code bloqueia
+> `apply_migration` e o Ctrl+V no SQL Editor do Supabase, mas o **`execute_sql` do MCP
+> passa**. Foi por ali que os dois SQL acima entraram, com autorização explícita do
+> Cláudio.
 
 ### Site — hero mais curto, nome da escola clicável e preload da foto
 
