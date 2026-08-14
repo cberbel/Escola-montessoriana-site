@@ -106,6 +106,28 @@ export const PontoFuncionario: React.FC<{ modoCompartilhado?: boolean }> = ({ mo
     setPin(pin + digito);
   }
 
+  // Teclado físico: na estação da recepção há teclado de verdade, e obrigar a
+  // clicar número por número com o mouse é lento e não é o que ninguém espera.
+  useEffect(() => {
+    if (fase !== 'pin') return;
+    function aoTeclar(e: KeyboardEvent) {
+      if (e.key >= '0' && e.key <= '9') {
+        e.preventDefault();
+        digitar(e.key);
+      } else if (e.key === 'Backspace') {
+        e.preventDefault();
+        setPin((p) => p.slice(0, -1));
+        setErro('');
+      } else if (e.key === 'Enter' && pin.length >= 4) {
+        e.preventDefault();
+        entrar(pin);
+      }
+    }
+    window.addEventListener('keydown', aoTeclar);
+    return () => window.removeEventListener('keydown', aoTeclar);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [fase, pin]);
+
   async function registrar() {
     const pinAtual = modoCompartilhado ? pin : localStorage.getItem(CHAVE_PIN_SALVO);
     if (!pinAtual) return sair();
@@ -195,18 +217,32 @@ export const PontoFuncionario: React.FC<{ modoCompartilhado?: boolean }> = ({ mo
                   {['1', '2', '3', '4', '5', '6', '7', '8', '9'].map((d) => (
                     <TeclaPin key={d} onClick={() => digitar(d)}>{d}</TeclaPin>
                   ))}
-                  <TeclaPin onClick={() => { setPin(pin.slice(0, -1)); setErro(''); }} ariaLabel="Apagar">
+                  <TeclaPin
+                    onClick={() => { setPin(pin.slice(0, -1)); setErro(''); }}
+                    ariaLabel="Apagar"
+                    variante="apagar"
+                  >
                     <Delete size={22} className="mx-auto" />
                   </TeclaPin>
                   <TeclaPin onClick={() => digitar('0')}>0</TeclaPin>
                   <TeclaPin
                     onClick={() => pin.length >= 4 && entrar(pin)}
-                    ariaLabel="Confirmar PIN"
+                    ariaLabel="Entrar"
+                    variante="confirmar"
                     desabilitada={pin.length < 4}
                   >
-                    <Check size={24} className="mx-auto" />
+                    <span className="flex items-center justify-center gap-1 text-base font-bold">
+                      Entrar <Check size={18} />
+                    </span>
                   </TeclaPin>
                 </div>
+                {/* diz o que falta em vez de so apagar o botao: um botao cinza
+                    sem explicacao parece defeito do aplicativo */}
+                <p className="text-center text-sm text-ponto-cinza mt-3">
+                  {pin.length < 4
+                    ? `Faltam ${4 - pin.length} ${4 - pin.length === 1 ? 'número' : 'números'} para entrar`
+                    : 'Toque em Entrar — ou aperte Enter no teclado'}
+                </p>
                 <Link
                   to="/cadastro"
                   className="block text-center text-sm text-ponto-azul underline hover:no-underline mt-6"
@@ -308,18 +344,32 @@ const ConfigPendente: React.FC = () => (
   </div>
 );
 
+/**
+ * As tres teclas nao sao iguais e nao devem parecer iguais: numero e neutro,
+ * apagar e secundario, confirmar e a acao principal. Antes as tres eram brancas
+ * e identicas, e o "entrar" era so um tique perdido no canto do teclado.
+ */
 const TeclaPin: React.FC<{
   onClick: () => void;
   children: React.ReactNode;
   ariaLabel?: string;
   desabilitada?: boolean;
-}> = ({ onClick, children, ariaLabel, desabilitada = false }) => (
-  <button
-    onClick={onClick}
-    aria-label={ariaLabel}
-    disabled={desabilitada}
-    className="bg-white rounded-xl shadow text-2xl font-bold py-4 hover:bg-ponto-claro active:scale-95 transition-all disabled:opacity-40 disabled:active:scale-100"
-  >
-    {children}
-  </button>
-);
+  variante?: 'numero' | 'apagar' | 'confirmar';
+}> = ({ onClick, children, ariaLabel, desabilitada = false, variante = 'numero' }) => {
+  const estilo = {
+    numero: 'bg-white shadow text-2xl font-bold hover:bg-ponto-claro',
+    apagar: 'bg-transparent border border-ponto-cinza/30 text-ponto-cinza hover:bg-white',
+    confirmar: 'bg-ponto-azul text-white shadow-lg hover:bg-blue-800',
+  }[variante];
+
+  return (
+    <button
+      onClick={onClick}
+      aria-label={ariaLabel}
+      disabled={desabilitada}
+      className={`${estilo} rounded-xl py-4 active:scale-95 transition-all disabled:opacity-40 disabled:active:scale-100`}
+    >
+      {children}
+    </button>
+  );
+};
