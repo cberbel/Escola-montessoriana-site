@@ -6,6 +6,11 @@ ficam as alterações de painel — Google Ads, Tag Manager e banco — que não
 
 **Cada item traz como desfazer.** Ordem cronológica inversa: o mais recente primeiro.
 
+> ⚠️ **Este repositório é público.** Nada de senha, token, chave, e-mail de família ou
+> endereço IP aqui dentro. Ids de conta, de campanha e de contêiner podem ficar: sozinhos
+> não dão acesso a nada. Quando o valor for sensível, escreva onde encontrá-lo no painel
+> em vez do valor.
+
 Conta Google Ads: **617-529-1009** (Escola Montessoriana)
 Contêiner GTM: **GTM-56ZSQTXF** · Projeto Supabase: **ponto-escola-montessoriana** (`rmpnqrvsmxhnrwlgqmdp`)
 
@@ -65,8 +70,10 @@ conversão offline veio corrigir.
 **2. Tráfego interno passou a ser realmente excluído.** O filtro `Internal Traffic`
 existia com operação "Excluir", mas em estado **Teste** — que não exclui nada, só marca —
 e, pior, **sem nenhuma regra de IP**: não havia o que excluir. Criada a regra
-`Claudio - rede atual` (traffic_type `internal`, CIDR `189.60.4.217/32`) e o filtro foi
-mudado para **Ativo**. O GA4 avisa que a mudança não é retroativa: o histórico sujo
+`Claudio - rede atual` (traffic_type `internal`, o IP público da rede dele em notação
+`/32`) e o filtro foi mudado para **Ativo**. *O endereço em si não vai neste arquivo —
+este repositório é público. Para consultar ou editar: Admin → Fluxos de dados → site
+escola → Definir as configurações da tag → Mostrar mais → Definir o tráfego interno.* O GA4 avisa que a mudança não é retroativa: o histórico sujo
 continua sujo, a limpeza vale daqui pra frente.
 **Falta o IP da escola** se for diferente do de casa — cada rede precisa da sua regra.
 **Desfazer:** Admin → Filtros de dados → menu → Desativar filtro (ou voltar para Teste).
