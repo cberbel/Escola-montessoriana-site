@@ -80,16 +80,25 @@ duplicada por acidente e sem nenhuma das configurações (sem `button_id`, sem e
 principais, sem vinculações).
 
 Não há contagem dupla nos relatórios da p512296575 — cada uma recebe um `page_view` por
-página. **Não foi removida:** o Google exige atribuir o destino a outra tag antes de
-soltá-lo, e a alternativa (excluir a propriedade duplicada) é decisão do Cláudio.
+página. **EXCLUÍDA em 13/08 22:51,** a pedido do Cláudio. O Google não deixa soltar só o
+destino (exige atribuí-lo a outra tag antes), então a propriedade foi movida para a
+lixeira — **exclusão final em 17/09/2026**, dá para restaurar até lá. Propriedade na
+lixeira para de coletar; o destino segue listado na tag e os navegadores levam até 15 min
+para parar de enviar (`gtag/js` tem `Cache-Control: max-age=900`).
 
 **4. Achados registrados, sem ação ainda:**
 - `informativo-open-class.html` aparece como **"sem tag"** no diagnóstico de cobertura
   (54 páginas monitoradas, 1 sem tag, 4 sem dados recentes que são previews da Vercel).
   Os 8 informativos são HTML estático fora do React — provavelmente nenhum tem a tag.
   Hoje só o Clarity (projeto `xtdm72hodk`) os enxerga.
-- **`button_id` vem `(not set)` em 1/3 dos cliques**: 243 de 708 em 28 dias, e 100 de 323
-  nos últimos 7 — não é resíduo do período anterior à criação da dimensão.
+- ~~`button_id` vem `(not set)` em 1/3 dos cliques~~ — **causa achada e corrigida no
+  mesmo dia** (commit `ad07b22`): não era o parâmetro, era **disparo duplo**. Cada função
+  do `tracking.ts` mandava o evento por `gtag('event', ...)` **e** `dataLayer.push(...)`,
+  e o GTM transformava os dois em evento do GA4 — a cópia do gtag chegava sem parâmetro
+  nenhum. Valia para `whatsapp_click`, `generate_lead` e `schedule_visit`: os três eram
+  contados em dobro. **Efeito nos relatórios: a contagem desses eventos cai perto da
+  metade a partir de 13/08. Não é perda, é o número certo** — comparar com o histórico
+  anterior dá queda falsa.
 - **BigQuery não vinculado.** Gratuito neste volume, guardaria o dado bruto além dos 14
   meses e permitiria cruzar comportamento no site com as conversas do Supabase.
 - Conta com **um único administrador** (risco de perda de acesso).
