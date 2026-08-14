@@ -13,9 +13,15 @@ export function trackWhatsAppClick(source?: string): void {
   };
   const button = typeof source === 'string' && source ? source : 'nao-identificado';
   if (typeof w.trackWhatsAppConversion === 'function') w.trackWhatsAppConversion();
-  // GA4: evento com o parâmetro button_id (crie a dimensão personalizada button_id para os relatórios)
-  if (typeof w.gtag === 'function') w.gtag('event', 'whatsapp_click', { button_id: button });
-  // Evento para o GTM: permite criar tags/conversões no painel, sem mexer no código
+  // Um único caminho para o GA4: este push. O GTM é o dono do dataLayer nesta página e
+  // tem a tag "GA4 - Evento whatsapp_click e schedule_visit" lendo daqui, com
+  // button_id = {{DLV - button_id}}.
+  //
+  // NÃO acrescentar `gtag('event', ...)` aqui. Até 13/08/2026 existia essa segunda
+  // chamada e cada clique virava DOIS eventos no GA4: o do gtag chegava sem button_id
+  // (os parâmetros ficam aninhados e a variável do GTM não os enxerga) e o deste push
+  // chegava certo. Resultado medido: contagem de cliques inflada ~2x e 243 de 708
+  // eventos em 28 dias com button_id "(not set)".
   w.dataLayer = w.dataLayer || [];
   w.dataLayer.push({ event: 'whatsapp_click', page_path: window.location.pathname, button_id: button });
 }
@@ -35,7 +41,10 @@ export function trackFormSubmit(): void {
     trackWhatsAppConversion?: () => void;
   };
   if (typeof w.fbq === 'function') w.fbq('track', 'Lead');
-  if (typeof w.gtag === 'function') w.gtag('event', 'generate_lead');
+  // O `generate_lead` do GA4 sai pela tag "GA4 - Evento generate_lead (formulario)" do
+  // GTM, que lê o push abaixo. Não chamar `gtag('event','generate_lead')` aqui: até
+  // 13/08/2026 essa chamada existia e cada envio de formulário virava dois eventos.
+  //
   // A conversão do Google Ads é disparada pelo GTM (tag "tag formulario", acionador
   // "Evento - form_submit"), que lê o push abaixo. Não dispare aqui também: até jul/2026
   // este ponto enviava a conversão de "Contato no Whatsapp" — herança de quando o
@@ -59,7 +68,9 @@ export function trackVisitScheduled(): void {
     dataLayer?: Record<string, unknown>[];
   };
   if (typeof w.fbq === 'function') w.fbq('track', 'Schedule');
-  if (typeof w.gtag === 'function') w.gtag('event', 'schedule_visit');
+  // Idem: o `schedule_visit` do GA4 sai pela tag do GTM que lê este push (o acionador
+  // é o regex ^(whatsapp_click|schedule_visit)$). Sem `gtag('event', ...)` aqui, senão
+  // a conversão mais valiosa do site seria contada duas vezes.
   w.dataLayer = w.dataLayer || [];
   w.dataLayer.push({ event: 'schedule_visit', page_path: window.location.pathname });
 }
