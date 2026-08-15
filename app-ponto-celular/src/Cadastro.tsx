@@ -9,8 +9,6 @@ export const Cadastro: React.FC = () => {
   const [nome, setNome] = useState('');
   const [cargo, setCargo] = useState('');
   const [loginTxt, setLoginTxt] = useState('');
-  const [senha, setSenha] = useState('');
-  const [confirmarSenha, setConfirmarSenha] = useState('');
   const [pin, setPin] = useState('');
   const [confirmarPin, setConfirmarPin] = useState('');
   const [erro, setErro] = useState('');
@@ -22,18 +20,17 @@ export const Cadastro: React.FC = () => {
     setErro('');
     if (!nome.trim()) return setErro('Informe seu nome completo.');
     if (!loginTxt.trim()) return setErro('Informe seu e-mail ou CPF.');
-    if (senha.length < 6) return setErro('A senha deve ter pelo menos 6 caracteres.');
-    if (senha !== confirmarSenha) return setErro('As senhas não são iguais.');
     if (!/^\d{4,6}$/.test(pin)) return setErro('O PIN deve ter de 4 a 6 números.');
     if (pin !== confirmarPin) return setErro('Os PINs não são iguais.');
 
     setEnviando(true);
     try {
+      // sem senha: a entrada no ponto e por PIN, e senha guardada sem uso e so
+      // risco - gente reusa a senha do e-mail e do banco
       const r = await rpc<RespostaBase>('autocadastro', {
         p_nome: nome.trim(),
         p_cargo: cargo.trim(),
         p_login: loginTxt.trim(),
-        p_senha: senha,
         p_pin: pin,
       });
       if (!r.ok) setErro(r.erro ?? 'Não foi possível concluir o cadastro.');
@@ -122,30 +119,6 @@ export const Cadastro: React.FC = () => {
                   className="mt-1 w-full border-2 border-ponto-cinza/30 rounded-lg px-3 py-2 font-normal text-ponto-escuro focus:border-ponto-azul outline-none"
                 />
               </label>
-
-              <div className="grid sm:grid-cols-2 gap-4">
-                <label className="block text-sm font-bold text-ponto-cinza">
-                  Senha
-                  <input
-                    type="password"
-                    value={senha}
-                    onChange={(e) => setSenha(e.target.value)}
-                    autoComplete="new-password"
-                    placeholder="Mínimo 6 caracteres"
-                    className="mt-1 w-full border-2 border-ponto-cinza/30 rounded-lg px-3 py-2 font-normal text-ponto-escuro focus:border-ponto-azul outline-none"
-                  />
-                </label>
-                <label className="block text-sm font-bold text-ponto-cinza">
-                  Repita a senha
-                  <input
-                    type="password"
-                    value={confirmarSenha}
-                    onChange={(e) => setConfirmarSenha(e.target.value)}
-                    autoComplete="new-password"
-                    className="mt-1 w-full border-2 border-ponto-cinza/30 rounded-lg px-3 py-2 font-normal text-ponto-escuro focus:border-ponto-azul outline-none"
-                  />
-                </label>
-              </div>
 
               <div className="bg-ponto-claro rounded-xl p-4">
                 <p className="text-sm text-ponto-cinza mb-3">

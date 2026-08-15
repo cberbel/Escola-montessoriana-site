@@ -1,6 +1,13 @@
 -- Ponto Celular · Escola Montessoriana
 -- Cole este arquivo inteiro no SQL Editor do Supabase e clique em "Run".
 --
+-- ATENCAO (15/08/2026): no banco em PRODUCAO a tabela `registros` foi renomeada
+-- para `ponto_batidas` (existiam tres tabelas registros_* e a de nome mais
+-- generico era justamente a do ponto). As funcoes em producao ja usam o nome
+-- novo, e o autocadastro parou de coletar senha (nada nunca a conferia - a
+-- entrada e por PIN). Este arquivo vale para instalacao NOVA e nasce com o
+-- nome antigo; numa reinstalacao, renomeie depois ou ajuste aqui.
+--
 -- Modelo de segurança: as tabelas ficam bloqueadas (RLS sem policies) e todo
 -- acesso passa pelas funções RPC abaixo (security definer), que validam o PIN
 -- do funcionário ou do administrador a cada chamada. O horário da batida é
