@@ -122,8 +122,13 @@ export function carimbarLinksWhatsApp(): () => void {
     try {
       const url = new URL(link.href);
       const texto = url.searchParams.get('text') ?? '';
-      if (texto.includes(protocolo)) return; // já carimbado
-      url.searchParams.set('text', `${texto}\n\nProtocolo: ${protocolo.slice(2, -1)}`);
+      // A checagem procura o que o carimbo ESCREVE ("Protocolo: XXXXXX"), não o formato
+      // interno "[#XXXXXX]". Até 15/08/2026 procurava o formato interno, que nunca está
+      // no texto — cada toque a mais no botão acrescentava outro carimbo (um lead chegou
+      // ao WhatsApp com o protocolo escrito 7 vezes).
+      const codigo = protocolo.slice(2, -1);
+      if (texto.includes(codigo)) return; // já carimbado
+      url.searchParams.set('text', `${texto}\n\nProtocolo: ${codigo}`);
       link.href = url.toString();
     } catch {
       /* href fora do padrão: segue sem carimbo */
