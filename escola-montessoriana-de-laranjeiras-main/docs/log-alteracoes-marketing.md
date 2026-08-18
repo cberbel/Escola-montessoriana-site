@@ -16,6 +16,45 @@ Contêiner GTM: **GTM-56ZSQTXF** · Projeto Supabase: **ponto-escola-montessoria
 
 ---
 
+## 18/08/2026
+
+### Supabase — duas views para a rotina de acompanhamento do Google Ads
+
+`crm.saude_medicao` (checagem diária, uma linha com campo `veredito`) e
+`crm.resultado_diario` (leitura de resultado, série de 14 dias). **Ambas excluem a
+simulação do bot** (`origem = 'simulacao'` e telefone `55009%`) — sem isso uma bateria de
+teste vira "pico de leads", como aconteceu em 13/08, quando 28 leads eram 20 personas.
+
+O protocolo de uso está em `Documents\bot-escola\rotina-ads.md`: o que olhar todo dia, o
+que olhar a cada 2-3 dias, o que fazer em cada alerta e a conta do custo por conversa
+respondida.
+
+Limiares calibrados com 12-17/08 (primeiros dias com o bot no ar): 5 a 9 leads reais/dia,
+66 a 199 cliques gravados/dia, 55% a 100% dos leads com gclid. Revisar depois de um mês.
+
+**Desfazer:** `drop view crm.saude_medicao; drop view crm.resultado_diario;`
+
+### Estado da operação em 18/08 (5 dias após o bot entrar no ar)
+
+- **37 leads reais em 7 dias**, média de 7/dia — contra os "menos de 15 leads verdadeiros
+  no ano todo" que o Cláudio relatava antes do bot
+- **76% deles com `gclid`**, ou seja, com campanha identificada
+- **7 conversões offline prontas e ainda não enviadas** ao Google Ads
+- O trigger `mensagens_marcar_origem_anuncio` já pegou 3 leads pelo botão do anúncio
+- **Cliques gravados caindo:** 199 (13/08) para 66 (17/08), enquanto os leads subiam de 8
+  para 9. O tráfego encolheu e melhorou; falta o custo do painel para saber se foi
+  intencional (orçamento, aprovação) ou não
+
+**Estratégia de lances (a confirmar no painel):** as campanhas usam **Maximizar
+conversões sem CPA desejado**. Evidência: a conta exibe a recomendação "Definir um CPA
+desejado", que só aparece para campanha sem um, e outra que fala em "campanhas que usam a
+estratégia Maximizar conversões". Não foi possível confirmar na tela porque **um bloqueador
+de anúncios no Chrome impede o painel do Google Ads de carregar** ("Google Ads can't work
+when you're using an ad blocker") — e extensão não pode abrir `chrome://extensions`, então
+essa é uma ação do Cláudio.
+
+---
+
 ## 13/08/2026
 
 ### Google Ads — a mensagem do anúncio deixou de ser igual à do site
