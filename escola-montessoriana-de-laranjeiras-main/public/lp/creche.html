@@ -256,7 +256,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   if(det){
     var at=ler(K_O);
     var valida=at&&(Date.now()-at.ts<=VAL);
-    if(!valida||det==='google_ads')gravar(K_O,{origem:det,ts:Date.now()});
+    if(!valida||det==='google_ads'){var efetiva=(det!=='google_ads'&&obterG())?'google_ads':det;gravar(K_O,{origem:efetiva,ts:Date.now()});}
   }
   function obterG(){var r=ler(K_G);if(!r||!r.gclid)return null;if(Date.now()-r.ts>VAL)return null;return r.gclid}
   function obterO(){var r=ler(K_O);if(!r||!r.origem)return null;if(Date.now()-r.ts>VAL)return null;return r.origem}
@@ -301,7 +301,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       try{
         var url=new URL(link.href);
         var texto=url.searchParams.get('text')||'';
-        if(texto.indexOf(codigo)<0){
+        if(!/Protocolo:/i.test(texto)){
           url.searchParams.set('text',texto+'\n\nProtocolo: '+codigo);
           link.href=url.toString();
         }
