@@ -62,6 +62,15 @@ servindo o CSV da view no formato exato que a planilha comprovadamente importa (
 function `conversoes-csv` v2 (verify_jwt off de propósito: a autenticação é a chave
 validada no banco).
 
+**RESOLVIDO em 18/08 (mesma noite):** o Cláudio colou a fórmula `IMPORTDATA` na A1 e o
+fluxo automático entrou no ar. Um efeito colateral foi corrigido em seguida: o Sheets
+converteu o Conversion Time de 4 das 7 linhas em número de série de data (o export CSV
+— que é o que o robô do Ads lê — saía `"46249,88266"`). Correção: coluna C3:C1000 com
+formato de número personalizado `yyyy-mm-dd hh:mm:ss`; o export foi rebaixado e as 7
+linhas saem no formato exato. NOTA DE TÉCNICA: o teclado sintético do Chrome MCP NÃO
+funciona no grid do Sheets (canvas), mas FUNCIONA na caixa de nome, menus e diálogos
+(DOM) — seleção por range na caixa de nome + menu Formatar resolvem sem mão humana.
+*(Observação original, mantida para contexto:)*
 **Falta UM passo manual (Sheets em canvas ignora teclado sintético do Chrome MCP):**
 colar na célula A1 da planilha "Conversoes offline - Escola Montessoriana" a fórmula
 `=IMPORTDATA("<endpoint com a chave>")`, apagando o conteúdo atual (que está 4
