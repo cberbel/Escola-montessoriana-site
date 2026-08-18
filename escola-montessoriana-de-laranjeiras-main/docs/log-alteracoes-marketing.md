@@ -18,6 +18,31 @@ Contêiner GTM: **GTM-56ZSQTXF** · Projeto Supabase: **ponto-escola-montessoria
 
 ## 18/08/2026
 
+### SEO — página /creche-laranjeiras, post "Escola Montessori no RJ" e a palavra "creche" no site (`cec02c9`)
+
+Três frentes para as metas de busca orgânica (top 3 "creche laranjeiras", nº 1
+"montessori rio"):
+
+1. **A palavra "creche" entrou no corpo do site** (não existia em lugar nenhum,
+   nem berçário/pré-escola na home) — hero, 2ª tela e /turmas, espelhado nos 4
+   idiomas com revisão de nativo. Rodapé PT ganhou coluna "A escola" com links.
+2. **Página nova `/creche-laranjeiras`** (indexável — a /lp/creche.html segue
+   noindex, só para anúncio): proporção 1:3, adaptação, alimentação, inglês,
+   horários, endereço. Todas as afirmações já existiam no site; nada inventado.
+   Resumo final aponta para o post novo do blog.
+3. **Post novo**: "Escola Montessori no Rio de Janeiro: como saber se é de
+   verdade" — critérios observáveis, sinais de alerta e perguntas de visita,
+   sem citar concorrentes.
+
+Auditoria por 4 agentes adversariais (fatos, idiomas, código, SEO) antes do
+push — 18 apontamentos aplicados, incluindo: **todas as 15 menções a "Nobel"
+removidas do site** (regra da casa), JSON-LD corrigido para 07:30–19:00,
+hreflang restrito às 4 homes, titles/descriptions ≤165 chars com keyword.
+Indexação solicitada no Search Console para as 2 URLs novas (18/08).
+
+**Desfazer:** `git revert cec02c9`.
+
+
 ### SEO — título e descrição próprios por página + pedidos de indexação (`513ddc9`)
 
 Complemento do prerender: as 41 páginas saíam com o MESMO título e descrição
