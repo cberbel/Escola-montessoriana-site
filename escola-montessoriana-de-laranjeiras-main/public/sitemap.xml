@@ -97,6 +97,10 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://www.escolamontessoriana.com.br/en/schedule-visit</loc>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://www.escolamontessoriana.com.br/es</loc>
     <priority>0.7</priority>
   </url>
@@ -125,6 +129,10 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://www.escolamontessoriana.com.br/es/agendar-visita</loc>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://www.escolamontessoriana.com.br/fr</loc>
     <priority>0.7</priority>
   </url>
@@ -151,5 +159,9 @@
   <url>
     <loc>https://www.escolamontessoriana.com.br/fr/ambiances</loc>
     <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.escolamontessoriana.com.br/fr/planifier-visite</loc>
+    <priority>0.5</priority>
   </url>
 </urlset>

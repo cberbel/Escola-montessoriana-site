@@ -5,8 +5,9 @@
  *
  * A Vercel serve /rota a partir de dist/rota/index.html direto do filesystem;
  * o rewrite do vercel.json (tudo -> /index.html) só pega rota que não existe.
- * Canonical e og:url são reescritos por rota; o resto do <head> (GTM, filas de
- * tracking, fontes) vem intacto do template.
+ * Título, meta description, og:title/description e canonical/og:url são
+ * reescritos POR ROTA (valores vêm de routesToPrerender no entry-server.tsx);
+ * o resto do <head> (GTM, filas de tracking, fontes) vem intacto do template.
  */
 import fs from 'node:fs';
 import path from 'node:path';
@@ -23,15 +24,26 @@ if (!template.includes('<div id="root"></div>')) {
 
 const { render, routesToPrerender } = await import('./dist/server/entry-server.js');
 
+// Texto vindo do entry-server vai para dentro de atributo/tag HTML: escapar.
+const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+
 let ok = 0;
-for (const url of routesToPrerender) {
+for (const { url, title, description } of routesToPrerender) {
   const appHtml = render(url);
   if (!appHtml || appHtml.length < 500) {
     throw new Error(`prerender: rota ${url} rendeu HTML suspeito de vazio (${appHtml.length} chars)`);
   }
+  if (!title || !description) {
+    throw new Error(`prerender: rota ${url} sem title/description no entry-server.tsx`);
+  }
   const canonical = SITE + (url === '/' ? '/' : url);
+  // replace com função para o texto não ser interpretado como padrão ($&, $1...)
   const html = template
-    .replace('<div id="root"></div>', `<div id="root">${appHtml}</div>`)
+    .replace('<div id="root"></div>', () => `<div id="root">${appHtml}</div>`)
+    .replace(/<title>[^<]*<\/title>/, () => `<title>${esc(title)}</title>`)
+    .replace(/<meta name="description" content="[^"]*"/, () => `<meta name="description" content="${esc(description)}"`)
+    .replace(/<meta property="og:title" content="[^"]*"/, () => `<meta property="og:title" content="${esc(title)}"`)
+    .replace(/<meta property="og:description" content="[^"]*"/, () => `<meta property="og:description" content="${esc(description)}"`)
     .replace(/<link rel="canonical" href="[^"]*"/, `<link rel="canonical" href="${canonical}"`)
     .replace(/<meta property="og:url" content="[^"]*"/, `<meta property="og:url" content="${canonical}"`);
 
