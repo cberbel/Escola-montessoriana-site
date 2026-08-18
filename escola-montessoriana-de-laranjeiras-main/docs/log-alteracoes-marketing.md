@@ -18,6 +18,27 @@ Contêiner GTM: **GTM-56ZSQTXF** · Projeto Supabase: **ponto-escola-montessoria
 
 ## 18/08/2026
 
+### SEO — título e descrição próprios por página + pedidos de indexação (`513ddc9`)
+
+Complemento do prerender: as 41 páginas saíam com o MESMO título e descrição
+(os da home). Agora cada rota tem `<title>` e meta description próprios, com as
+palavras-alvo nos títulos estáticos: **"Creche e Escola Montessori no Rio"** na
+home (a palavra "creche" não existia em lugar nenhum do site), "berçário" em
+/turmas, "Método Montessori no Rio de Janeiro" em /metodo-montessori. Sitemap
+completado (41 URLs). Fonte única: `routesToPrerender` no `entry-server.tsx` —
+**rota nova exige título + descrição, senão o build falha.**
+
+No Search Console (18/08): pedida a reindexação de 7 páginas-chave (/,
+/turmas, /metodo-montessori, /acolhimento, /blog, post "como escolher escola
+infantil em Laranjeiras", /ingles-primeira-infancia). Diagnóstico que motivou:
+13 de 41 páginas fora do índice — /turmas, /acolhimento e o post de Laranjeiras
+estavam "Detectada, mas não indexada" (efeito do HTML vazio). Posições atuais
+(3 meses): tráfego quase 100% de marca; "creche laranjeiras" na posição ~15
+com 4 impressões; "creche montessori" ~9; "escola montessoriana laranjeiras" ~2.
+
+**Desfazer:** `git revert 513ddc9`.
+
+
 ### Site — prerender de TODAS as rotas no build (SEO estrutural, `a133d27`)
 
 O maior problema de SEO do site morreu: o SPA servia 8,7 KB de HTML sem nenhum texto
