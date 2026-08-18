@@ -18,6 +18,24 @@ Contêiner GTM: **GTM-56ZSQTXF** · Projeto Supabase: **ponto-escola-montessoria
 
 ## 18/08/2026
 
+### Correção no mesmo dia: o gclid se perdia na promoção orgânico → anúncio (`15edfd1`)
+
+Revisão adversária do `ae70e9e` achou um buraco no caminho mais valioso: quem já tinha
+sido registrado como orgânico e DEPOIS clicava num anúncio perdia o gclid. O
+`capturarGclid()` apagava a marca de "já registrei" (herança do fluxo antigo), o
+`registrarClique()` então reusava o ref antigo, o insert batia na chave primária (409,
+tratado como sucesso) e o gclid nunca chegava ao banco — o lead ficaria como
+`google_organico` e fora da conversão offline.
+
+A linha do `removeItem` saiu; a assinatura origem+gclid já detecta a mudança e força ref
+novo. **Testado no ar reproduzindo o cenário exato:** visita direta gravou `UIEG8A/direto`;
+a visita seguinte com `?gclid=` renovou para `3FF582` e a linha nova chegou **com** o
+gclid. Registros de teste apagados.
+
+Junto: `crm.saude_medicao` recalibrada — o alarme de quebra do carimbo passou a usar o
+**protocolo** (`pct_com_protocolo_7d`), porque a proporção de gclid vai cair naturalmente
+conforme o orgânico for rotulado certo, e o alerta antigo dispararia falso.
+
 ### Origem de TODA visita, não só a de anúncio (commit `ae70e9e`)
 
 Antes só quem clicava em anúncio era identificado. Todo o resto — busca orgânica,
