@@ -18,6 +18,30 @@ Contêiner GTM: **GTM-56ZSQTXF** · Projeto Supabase: **ponto-escola-montessoria
 
 ## 18/08/2026
 
+### Google Ads — criadas as 3 ações de conversão de importação dos degraus
+
+Criadas pelo assistente novo de Conversões (o fluxo clássico de "Importar" não existe
+mais na UI; o caminho que funciona: Criar ação → etapa 1 marcar fonte "Conversões
+off-line" com "Pular esta etapa e configurar fonte mais tarde" + declaração de dados →
+etapa 2 → Ver tudo → categorias de IMPORTAÇÃO "Lead qualificado"/"Lead convertido" →
++ Criar conversão → fonte "Conectar a fonte de dados mais tarde"; as categorias
+Contato/Ver rota só oferecem eventos de telefone — beco sem saída):
+
+| Ação (nome exato) | Categoria | Valor padrão | Contagem | Otimização |
+|---|---|---|---|---|
+| `Conversa respondida (WhatsApp)` | Lead qualificado | R$ 10 | Uma | Principal |
+| `Visita agendada (WhatsApp)` | Lead qualificado | R$ 50 | Uma | Principal |
+| `Matricula (WhatsApp)` | Lead convertido | R$ 500 | Uma | Principal |
+
+Todas com "usar valores diferentes para cada conversão" (a planilha manda o valor por
+linha), janela de clique 90 dias, atribuição baseada em dados. Provisionamento ~4h.
+A antiga `Conversa qualificada (WhatsApp)` continua Principal e recebendo dados até a
+view `crm.conversoes_offline` migrar para os 3 degraus — a planilha de hoje ainda envia
+o nome antigo, então o import das 06:00 segue funcionando durante a transição.
+
+**Desfazer:** Metas → Conversões → Ver todas as ações → selecionar as 3 → Remover.
+
+
 ### Endpoint CSV das conversões + correção de um atropelo entre sessões
 
 **Atropelo, assumido e corrigido no mesmo dia:** esta sessão reescreveu
