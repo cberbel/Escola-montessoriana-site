@@ -18,6 +18,28 @@ Contêiner GTM: **GTM-56ZSQTXF** · Projeto Supabase: **ponto-escola-montessoria
 
 ## 18/08/2026
 
+### Upload de conversões virou automático: endpoint CSV para a programação do Google Ads
+
+Novo endpoint `.../functions/v1/conversoes-csv?key=<chave>` serve o CSV de
+`crm.conversoes_offline` no formato exato do upload do Google Ads. Duas peças:
+função `public.conversoes_offline_csv(p_chave)` (SECURITY DEFINER — valida a chave
+guardada em `crm.config` chave `conversoes_csv_key` e monta o CSV; janela de 88 dias)
+e edge function `conversoes-csv` v1 (verify_jwt desligado de propósito: o agendador do
+Google não manda cabeçalho de autenticação; a autenticação é a chave na URL, validada
+no banco — sem chave ou com chave errada responde 403).
+
+**A chave NÃO vai neste arquivo** (repositório público) — mora no `crm.config`.
+
+Testado: 403 sem chave e com chave errada; com a chave certa, CSV com cabeçalho + as
+10 conversões atuais (mesmo lead aparece como conversa R$ 10 e visita R$ 50, por
+desenho). Falta só a ponta do Google: criar as 3 ações de conversão de importação e a
+Programação diária (fonte HTTPS) — bloqueado pelo 503 do módulo do painel.
+
+**Desfazer:** apagar a edge function `conversoes-csv` no painel do Supabase;
+`drop function public.conversoes_offline_csv(text); delete from crm.config where
+chave='conversoes_csv_key';`
+
+
 ### O "bloqueador de anúncios" do painel era falha do PRÓPRIO Google (diagnóstico por rede)
 
 O aviso "Turn off ad blockers" que impede a tabela de campanhas de carregar **não é
