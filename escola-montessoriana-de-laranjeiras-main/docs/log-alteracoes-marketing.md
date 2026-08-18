@@ -18,6 +18,51 @@ Contêiner GTM: **GTM-56ZSQTXF** · Projeto Supabase: **ponto-escola-montessoria
 
 ## 18/08/2026
 
+### Origem de TODA visita, não só a de anúncio (commit `ae70e9e`)
+
+Antes só quem clicava em anúncio era identificado. Todo o resto — busca orgânica,
+Instagram, informativo, indicação — chegava ao atendimento como `whatsapp` genérico.
+Eram 6 dos 37 contatos reais sem ninguém saber de onde vieram.
+
+**Banco** (`public.cliques_anuncio`): coluna `origem` nova, `gclid` perdeu o NOT NULL,
+backfill das 1.473 linhas antigas como `google_ads`, e a **política RLS reescrita**.
+A reescrita não era opcional: `length(NULL) >= 20` avalia como NULL, o `WITH CHECK`
+inteiro deixa de ser TRUE e a linha sem gclid continuaria recusada mesmo depois de
+tirar o NOT NULL. As duas mudanças tinham que ir juntas.
+
+**Trigger** `crm.vincular_gclid()`: passa a usar a origem gravada no clique quando não
+há gclid. A lista de origens sobrescrevíveis inclui os cinco valores que o
+`detectarOrigem()` do BOT consegue produzir por substring do texto (`google`,
+`instagram`, `site`, `indicacao`, `whatsapp`) — sem isso a guarda viraria no-op para
+qualquer lead cuja abertura contivesse essas palavras. `simulacao` e `teste` ficam
+protegidos de propósito: reclassificar lead de teste o joga no follow-up de verdade.
+
+**Site** (`utils/gclid.ts`): `detectarOrigem()` lê `?gclid`, `utm_source` e
+`document.referrer`. Devolve `null` quando o referrer é do próprio domínio e não é
+informativo — navegação interna não pode apagar a origem da sessão. Regra de
+precedência: primeiro toque vence, exceto gclid, que sempre promove. E `renovarRef()`:
+como `ref` é PRIMARY KEY, quando a origem muda a visita ganha código próprio, senão o
+insert bateria em 409 e a campanha nunca seria identificada.
+
+**Painel**: chip colorido com rótulo legível ("🔍 Busca orgânica", "📸 Instagram") no
+lugar de `origem: google_ads` cru, na lista e na ficha. Backup em
+`painel_ui_backup_20260818`.
+
+**Testado ponta a ponta no ar:** visita sem anúncio gravou `direto`; com
+`utm_source=instagram` gravou `instagram` e gerou ref novo (o `renovarRef` fazendo seu
+papel); o link do WhatsApp recebeu `Protocolo: BECYC3` sem haver anúncio nenhum; e no
+banco um lead nascido como `whatsapp` virou `google_organico` pelo protocolo, enquanto
+o caminho pago continuou virando `google_ads`. Registros de teste apagados.
+
+**Efeito visível para o cliente:** a partir de agora TODO visitante recebe
+`Protocolo: XXXXXX` na mensagem, não só quem vem de anúncio.
+
+**Desfazer:** `git revert ae70e9e` no site; no banco, restaurar
+`crm.vincular_gclid()` da versão anterior e `alter table public.cliques_anuncio drop
+column origem`; no painel, `update crm.config set valor = (select valor from crm.config
+where chave='painel_ui_backup_20260818') where chave='painel_ui'`.
+
+
 ### Supabase — duas views para a rotina de acompanhamento do Google Ads
 
 `crm.saude_medicao` (checagem diária, uma linha com campo `veredito`) e
