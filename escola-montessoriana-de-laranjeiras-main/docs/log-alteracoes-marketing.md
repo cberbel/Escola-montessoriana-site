@@ -18,6 +18,21 @@ Contêiner GTM: **GTM-56ZSQTXF** · Projeto Supabase: **ponto-escola-montessoria
 
 ## 18/08/2026
 
+### Site — prerender de TODAS as rotas no build (SEO estrutural, `a133d27`)
+
+O maior problema de SEO do site morreu: o SPA servia 8,7 KB de HTML sem nenhum texto
+em todas as rotas. Agora o build da Vercel gera `dist/<rota>/index.html` com o conteúdo
+real das **41 rotas** (36 fixas nos 4 idiomas + posts do blog), com canonical e og:url
+por rota. Verificado em produção: home 72 KB, /turmas 31 KB, /fr 71 KB, blog 31 KB —
+todos com texto real; hidratação sem erro; medição (gclid/protocolo/GTM) intacta.
+
+**Regra de manutenção: toda rota nova do App.tsx precisa entrar em
+`routesToPrerender` no `entry-server.tsx`** — senão a página funciona mas volta a ser
+invisível para crawlers. Detalhes no commit `a133d27`.
+
+**Desfazer:** `git revert a133d27` (o site volta a SPA puro, sem quebrar nada).
+
+
 ### Google Ads — criadas as 3 ações de conversão de importação dos degraus
 
 Criadas pelo assistente novo de Conversões (o fluxo clássico de "Importar" não existe
