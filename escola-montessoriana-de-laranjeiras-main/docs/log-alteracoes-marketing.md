@@ -18,27 +18,35 @@ Contêiner GTM: **GTM-56ZSQTXF** · Projeto Supabase: **ponto-escola-montessoria
 
 ## 18/08/2026
 
-### Upload de conversões virou automático: endpoint CSV para a programação do Google Ads
+### Endpoint CSV das conversões + correção de um atropelo entre sessões
 
-Novo endpoint `.../functions/v1/conversoes-csv?key=<chave>` serve o CSV de
-`crm.conversoes_offline` no formato exato do upload do Google Ads. Duas peças:
-função `public.conversoes_offline_csv(p_chave)` (SECURITY DEFINER — valida a chave
-guardada em `crm.config` chave `conversoes_csv_key` e monta o CSV; janela de 88 dias)
-e edge function `conversoes-csv` v1 (verify_jwt desligado de propósito: o agendador do
-Google não manda cabeçalho de autenticação; a autenticação é a chave na URL, validada
-no banco — sem chave ou com chave errada responde 403).
+**Atropelo, assumido e corrigido no mesmo dia:** esta sessão reescreveu
+`crm.conversoes_offline` com 3 degraus ("Conversa respondida" 10 / visita 50 /
+matrícula 500) **sem saber** que em 15/08 outra sessão, por decisão do Cláudio, já
+havia definido a conversão oficial como **`Conversa qualificada (WhatsApp)`** (mais de
+6 mensagens E ≥3 da família) — com ação criada no Ads e importação por PLANILHA
+agendada às 06:00 já ativa. A view foi **restaurada** à definição oficial (7
+conversões qualificadas hoje). Os carimbos `matriculado_em`/`visitou_em` e o gatilho
+ficam — são aditivos e servem aos degraus futuros. Upload por arquivo CSV segue
+proibido nesta conta (parser quebrado, 10 falhas em 15/08).
 
-**A chave NÃO vai neste arquivo** (repositório público) — mora no `crm.config`.
+**O que ficou de novo e útil:** endpoint `.../functions/v1/conversoes-csv?key=<chave>`
+servindo o CSV da view no formato exato que a planilha comprovadamente importa (linha
+`Parameters:TimeZone`, horário sem fuso). Chave em `crm.config`
+(`conversoes_csv_key`) — **não vai neste arquivo**; 403 sem ela. Peças:
+`public.conversoes_offline_csv(p_chave)` (SECURITY DEFINER, janela 88 dias) + edge
+function `conversoes-csv` v2 (verify_jwt off de propósito: a autenticação é a chave
+validada no banco).
 
-Testado: 403 sem chave e com chave errada; com a chave certa, CSV com cabeçalho + as
-10 conversões atuais (mesmo lead aparece como conversa R$ 10 e visita R$ 50, por
-desenho). Falta só a ponta do Google: criar as 3 ações de conversão de importação e a
-Programação diária (fonte HTTPS) — bloqueado pelo 503 do módulo do painel.
+**Falta UM passo manual (Sheets em canvas ignora teclado sintético do Chrome MCP):**
+colar na célula A1 da planilha "Conversoes offline - Escola Montessoriana" a fórmula
+`=IMPORTDATA("<endpoint com a chave>")`, apagando o conteúdo atual (que está 4
+conversões defasado: 3 na planilha, 7 na view). Feito isso, o fluxo fica
+view → endpoint → planilha → import das 06:00, sem intervenção humana.
 
-**Desfazer:** apagar a edge function `conversoes-csv` no painel do Supabase;
-`drop function public.conversoes_offline_csv(text); delete from crm.config where
-chave='conversoes_csv_key';`
-
+**Desfazer:** apagar a edge function no painel Supabase; `drop function
+public.conversoes_offline_csv(text); delete from crm.config where
+chave='conversoes_csv_key';`; na planilha, recolocar as linhas estáticas.
 
 ### O "bloqueador de anúncios" do painel era falha do PRÓPRIO Google (diagnóstico por rede)
 
