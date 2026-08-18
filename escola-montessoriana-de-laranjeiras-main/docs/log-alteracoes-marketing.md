@@ -18,6 +18,24 @@ Contêiner GTM: **GTM-56ZSQTXF** · Projeto Supabase: **ponto-escola-montessoria
 
 ## 18/08/2026
 
+### O "bloqueador de anúncios" do painel era falha do PRÓPRIO Google (diagnóstico por rede)
+
+O aviso "Turn off ad blockers" que impede a tabela de campanhas de carregar **não é
+causado por extensão nenhuma**. Diagnóstico pelo log de rede do Chrome: todos os
+recursos externos carregam (bundles do gstatic, fontes, logging — tudo 200; nenhuma
+requisição bloqueada), mas o endpoint interno `ads.google.com/aw/ipl_status` responde
+**503 em loop** e o módulo `ESSENTIALS` (a tabela de estatísticas) nunca termina de
+carregar — o painel interpreta a própria falha como bloqueador. Desativar as VPNs era
+correto de qualquer forma, mas não era a causa. Limpar caches/service worker não
+resolve; URLs do editor de relatórios (`/aw/reports`, `/aw/reporting/...`) dão 404.
+
+**Consequência:** parcela de impressões perdida e Insights de leilão seguem
+inacessíveis por aqui até o Google normalizar o módulo (503 costuma ser transitório).
+Páginas de outros módulos (Recomendações, Recursos) funcionam normalmente.
+**Teste definitivo quando quiser:** abrir o Ads numa janela anônima — se lá carregar,
+é estado de sessão/cookies; se não, é do Google mesmo.
+
+
 ### Google Ads — complemento da reestruturação: sufixo de URL, faxina e +15 concorrentes
 
 **1. Sufixo do URL final** na `[ALM] [C3] Campanha de Leads` (Configurações → Opções de
