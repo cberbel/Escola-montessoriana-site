@@ -58,7 +58,7 @@ export const GruposEs: React.FC = () => {
       <LandingSection heading="">
         <TurmaHeading nome="Agrupada 1" faixa="9 meses a 3 años" />
         <P>
-          El primer ambiente fuera de casa. Aquí todo está pensado para que los bebés y los niños muy pequeños
+          El primer ambiente fuera de casa — el maternal de la escuela. Aquí todo está pensado para que los bebés y los niños muy pequeños
           exploren con seguridad: estructuras de movimiento y de trepar, materiales al alcance de las manos pequeñas y
           muchos mimos. Es la etapa de caminar, de hablar, de la independencia que asoma — vestirse, comer solo,
           cuidarse — y del lenguaje, que florece cuando al niño se lo escucha y se lo respeta.
@@ -69,7 +69,7 @@ export const GruposEs: React.FC = () => {
       <LandingSection heading="">
         <TurmaHeading nome="Agrupada 2" faixa="2,5 a 6 años" />
         <P>
-          La clásica "Casa de los Niños" de Maria Montessori. En este ambiente el niño circula libremente entre las
+          La clásica "Casa de los Niños" de Maria Montessori — nuestro nivel inicial. En este ambiente el niño circula libremente entre las
           áreas — vida práctica, sensorial, lenguaje, matemática y educación cósmica — eligiendo su trabajo y
           repitiéndolo cuantas veces quiera. Es la etapa dorada de la concentración, de la lectura y la escritura, de
           los números tomando forma en la mano, y de la inmersión diaria en inglés.

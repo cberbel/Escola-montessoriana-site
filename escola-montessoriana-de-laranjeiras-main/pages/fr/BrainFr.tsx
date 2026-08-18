@@ -46,7 +46,7 @@ export const BrainFr: React.FC = () => {
 
       <LandingSection heading="« Les compétences appellent les compétences » : pourquoi le retard fait boule de neige" className="bg-montessori-cream/60 py-10 sm:py-14 rounded-sm">
         <P>
-          L'une des découvertes majeures de l'économie de l'éducation — due au prix Nobel James Heckman — est que la
+          L'une des découvertes majeures de l'économie de l'éducation — due à l'économiste James Heckman — est que la
           compétence appelle la compétence, et la motivation appelle la motivation. Les capacités fondatrices comme
           l'attention, l'autorégulation et la communication, construites dans les premières années, forment le socle
           sur lequel reposent ensuite les habiletés plus complexes : le raisonnement, la lecture, les relations

@@ -15,7 +15,7 @@ const TurmaHeading: React.FC<{ nome: string; faixa: string }> = ({ nome, faixa }
 export const Turmas: React.FC = () => {
   usePageMeta(
     'Turmas | Escola Montessoriana de Laranjeiras',
-    'Nossas turmas de idades misturadas: Agrupada 1 (9 meses a 3 anos), Agrupada 2 (2,5 a 6 anos) e Agrupada 3 — Ensino Fundamental (7 a 12 anos). Ambientes preparados, horários e frequência flexíveis.'
+    'Turmas de idades misturadas: berçário e creche (9 meses a 3 anos), pré-escola (2,5 a 6) e Ensino Fundamental (7 a 12). Horários e frequência flexíveis.'
   );
 
   return (
@@ -59,18 +59,24 @@ export const Turmas: React.FC = () => {
       <LandingSection heading="">
         <TurmaHeading nome="Agrupada 1" faixa="9 meses a 3 anos" />
         <P>
-          O primeiro ambiente fora de casa. Aqui tudo é pensado para o bebê e a criança bem pequena explorarem com
+          O primeiro ambiente fora de casa — o berçário e a creche da escola. Aqui tudo é pensado para o bebê e a criança bem pequena explorarem com
           segurança: estruturas de movimento e psicomotricidade, materiais ao alcance das mãos e muito, muito colo. É a
           fase do andar, do falar, da autonomia que começa — vestir-se, comer sozinho, cuidar de si — e da linguagem,
           que floresce quando a criança é ouvida e respeitada.
         </P>
         <LandingImage src="/images/turmas/agrupada-1.jpg" alt="Bebê sorrindo em pé numa estrutura de madeira de psicomotricidade, na sala da Agrupada 1" portrait />
+        <P>
+          Procurando creche em Laranjeiras?{' '}
+          <Link to="/creche-laranjeiras" className="text-montessori-green font-semibold underline hover:no-underline">
+            Conheça o nosso berçário em detalhes
+          </Link>.
+        </P>
       </LandingSection>
 
       <LandingSection heading="">
         <TurmaHeading nome="Agrupada 2" faixa="2,5 a 6 anos" />
         <P>
-          A clássica "Casa das Crianças" de Maria Montessori. Neste ambiente, a criança circula livremente entre as
+          A clássica "Casa das Crianças" de Maria Montessori — a nossa pré-escola. Neste ambiente, a criança circula livremente entre as
           áreas — vida prática, sensorial, linguagem, matemática e educação cósmica — escolhendo seu trabalho e
           repetindo quantas vezes quiser. É a fase de ouro da concentração, da leitura e da escrita, do número que ganha
           corpo na mão, e da imersão diária no inglês.

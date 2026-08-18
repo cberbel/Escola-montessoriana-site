@@ -18,7 +18,7 @@ const Area: React.FC<{ title: string; children: React.ReactNode; materials?: str
 const alumni = [
   { name: 'Larry Page & Sergey Brin', role: 'founders of Google' },
   { name: 'Jeff Bezos', role: 'founder of Amazon' },
-  { name: 'Gabriel García Márquez', role: 'Nobel laureate in Literature' },
+  { name: 'Gabriel García Márquez', role: 'Author of One Hundred Years of Solitude' },
   { name: 'Beyoncé', role: 'singer and entrepreneur' },
   { name: 'Taylor Swift', role: 'singer-songwriter' },
   { name: 'George Clooney', role: 'actor and producer' },
@@ -50,7 +50,7 @@ export const MontessoriMethodEn: React.FC = () => {
           for it.
         </P>
         <P>
-          Nominated three times for the Nobel Peace Prize, Maria Montessori saw her method spread to more than 140
+          Maria Montessori saw her method spread to more than 140
           countries. Over a century later, neuroscience keeps confirming what she discovered through observation:
           movement and learning go hand in hand, the first years are decisive, and deep concentration is the engine of
           development.

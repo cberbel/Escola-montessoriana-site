@@ -45,7 +45,7 @@ export const BrainEn: React.FC = () => {
 
       <LandingSection heading='"Skills beget skills": why delay compounds' className="bg-montessori-cream/60 py-10 sm:py-14 rounded-sm">
         <P>
-          One of the most important findings in the economics of education — from Nobel laureate James Heckman — is
+          One of the most important findings in the economics of education — from the economist James Heckman — is
           that skill begets skill, and motivation begets motivation. Foundational capacities such as attention,
           self-regulation and communication, built in the first years, are the base on which more complex abilities
           rest later: reasoning, reading, social relationships.

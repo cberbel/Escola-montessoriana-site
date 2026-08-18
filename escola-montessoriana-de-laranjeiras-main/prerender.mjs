@@ -37,8 +37,11 @@ for (const { url, title, description } of routesToPrerender) {
     throw new Error(`prerender: rota ${url} sem title/description no entry-server.tsx`);
   }
   const canonical = SITE + (url === '/' ? '/' : url);
+  // hreflang só faz sentido nas 4 homes (as únicas com versão traduzida real);
+  // nas demais rotas o bloco herdado do template apontaria para a home errada.
+  const temTraducao = ['/', '/en', '/fr', '/es'].includes(url);
   // replace com função para o texto não ser interpretado como padrão ($&, $1...)
-  const html = template
+  let html = template
     .replace('<div id="root"></div>', () => `<div id="root">${appHtml}</div>`)
     .replace(/<title>[^<]*<\/title>/, () => `<title>${esc(title)}</title>`)
     .replace(/<meta name="description" content="[^"]*"/, () => `<meta name="description" content="${esc(description)}"`)
@@ -46,6 +49,9 @@ for (const { url, title, description } of routesToPrerender) {
     .replace(/<meta property="og:description" content="[^"]*"/, () => `<meta property="og:description" content="${esc(description)}"`)
     .replace(/<link rel="canonical" href="[^"]*"/, `<link rel="canonical" href="${canonical}"`)
     .replace(/<meta property="og:url" content="[^"]*"/, `<meta property="og:url" content="${canonical}"`);
+  if (!temTraducao) {
+    html = html.replace(/[ \t]*<link rel="alternate" hreflang="[^"]*" href="[^"]*"\s*\/>\r?\n/g, '');
+  }
 
   const outDir = url === '/' ? dist : path.join(dist, url.slice(1));
   fs.mkdirSync(outDir, { recursive: true });

@@ -18,7 +18,7 @@ const Area: React.FC<{ title: string; children: React.ReactNode; materials?: str
 const alumni = [
   { name: 'Larry Page e Sergey Brin', role: 'fundadores do Google' },
   { name: 'Jeff Bezos', role: 'fundador da Amazon' },
-  { name: 'Gabriel García Márquez', role: 'Nobel de Literatura' },
+  { name: 'Gabriel García Márquez', role: 'Autor de Cem Anos de Solidão' },
   { name: 'Beyoncé', role: 'cantora e empresária' },
   { name: 'Taylor Swift', role: 'cantora e compositora' },
   { name: 'George Clooney', role: 'ator e produtor' },
@@ -49,7 +49,7 @@ export const MetodoMontessori: React.FC = () => {
           todo; é um ser que se constrói sozinho, desde que encontre o ambiente certo para isso.
         </P>
         <P>
-          Indicada três vezes ao Prêmio Nobel da Paz, Maria Montessori viu seu método se espalhar por mais de 140
+          Maria Montessori viu seu método se espalhar por mais de 140
           países. Mais de um século depois, a neurociência segue confirmando o que ela descobriu observando: movimento
           e aprendizagem caminham juntos, os primeiros anos são decisivos, e a concentração profunda é o motor do
           desenvolvimento.

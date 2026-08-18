@@ -72,7 +72,8 @@ export const PhilosophyEs: React.FC = () => {
           </h3>
           <p className="font-sans text-lg md:text-xl text-montessori-dark leading-relaxed">
             Maria Montessori descubrió que, en el ambiente adecuado, cada niño revela lo mejor de sí.
-            En nuestra escuela esa transformación ocurre día a día, y los padres reconocen en casa a un niño:
+            En nuestra escuela — desde el maternal, a partir de los 9 meses, hasta la primaria —, esa
+            transformación ocurre día a día, y los padres reconocen en casa a un niño:
           </p>
         </div>
       </div>

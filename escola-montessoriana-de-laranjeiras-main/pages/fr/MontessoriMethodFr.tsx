@@ -18,7 +18,7 @@ const Area: React.FC<{ title: string; children: React.ReactNode; materials?: str
 const alumni = [
   { name: 'Larry Page & Sergey Brin', role: 'fondateurs de Google' },
   { name: 'Jeff Bezos', role: "fondateur d'Amazon" },
-  { name: 'Gabriel García Márquez', role: 'prix Nobel de littérature' },
+  { name: 'Gabriel García Márquez', role: 'auteur de Cent ans de solitude' },
   { name: 'Beyoncé', role: 'chanteuse et entrepreneuse' },
   { name: 'Taylor Swift', role: 'auteure-compositrice-interprète' },
   { name: 'George Clooney', role: 'acteur et producteur' },
@@ -50,7 +50,7 @@ export const MontessoriMethodFr: React.FC = () => {
           trouve l'environnement qu'il lui faut.
         </P>
         <P>
-          Proposée trois fois pour le prix Nobel de la paix, Maria Montessori a vu sa pédagogie essaimer dans plus de 140
+          Maria Montessori a vu sa pédagogie essaimer dans plus de 140
           pays. Plus d'un siècle après, les neurosciences ne cessent de confirmer ce qu'elle avait découvert par
           l'observation : le mouvement et l'apprentissage vont de pair, les premières années sont décisives, et la
           concentration profonde est le moteur du développement.

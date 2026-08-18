@@ -96,7 +96,13 @@ export const routesToPrerender: RotaPrerender[] = [
     url: '/turmas',
     title: `Turmas: do berçário ao fundamental | ${MARCA}`,
     description:
-      'Turmas agrupadas por idades misturadas: berçário e creche (9 meses a 3 anos), educação infantil (2,5 a 6 anos) e fundamental (7 a 12). Meio período, integral e horário estendido.',
+      'Turmas de idades misturadas: berçário e creche (9 meses a 3 anos), pré-escola (2,5 a 6) e Ensino Fundamental (7 a 12). Horários e frequência flexíveis.',
+  },
+  {
+    url: '/creche-laranjeiras',
+    title: 'Creche em Laranjeiras a partir de 9 meses | Escola Montessoriana',
+    description:
+      'Creche e berçário Montessori na Rua das Laranjeiras, 540, a partir de 9 meses: 1 professora para cada 3 bebês, adaptação respeitosa e horários das 7h30 às 19h.',
   },
   {
     url: '/agrupada-3',

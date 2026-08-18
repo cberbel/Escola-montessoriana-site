@@ -6,6 +6,7 @@ import { AdaptacaoRespeitosa } from './AdaptacaoRespeitosa';
 import { BilinguismoMitos } from './BilinguismoMitos';
 import { ZeroTelas } from './ZeroTelas';
 import { EscolaPertoDeCasa } from './EscolaPertoDeCasa';
+import { EscolaMontessoriRio } from './EscolaMontessoriRio';
 
 export interface BlogPostMeta {
   slug: string;
@@ -20,6 +21,17 @@ export interface BlogPostMeta {
 
 /** Registro central dos artigos (mais recentes primeiro): alimenta a lista, as rotas e o sitemap. */
 export const blogPosts: BlogPostMeta[] = [
+  {
+    slug: 'escola-montessori-rio-de-janeiro-como-avaliar',
+    title: 'Escola Montessori no Rio de Janeiro: como saber se é de verdade',
+    excerpt:
+      'O nome "Montessori" não é marca registrada. Como avaliar uma escola Montessori no Rio de Janeiro: critérios objetivos, perguntas para a visita e sinais de alerta.',
+    image: '/images/montessori/vida-pratica-estante.jpg',
+    imageAlt: 'Criança pega seu trabalho sozinha na estante baixa de uma sala Montessori preparada',
+    dateDisplay: '18 de agosto de 2026',
+    readingTime: '8 min',
+    Component: EscolaMontessoriRio,
+  },
   {
     slug: 'erro-escolher-escola-perto-de-casa',
     title: 'O erro mais comum na escolha da escola infantil: a escolinha perto de casa',

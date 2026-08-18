@@ -54,7 +54,7 @@ export const HeroEn: React.FC = () => {
             Warmth and Independence for Your Child
           </h1>
           <p className="font-sans text-base sm:text-lg md:text-xl text-gray-50 mb-5 sm:mb-6 max-w-2xl mx-auto font-normal leading-relaxed break-words">
-            Raising curious, confident and capable children, ready to explore the world.
+            A Montessori school and daycare in Laranjeiras, Rio — raising curious, confident and capable children, ready to explore the world.
           </p>
 
           <div className="flex flex-wrap justify-center items-center gap-2 sm:gap-3 mb-7 sm:mb-8">

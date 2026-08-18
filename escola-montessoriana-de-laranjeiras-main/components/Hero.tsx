@@ -61,12 +61,15 @@ export const Hero: React.FC = () => {
             Acolhimento e Autonomia para seu Filho
           </h1>
           <p className="font-sans text-base sm:text-lg md:text-xl text-gray-50 mb-5 sm:mb-6 max-w-2xl mx-auto font-normal leading-relaxed break-words">
-            Formando jovens curiosos, confiantes e capazes, prontos para explorar o mundo.
+            Creche e escola Montessori em Laranjeiras — formando jovens curiosos, confiantes e capazes, prontos para explorar o mundo.
           </p>
 
           <div className="flex flex-wrap justify-center items-center gap-2 sm:gap-3 mb-7 sm:mb-8">
             <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-white/15 border border-white/25 text-white text-sm sm:text-base font-medium backdrop-blur-sm">
               De 9 meses a 11 anos
+            </span>
+            <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-white/15 border border-white/25 text-white text-sm sm:text-base font-medium backdrop-blur-sm">
+              Berçário · Pré-escola · Fundamental
             </span>
           </div>
 

@@ -44,7 +44,7 @@ export const DesenvolvimentoCerebral: React.FC = () => {
 
       <LandingSection heading='"Skills beget skills": por que o atraso se acumula' className="bg-montessori-cream/60 py-10 sm:py-14 rounded-sm">
         <P>
-          Uma das descobertas mais importantes da economia da educação — do prêmio Nobel James Heckman — é que
+          Uma das descobertas mais importantes da economia da educação — do economista James Heckman — é que
           habilidade gera habilidade, e motivação gera motivação. Capacidades fundamentais como atenção,
           autorregulação e comunicação, construídas nos primeiros anos, são os alicerces sobre os quais habilidades
           mais complexas se apoiam mais tarde: raciocínio, leitura, relações sociais.

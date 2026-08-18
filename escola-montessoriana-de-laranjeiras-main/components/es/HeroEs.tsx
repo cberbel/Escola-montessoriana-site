@@ -54,7 +54,7 @@ export const HeroEs: React.FC = () => {
             Cariño e independencia para tu hijo
           </h1>
           <p className="font-sans text-base sm:text-lg md:text-xl text-gray-50 mb-5 sm:mb-6 max-w-2xl mx-auto font-normal leading-relaxed break-words">
-            Formamos niños curiosos, seguros de sí mismos y capaces, listos para explorar el mundo.
+            Maternal y escuela Montessori en Laranjeiras, Río — formamos niños curiosos, seguros de sí mismos y capaces, listos para explorar el mundo.
           </p>
 
           <div className="flex flex-wrap justify-center items-center gap-2 sm:gap-3 mb-7 sm:mb-8">

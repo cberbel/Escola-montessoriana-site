@@ -55,7 +55,7 @@ export const EscolaPertoDeCasa: React.FC = () => (
       afeto, desafios na medida. <L to="/desenvolvimento-cerebral">Mostramos essa ciência em detalhes aqui</L>.
     </P>
     <P>
-      E há um efeito multiplicador que o Nobel de economia James Heckman batizou de{' '}
+      E há um efeito multiplicador que o economista James Heckman batizou de{' '}
       <strong>"skills beget skills"</strong>: habilidade gera habilidade. Atenção, autorregulação e linguagem
       construídas agora são os alicerces sobre os quais a leitura, o raciocínio e as relações sociais se apoiam
       depois. Quem constrói a base cedo acumula juros pela vida inteira; quem não constrói tenta erguer o segundo

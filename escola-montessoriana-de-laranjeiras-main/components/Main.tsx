@@ -1,5 +1,5 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import { Navbar } from './Navbar';
 import { FloatingWhatsApp } from './FloatingWhatsApp';
 import { trackWhatsAppClick } from '../utils/tracking';
@@ -83,7 +83,14 @@ export const Main: React.FC = () => {
           </div>
 
           <div className="space-y-4 min-w-0">
-            <h4 className="font-bold uppercase tracking-widest text-montessori-gold text-base">Acompanhe</h4>
+            <h4 className="font-bold uppercase tracking-widest text-montessori-gold text-base">A escola</h4>
+            <ul className="space-y-2 text-gray-300">
+              <li><Link to="/creche-laranjeiras" className="hover:text-yellow-400 transition-colors">Creche em Laranjeiras</Link></li>
+              <li><Link to="/turmas" className="hover:text-yellow-400 transition-colors">Turmas</Link></li>
+              <li><Link to="/metodo-montessori" className="hover:text-yellow-400 transition-colors">O Método Montessori</Link></li>
+              <li><Link to="/blog" className="hover:text-yellow-400 transition-colors">Blog</Link></li>
+            </ul>
+            <h4 className="font-bold uppercase tracking-widest text-montessori-gold text-base pt-4">Acompanhe</h4>
             <a
               href="https://www.instagram.com/escola_montessoriana/"
               target="_blank"

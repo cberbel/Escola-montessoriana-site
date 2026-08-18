@@ -28,7 +28,7 @@ export const MontessoriParaBebes: React.FC = () => (
 
     <H2>A descoberta de Maria Montessori: a mente absorvente</H2>
     <P>
-      Maria Montessori — médica, cientista, três vezes indicada ao Nobel da Paz — observou que a criança de 0 a 6
+      Maria Montessori — médica e cientista — observou que a criança de 0 a 6
       anos não aprende como um adulto. Ela não "estuda" o mundo: ela o <strong>absorve</strong>, como uma esponja,
       pelo simples fato de viver nele. A língua materna é o melhor exemplo: nenhum bebê tem aula de português, e
       ainda assim todos aprendem — porque o cérebro dessa fase é uma máquina de absorver o ambiente.

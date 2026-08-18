@@ -54,7 +54,7 @@ export const HeroFr: React.FC = () => {
             De la bienveillance et de l'autonomie pour votre enfant
           </h1>
           <p className="font-sans text-base sm:text-lg md:text-xl text-gray-50 mb-5 sm:mb-6 max-w-2xl mx-auto font-normal leading-relaxed break-words">
-            Des enfants curieux, confiants et capables, prêts à explorer le monde.
+            Crèche et école Montessori à Laranjeiras, Rio — des enfants curieux, confiants et capables, prêts à explorer le monde.
           </p>
 
           <div className="flex flex-wrap justify-center items-center gap-2 sm:gap-3 mb-7 sm:mb-8">

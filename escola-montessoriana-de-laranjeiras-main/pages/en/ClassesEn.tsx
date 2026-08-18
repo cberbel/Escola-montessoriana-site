@@ -56,7 +56,7 @@ export const ClassesEn: React.FC = () => {
       <LandingSection heading="">
         <TurmaHeading nome="Agrupada 1" faixa="9 months to 3 years" />
         <P>
-          The first environment outside the home. Everything here is designed for babies and very young children to
+          The first environment outside the home — the school's infant and toddler daycare. Everything here is designed for babies and very young children to
           explore safely: movement and climbing structures, materials within reach of little hands, and plenty of
           cuddles. It is the phase of walking, talking, budding independence — dressing, eating by themselves, caring
           for themselves — and of language, which blossoms when the child is heard and respected.
@@ -67,7 +67,7 @@ export const ClassesEn: React.FC = () => {
       <LandingSection heading="">
         <TurmaHeading nome="Agrupada 2" faixa="2.5 to 6 years" />
         <P>
-          Maria Montessori's classic "Children's House". In this environment the child moves freely between the areas
+          Maria Montessori's classic "Children's House" — our preschool. In this environment the child moves freely between the areas
           — practical life, sensorial, language, mathematics and cosmic education — choosing their work and repeating
           it as often as they wish. It is the golden phase of concentration, of reading and writing, of numbers taking
           shape in the hand, and of daily English immersion.

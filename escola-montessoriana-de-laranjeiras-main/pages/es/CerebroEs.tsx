@@ -45,7 +45,7 @@ export const CerebroEs: React.FC = () => {
 
       <LandingSection heading='"Las habilidades generan habilidades": por qué el atraso se acumula' className="bg-montessori-cream/60 py-10 sm:py-14 rounded-sm">
         <P>
-          Uno de los hallazgos más importantes de la economía de la educación — del Premio Nobel James Heckman — es
+          Uno de los hallazgos más importantes de la economía de la educación — del economista James Heckman — es
           que la habilidad genera más habilidad, y la motivación genera más motivación. Capacidades fundamentales como la
           atención, la autorregulación y la comunicación, construidas en los primeros años, son la base sobre la que
           después se apoyan habilidades más complejas: el razonamiento, la lectura, las relaciones sociales.

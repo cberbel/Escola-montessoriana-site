@@ -72,7 +72,8 @@ export const PhilosophyEn: React.FC = () => {
           </h3>
           <p className="font-sans text-lg md:text-xl text-montessori-dark leading-relaxed">
             Maria Montessori discovered that, in the right environment, every child reveals their best.
-            At our school this transformation happens day by day — and parents recognize at home a child who is:
+            At our school — from our infant daycare, starting at 9 months, through preschool and elementary —
+            this transformation happens day by day, and parents recognize at home a child who is:
           </p>
         </div>
       </div>

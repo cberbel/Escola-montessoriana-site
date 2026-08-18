@@ -72,7 +72,8 @@ export const PhilosophyFr: React.FC = () => {
           </h3>
           <p className="font-sans text-lg md:text-xl text-montessori-dark leading-relaxed">
             Maria Montessori a découvert que, dans le bon environnement, chaque enfant révèle le meilleur de lui-même.
-            Chez nous, cette transformation se vit au quotidien — et les parents retrouvent à la maison un enfant :
+            Chez nous — de la crèche, dès 9 mois, à la maternelle et à l'élémentaire —, cette transformation se vit
+            au quotidien, et les parents retrouvent à la maison un enfant :
           </p>
         </div>
       </div>

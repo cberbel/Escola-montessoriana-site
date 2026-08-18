@@ -59,7 +59,7 @@ export const ClassesFr: React.FC = () => {
       <LandingSection heading="">
         <TurmaHeading nome="Agrupada 1" faixa="9 mois à 3 ans" />
         <P>
-          Le premier environnement hors de la maison. Tout y est pensé pour que les bébés et les tout-petits explorent
+          Le premier environnement hors de la maison — la crèche de l'école. Tout y est pensé pour que les bébés et les tout-petits explorent
           en sécurité : structures de motricité, matériel à portée des petites mains, et beaucoup de câlins. C'est
           l'âge des premiers pas, des premiers mots, de l'autonomie naissante — s'habiller, manger seul, prendre soin
           de soi — et du langage, qui s'épanouit quand l'enfant est écouté et respecté.
@@ -70,7 +70,7 @@ export const ClassesFr: React.FC = () => {
       <LandingSection heading="">
         <TurmaHeading nome="Agrupada 2" faixa="2 ans et demi à 6 ans" />
         <P>
-          La classique « Maison des enfants » de Maria Montessori. Dans cette ambiance, l'enfant circule librement
+          La classique « Maison des enfants » de Maria Montessori — notre maternelle. Dans cette ambiance, l'enfant circule librement
           entre les aires — vie pratique, sensoriel, langage, mathématiques et éducation cosmique — en choisissant son
           travail et en le répétant autant qu'il le souhaite. C'est l'âge d'or de la concentration, de la lecture et
           de l'écriture, des nombres qui prennent forme dans la main, et de l'immersion quotidienne en anglais.

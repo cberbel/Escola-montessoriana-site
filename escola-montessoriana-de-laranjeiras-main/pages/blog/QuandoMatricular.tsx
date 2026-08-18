@@ -40,7 +40,7 @@ export const QuandoMatricular: React.FC = () => (
     <Bullets
       items={[
         <><strong>Qualidade importa mais do que idade.</strong> Os grandes estudos convergem: o que prediz bons resultados não é "com quantos meses entrou", e sim a qualidade do cuidado — proporção de adultos por criança, estabilidade dos vínculos, linguagem dirigida ao bebê, ambiente seguro.</>,
-        <><strong>Educação infantil de qualidade tem efeito positivo duradouro.</strong> A pesquisa do Nobel James Heckman mostra retornos altos da primeira infância bem cuidada — em linguagem, autorregulação e até saúde décadas depois.</>,
+        <><strong>Educação infantil de qualidade tem efeito positivo duradouro.</strong> A pesquisa do economista James Heckman mostra retornos altos da primeira infância bem cuidada — em linguagem, autorregulação e até saúde décadas depois.</>,
         <><strong>O risco está no cuidado de baixa qualidade</strong> — muitas crianças por adulto, rotatividade, telas, pouco colo. Não na escola em si.</>,
       ]}
     />
