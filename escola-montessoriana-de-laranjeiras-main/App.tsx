@@ -89,7 +89,14 @@ const ScrollToTop: React.FC = () => {
   return null;
 };
 
-const App: React.FC = () => {
+/**
+ * Miolo do app SEM o Router. Existe separado por causa do PRERENDER (SEO):
+ * no navegador ele roda dentro de <BrowserRouter> (App abaixo); no build da
+ * Vercel, o entry-server.tsx o renderiza dentro de <StaticRouter> para gerar
+ * um index.html com texto real para cada rota. Os useEffect não rodam no
+ * servidor, então a medição (gclid/Calendly/carimbo) continua só no cliente.
+ */
+export const AppShell: React.FC = () => {
   // Conversão de agendamento: o Calendly (em qualquer idioma) avisa por postMessage
   // quando a visita é efetivamente marcada. Um listener só, para o site inteiro.
   useEffect(() => listenCalendlyScheduled(), []);
@@ -103,7 +110,7 @@ const App: React.FC = () => {
   useEffect(() => carimbarLinksWhatsApp(), []);
 
   return (
-    <BrowserRouter>
+    <>
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Main />}>
@@ -153,8 +160,14 @@ const App: React.FC = () => {
         </Route>
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
-    </BrowserRouter>
+    </>
   );
 };
+
+const App: React.FC = () => (
+  <BrowserRouter>
+    <AppShell />
+  </BrowserRouter>
+);
 
 export default App;
