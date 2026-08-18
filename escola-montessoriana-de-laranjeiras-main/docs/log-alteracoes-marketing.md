@@ -18,6 +18,47 @@ Contêiner GTM: **GTM-56ZSQTXF** · Projeto Supabase: **ponto-escola-montessoria
 
 ## 18/08/2026
 
+### Revisão adversária da cadeia de origem: 11 achados, 8 corrigidos no dia
+
+Três agentes tentaram refutar a corretude do que foi implantado em 18/08. Corrigido:
+
+1. **LPs de anúncio com o bug do removeItem** (grave — as LPs eram o destino pago):
+   corrigido em parte pela outra sessão (`043245a`) e completado no `6c9ac60`.
+2. **409 deixou de ser tratado como sucesso** (site e LPs): agora gera ref novo e
+   retenta UMA vez. Isso também elimina o mascaramento de colisão de ref entre
+   visitantes diferentes — que trocaria a atribuição de um lead pelo clique de outro.
+3. **Formulário não carimbava**: envio por `window.open` pulava o interceptador; o
+   protocolo agora vai dentro da própria mensagem montada, nos 4 idiomas.
+4. **Coorte pré-18/08 virava "Direto"**: quem tem gclid guardado do fluxo antigo e
+   volta sem gclid agora promove para `google_ads` (site e LPs).
+5. **`vincular_gclid`**: `google_ads_mensagem` saiu da lista sobrescrevível (marca
+   paga não pode ser rebaixada por visita orgânica posterior) e `leads.ref` só é
+   gravado quando o protocolo RESOLVE para linha real (gravar ref órfão cegava o
+   alerta de quebra do carimbo).
+6. **Views**: `resultado_diario` separou `cliques_de_anuncio` (só gclid) de
+   `visitas_registradas` (todas — a tabela agora guarda tudo); `saude_medicao` exclui
+   `google_ads_mensagem` do denominador do protocolo (nunca tem ref e derrubaria o
+   alerta com falso positivo).
+7. **Whitelist dura de origem na RLS**: a anon key não inventa mais rótulo.
+8. **Carimbo único por mensagem** (Safari privado acumulava carimbos).
+
+**Aceitos sem correção** (registrados): last-touch entre origens fracas é desenho;
+colisão residual de ref após o retry é desprezível; gclid hostil sem sink hoje —
+**regra: nunca renderizar gclid/ref em tela sem escape**.
+
+### Arquivo de conversões com 3 degraus e valores
+
+`crm.conversoes_offline` passou a gerar `Conversa respondida (WhatsApp)` R$ 10,
+`Visita agendada (WhatsApp)` R$ 50 e `Matricula (WhatsApp)` R$ 500 (pesos relativos).
+Gatilho `leads_carimbar_matricula` grava `matriculado_em`/`visitou_em` quando o status
+muda no painel. **Matrículas/visitas antigas não entram** (sem gclid; janela de 90 dias)
+— o uso delas é Customer Match (semente e exclusão). No Google Ads, criar as 3 ações de
+conversão de importação com esses nomes exatos antes do primeiro upload.
+
+**Desfazer:** definições anteriores das views/função estão no histórico deste log;
+`drop trigger leads_carimbar_matricula on crm.leads;` remove os carimbos.
+
+
 ### Google Ads — reestruturação da Campanha de Leads: 3 grupos temáticos novos + 41 negativas
 
 Motivada pela pesquisa de palavras-chave do dia (relatório em
