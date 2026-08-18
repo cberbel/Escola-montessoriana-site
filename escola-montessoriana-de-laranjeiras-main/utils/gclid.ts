@@ -17,6 +17,7 @@
 const CHAVE_GCLID = 'alm_gclid';
 const CHAVE_REF = 'alm_ref';
 const CHAVE_REGISTRADO = 'alm_ref_registrado';
+const CHAVE_ORIGEM = 'alm_origem';
 const VALIDADE_MS = 90 * 24 * 60 * 60 * 1000; // 90 dias
 
 /** Projeto Supabase ponto-escola-montessoriana. Chave publicável — feita para o navegador. */
@@ -28,6 +29,23 @@ type RegistroGclid = {
   /** epoch ms de quando o clique no anúncio aconteceu */
   ts: number;
 };
+
+/**
+ * De onde a visita veio. Vale para TODO visitante, não só para quem clicou em
+ * anúncio — é o que permite ao atendimento saber, na hora de responder, se a
+ * pessoa achou a escola na busca, no Instagram ou já conhecia.
+ */
+export type Origem =
+  | 'google_ads'       // clique em anúncio (tem gclid)
+  | 'google_organico'  // achou na busca do Google, sem anúncio
+  | 'instagram'
+  | 'facebook'
+  | 'bing'
+  | 'informativo'      // veio de uma das páginas informativo*.html
+  | 'outro_site'       // referência de um site que não é nenhum dos acima
+  | 'direto';          // digitou o endereço, salvou ou veio de app sem referrer
+
+type RegistroOrigem = { origem: Origem; ts: number };
 
 function lerJson<T>(chave: string): T | null {
   try {
@@ -48,6 +66,78 @@ function gravarJson(chave: string, valor: unknown): void {
 }
 
 /**
+ * Descobre de onde veio esta visita, olhando a URL e o `document.referrer`.
+ *
+ * Devolve `null` de propósito quando o referrer é do PRÓPRIO site e não é um
+ * informativo: isso é navegação interna, e navegação interna não pode apagar a
+ * origem real da sessão (quem chegou pela busca e clicou em 3 páginas continua
+ * vindo da busca).
+ */
+function detectarOrigem(): Origem | null {
+  if (typeof window === 'undefined') return null;
+  const params = new URLSearchParams(window.location.search);
+
+  // 1. Anúncio é o sinal mais forte e o único pago: vence tudo.
+  if (params.get('gclid')) return 'google_ads';
+
+  // 2. UTM explícita, quando existir, vale mais que o referrer.
+  const utm = (params.get('utm_source') || '').toLowerCase();
+  if (utm) {
+    if (utm.includes('instagram') || utm === 'ig') return 'instagram';
+    if (utm.includes('facebook') || utm === 'fb') return 'facebook';
+    if (utm.includes('bing')) return 'bing';
+    if (utm.includes('google')) return 'google_organico';
+  }
+
+  const ref = document.referrer;
+  if (!ref) return 'direto';
+
+  try {
+    const url = new URL(ref);
+
+    // 3. Veio de dentro do próprio site.
+    if (url.hostname === window.location.hostname) {
+      return url.pathname.startsWith('/informativo') ? 'informativo' : null;
+    }
+
+    const h = url.hostname;
+    if (/(^|\.)google\./.test(h)) return 'google_organico';
+    if (/(^|\.)instagram\.com$/.test(h)) return 'instagram';
+    if (/(^|\.)(facebook\.com|fb\.me)$/.test(h)) return 'facebook';
+    if (/(^|\.)bing\.com$/.test(h)) return 'bing';
+    return 'outro_site';
+  } catch {
+    return 'direto';
+  }
+}
+
+/**
+ * Guarda a origem da visita. Regra: **o primeiro toque vence** — quem chegou pela
+ * busca e voltou depois direto continua creditado à busca. A única exceção é o
+ * anúncio: gclid novo sempre promove, porque é o único caminho que custou dinheiro
+ * e o único que identifica a campanha.
+ */
+function definirOrigem(): void {
+  const detectada = detectarOrigem();
+  if (!detectada) return; // navegação interna: não decide nada
+
+  const atual = lerJson<RegistroOrigem>(CHAVE_ORIGEM);
+  const valida = atual && Date.now() - atual.ts <= VALIDADE_MS;
+  if (valida && detectada !== 'google_ads') return; // primeiro toque vence
+
+  gravarJson(CHAVE_ORIGEM, { origem: detectada, ts: Date.now() } satisfies RegistroOrigem);
+}
+
+/** Origem guardada, ou null se não houver ou já tiver passado de 90 dias. */
+export function obterOrigem(): Origem | null {
+  if (typeof window === 'undefined') return null;
+  const reg = lerJson<RegistroOrigem>(CHAVE_ORIGEM);
+  if (!reg || !reg.origem) return null;
+  if (Date.now() - reg.ts > VALIDADE_MS) return null;
+  return reg.origem;
+}
+
+/**
  * Lê o `gclid` da URL atual e guarda. Chame uma vez no carregamento do site.
  * Um GCLID novo sempre sobrescreve o anterior: vale o clique mais recente.
  */
@@ -58,23 +148,38 @@ export function capturarGclid(): void {
     gravarJson(CHAVE_GCLID, { gclid: daUrl, ts: Date.now() } satisfies RegistroGclid);
     try { window.localStorage.removeItem(CHAVE_REGISTRADO); } catch { /* sem storage */ }
   }
-  // Registra o par código → GCLID no banco. Feito no carregamento, e não no clique,
-  // porque um POST disparado durante a navegação para o WhatsApp seria cancelado.
+  // A origem tem que estar decidida antes do POST.
+  definirOrigem();
+  // Registra o par código → origem/GCLID no banco. Feito no carregamento, e não no
+  // clique, porque um POST disparado durante a navegação para o WhatsApp seria cancelado.
   void registrarClique();
 }
 
 /**
- * Grava o par `ref → gclid` em public.cliques_anuncio. É o que permite ao webhook
- * do WhatsApp descobrir qual clique originou a conversa: o código curto viaja na
- * mensagem, o GCLID (longo demais para isso) fica guardado aqui.
- * Roda uma única vez por GCLID. Falha em silêncio: medição nunca quebra o site.
+ * Grava o par `ref → origem (+ gclid)` em public.cliques_anuncio. É o que permite
+ * ao webhook do WhatsApp descobrir de onde veio a conversa: o código curto viaja na
+ * mensagem e o resto fica guardado aqui.
+ *
+ * Até 18/08/2026 só gravava quem tinha gclid, e por isso todo contato que não fosse
+ * de anúncio chegava ao atendimento como um `whatsapp` genérico — busca orgânica,
+ * Instagram e indicação no mesmo balde. Agora grava toda visita.
+ *
+ * Roda uma vez por combinação origem+gclid. Falha em silêncio: medição nunca quebra
+ * o site nem atrapalha o clique no WhatsApp.
  */
 async function registrarClique(): Promise<void> {
   const gclid = obterGclid();
-  if (!gclid) return;
-  if (lerJson<string>(CHAVE_REGISTRADO) === gclid) return;
+  const origem = obterOrigem();
+  if (!gclid && !origem) return; // sem storage ou sem sinal nenhum
 
-  const ref = obterOuCriarRef();
+  const assinatura = `${origem ?? 'sem'}|${gclid ?? 'sem'}`;
+  const jaRegistrado = lerJson<string>(CHAVE_REGISTRADO);
+  if (jaRegistrado === assinatura) return;
+
+  // `ref` é PRIMARY KEY. Se a assinatura mudou (ex.: visitou pela busca e depois
+  // clicou num anúncio), reusar o mesmo ref faria o insert bater em 409 e o dado
+  // novo se perderia — então essa visita ganha um código próprio.
+  const ref = jaRegistrado ? renovarRef() : obterOuCriarRef();
   if (!ref) return;
 
   try {
@@ -88,18 +193,20 @@ async function registrarClique(): Promise<void> {
         // POST em upsert, e upsert exigiria também política de UPDATE no RLS.
         Prefer: 'return=minimal'
       },
-      body: JSON.stringify({ ref, gclid })
+      body: JSON.stringify({ ref, ...(origem ? { origem } : {}), ...(gclid ? { gclid } : {}) })
     });
-    // 409 = o par já está gravado, que é exatamente o resultado desejado.
-    if (r.ok || r.status === 409) gravarJson(CHAVE_REGISTRADO, gclid);
+    // 409 = já existe linha com este ref, que é resultado aceitável.
+    if (r.ok || r.status === 409) gravarJson(CHAVE_REGISTRADO, assinatura);
   } catch {
     /* offline ou bloqueado: tenta de novo no próximo carregamento */
   }
 }
 
-/** Protocolo a carimbar na mensagem — só existe se a visita veio de um anúncio. */
+/**
+ * Protocolo a carimbar na mensagem. Desde 18/08/2026 vale para TODO visitante, não
+ * só para quem veio de anúncio — é ele que leva a origem até a conversa.
+ */
 export function protocoloAtual(): string | null {
-  if (!obterGclid()) return null;
   const ref = obterOuCriarRef();
   return ref ? `[#${ref}]` : null;
 }
@@ -108,7 +215,7 @@ export function protocoloAtual(): string | null {
  * Carimba o protocolo no texto pré-preenchido de qualquer link do WhatsApp da página.
  * Intercepta o clique na fase de captura e reescreve o href antes da navegação —
  * assim vale para todos os botões, inclusive os que forem criados depois.
- * Visitante que não veio de anúncio não recebe carimbo nenhum.
+ * Todo visitante recebe o carimbo: é ele que leva a origem da visita até a conversa.
  * Retorna a função de limpeza do listener.
  */
 export function carimbarLinksWhatsApp(): () => void {
@@ -156,6 +263,17 @@ export function obterOuCriarRef(): string {
   if (typeof window === 'undefined') return '';
   const existente = lerJson<string>(CHAVE_REF);
   if (existente) return existente;
+  return renovarRef();
+}
+
+/**
+ * Gera um código novo e passa a usá-lo. Chamado quando a origem da visita muda —
+ * por exemplo, alguém que já tinha vindo pela busca clica agora num anúncio. Como
+ * `ref` é a chave primária da tabela de cliques, reaproveitar o código antigo faria
+ * o registro novo ser recusado e a campanha nunca seria identificada.
+ */
+function renovarRef(): string {
+  if (typeof window === 'undefined') return '';
   const novo = Math.random().toString(36).slice(2, 8).toUpperCase();
   gravarJson(CHAVE_REF, novo);
   return novo;
