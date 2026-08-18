@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<!-- Landing page de anúncio (grupo montessori/método). HTML estático de propósito:
+     o AdsBot precisa ler texto para dar índice de qualidade; o site principal é SPA.
+     Fora do orgânico (googlebot/bingbot noindex), visível ao AdsBot. -->
+<meta name="googlebot" content="noindex, nofollow">
+<meta name="bingbot" content="noindex, nofollow">
+<title>Escola Montessori no Rio de Janeiro — 9 meses a 11 anos | Escola Montessoriana de Laranjeiras</title>
+<meta name="description" content="Escola Montessori em Laranjeiras, Rio de Janeiro: ambiente preparado, ciclo de trabalho ininterrupto, turmas de idades agrupadas e imersão em inglês. De 9 meses a 11 anos. Agende uma visita.">
+<link rel="canonical" href="https://www.escolamontessoriana.com.br/lp/montessori.html">
+<link rel="icon" type="image/png" href="/images/logo-escola.png">
+<link rel="preload" as="image" href="/images/ambiente-preparado.png" fetchpriority="high">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Escola Montessori no Rio — Escola Montessoriana de Laranjeiras">
+<meta property="og:description" content="Montessori de verdade, de 9 meses a 11 anos, com imersão em inglês. Rua das Laranjeiras, 540.">
+<meta property="og:image" content="https://www.escolamontessoriana.com.br/images/hero-criancas.jpg">
+<meta property="og:url" content="https://www.escolamontessoriana.com.br/lp/montessori.html">
+<meta property="og:locale" content="pt_BR">
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-56ZSQTXF');</script>
+<!-- End Google Tag Manager -->
+<!-- Filas de tracking (mesmo padrão do index.html: fila no head, download no load) -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function(){ window.dataLayer.push(arguments); };
+  gtag('js', new Date());
+  gtag('config', 'AW-16743400376');
+  gtag('config', 'G-79X03K7F7F');
+  (function(f){
+    if (f.fbq) return;
+    var n = f.fbq = function(){ n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
+    if (!f._fbq) f._fbq = n;
+    n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = [];
+  })(window);
+  fbq('init', '1183448566465118');
+  fbq('track', 'PageView');
+  window.trackWhatsAppConversion = function() {
+    fbq('track', 'Contact');
+    gtag('event', 'conversion', { 'send_to': 'AW-16743400376/psM9CKCH4PUbELiH8K8-' });
+  };
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --azul:#1e40af; --dourado:#debb05; --cream:#eff6ff;
+    --escuro:#1e293b; --cinza:#64748b; --branco:#fff;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Nunito','Segoe UI',system-ui,-apple-system,sans-serif;color:var(--escuro);background:var(--branco);line-height:1.65;font-size:17px}
+  h1,h2,h3{font-family:'Playfair Display',Georgia,serif;line-height:1.2}
+  img{max-width:100%;display:block}
+  .container{max-width:640px;margin:0 auto;padding:0 20px}
+  .hero{position:relative;min-height:78svh;display:flex;align-items:flex-end;color:#fff}
+  .hero img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .hero::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(30,41,59,.2) 30%,rgba(30,41,59,.84) 100%)}
+  .hero .container{position:relative;z-index:1;padding-bottom:44px;padding-top:110px}
+  .hero .eyebrow{display:inline-block;background:var(--dourado);color:var(--escuro);font-weight:700;font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;padding:5px 12px;border-radius:999px;margin-bottom:14px}
+  .hero h1{font-size:clamp(1.9rem,6.4vw,2.7rem);margin-bottom:10px;text-shadow:0 2px 10px rgba(0,0,0,.35)}
+  .hero p{font-size:1.06rem;max-width:36ch;text-shadow:0 1px 6px rgba(0,0,0,.45)}
+  .topo{position:absolute;top:0;left:0;right:0;z-index:2;display:flex;align-items:center;gap:10px;padding:14px 20px}
+  .topo img{width:44px;height:44px;border-radius:10px;background:#fff;padding:3px}
+  .topo span{font-weight:700;color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.5)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:#25D366;color:#fff;font-weight:800;font-size:1.05rem;padding:15px 26px;border-radius:999px;text-decoration:none;box-shadow:0 4px 18px rgba(0,0,0,.25);margin-top:20px}
+  section{padding:42px 0}
+  section.cream{background:var(--cream)}
+  .kicker{color:var(--azul);font-weight:800;font-size:.8rem;letter-spacing:.09em;text-transform:uppercase}
+  .kicker::before{content:'';display:inline-block;width:26px;height:3px;background:var(--dourado);vertical-align:middle;margin-right:9px;border-radius:2px}
+  h2{font-size:1.65rem;margin:8px 0 14px;color:var(--escuro)}
+  p+p{margin-top:12px}
+  .muted{color:var(--cinza)}
+  .lista{margin-top:18px;display:grid;gap:12px}
+  .item{background:var(--branco);border:1px solid #dbeafe;border-radius:14px;padding:16px}
+  .item b{display:block;color:var(--azul);margin-bottom:4px}
+  .item span{font-size:.93rem;color:var(--cinza);line-height:1.5}
+  .turma{background:var(--cream);border-left:5px solid var(--dourado);border-radius:14px;padding:16px;margin-top:12px}
+  .turma b{color:var(--azul);font-size:1.02rem}
+  .turma p{font-size:.95rem;margin-top:4px}
+  .foto{border-radius:16px;overflow:hidden;margin:22px 0 0}
+  .foto img{width:100%;height:270px;object-fit:cover}
+  .legenda{font-size:.85rem;color:var(--cinza);margin-top:8px}
+  .endereco{background:var(--azul);color:#fff}
+  .endereco h2{color:#fff}
+  .endereco .kicker{color:var(--dourado)}
+  .endereco a.mapa{color:var(--dourado);font-weight:700}
+  .cta-fixo{position:fixed;left:0;right:0;bottom:0;z-index:10;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.96);border-top:1px solid #dbeafe;display:flex;justify-content:center}
+  .cta-fixo .btn{margin-top:0;width:100%;max-width:600px}
+  body{padding-bottom:84px}
+  footer{padding:28px 0 40px;text-align:center;font-size:.85rem;color:var(--cinza)}
+  footer a{color:var(--azul)}
+  @media(min-width:700px){
+    .lista{grid-template-columns:1fr 1fr}
+    .hero{min-height:66svh}
+  }
+</style>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-56ZSQTXF"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<header class="hero">
+  <img class="bg" src="/images/ambiente-preparado.png" alt="Ambiente preparado Montessori na Escola Montessoriana de Laranjeiras" fetchpriority="high">
+  <div class="topo">
+    <img src="/images/logo-escola.png" alt="">
+    <span>Escola Montessoriana de Laranjeiras</span>
+  </div>
+  <div class="container">
+    <span class="eyebrow">De 9 meses a 11 anos</span>
+    <h1>Uma escola Montessori de verdade, no Rio de Janeiro</h1>
+    <p>Ambiente preparado, liberdade com limites e concentração profunda — em Laranjeiras, com imersão em inglês.</p>
+    <a class="btn" data-botao="lp-montessori-hero" href="https://wa.me/5521992973454?text=Ol%C3%A1%2C%20eu%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20a%20Escola%20Montessoriana%20de%20Laranjeiras.">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2Zm5.4 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.9-1.2-4.7-4.1-4.9-4.3-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.4l.9 2.1c.1.2.1.4 0 .6l-.4.6-.5.5c-.2.2-.3.4-.1.7.2.3.8 1.4 1.8 2.2 1.3 1.1 2.3 1.5 2.6 1.6.3.1.5.1.7-.1l1-1.2c.2-.3.4-.2.7-.1l2.1 1c.3.1.5.2.6.4 0 .1 0 .7-.2 1.3Z"/></svg>
+      Conversar com a escola
+    </a>
+  </div>
+</header>
+
+<section>
+  <div class="container">
+    <span class="kicker">O método</span>
+    <h2>"Ajude-me a fazer sozinho"</h2>
+    <p>Numa escola Montessori, a sala inteira é pensada para a criança agir por conta própria: estantes baixas, materiais concretos, móveis no tamanho dela. A professora apresenta o trabalho — e depois dá o passo mais difícil da educação: sai do caminho.</p>
+    <p>O coração da rotina é o <strong>ciclo de trabalho ininterrupto</strong>: um período longo de livre escolha em que ninguém interrompe a criança concentrada. É assim que a concentração se desenvolve — não se ensina concentração, cria-se a condição para ela acontecer.</p>
+    <div class="lista">
+      <div class="item"><b>Ambiente preparado</b><span>Cada material tem lugar, propósito e sequência. A ordem externa organiza a mente.</span></div>
+      <div class="item"><b>Liberdade com limites</b><span>A criança escolhe o trabalho dentro de um quadro claro de respeito ao outro e ao espaço.</span></div>
+      <div class="item"><b>Autonomia real</b><span>Servir-se, vestir-se, cuidar da sala: a independência se constrói nas pequenas coisas.</span></div>
+      <div class="item"><b>Imersão em inglês</b><span>O inglês faz parte da rotina diária, vivido dentro do ambiente — não em aula avulsa.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="cream">
+  <div class="container">
+    <span class="kicker">Turmas</span>
+    <h2>Idades agrupadas, como Montessori pensou</h2>
+    <p>Separar crianças por ano de nascimento é invenção da escola tradicional. Aqui as turmas agrupam faixas de desenvolvimento — os menores aprendem observando, os maiores consolidam ensinando.</p>
+    <div class="turma"><b>Agrupada 1 · 9 meses a 3 anos</b><p>Livre movimento, psicomotricidade e linguagem, num ambiente seguro para explorar.</p></div>
+    <div class="turma"><b>Agrupada 2 · 2,5 a 6 anos</b><p>Vida prática, sensorial, letras e números com os materiais clássicos Montessori.</p></div>
+    <div class="turma"><b>Agrupada 3 · a partir dos 7 anos</b><p>A mente que raciocina: projetos, pesquisa, trabalho em grupo e educação cósmica.</p></div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <span class="kicker">Além da sala</span>
+    <h2>Natureza como parte do currículo</h2>
+    <p>Pátio arborizado, tanque de areia, horta e permacultura: a criança planta, colhe, composta e observa. E nada de telas — nenhuma TV ou tablet na rotina.</p>
+    <div class="foto"><img src="/images/natureza/horta-vista.jpg" alt="Horta da escola encostada na mata" loading="lazy"></div>
+    <p class="legenda">A horta da escola, encostada no verde de Laranjeiras.</p>
+  </div>
+</section>
+
+<section class="endereco">
+  <div class="container">
+    <span class="kicker">Onde fica</span>
+    <h2>Laranjeiras, Zona Sul do Rio</h2>
+    <p>Rua das Laranjeiras, 540 (fundos) — <a class="mapa" href="https://www.google.com/maps/search/?api=1&amp;query=Rua+das+Laranjeiras,+540,+fundos,+Laranjeiras,+Rio+de+Janeiro+-+RJ">ver no mapa</a>. A minutos do Flamengo, Catete, Cosme Velho e Botafogo.</p>
+    <p>A melhor forma de entender Montessori é ver de perto. Venha visitar num dia de aula.</p>
+    <a class="btn" data-botao="lp-montessori-endereco" href="https://wa.me/5521992973454?text=Ol%C3%A1%2C%20eu%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20a%20Escola%20Montessoriana%20de%20Laranjeiras.">Perguntar sobre uma visita</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    Escola Montessoriana de Laranjeiras · Rua das Laranjeiras, 540, fundos — Rio de Janeiro<br>
+    <a href="https://www.escolamontessoriana.com.br/metodo-montessori">Ler mais sobre o método no site</a>
+  </div>
+</footer>
+
+<div class="cta-fixo">
+  <a class="btn" data-botao="lp-montessori-fixo" href="https://wa.me/5521992973454?text=Ol%C3%A1%2C%20eu%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20a%20Escola%20Montessoriana%20de%20Laranjeiras.">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2Zm5.4 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.9-1.2-4.7-4.1-4.9-4.3-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.4l.9 2.1c.1.2.1.4 0 .6l-.4.6-.5.5c-.2.2-.3.4-.1.7.2.3.8 1.4 1.8 2.2 1.3 1.1 2.3 1.5 2.6 1.6.3.1.5.1.7-.1l1-1.2c.2-.3.4-.2.7-.1l2.1 1c.3.1.5.2.6.4 0 .1 0 .7-.2 1.3Z"/></svg>
+    Conversar com a escola
+  </a>
+</div>
+
+<!-- Medição de origem/gclid: versão estática do utils/gclid.ts do site principal.
+     MESMAS chaves de localStorage (alm_*). Qualquer mudança lá deve refletir aqui. -->
+<script>
+(function(){
+  var K_G='alm_gclid',K_R='alm_ref',K_REG='alm_ref_registrado',K_O='alm_origem';
+  var VAL=90*24*60*60*1000;
+  var SB='https://rmpnqrvsmxhnrwlgqmdp.supabase.co';
+  var SBK='sb_publishable_bg4n-MXnoYVWomRN90WTOg_HOdq3_9G';
+  function ler(k){try{var b=localStorage.getItem(k);return b?JSON.parse(b):null}catch(e){return null}}
+  function gravar(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+  var params=new URLSearchParams(location.search);
+  var gclidUrl=params.get('gclid');
+  if(gclidUrl){gravar(K_G,{gclid:gclidUrl,ts:Date.now()});try{localStorage.removeItem(K_REG)}catch(e){}}
+  function detectar(){
+    if(gclidUrl)return 'google_ads';
+    var utm=(params.get('utm_source')||'').toLowerCase();
+    if(utm){
+      if(utm.indexOf('instagram')>=0||utm==='ig')return 'instagram';
+      if(utm.indexOf('facebook')>=0||utm==='fb')return 'facebook';
+      if(utm.indexOf('bing')>=0)return 'bing';
+      if(utm.indexOf('google')>=0)return 'google_organico';
+    }
+    var ref=document.referrer;
+    if(!ref)return 'direto';
+    try{
+      var u=new URL(ref);
+      if(u.hostname===location.hostname){return u.pathname.indexOf('/informativo')===0?'informativo':null}
+      var h=u.hostname;
+      if(/(^|\.)google\./.test(h))return 'google_organico';
+      if(/(^|\.)instagram\.com$/.test(h))return 'instagram';
+      if(/(^|\.)(facebook\.com|fb\.me)$/.test(h))return 'facebook';
+      if(/(^|\.)bing\.com$/.test(h))return 'bing';
+      return 'outro_site';
+    }catch(e){return 'direto'}
+  }
+  var det=detectar();
+  if(det){
+    var at=ler(K_O);
+    var valida=at&&(Date.now()-at.ts<=VAL);
+    if(!valida||det==='google_ads')gravar(K_O,{origem:det,ts:Date.now()});
+  }
+  function obterG(){var r=ler(K_G);if(!r||!r.gclid)return null;if(Date.now()-r.ts>VAL)return null;return r.gclid}
+  function obterO(){var r=ler(K_O);if(!r||!r.origem)return null;if(Date.now()-r.ts>VAL)return null;return r.origem}
+  function novoRef(){var n=Math.random().toString(36).slice(2,8).toUpperCase();gravar(K_R,n);return n}
+  function obterRef(){var e=ler(K_R);return e||novoRef()}
+  (function registrar(){
+    var g=obterG(),o=obterO();
+    if(!g&&!o)return;
+    var ass=(o||'sem')+'|'+(g||'sem');
+    var ja=ler(K_REG);
+    if(ja===ass)return;
+    var ref=ja?novoRef():obterRef();
+    if(!ref)return;
+    var body={ref:ref};
+    if(o)body.origem=o;
+    if(g)body.gclid=g;
+    fetch(SB+'/rest/v1/cliques_anuncio',{
+      method:'POST',
+      headers:{apikey:SBK,Authorization:'Bearer '+SBK,'Content-Type':'application/json',Prefer:'return=minimal'},
+      body:JSON.stringify(body)
+    }).then(function(r){if(r.ok||r.status===409)gravar(K_REG,ass)}).catch(function(){});
+  })();
+  document.addEventListener('click',function(e){
+    var alvo=e.target;
+    var link=alvo&&alvo.closest?alvo.closest('a[href*="wa.me"]'):null;
+    if(!link)return;
+    var codigo=obterRef();
+    if(codigo){
+      try{
+        var url=new URL(link.href);
+        var texto=url.searchParams.get('text')||'';
+        if(texto.indexOf(codigo)<0){
+          url.searchParams.set('text',texto+'\n\nProtocolo: '+codigo);
+          link.href=url.toString();
+        }
+      }catch(err){}
+    }
+    if(typeof window.trackWhatsAppConversion==='function')window.trackWhatsAppConversion();
+    window.dataLayer=window.dataLayer||[];
+    window.dataLayer.push({event:'whatsapp_click',page_path:location.pathname,button_id:link.getAttribute('data-botao')||'lp'});
+  },true);
+})();
+</script>
+<!-- Download das bibliotecas de tracking, adiado (mesmo padrão do index.html) -->
+<script>
+  window.addEventListener('load', function() {
+    var primeiroScript = document.getElementsByTagName('script')[0];
+    var fb = document.createElement('script');
+    fb.async = true;
+    fb.src = 'https://connect.facebook.net/en_US/fbevents.js';
+    primeiroScript.parentNode.insertBefore(fb, primeiroScript);
+    var g = document.createElement('script');
+    g.async = true;
+    g.src = 'https://www.googletagmanager.com/gtag/js?id=G-79X03K7F7F';
+    document.head.appendChild(g);
+  });
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1183448566465118&ev=PageView&noscript=1" alt=""></noscript>
+</body>
+</html>
