@@ -9,7 +9,7 @@ const WhatsAppIcon = ({ size = 20, className = '' }: { size?: number; className?
 );
 
 export const Hero: React.FC = () => {
-  const bgImageUrl = '/images/hero-criancas.jpg';
+  const bgImageUrl = '/images/hero-criancas.webp';
 
   // Altura: no celular o hero para em 82vh para que a próxima seção apareça na
   // borda da tela e convide a rolar. Metade dos visitantes não passava de 5% da

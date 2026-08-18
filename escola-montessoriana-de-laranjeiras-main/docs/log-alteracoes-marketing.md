@@ -18,6 +18,32 @@ Contêiner GTM: **GTM-56ZSQTXF** · Projeto Supabase: **ponto-escola-montessoria
 
 ## 18/08/2026
 
+### Google Ads — complemento da reestruturação: sufixo de URL, faxina e +15 concorrentes
+
+**1. Sufixo do URL final** na `[ALM] [C3] Campanha de Leads` (Configurações → Opções de
+URL da campanha): `kw={keyword}&mt={matchtype}&net={network}&agid={adgroupid}`. O modelo
+de rastreamento ficou VAZIO de propósito — sufixo só anexa parâmetros, sem redirecionar.
+O site e as LPs leem esses campos e gravam nas colunas novas `kw/mt/net/agid` de
+`public.cliques_anuncio` (código `043245a`; SQL com rollback em
+`Documentsot-escola\kw-por-clique.sql`). Com isso dá para responder "a conversa
+qualificada veio de QUAL palavra-chave".
+**Desfazer:** limpar o campo Sufixo do URL final.
+
+**2. 13 palavras-chave com zero clique em 30 dias pausadas** no Grupo de anúncios 1
+(pré escola, maternal, pedagogia*, o método pedagógico de montessori, metodo montessori
+em casa, espaço montessori, jardim da infancia, escola infantil humaita/cosme velho,
+ensino infantil idade, escola de educação infantil...). Sobraram ~6 equivalentes (a
+tabela virtualizada dificultou a seleção) — custo zero, sem pressa.
+**Desfazer:** filtrar por Pausadas no grupo → Ativar.
+
+**3. Grupo de concorrentes ampliado de 4 para 19 palavras** — os nomes que os termos de
+pesquisa já mostraram custando clique nas amplas, agora em frase: isai, pequena cruzada,
+casa da criança botafogo, colégio imperial botafogo, olm, ao cubo, metaverso, global
+tree, edem, minime, favinho e mel, dinamis, jangada, passo a passo botafogo. Todas
+"Em análise". O grupo é o CPA mais barato da conta (R$ 14,34 em 30 dias).
+**Desfazer:** selecionar as 15 novas → Remover.
+
+
 ### Revisão adversária da cadeia de origem: 11 achados, 8 corrigidos no dia
 
 Três agentes tentaram refutar a corretude do que foi implantado em 18/08. Corrigido:

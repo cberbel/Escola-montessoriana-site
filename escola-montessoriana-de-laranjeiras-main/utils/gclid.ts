@@ -91,7 +91,7 @@ function detectarOrigem(): Origem | null {
   // 2. UTM explícita, quando existir, vale mais que o referrer.
   const utm = (params.get('utm_source') || '').toLowerCase();
   if (utm) {
-    if (utm.includes('instagram') || utm === 'ig') return 'instagram';
+    if (utm.includes('instagram') || utm === 'ig' || utm === 'meta') return 'instagram';
     if (utm.includes('facebook') || utm === 'fb') return 'facebook';
     if (utm.includes('bing')) return 'bing';
     if (utm.includes('google')) return 'google_organico';
