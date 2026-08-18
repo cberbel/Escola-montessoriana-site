@@ -28,6 +28,14 @@ type RegistroGclid = {
   gclid: string;
   /** epoch ms de quando o clique no anúncio aconteceu */
   ts: number;
+  /** Palavra-chave que disparou o anúncio ({keyword} do modelo de acompanhamento). */
+  kw?: string;
+  /** Tipo de correspondência: e = exata, p = frase, b = ampla ({matchtype}). */
+  mt?: string;
+  /** Rede: g = pesquisa Google, s = parceiros, d = display ({network}). */
+  net?: string;
+  /** Id do grupo de anúncios ({adgroupid}). */
+  agid?: string;
 };
 
 /**
@@ -125,7 +133,12 @@ function definirOrigem(): void {
   const valida = atual && Date.now() - atual.ts <= VALIDADE_MS;
   if (valida && detectada !== 'google_ads') return; // primeiro toque vence
 
-  gravarJson(CHAVE_ORIGEM, { origem: detectada, ts: Date.now() } satisfies RegistroOrigem);
+  // Coorte anterior a 18/08/2026: tem gclid guardado (clicou em anúncio no fluxo
+  // antigo) mas nenhuma origem. Sem esta linha, a visita de RETORNO dela ("direto",
+  // busca) viraria o primeiro toque e o painel mostraria "Direto" para um lead pago.
+  const efetiva: Origem = detectada !== 'google_ads' && obterGclid() ? 'google_ads' : detectada;
+
+  gravarJson(CHAVE_ORIGEM, { origem: efetiva, ts: Date.now() } satisfies RegistroOrigem);
 }
 
 /** Origem guardada, ou null se não houver ou já tiver passado de 90 dias. */
@@ -143,9 +156,22 @@ export function obterOrigem(): Origem | null {
  */
 export function capturarGclid(): void {
   if (typeof window === 'undefined') return;
-  const daUrl = new URLSearchParams(window.location.search).get('gclid');
+  const params = new URLSearchParams(window.location.search);
+  const daUrl = params.get('gclid');
   if (daUrl) {
-    gravarJson(CHAVE_GCLID, { gclid: daUrl, ts: Date.now() } satisfies RegistroGclid);
+    // kw/mt/net/agid vêm do modelo de acompanhamento da campanha
+    // ({keyword}/{matchtype}/{network}/{adgroupid}) e chegam junto com o gclid.
+    // Guardados no mesmo registro: pertencem ao mesmo clique.
+    const reg: RegistroGclid = { gclid: daUrl, ts: Date.now() };
+    const kw = params.get('kw');
+    const mt = params.get('mt');
+    const net = params.get('net');
+    const agid = params.get('agid');
+    if (kw) reg.kw = kw;
+    if (mt) reg.mt = mt;
+    if (net) reg.net = net;
+    if (agid) reg.agid = agid;
+    gravarJson(CHAVE_GCLID, reg);
     // NÃO apagar CHAVE_REGISTRADO aqui. Até 18/08/2026 esta linha existia e criava
     // um buraco no caminho mais valioso: quem já tinha sido registrado como orgânico
     // e depois clicava num anúncio perdia a marca de "já registrei", registrarClique()
@@ -177,31 +203,53 @@ async function registrarClique(): Promise<void> {
   const origem = obterOrigem();
   if (!gclid && !origem) return; // sem storage ou sem sinal nenhum
 
+  // Campos do clique (palavra-chave etc.) — só existem quando o registro do gclid
+  // ainda é válido; viajam no mesmo POST, para as colunas kw/mt/net/agid.
+  const regClique = lerJson<RegistroGclid>(CHAVE_GCLID);
+  const doClique =
+    gclid && regClique && regClique.gclid === gclid
+      ? {
+          ...(regClique.kw ? { kw: regClique.kw } : {}),
+          ...(regClique.mt ? { mt: regClique.mt } : {}),
+          ...(regClique.net ? { net: regClique.net } : {}),
+          ...(regClique.agid ? { agid: regClique.agid } : {})
+        }
+      : {};
+
   const assinatura = `${origem ?? 'sem'}|${gclid ?? 'sem'}`;
   const jaRegistrado = lerJson<string>(CHAVE_REGISTRADO);
   if (jaRegistrado === assinatura) return;
 
-  // `ref` é PRIMARY KEY. Se a assinatura mudou (ex.: visitou pela busca e depois
-  // clicou num anúncio), reusar o mesmo ref faria o insert bater em 409 e o dado
-  // novo se perderia — então essa visita ganha um código próprio.
-  const ref = jaRegistrado ? renovarRef() : obterOuCriarRef();
+  // O ref atual é mantido até o banco RECUSAR (409 = já existe linha com esse
+  // código, de uma assinatura antiga ou de colisão com outro visitante). Só então
+  // um código novo é gerado e o POST é refeito UMA vez. Renovar antes do POST — o
+  // desenho anterior — abandonava um ref válido quando o fetch falhava offline.
+  // E 409 deixou de contar como sucesso: era ele que engolia gclid em silêncio.
+  let ref = obterOuCriarRef();
   if (!ref) return;
 
   try {
-    const r = await fetch(`${SUPABASE_URL}/rest/v1/cliques_anuncio`, {
-      method: 'POST',
-      headers: {
-        apikey: SUPABASE_KEY,
-        Authorization: `Bearer ${SUPABASE_KEY}`,
-        'Content-Type': 'application/json',
-        // Insert puro, sem `resolution=ignore-duplicates`: aquele header transforma o
-        // POST em upsert, e upsert exigiria também política de UPDATE no RLS.
-        Prefer: 'return=minimal'
-      },
-      body: JSON.stringify({ ref, ...(origem ? { origem } : {}), ...(gclid ? { gclid } : {}) })
-    });
-    // 409 = já existe linha com este ref, que é resultado aceitável.
-    if (r.ok || r.status === 409) gravarJson(CHAVE_REGISTRADO, assinatura);
+    const enviar = (codigo: string) =>
+      fetch(`${SUPABASE_URL}/rest/v1/cliques_anuncio`, {
+        method: 'POST',
+        headers: {
+          apikey: SUPABASE_KEY,
+          Authorization: `Bearer ${SUPABASE_KEY}`,
+          'Content-Type': 'application/json',
+          // Insert puro, sem `resolution=ignore-duplicates`: aquele header transforma o
+          // POST em upsert, e upsert exigiria também política de UPDATE no RLS.
+          Prefer: 'return=minimal'
+        },
+        body: JSON.stringify({ ref: codigo, ...(origem ? { origem } : {}), ...(gclid ? { gclid } : {}), ...doClique })
+      });
+
+    let r = await enviar(ref);
+    if (r.status === 409) {
+      ref = renovarRef();
+      if (!ref) return;
+      r = await enviar(ref);
+    }
+    if (r.ok) gravarJson(CHAVE_REGISTRADO, assinatura);
   } catch {
     /* offline ou bloqueado: tenta de novo no próximo carregamento */
   }
@@ -239,6 +287,10 @@ export function carimbarLinksWhatsApp(): () => void {
       // no texto — cada toque a mais no botão acrescentava outro carimbo (um lead chegou
       // ao WhatsApp com o protocolo escrito 7 vezes).
       const codigo = protocolo.slice(2, -1);
+      // Guarda genérica: se JÁ existe um "Protocolo:" no texto, não acrescenta outro.
+      // Sem localStorage (Safari privado) cada toque gera código diferente — comparar
+      // só o código atual deixava os carimbos acumularem de novo.
+      if (/Protocolo:/i.test(texto)) return;
       if (texto.includes(codigo)) return; // já carimbado
       url.searchParams.set('text', `${texto}\n\nProtocolo: ${codigo}`);
       link.href = url.toString();

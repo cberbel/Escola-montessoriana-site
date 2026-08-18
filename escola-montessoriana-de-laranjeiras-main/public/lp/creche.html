@@ -222,7 +222,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   function gravar(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
   var params=new URLSearchParams(location.search);
   var gclidUrl=params.get('gclid');
-  if(gclidUrl){gravar(K_G,{gclid:gclidUrl,ts:Date.now()});try{localStorage.removeItem(K_REG)}catch(e){}}
+  if(gclidUrl){
+    // kw/mt/net/agid vem do modelo de acompanhamento e pertencem ao mesmo clique.
+    // NAO apagar K_REG aqui (correcao 15edfd1 do site): a assinatura origem+gclid
+    // ja detecta a mudanca e o 409 forca ref novo.
+    var regG={gclid:gclidUrl,ts:Date.now()};
+    ['kw','mt','net','agid'].forEach(function(c){var v=params.get(c);if(v)regG[c]=v;});
+    gravar(K_G,regG);
+  }
   function detectar(){
     if(gclidUrl)return 'google_ads';
     var utm=(params.get('utm_source')||'').toLowerCase();
@@ -261,16 +268,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     var ass=(o||'sem')+'|'+(g||'sem');
     var ja=ler(K_REG);
     if(ja===ass)return;
-    var ref=ja?novoRef():obterRef();
+    var ref=obterRef();
     if(!ref)return;
     var body={ref:ref};
     if(o)body.origem=o;
-    if(g)body.gclid=g;
-    fetch(SB+'/rest/v1/cliques_anuncio',{
-      method:'POST',
-      headers:{apikey:SBK,Authorization:'Bearer '+SBK,'Content-Type':'application/json',Prefer:'return=minimal'},
-      body:JSON.stringify(body)
-    }).then(function(r){if(r.ok||r.status===409)gravar(K_REG,ass)}).catch(function(){});
+    if(g){
+      body.gclid=g;
+      var rg=ler(K_G)||{};
+      ['kw','mt','net','agid'].forEach(function(c){if(rg[c])body[c]=rg[c];});
+    }
+    var enviar=function(codigo){
+      body.ref=codigo;
+      return fetch(SB+'/rest/v1/cliques_anuncio',{
+        method:'POST',
+        headers:{apikey:SBK,Authorization:'Bearer '+SBK,'Content-Type':'application/json',Prefer:'return=minimal'},
+        body:JSON.stringify(body)
+      });
+    };
+    // 409 = ref ja usado por assinatura antiga: gera codigo novo e tenta UMA vez
+    // (mesma semantica da correcao 15edfd1 do site). So r.ok marca como registrado.
+    enviar(ref).then(function(r){
+      if(r.status===409){var n=novoRef();if(n)return enviar(n);}
+      return r;
+    }).then(function(r){if(r&&r.ok)gravar(K_REG,ass)}).catch(function(){});
   })();
   document.addEventListener('click',function(e){
     var alvo=e.target;

@@ -4,6 +4,7 @@ import { Section } from './ui/Section';
 import { Button } from './ui/Button';
 import { Send, CheckCircle, Calendar } from 'lucide-react';
 import { trackWhatsAppClick, trackFormSubmit } from '../utils/tracking';
+import { protocoloAtual } from '../utils/gclid';
 
 const WHATSAPP_ESCOLA = '5521992973454';
 const FORMSUBMIT_EMAIL = 'contato@escolamontessoriana.com.br';
@@ -41,6 +42,11 @@ function buildWhatsAppMessage(data: FormState) {
     data.neighborhood.trim() ? `Bairro: ${data.neighborhood.trim()}` : '',
     data.comments.trim() ? `Comentários: ${data.comments.trim()}` : ''
   ].filter(Boolean);
+  // O formulario abre o WhatsApp via window.open e NAO passa pelo interceptador
+  // de cliques que carimba os links <a> - sem isto, o protocolo (e com ele o
+  // gclid e a origem) se perdia exatamente no contato mais completo do site.
+  const protocolo = protocoloAtual();
+  if (protocolo) lines.push('', 'Protocolo: ' + protocolo.slice(2, -1));
   return lines.join('\n');
 }
 
