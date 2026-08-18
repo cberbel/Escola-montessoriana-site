@@ -146,7 +146,12 @@ export function capturarGclid(): void {
   const daUrl = new URLSearchParams(window.location.search).get('gclid');
   if (daUrl) {
     gravarJson(CHAVE_GCLID, { gclid: daUrl, ts: Date.now() } satisfies RegistroGclid);
-    try { window.localStorage.removeItem(CHAVE_REGISTRADO); } catch { /* sem storage */ }
+    // NÃO apagar CHAVE_REGISTRADO aqui. Até 18/08/2026 esta linha existia e criava
+    // um buraco no caminho mais valioso: quem já tinha sido registrado como orgânico
+    // e depois clicava num anúncio perdia a marca de "já registrei", registrarClique()
+    // reusava o ref antigo, o insert batia na chave primária (409, tratado como
+    // sucesso) e o gclid do anúncio NUNCA chegava ao banco. A assinatura origem+gclid
+    // já detecta sozinha que algo mudou e força um ref novo via renovarRef().
   }
   // A origem tem que estar decidida antes do POST.
   definirOrigem();
