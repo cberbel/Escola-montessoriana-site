@@ -18,6 +18,58 @@ Contêiner GTM: **GTM-56ZSQTXF** · Projeto Supabase: **ponto-escola-montessoria
 
 ## 18/08/2026
 
+### Google Ads — reestruturação da Campanha de Leads: 3 grupos temáticos novos + 41 negativas
+
+Motivada pela pesquisa de palavras-chave do dia (relatório em
+`Documents\ads-palavras-chave-2026-08-18.md`): 58 das 60 palavras eram amplas num grupo
+só com anúncio genérico, 27% do gasto visível ia para bairro fora do raio, e duas
+palavras estavam marcadas "Raramente mostrado (baixo Índice de qualidade)".
+
+**1. Três grupos de anúncios novos na `[ALM] [C3] Campanha de Leads`**, cada um com
+anúncio responsivo próprio (14-15 títulos, 4 descrições) e palavras em exata/frase:
+
+| Grupo | Palavras (resumo) | URL final |
+|---|---|---|
+| `[ALM] Creche + bairro (LP)` | [creche laranjeiras/flamengo/botafogo/catete/cosme velho], [creche perto de mim], [escola infantil laranjeiras/botafogo], [creche particular rio de janeiro] + variantes de frase | `/lp/creche.html` |
+| `[ALM] Marca` | [escola montessoriana], [escola montessoriana laranjeiras], [montessoriana] + variantes | home |
+| `[ALM] Montessori metodo (LP)` | [escola montessori rio de janeiro], [creche montessori rio de janeiro], [escola montessori laranjeiras/zona sul] + frases | `/lp/montessori.html` |
+
+Nos três grupos a **"Correspondência de termos de pesquisa" (BETA) foi desmarcada** —
+essa opção, marcada por padrão, "expande suas palavras-chave para correspondência ampla",
+o que anularia a exata.
+
+As LPs `/lp/creche.html` e `/lp/montessori.html` são páginas estáticas novas no site
+(commit `ea13646`): HTML com texto real para o AdsBot ler (o site é SPA e serve HTML
+vazio — era a causa provável do índice de qualidade baixo), mesma medição do site
+(GTM, gclid, carimbo de protocolo, mesmas chaves `alm_*`).
+
+**Desfazer:** pausar os 3 grupos (Grupos de anúncios → selecionar → Pausar). As LPs
+podem ficar no ar — não recebem tráfego sem os grupos.
+
+**2. 41 palavras-chave negativas** adicionadas no nível da campanha (Campanha de Leads),
+ampla: bairros/cidades fora do raio com e sem acento (niterói, icaraí, copacabana,
+ipanema, leblon, pavuna, campo grande, jacarepaguá, freguesia, recreio, rocha miranda,
+meriti, taquara, vila da penha, são gonçalo, nova iguaçu, bangu, madureira, realengo,
+ilha do governador, centro do rio, centro rj), futebol (futebol, futsal, escolinha de
+futebol), gratuidade (gratuita, gratuito, municipal, prefeitura) e emprego (emprego,
+empregos, currículo, concurso, salário). "Centro" sozinho NÃO entrou — bloquearia
+"centro educacional", que aparece em nome de concorrente.
+
+**Desfazer:** Palavras-chave negativas → filtrar pelas adicionadas em 18/08 → remover.
+
+**3. Conferido, sem mudança:** opção de local já era **"Presença"** (não "Presença ou
+interesse") — o vazamento geográfico não vem daí. A campanha usa raio de 4 km com centro
+na Rua Voluntários da Pátria (Botafogo), orçamento atual R$ 120/dia.
+
+**4. Achado para decisão do Cláudio:** a campanha está com **AI Max LIGADO**
+(Configurações → "Otimize sua campanha com a AI Max"), que expande correspondência e
+reescreve texto por IA. É o suspeito número 1 dos termos fora do raio, junto com as
+amplas. Desligar reinicia parte do aprendizado — não foi tocado.
+
+*Pendente (cosmético):* pausar no Grupo 1 antigo as 8 palavras com zero impressão e as
+2 de índice de qualidade baixo (creche lagoa, jardim da infancia); as palavras de bairro
+que valem a pena já renascem em exata no grupo novo.
+
 ### Correção no mesmo dia: o gclid se perdia na promoção orgânico → anúncio (`15edfd1`)
 
 Revisão adversária do `ae70e9e` achou um buraco no caminho mais valioso: quem já tinha
