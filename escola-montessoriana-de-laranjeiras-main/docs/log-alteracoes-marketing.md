@@ -18,6 +18,41 @@ Contêiner GTM: **GTM-56ZSQTXF** · Projeto Supabase: **ponto-escola-montessoria
 
 ## 19/08/2026
 
+### AEO: as páginas de creche passaram a responder pergunta, e não só descrever a escola
+
+Motor de busca com IA (a resposta gerada no topo do Google, o ChatGPT, o Perplexity) não
+recorta parágrafo de propaganda: recorta **pergunta com resposta curta e auto-suficiente**.
+O site tinha texto bom e nenhuma pergunta. Foi isso que mudou.
+
+1. **Componente `FAQ`** em `components/landing/Landing.tsx` — a pergunta vira `<h3>` e a
+   resposta um parágrafo que faz sentido lido sozinho, fora da página.
+
+2. **`pages/landing/faqs.ts`** — os arrays de perguntas, em texto puro. Existe como arquivo
+   separado de propósito: o **mesmo array** alimenta a seção visível E o JSON-LD. Se a
+   pergunta aparecesse só no schema e não na página, seria violação da diretriz do Google.
+
+3. **`FAQPage` no `<head>`, por rota** — `entry-server.tsx` ganhou o campo opcional `faq` em
+   `RotaPrerender` e o `prerender.mjs` injeta o JSON-LD `schema.org/FAQPage` na rota que o
+   tem. Hoje: `/creche-laranjeiras` (8 perguntas) e `/creche-flamengo` (6). Conferido no
+   build: JSON válido, e nenhuma pergunta do schema está ausente do corpo da página.
+
+**As perguntas são as reais, não as que eu imaginaria.** Saíram da base limpa do WhatsApp
+(120 mensagens de família, depois de tirar as 109 simulações do bot e os 41 textos
+automáticos do botão do site): idade (14), onde fica (7), visita (6), método (4), horários
+(3), vaga (2), alimentação (2). **Preço ficou de fora por decisão da escola** — apareceu 7
+vezes na base, mas não entra no FAQ.
+
+4. **`public/llms.txt`** — arquivo no formato que os buscadores de IA leem para ter os fatos
+   da escola sem precisar interpretar o site: endereço com CEP, idades, proporção
+   adulto-bebê, horários, idiomas, contatos e o índice das páginas e do blog. Termina
+   dizendo que valores não são publicados no site e que vaga varia por turma — assim a IA
+   não inventa nem uma coisa nem outra.
+
+**O que ficou de fora, e por quê:** eu tinha proposto trocar o catch-all `/*` (hoje leva
+para a home) por um 404 de verdade. O Cláudio apontou o outro lado e ele está certo: a
+canonical da home já consolida URL errada, e um 404 real transformaria "esqueci de
+registrar a rota no prerender" de problema invisível em página quebrada. **Cancelado.**
+
 ### O informativo virou material que a Maria pode mandar + agenda da semana (banco, sem deploy)
 
 O bot só envia texto: `enviarWhatsApp` monta `type: "text"` e não tem caminho para

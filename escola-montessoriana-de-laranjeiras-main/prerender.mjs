@@ -28,7 +28,23 @@ const { render, routesToPrerender } = await import('./dist/server/entry-server.j
 const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
 
 let ok = 0;
-for (const { url, title, description } of routesToPrerender) {
+/**
+ * JSON-LD FAQPage da rota (schema.org). É o formato que o Google e os
+ * buscadores de IA leem para responder a pergunta direto, citando a escola.
+ * Só entra em rota que tem as MESMAS perguntas visíveis na página.
+ */
+const faqJsonLd = (faq) =>
+  `\n    <script type="application/ld+json">${JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faq.map(({ p, r }) => ({
+      '@type': 'Question',
+      name: p,
+      acceptedAnswer: { '@type': 'Answer', text: r },
+    })),
+  }).replace(/</g, '\\u003c')}</script>`;
+
+for (const { url, title, description, faq } of routesToPrerender) {
   const appHtml = render(url);
   if (!appHtml || appHtml.length < 500) {
     throw new Error(`prerender: rota ${url} rendeu HTML suspeito de vazio (${appHtml.length} chars)`);
@@ -51,6 +67,9 @@ for (const { url, title, description } of routesToPrerender) {
     .replace(/<meta property="og:url" content="[^"]*"/, `<meta property="og:url" content="${canonical}"`);
   if (!temTraducao) {
     html = html.replace(/[ \t]*<link rel="alternate" hreflang="[^"]*" href="[^"]*"\s*\/>\r?\n/g, '');
+  }
+  if (faq?.length) {
+    html = html.replace('</head>', () => `${faqJsonLd(faq)}\n  </head>`);
   }
 
   const outDir = url === '/' ? dist : path.join(dist, url.slice(1));

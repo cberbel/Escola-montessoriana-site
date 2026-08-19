@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { LandingHero, LandingSection, LandingCTA, LandingImage, Highlight, Bullets, P, usePageMeta } from '../../components/landing/Landing';
+import { LandingHero, LandingSection, LandingCTA, LandingImage, Highlight, Bullets, P, FAQ, usePageMeta } from '../../components/landing/Landing';
+import { faqCrecheFlamengo } from './faqs';
 
 /**
  * Página de SEO local para "creche flamengo". A escola NÃO fica no Flamengo —
@@ -119,6 +120,11 @@ export const CrecheFlamengo: React.FC = () => {
             veja todas as turmas
           </Link>.
         </P>
+      </LandingSection>
+
+
+      <LandingSection heading="Perguntas de quem vem do Flamengo">
+        <FAQ itens={faqCrecheFlamengo} />
       </LandingSection>
 
       <LandingCTA

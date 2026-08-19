@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { LandingHero, LandingSection, LandingCTA, LandingImage, Highlight, Bullets, P, usePageMeta } from '../../components/landing/Landing';
+import { LandingHero, LandingSection, LandingCTA, LandingImage, Highlight, Bullets, P, FAQ, usePageMeta } from '../../components/landing/Landing';
+import { faqCrecheLaranjeiras } from './faqs';
 
 /**
  * Página de SEO local para a busca "creche laranjeiras" (e variações: berçário,
@@ -154,6 +155,11 @@ export const CrecheLaranjeiras: React.FC = () => {
             Como escolher uma escola infantil em Laranjeiras
           </Link>.
         </P>
+      </LandingSection>
+
+
+      <LandingSection heading="Perguntas que as famílias mais fazem">
+        <FAQ itens={faqCrecheLaranjeiras} />
       </LandingSection>
 
       <LandingCTA

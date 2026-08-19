@@ -102,6 +102,26 @@ export const LandingImagePair: React.FC<{ images: { src: string; alt: string }[]
   </div>
 );
 
+
+/**
+ * Perguntas e respostas — formato que motor de busca E motor de IA conseguem
+ * recortar e citar. A pergunta vira <h3> e a resposta um parágrafo curto e
+ * autossuficiente (não depende do texto acima para fazer sentido).
+ * As perguntas vêm do que as famílias REALMENTE perguntam no WhatsApp da escola.
+ * Os arrays ficam em pages/landing/faqs.ts porque o MESMO array alimenta o
+ * schema FAQPage injetado pelo prerender (ver routesToPrerender/entry-server).
+ */
+export const FAQ: React.FC<{ itens: { p: string; r: string }[] }> = ({ itens }) => (
+  <div className="divide-y divide-gray-200 border-t border-gray-200 mt-2">
+    {itens.map((item, i) => (
+      <div key={i} className="py-5">
+        <h3 className="font-serif text-lg sm:text-xl text-montessori-green mb-2">{item.p}</h3>
+        <p className="text-gray-700 text-base sm:text-lg leading-relaxed">{item.r}</p>
+      </div>
+    ))}
+  </div>
+);
+
 export const LandingCTA: React.FC<{ heading: string; text: string }> = ({ heading, text }) => (
   <section className="px-4 sm:px-6 md:px-12 py-12 sm:py-16 overflow-x-hidden">
     <div className="max-w-3xl mx-auto min-w-0 text-center bg-montessori-green text-white rounded-sm p-8 sm:p-12">

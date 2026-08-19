@@ -11,6 +11,7 @@ import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom/server';
 import { AppShell } from './App';
 import { blogPosts } from './pages/blog/posts';
+import { faqCrecheLaranjeiras, faqCrecheFlamengo, type ItemFAQ } from './pages/landing/faqs';
 
 export function render(url: string): string {
   return renderToString(
@@ -28,6 +29,13 @@ export interface RotaPrerender {
   title: string;
   /** meta description da página (o texto cinza embaixo do título na busca). */
   description: string;
+  /**
+   * Perguntas e respostas DA PRÓPRIA PÁGINA. Quando presente, o prerender
+   * injeta um JSON-LD FAQPage com elas. Só pode ser preenchido com um array
+   * que também está visível na página (exigência do Google) — por isso vem de
+   * pages/landing/faqs.ts, o mesmo que o componente <FAQ /> renderiza.
+   */
+  faq?: ItemFAQ[];
 }
 
 const MARCA = 'Escola Montessoriana de Laranjeiras';
@@ -103,12 +111,14 @@ export const routesToPrerender: RotaPrerender[] = [
     title: 'Creche em Laranjeiras a partir de 9 meses | Escola Montessoriana',
     description:
       'Creche e berçário Montessori na Rua das Laranjeiras, 540, a partir de 9 meses: 1 professora para cada 3 bebês, adaptação respeitosa e horários das 7h30 às 19h.',
+    faq: faqCrecheLaranjeiras,
   },
   {
     url: '/creche-flamengo',
     title: 'Creche perto do Flamengo, a 5 minutos | Escola Montessoriana',
     description:
       'Creche e berçário Montessori a 5 minutos do Flamengo, na Rua das Laranjeiras. A partir de 9 meses, 1 professora para cada 3 bebês e horários das 7h30 às 19h.',
+    faq: faqCrecheFlamengo,
   },
   {
     url: '/agrupada-3',
