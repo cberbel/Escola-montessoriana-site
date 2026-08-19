@@ -16,6 +16,57 @@ Contêiner GTM: **GTM-56ZSQTXF** · Projeto Supabase: **ponto-escola-montessoria
 
 ---
 
+## 19/08/2026
+
+### O informativo virou material que a Maria pode mandar + agenda da semana (banco, sem deploy)
+
+O bot só envia texto: `enviarWhatsApp` monta `type: "text"` e não tem caminho para
+documento nem imagem. Em vez de mexer no bot — que é deploy manual de 106 KB colado no
+painel — o informativo entrou como **link dentro da própria mensagem da Maria**, o que
+já funciona hoje. São duas alterações em `crm.config`, lido a cada mensagem: valem na
+conversa seguinte, sem publicar nada.
+
+1. **Seção nova `== O INFORMATIVO ==` no `prompt_sistema`** — o link, quando mandar,
+   quando não mandar e como mandar (sempre depois de responder a pergunta, no máximo
+   uma vez por conversa, nunca o link solto). O critério de "não passou pelo site" é o
+   que a própria mensagem mostra: quem veio do site traz a linha `Protocolo: XXXXXX` e
+   quem clicou no botão de Mensagem do anúncio não traz. O modelo recebe o `conteudo`
+   cru, então enxerga essa diferença **sem nenhuma mudança de código**.
+   Foi preciso abrir **exceção explícita à regra 1a2** ("nunca diga que enviou alguma
+   coisa"): escrever um link na própria mensagem não é enviar. A proibição de dizer que
+   mandou e-mail, convite ou anexo continua de pé.
+
+2. **Agenda da semana entrou na linha das atividades extras** — antes o prompt só tinha
+   o exemplo de segunda e terça; agora tem os seis dias, conforme o quadro da escola.
+   Acrescentado **circo e teatro**, que estava no informativo e faltava na lista do
+   prompt. Sábado ficou com a ressalva de nunca prometer sem data confirmada.
+
+**Sem UTM no link, de propósito:** o informativo lê `utm_source` e criaria registro de
+origem para gente que já tem origem. A contagem de envios sai de `crm.mensagens`
+(mensagens de saída que contêm a URL), que é exata e não polui nada.
+
+Confirmado no caminho, e vale para o atendimento: no painel, **"Anúncio Google" é quem
+passou pelo site** (28 de 28 com protocolo) e **"Anúncio (msg direta)" é quem não
+passou** (4 de 4 sem protocolo).
+
+**Não testado ao vivo:** a simulação exige o `META_VERIFY_TOKEN` (item 5 dos pendentes).
+A `sim_key` guardada no banco não serve — é de outra rodada e o endpoint devolve 403.
+
+**Desfazer:** `update crm.config set valor = (select valor from crm.config where
+chave = 'prompt_backup_20260819_2') where chave = 'prompt_sistema';`
+
+### Open Graph nos 8 informativos (`e81d6a6`)
+
+Nenhum dos 8 tinha uma única tag `og:`. Como um dos casos previstos no prompt novo é
+"quero mostrar para meu marido", a família encaminha o link — e do outro lado ele
+chegava como URL crua, sem foto e sem título. Cada arquivo ganhou título, descrição,
+imagem e locale próprios, com o texto tirado da capa do próprio arquivo em cada idioma.
+`og:image` em `.jpg` porque o scraper do WhatsApp não renderiza webp.
+
+**Desfazer:** `git revert e81d6a6`.
+
+---
+
 ## 18/08/2026
 
 ### SEO — página /creche-laranjeiras, post "Escola Montessori no RJ" e a palavra "creche" no site (`cec02c9`)
