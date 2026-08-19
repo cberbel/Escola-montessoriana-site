@@ -105,6 +105,12 @@ export const routesToPrerender: RotaPrerender[] = [
       'Creche e berçário Montessori na Rua das Laranjeiras, 540, a partir de 9 meses: 1 professora para cada 3 bebês, adaptação respeitosa e horários das 7h30 às 19h.',
   },
   {
+    url: '/creche-flamengo',
+    title: 'Creche perto do Flamengo, a 5 minutos | Escola Montessoriana',
+    description:
+      'Creche e berçário Montessori a 5 minutos do Flamengo, na Rua das Laranjeiras. A partir de 9 meses, 1 professora para cada 3 bebês e horários das 7h30 às 19h.',
+  },
+  {
     url: '/agrupada-3',
     title: `Ensino Fundamental Montessori — 7 a 12 anos | ${MARCA}`,
     description:

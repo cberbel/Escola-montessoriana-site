@@ -111,6 +111,12 @@ export const CrecheLaranjeiras: React.FC = () => {
           espaço de verdade para o movimento, no meio da Zona Sul do Rio.
         </P>
         <P>
+          Vem do Flamengo ou do Catete?{' '}
+          <Link to="/creche-flamengo" className="text-montessori-green font-semibold underline hover:no-underline">
+            São cinco minutos — e explicamos por que valem a pena
+          </Link>.
+        </P>
+        <P>
           Nossa nota no Google é <strong>5,0</strong>, nas avaliações das famílias que vivem a escola todos os
           dias.{' '}
           <Link to="/agendamento" className="text-montessori-green font-semibold underline hover:no-underline">

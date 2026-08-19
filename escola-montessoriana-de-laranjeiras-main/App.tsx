@@ -16,6 +16,7 @@ import { NaturezaEducacaoCosmica } from './pages/landing/NaturezaEducacaoCosmica
 import { Turmas } from './pages/landing/Turmas';
 import { Agrupada3 } from './pages/landing/Agrupada3';
 import { CrecheLaranjeiras } from './pages/landing/CrecheLaranjeiras';
+import { CrecheFlamengo } from './pages/landing/CrecheFlamengo';
 import { MainEn } from './components/en/MainEn';
 import { MainFr } from './components/fr/MainFr';
 import { HomeFr } from './pages/fr/HomeFr';
@@ -129,6 +130,7 @@ export const AppShell: React.FC = () => {
           <Route path="turmas" element={<Turmas />} />
           <Route path="agrupada-3" element={<Agrupada3 />} />
           <Route path="creche-laranjeiras" element={<CrecheLaranjeiras />} />
+          <Route path="creche-flamengo" element={<CrecheFlamengo />} />
         </Route>
         <Route path="/en" element={<MainEn />}>
           <Route index element={<HomeEn />} />
