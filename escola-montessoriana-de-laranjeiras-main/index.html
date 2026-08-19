@@ -65,7 +65,8 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Preschool",
+      "@type": ["Preschool", "ElementarySchool"],
+      "@id": "https://www.escolamontessoriana.com.br/#escola",
       "name": "Escola Montessoriana de Laranjeiras",
       "description": "Escola Montessori de 9 meses a 11 anos em Laranjeiras, Rio de Janeiro. Imersão em inglês, alimentação saudável e política de zero telas.",
       "url": "https://www.escolamontessoriana.com.br/",
@@ -80,6 +81,12 @@
         "addressRegion": "RJ",
         "addressCountry": "BR"
       },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -22.9381103,
+        "longitude": -43.1949080
+      },
+      "hasMap": "https://www.google.com/maps/search/?api=1&query=Escola+Montessoriana+de+Laranjeiras+Rio+de+Janeiro",
       "openingHoursSpecification": {
         "@type": "OpeningHoursSpecification",
         "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
