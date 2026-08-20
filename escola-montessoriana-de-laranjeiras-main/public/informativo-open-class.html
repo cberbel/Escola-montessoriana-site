@@ -706,8 +706,25 @@ fbq('init','1183448566465118');fbq('track','PageView');
       return;
     }
     var cal = alvo && alvo.closest ? alvo.closest('a[href*="calendly.com"]') : null;
-    if (cal && window.gtag) {
-      gtag('event', 'calendly_click', { button_id: cal.getAttribute('data-btn') || 'informativo-calendly' });
+    if (cal) {
+      /* Carimbo de origem no Calendly, espelhando o Protocolo do WhatsApp: repassa as UTMs
+         da URL e manda o mesmo codigo de protocolo em salesforce_uuid, que a API do Calendly
+         devolve em tracking. Sem isso o agendamento chega sem origem nenhuma. */
+      try {
+        var cu = new URL(cal.href);
+        ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'].forEach(function (c) {
+          var v = params.get(c);
+          if (v && !cu.searchParams.get(c)) cu.searchParams.set(c, v);
+        });
+        if (!cu.searchParams.get('utm_source')) {
+          var org = obterOrigem();
+          if (org) cu.searchParams.set('utm_source', org);
+        }
+        var codigoCal = obterOuCriarRef();
+        if (codigoCal && !cu.searchParams.get('salesforce_uuid')) cu.searchParams.set('salesforce_uuid', codigoCal);
+        cal.href = cu.toString();
+      } catch (err) {}
+      if (window.gtag) gtag('event', 'calendly_click', { button_id: cal.getAttribute('data-btn') || 'informativo-calendly' });
     }
   }, true);
 })();
