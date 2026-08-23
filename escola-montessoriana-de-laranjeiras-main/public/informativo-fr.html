@@ -516,6 +516,37 @@ fbq('init','1183448566465118');fbq('track','PageView');
   </div>
 </section>
 
+<!-- Navegacao pagina-a-pagina (decisao 22/08: dobra 1 = gancho, cada pagina leva
+     a seguinte, WhatsApp so no CTA final; cada avanco vira evento GA4 para medir
+     em que pagina a familia para) -->
+<style>
+.prox{position:absolute;bottom:46px;left:50%;transform:translateX(-50%);z-index:3;
+  font-family:'Inter',sans-serif;font-size:15px;font-weight:600;white-space:nowrap;
+  color:#14304A;background:var(--dourado-claro);padding:10px 24px;border-radius:999px;
+  text-decoration:none;box-shadow:0 3px 12px rgba(20,48,74,.35);cursor:pointer;}
+.prox-capa{font-size:17px;padding:13px 30px;}
+</style>
+<script>
+(function(){
+  var L1='Je veux en savoir plus', L='Continuer';
+  var secoes=[].slice.call(document.querySelectorAll('section'));
+  for(var i=0;i<secoes.length-1;i++){
+    (function(i){
+      var prox=secoes[i+1];
+      var a=document.createElement('a');
+      a.className='prox'+(i===0?' prox-capa':'');
+      a.href='javascript:void(0)';
+      a.textContent=(i===0?L1:L)+' ↓';
+      a.addEventListener('click',function(){
+        prox.scrollIntoView({behavior:'smooth'});
+        if(typeof gtag==='function')gtag('event','informativo_avancar',{de_pagina:i+1});
+      });
+      secoes[i].appendChild(a);
+    })(i);
+  }
+})();
+</script>
+
 <script>
 /* Medicao do informativo — port de utils/gclid.ts do site. Mesmas chaves de
    localStorage (mesmo dominio): primeiro toque e Protocolo compartilhados com o site.
