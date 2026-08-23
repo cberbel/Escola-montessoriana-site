@@ -563,7 +563,9 @@ section .pagenum{bottom:56px;}
   W.href='https://wa.me/5521992973454?text=Bonjour%2C%20je%20souhaiterais%20plus%20d%27informations%20sur%20l%27Escola%20Montessoriana%20de%20Laranjeiras.';
   W.rel='noopener';
   W.textContent='Je veux plus d’informations';
-  secoes[1].appendChild(W);
+  var p1=secoes[1].querySelector('p');
+  if(p1&&p1.parentNode){p1.parentNode.insertBefore(W,p1.nextSibling);W.style.margin='18px auto 22px';}
+  else{secoes[1].appendChild(W);}
   // barra fixa "Continuar" — oculta na capa e no CTA final
   var B=document.createElement('div');
   B.className='barra-prox oculta';
