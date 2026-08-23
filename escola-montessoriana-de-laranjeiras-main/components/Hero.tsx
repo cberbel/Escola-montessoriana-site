@@ -8,6 +8,17 @@ const WhatsAppIcon = ({ size = 20, className = '' }: { size?: number; className?
   </svg>
 );
 
+// Toque exploratório em elemento que antes era morto: registra o alvo no dataLayer
+// (mesmo padrão do trackWhatsAppClick — o GTM é o dono do dataLayer; para o evento
+// aparecer no GA4 é preciso criar a tag no painel do GTM, como a de whatsapp_click).
+// O Clarity mede a queda dos cliques mortos sem depender disso.
+function trackCuriosidade(alvo: string): void {
+  if (typeof window === 'undefined') return;
+  const w = window as unknown as { dataLayer?: Record<string, unknown>[] };
+  w.dataLayer = w.dataLayer || [];
+  w.dataLayer.push({ event: 'curiosidade_click', page_path: window.location.pathname, alvo });
+}
+
 export const Hero: React.FC = () => {
   const bgImageUrl = '/images/hero-criancas.webp';
 
@@ -57,20 +68,44 @@ export const Hero: React.FC = () => {
               Educação Infantil Trilíngue
             </p>
           </a>
-          <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-white leading-tight mb-4 sm:mb-5 drop-shadow-[0_10px_25px_rgba(15,23,42,0.8)] break-words text-center">
-            Acolhimento e Autonomia para seu Filho
-          </h1>
-          <p className="font-sans text-base sm:text-lg md:text-xl text-gray-50 mb-5 sm:mb-6 max-w-2xl mx-auto font-normal leading-relaxed break-words">
-            Creche e escola Montessori em Laranjeiras — formando jovens curiosos, confiantes e capazes, prontos para explorar o mundo.
-          </p>
+          {/* Os textos do hero seguem no topo do ranking de toques do Clarity
+              (h1 + subtítulo + badges ≈ 130 toques/7d) e não levavam a nada.
+              Decisão de 23/08: todo toque morto vira um passo de "saber mais" —
+              cada texto leva à página que aprofunda a promessa que ele faz. */}
+          <a
+            href="/acolhimento"
+            onClick={() => trackCuriosidade('hero-titulo-acolhimento')}
+            className="block rounded-lg focus:outline focus:ring-2 focus:ring-montessori-gold focus:ring-offset-2 focus:ring-offset-montessori-green/60"
+          >
+            <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-white leading-tight mb-4 sm:mb-5 drop-shadow-[0_10px_25px_rgba(15,23,42,0.8)] break-words text-center">
+              Acolhimento e Autonomia para seu Filho
+            </h1>
+          </a>
+          <a
+            href="/lp/creche.html"
+            onClick={() => trackCuriosidade('hero-subtitulo-creche')}
+            className="block rounded-lg focus:outline focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-montessori-green/60"
+          >
+            <p className="font-sans text-base sm:text-lg md:text-xl text-gray-50 mb-5 sm:mb-6 max-w-2xl mx-auto font-normal leading-relaxed break-words">
+              Creche e escola Montessori em Laranjeiras — formando jovens curiosos, confiantes e capazes, prontos para explorar o mundo.
+            </p>
+          </a>
 
           <div className="flex flex-wrap justify-center items-center gap-2 sm:gap-3 mb-7 sm:mb-8">
-            <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-white/15 border border-white/25 text-white text-sm sm:text-base font-medium backdrop-blur-sm">
+            <a
+              href="/turmas"
+              onClick={() => trackCuriosidade('hero-badge-idades')}
+              className="inline-flex items-center px-4 py-1.5 rounded-full bg-white/15 border border-white/25 text-white text-sm sm:text-base font-medium backdrop-blur-sm hover:bg-white/25 transition-colors"
+            >
               De 9 meses a 11 anos
-            </span>
-            <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-white/15 border border-white/25 text-white text-sm sm:text-base font-medium backdrop-blur-sm">
+            </a>
+            <a
+              href="/turmas"
+              onClick={() => trackCuriosidade('hero-badge-turmas')}
+              className="inline-flex items-center px-4 py-1.5 rounded-full bg-white/15 border border-white/25 text-white text-sm sm:text-base font-medium backdrop-blur-sm hover:bg-white/25 transition-colors"
+            >
               Berçário · Pré-escola · Fundamental
-            </span>
+            </a>
           </div>
 
           <div className="flex flex-col gap-3 sm:gap-4 justify-center items-center">
@@ -84,12 +119,15 @@ export const Hero: React.FC = () => {
               <WhatsAppIcon size={24} />
               Quero mais informações
             </a>
+            {/* "Diferenciais" era rótulo de menu, não convite — trocado por pergunta
+                que induz curiosidade (pedido de 23/08). */}
             <a
               href="#method"
+              onClick={() => trackCuriosidade('hero-pergunta-diferente')}
               className="inline-flex items-center justify-center gap-2 min-h-[52px] px-6 sm:px-8 py-3 sm:py-4 text-base font-serif tracking-wide transition-all duration-300 rounded-sm touch-manipulation border-2 border-white/90 text-white hover:bg-white/15 hover:border-white focus:outline focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-montessori-green/60 shadow-md hover:shadow-lg font-medium"
             >
               <BookOpen size={20} strokeWidth={2} />
-              Diferenciais
+              O que fazemos de diferente? ↓
             </a>
           </div>
         </div>
