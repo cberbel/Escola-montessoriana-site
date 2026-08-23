@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<!-- Landing page de anúncio (grupo educação infantil). HTML estático de propósito:
+     o robô do Google Ads (AdsBot) precisa LER o texto da página para dar índice de
+     qualidade — e o site principal é SPA, serve HTML vazio. Fora do Google orgânico
+     (googlebot/bingbot noindex, padrão dos informativos), visível ao AdsBot. -->
+<meta name="googlebot" content="noindex, nofollow">
+<meta name="bingbot" content="noindex, nofollow">
+<title>Escola de Educação Infantil em Laranjeiras — Montessori e inglês | Escola Montessoriana</title>
+<meta name="description" content="Escola de educação infantil em Laranjeiras, Zona Sul do Rio: método Montessori, imersão em inglês, alimentação saudável e pátio arborizado. Do berçário à pré-escola (9 meses a 6 anos), das 7h30 às 19h.">
+<link rel="canonical" href="https://www.escolamontessoriana.com.br/lp/educacao-infantil.html">
+<link rel="icon" type="image/png" href="/images/logo-escola.png">
+<link rel="preload" as="image" href="/images/hero-criancas.jpg" fetchpriority="high">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Educação infantil em Laranjeiras — Escola Montessoriana">
+<meta property="og:description" content="Do berçário à pré-escola, com Montessori e inglês na rotina. Rua das Laranjeiras, 540.">
+<meta property="og:image" content="https://www.escolamontessoriana.com.br/images/hero-criancas.jpg">
+<meta property="og:url" content="https://www.escolamontessoriana.com.br/lp/educacao-infantil.html">
+<meta property="og:locale" content="pt_BR">
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-56ZSQTXF');</script>
+<!-- End Google Tag Manager -->
+<!-- Filas de tracking (mesmo padrão do index.html: fila no head, download no load) -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function(){ window.dataLayer.push(arguments); };
+  gtag('js', new Date());
+  gtag('config', 'AW-16743400376');
+  gtag('config', 'G-79X03K7F7F');
+  (function(f){
+    if (f.fbq) return;
+    var n = f.fbq = function(){ n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
+    if (!f._fbq) f._fbq = n;
+    n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = [];
+  })(window);
+  fbq('init', '1183448566465118');
+  fbq('track', 'PageView');
+  window.trackWhatsAppConversion = function() {
+    fbq('track', 'Contact');
+    gtag('event', 'conversion', { 'send_to': 'AW-16743400376/psM9CKCH4PUbELiH8K8-' });
+  };
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --azul:#1e40af; --dourado:#debb05; --cream:#eff6ff;
+    --escuro:#1e293b; --cinza:#64748b; --branco:#fff;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Nunito','Segoe UI',system-ui,-apple-system,sans-serif;color:var(--escuro);background:var(--branco);line-height:1.65;font-size:17px}
+  h1,h2,h3{font-family:'Playfair Display',Georgia,serif;line-height:1.2}
+  img{max-width:100%;display:block}
+  .container{max-width:640px;margin:0 auto;padding:0 20px}
+  /* Hero */
+  .hero{position:relative;min-height:78svh;display:flex;align-items:flex-end;color:#fff}
+  .hero img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .hero::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(30,41,59,.15) 30%,rgba(30,41,59,.82) 100%)}
+  .hero .container{position:relative;z-index:1;padding-bottom:44px;padding-top:110px}
+  .hero .eyebrow{display:inline-block;background:var(--dourado);color:var(--escuro);font-weight:700;font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;padding:5px 12px;border-radius:999px;margin-bottom:14px}
+  .hero h1{font-size:clamp(1.9rem,6.4vw,2.7rem);margin-bottom:10px;text-shadow:0 2px 10px rgba(0,0,0,.35)}
+  .hero p{font-size:1.06rem;max-width:34ch;text-shadow:0 1px 6px rgba(0,0,0,.45)}
+  .topo{position:absolute;top:0;left:0;right:0;z-index:2;display:flex;align-items:center;gap:10px;padding:14px 20px}
+  .topo img{width:44px;height:44px;border-radius:10px;background:#fff;padding:3px}
+  .topo span{font-weight:700;color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.5)}
+  /* Botão */
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:#25D366;color:#fff;font-weight:800;font-size:1.05rem;padding:15px 26px;border-radius:999px;text-decoration:none;box-shadow:0 4px 18px rgba(0,0,0,.25);margin-top:20px}
+  .btn svg{flex:none}
+  .btn.azul{background:var(--azul)}
+  /* Seções */
+  section{padding:42px 0}
+  section.cream{background:var(--cream)}
+  .kicker{color:var(--azul);font-weight:800;font-size:.8rem;letter-spacing:.09em;text-transform:uppercase}
+  .kicker::before{content:'';display:inline-block;width:26px;height:3px;background:var(--dourado);vertical-align:middle;margin-right:9px;border-radius:2px}
+  h2{font-size:1.65rem;margin:8px 0 14px;color:var(--escuro)}
+  p+p{margin-top:12px}
+  .muted{color:var(--cinza)}
+  /* Grade de diferenciais */
+  .grade{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px}
+  .card{background:var(--branco);border:1px solid #dbeafe;border-radius:14px;padding:16px}
+  .card b{display:block;color:var(--azul);margin-bottom:4px;font-size:.98rem}
+  .card span{font-size:.9rem;color:var(--cinza);line-height:1.45}
+  /* Horários */
+  .horarios{display:grid;gap:12px;margin-top:20px}
+  .hcard{background:var(--cream);border-radius:14px;padding:18px;border-left:5px solid var(--dourado)}
+  .hcard b{color:var(--azul);font-size:1.05rem}
+  .hcard div{font-size:1.25rem;font-weight:800;margin-top:2px}
+  .hcard span{color:var(--cinza);font-size:.9rem}
+  .foto{border-radius:16px;overflow:hidden;margin:22px 0 0}
+  .foto img{width:100%;height:270px;object-fit:cover}
+  .legenda{font-size:.85rem;color:var(--cinza);margin-top:8px}
+  /* Endereço */
+  .endereco{background:var(--azul);color:#fff}
+  .endereco h2{color:#fff}
+  .endereco .kicker{color:var(--dourado)}
+  .endereco a.mapa{color:var(--dourado);font-weight:700}
+  .bairros{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+  .bairros span{background:rgba(255,255,255,.14);border-radius:999px;padding:6px 14px;font-size:.9rem}
+  /* CTA fixo no celular */
+  .cta-fixo{position:fixed;left:0;right:0;bottom:0;z-index:10;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.96);border-top:1px solid #dbeafe;display:flex;justify-content:center}
+  .cta-fixo .btn{margin-top:0;width:100%;max-width:600px}
+  body{padding-bottom:84px}
+  footer{padding:28px 0 40px;text-align:center;font-size:.85rem;color:var(--cinza)}
+  footer a{color:var(--azul)}
+  @media(min-width:700px){
+    .grade{grid-template-columns:1fr 1fr 1fr}
+    .horarios{grid-template-columns:1fr 1fr 1fr}
+    .hero{min-height:66svh}
+  }
+</style>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-56ZSQTXF"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<header class="hero">
+  <img class="bg" src="/images/hero-criancas.jpg" alt="Crianças na Escola Montessoriana de Laranjeiras" fetchpriority="high">
+  <div class="topo">
+    <img src="/images/logo-escola.png" alt="">
+    <span>Escola Montessoriana de Laranjeiras</span>
+  </div>
+  <div class="container">
+    <span class="eyebrow">Vagas para 2026</span>
+    <h1>Educação infantil que respeita o ritmo do seu filho</h1>
+    <p>Escola Montessori em Laranjeiras, do berçário à pré-escola, com inglês na rotina e um pátio cheio de verde.</p>
+    <a class="btn" data-botao="lp-edu-hero" href="https://wa.me/5521992973454?text=Ol%C3%A1%2C%20eu%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20a%20Escola%20Montessoriana%20de%20Laranjeiras.">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2Zm5.4 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.9-1.2-4.7-4.1-4.9-4.3-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.4l.9 2.1c.1.2.1.4 0 .6l-.4.6-.5.5c-.2.2-.3.4-.1.7.2.3.8 1.4 1.8 2.2 1.3 1.1 2.3 1.5 2.6 1.6.3.1.5.1.7-.1l1-1.2c.2-.3.4-.2.7-.1l2.1 1c.3.1.5.2.6.4 0 .1 0 .7-.2 1.3Z"/></svg>
+      Falar com a escola no WhatsApp
+    </a>
+  </div>
+</header>
+
+<section>
+  <div class="container">
+    <span class="kicker">Educação infantil de verdade</span>
+    <h2>Os anos que constroem tudo o que vem depois</h2>
+    <p>Dos 0 aos 6 anos o cérebro se forma mais depressa do que em qualquer outra fase da vida. É quando nascem a linguagem, a concentração, a coordenação e a confiança. Na pedagogia Montessori, cada sala é preparada para essa janela: móveis no tamanho da criança, materiais concretos ao alcance da mão e liberdade para escolher o próprio trabalho.</p>
+    <div class="grade">
+      <div class="card"><b>Montessori de verdade</b><span>Ambiente preparado e período de livre escolha que desenvolve a concentração.</span></div>
+      <div class="card"><b>Imersão em inglês</b><span>O inglês entra na rotina diária, do jeito que criança pequena aprende: vivendo.</span></div>
+      <div class="card"><b>Preparação real</b><span>Letras, números e vida prática no ritmo certo — a alfabetização vem como consequência.</span></div>
+      <div class="card"><b>Zero telas</b><span>Nenhuma TV ou tablet. Brincar de verdade, com as mãos e com os amigos.</span></div>
+      <div class="card"><b>Alimentação saudável</b><span>Comida de verdade preparada na escola, com cardápio pensado para a idade.</span></div>
+      <div class="card"><b>Natureza todos os dias</b><span>Pátio arborizado, horta, tanque de areia e espaço de sobra para o corpo.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="cream">
+  <div class="container">
+    <span class="kicker">Turmas por idade</span>
+    <h2>Do berçário à pré-escola, sem trocar de escola</h2>
+    <p><strong>Agrupada 1 · 9 meses a 3 anos</strong> — o começo da caminhada: livre movimento, psicomotricidade, linguagem e muito colo.</p>
+    <p><strong>Agrupada 2 · 2,5 a 6 anos</strong> — a idade das mãos que trabalham: vida prática, materiais Montessori, letras, números e o inglês cada vez mais presente, até a criança sair pronta para o ensino fundamental.</p>
+    <p class="muted">As turmas agrupam idades próximas de propósito: os menores aprendem observando os maiores, e os maiores consolidam o que sabem ajudando os menores.</p>
+    <div class="foto"><img src="/images/turmas/agrupada-2.jpg" alt="Crianças trabalhando com materiais Montessori na sala da Agrupada 2" loading="lazy"></div>
+    <p class="legenda">Sala da Agrupada 2: materiais Montessori de linguagem e matemática ao alcance das mãos.</p>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <span class="kicker">Horários</span>
+    <h2>Feito para a rotina de quem trabalha</h2>
+    <div class="horarios">
+      <div class="hcard"><b>Meio período</b><div>8h–12h ou 13h–17h</div><span>Matutino ou vespertino</span></div>
+      <div class="hcard"><b>Integral</b><div>8h–17h</div><span>O dia inteiro na escola</span></div>
+      <div class="hcard"><b>Estendido</b><div>7h30–19h</div><span>Para quem precisa de mais folga</span></div>
+    </div>
+    <p class="muted" style="margin-top:14px">Há também planos de frequência reduzida e dias alternados — a rotina se ajusta à família, não o contrário.</p>
+    <div class="foto"><img src="/images/natureza/horta-plantar.jpg" alt="Crianças plantando na horta da escola" loading="lazy"></div>
+  </div>
+</section>
+
+<section class="endereco">
+  <div class="container">
+    <span class="kicker">Onde fica</span>
+    <h2>No coração de Laranjeiras</h2>
+    <p>Rua das Laranjeiras, 540 (fundos) — <a class="mapa" href="https://www.google.com/maps/search/?api=1&amp;query=Rua+das+Laranjeiras,+540,+fundos,+Laranjeiras,+Rio+de+Janeiro+-+RJ">ver no mapa</a>.</p>
+    <p>A poucos minutos de casa para quem mora nos bairros vizinhos:</p>
+    <div class="bairros">
+      <span>Laranjeiras</span><span>Flamengo</span><span>Catete</span><span>Cosme Velho</span><span>Botafogo</span><span>Glória</span><span>Humaitá</span>
+    </div>
+    <a class="btn" data-botao="lp-edu-endereco" href="https://wa.me/5521992973454?text=Ol%C3%A1%2C%20eu%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20a%20Escola%20Montessoriana%20de%20Laranjeiras.">Perguntar sobre vagas e valores</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    Escola Montessoriana de Laranjeiras · Rua das Laranjeiras, 540, fundos — Rio de Janeiro<br>
+    <a href="https://www.escolamontessoriana.com.br/">Conhecer o site completo</a>
+  </div>
+</footer>
+
+<div class="cta-fixo">
+  <a class="btn" data-botao="lp-edu-fixo" href="https://wa.me/5521992973454?text=Ol%C3%A1%2C%20eu%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20a%20Escola%20Montessoriana%20de%20Laranjeiras.">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2Zm5.4 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.9-1.2-4.7-4.1-4.9-4.3-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.4l.9 2.1c.1.2.1.4 0 .6l-.4.6-.5.5c-.2.2-.3.4-.1.7.2.3.8 1.4 1.8 2.2 1.3 1.1 2.3 1.5 2.6 1.6.3.1.5.1.7-.1l1-1.2c.2-.3.4-.2.7-.1l2.1 1c.3.1.5.2.6.4 0 .1 0 .7-.2 1.3Z"/></svg>
+    Falar com a escola no WhatsApp
+  </a>
+</div>
+
+<!-- Medição de origem/gclid: versão estática do utils/gclid.ts do site principal.
+     MESMAS chaves de localStorage (alm_*) — quem navega entre a LP e o site
+     mantém o mesmo código de protocolo. Qualquer mudança lá deve refletir aqui. -->
+<script>
+(function(){
+  var K_G='alm_gclid',K_R='alm_ref',K_REG='alm_ref_registrado',K_O='alm_origem';
+  var VAL=90*24*60*60*1000;
+  var SB='https://rmpnqrvsmxhnrwlgqmdp.supabase.co';
+  var SBK='sb_publishable_bg4n-MXnoYVWomRN90WTOg_HOdq3_9G';
+  function ler(k){try{var b=localStorage.getItem(k);return b?JSON.parse(b):null}catch(e){return null}}
+  function gravar(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+  var params=new URLSearchParams(location.search);
+  var gclidUrl=params.get('gclid');
+  if(gclidUrl){
+    // kw/mt/net/agid vem do modelo de acompanhamento e pertencem ao mesmo clique.
+    // NAO apagar K_REG aqui (correcao 15edfd1 do site): a assinatura origem+gclid
+    // ja detecta a mudanca e o 409 forca ref novo.
+    var regG={gclid:gclidUrl,ts:Date.now()};
+    ['kw','mt','net','agid'].forEach(function(c){var v=params.get(c);if(v)regG[c]=v;});
+    gravar(K_G,regG);
+  }
+  function detectar(){
+    if(gclidUrl)return 'google_ads';
+    var utm=(params.get('utm_source')||'').toLowerCase();
+    if(utm){
+      if(utm.indexOf('instagram')>=0||utm==='ig')return 'instagram';
+      if(utm.indexOf('facebook')>=0||utm==='fb')return 'facebook';
+      if(utm.indexOf('bing')>=0)return 'bing';
+      if(utm.indexOf('google')>=0)return 'google_organico';
+    }
+    var ref=document.referrer;
+    if(!ref)return 'direto';
+    try{
+      var u=new URL(ref);
+      if(u.hostname===location.hostname){return u.pathname.indexOf('/informativo')===0?'informativo':null}
+      var h=u.hostname;
+      if(/(^|\.)google\./.test(h))return 'google_organico';
+      if(/(^|\.)instagram\.com$/.test(h))return 'instagram';
+      if(/(^|\.)(facebook\.com|fb\.me)$/.test(h))return 'facebook';
+      if(/(^|\.)bing\.com$/.test(h))return 'bing';
+      return 'outro_site';
+    }catch(e){return 'direto'}
+  }
+  var det=detectar();
+  if(det){
+    var at=ler(K_O);
+    var valida=at&&(Date.now()-at.ts<=VAL);
+    if(!valida||det==='google_ads'){var efetiva=(det!=='google_ads'&&obterG())?'google_ads':det;gravar(K_O,{origem:efetiva,ts:Date.now()});}
+  }
+  function obterG(){var r=ler(K_G);if(!r||!r.gclid)return null;if(Date.now()-r.ts>VAL)return null;return r.gclid}
+  function obterO(){var r=ler(K_O);if(!r||!r.origem)return null;if(Date.now()-r.ts>VAL)return null;return r.origem}
+  function novoRef(){var n=Math.random().toString(36).slice(2,8).toUpperCase();gravar(K_R,n);return n}
+  function obterRef(){var e=ler(K_R);return e||novoRef()}
+  (function registrar(){
+    var g=obterG(),o=obterO();
+    if(!g&&!o)return;
+    var ass=(o||'sem')+'|'+(g||'sem');
+    var ja=ler(K_REG);
+    if(ja===ass)return;
+    var ref=obterRef();
+    if(!ref)return;
+    var body={ref:ref};
+    if(o)body.origem=o;
+    if(g){
+      body.gclid=g;
+      var rg=ler(K_G)||{};
+      ['kw','mt','net','agid'].forEach(function(c){if(rg[c])body[c]=rg[c];});
+    }
+    var enviar=function(codigo){
+      body.ref=codigo;
+      return fetch(SB+'/rest/v1/cliques_anuncio',{
+        method:'POST',
+        headers:{apikey:SBK,Authorization:'Bearer '+SBK,'Content-Type':'application/json',Prefer:'return=minimal'},
+        body:JSON.stringify(body)
+      });
+    };
+    // 409 = ref ja usado por assinatura antiga: gera codigo novo e tenta UMA vez
+    // (mesma semantica da correcao 15edfd1 do site). So r.ok marca como registrado.
+    enviar(ref).then(function(r){
+      if(r.status===409){var n=novoRef();if(n)return enviar(n);}
+      return r;
+    }).then(function(r){if(r&&r.ok)gravar(K_REG,ass)}).catch(function(){});
+  })();
+  document.addEventListener('click',function(e){
+    var alvo=e.target;
+    var link=alvo&&alvo.closest?alvo.closest('a[href*="wa.me"]'):null;
+    if(!link)return;
+    var codigo=obterRef();
+    if(codigo){
+      try{
+        var url=new URL(link.href);
+        var texto=url.searchParams.get('text')||'';
+        if(!/Protocolo:/i.test(texto)){
+          url.searchParams.set('text',texto+'\n\nProtocolo: '+codigo);
+          link.href=url.toString();
+        }
+      }catch(err){}
+    }
+    if(typeof window.trackWhatsAppConversion==='function')window.trackWhatsAppConversion();
+    window.dataLayer=window.dataLayer||[];
+    window.dataLayer.push({event:'whatsapp_click',page_path:location.pathname,button_id:link.getAttribute('data-botao')||'lp'});
+  },true);
+})();
+</script>
+<!-- Download das bibliotecas de tracking, adiado (mesmo padrão do index.html) -->
+<script>
+  window.addEventListener('load', function() {
+    var primeiroScript = document.getElementsByTagName('script')[0];
+    var fb = document.createElement('script');
+    fb.async = true;
+    fb.src = 'https://connect.facebook.net/en_US/fbevents.js';
+    primeiroScript.parentNode.insertBefore(fb, primeiroScript);
+    var g = document.createElement('script');
+    g.async = true;
+    g.src = 'https://www.googletagmanager.com/gtag/js?id=G-79X03K7F7F';
+    document.head.appendChild(g);
+  });
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1183448566465118&ev=PageView&noscript=1" alt=""></noscript>
+</body>
+</html>
