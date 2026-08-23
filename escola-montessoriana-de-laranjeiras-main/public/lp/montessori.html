@@ -91,7 +91,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .endereco h2{color:#fff}
   .endereco .kicker{color:var(--dourado)}
   .endereco a.mapa{color:var(--dourado);font-weight:700}
-  .cta-fixo{position:fixed;left:0;right:0;bottom:0;z-index:10;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.96);border-top:1px solid #dbeafe;display:flex;justify-content:center}
+  .cta-fixo{position:fixed;left:0;right:0;bottom:0;z-index:10;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.96);border-top:1px solid #dbeafe;display:flex;justify-content:center;transform:translateY(120%);transition:transform .35s ease}
+  .cta-fixo.visivel{transform:none}
   .cta-fixo .btn{margin-top:0;width:100%;max-width:600px}
   body{padding-bottom:84px}
   footer{padding:28px 0 40px;text-align:center;font-size:.85rem;color:var(--cinza)}
@@ -118,14 +119,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <span class="eyebrow">De 9 meses a 11 anos</span>
     <h1>Uma escola Montessori de verdade, no Rio de Janeiro</h1>
     <p>Ambiente preparado, liberdade com limites e concentração profunda — em Laranjeiras, com imersão em inglês.</p>
-    <a class="btn" data-botao="lp-montessori-hero" href="https://wa.me/5521992973454?text=Ol%C3%A1%2C%20eu%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20a%20Escola%20Montessoriana%20de%20Laranjeiras.">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2Zm5.4 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.9-1.2-4.7-4.1-4.9-4.3-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.4l.9 2.1c.1.2.1.4 0 .6l-.4.6-.5.5c-.2.2-.3.4-.1.7.2.3.8 1.4 1.8 2.2 1.3 1.1 2.3 1.5 2.6 1.6.3.1.5.1.7-.1l1-1.2c.2-.3.4-.2.7-.1l2.1 1c.3.1.5.2.6.4 0 .1 0 .7-.2 1.3Z"/></svg>
-      Conversar com a escola
-    </a>
+    <a class="btn azul" data-botao="lp-montessori-hero-gancho" href="#conhecer">Entender o método ↓</a>
   </div>
 </header>
 
-<section>
+<section id="conhecer">
   <div class="container">
     <span class="kicker">O método</span>
     <h2>"Ajude-me a fazer sozinho"</h2>
@@ -184,6 +182,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     Conversar com a escola
   </a>
 </div>
+
+<!-- CTA fixo só aparece depois da primeira dobra (decisão 22/08: dobra 1 = gancho,
+     WhatsApp entra quando o lead já esquentou rolando a página) -->
+<script>
+(function(){
+  var cta=document.querySelector('.cta-fixo');
+  if(!cta)return;
+  function checa(){
+    if(window.scrollY>window.innerHeight*0.7){cta.classList.add('visivel');}
+    else{cta.classList.remove('visivel');}
+  }
+  window.addEventListener('scroll',checa,{passive:true});
+  checa();
+})();
+</script>
 
 <!-- Medição de origem/gclid: versão estática do utils/gclid.ts do site principal.
      MESMAS chaves de localStorage (alm_*). Qualquer mudança lá deve refletir aqui. -->
