@@ -524,7 +524,8 @@ fbq('init','1183448566465118');fbq('track','PageView');
   font-family:'Inter',sans-serif;font-size:15px;font-weight:600;white-space:nowrap;
   color:#14304A;background:var(--dourado-claro);padding:10px 24px;border-radius:999px;
   text-decoration:none;box-shadow:0 3px 12px rgba(20,48,74,.35);cursor:pointer;}
-.prox-capa{font-size:17px;padding:13px 30px;}
+.prox-capa{position:static;left:auto;transform:none;display:block;width:fit-content;
+  margin:24px auto 0;font-size:17px;padding:13px 30px;}
 .whats-cedo{display:block;width:fit-content;margin:24px auto 0;background:#25D366;
   color:#fff;font-weight:700;font-size:16px;padding:12px 28px;border-radius:999px;
   text-decoration:none;box-shadow:0 3px 12px rgba(20,48,74,.30);}
@@ -544,7 +545,11 @@ fbq('init','1183448566465118');fbq('track','PageView');
         prox.scrollIntoView({behavior:'smooth'});
         if(typeof gtag==='function')gtag('event','informativo_avancar',{de_pagina:i+1});
       });
-      secoes[i].appendChild(a);
+      if(i===0){
+        var badges=secoes[0].querySelector('.badges');
+        if(badges&&badges.parentNode){badges.parentNode.insertBefore(a,badges);}
+        else{secoes[0].appendChild(a);}
+      }else{secoes[i].appendChild(a);}
     })(i);
   }
   // Botao de conversao antecipado na pagina 2 (decisao 22/08: "tem que ter botao
