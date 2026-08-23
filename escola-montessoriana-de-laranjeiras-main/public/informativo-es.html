@@ -516,53 +516,75 @@ fbq('init','1183448566465118');fbq('track','PageView');
   </div>
 </section>
 
-<!-- Navegacao pagina-a-pagina (decisao 22/08: dobra 1 = gancho, cada pagina leva
-     a seguinte, WhatsApp so no CTA final; cada avanco vira evento GA4 para medir
-     em que pagina a familia para) -->
+<!-- Funil interno v2 (23/08 — a v1 com pilulas douradas por pagina cobria titulo de
+     foto e o botao do Whats; refeita a pedido do Claudio: "linha fina"):
+     - capa: link discreto sublinhado que leva a pagina 2
+     - barra FIXA de 38px no rodape ("Continuar", linha fina dourada em cima),
+       oculta na capa e no CTA final; clique avanca para a proxima pagina
+     - pagina 2: botao verde de WhatsApp (abertura oficial do bot)
+     - pagenum sobe para 56px para a barra nao cobrir
+     - cada avanco: gtag informativo_avancar {de_pagina} -->
 <style>
-.prox{position:absolute;bottom:46px;left:50%;transform:translateX(-50%);z-index:3;
-  font-family:'Inter',sans-serif;font-size:15px;font-weight:600;white-space:nowrap;
-  color:#14304A;background:var(--dourado-claro);padding:10px 24px;border-radius:999px;
-  text-decoration:none;box-shadow:0 3px 12px rgba(20,48,74,.35);cursor:pointer;}
-.prox-capa{position:static;left:auto;transform:none;display:block;width:fit-content;
-  margin:24px auto 0;font-size:17px;padding:13px 30px;}
+section .pagenum{bottom:56px;}
+.capa-gancho{display:inline-block;margin:26px auto 0;color:var(--dourado-claro);
+  border-bottom:1px solid var(--dourado);padding-bottom:4px;font-size:17px;
+  font-weight:600;text-decoration:none;letter-spacing:.02em;cursor:pointer;}
 .whats-cedo{display:block;width:fit-content;margin:24px auto 0;background:#25D366;
   color:#fff;font-weight:700;font-size:16px;padding:12px 28px;border-radius:999px;
   text-decoration:none;box-shadow:0 3px 12px rgba(20,48,74,.30);}
+.barra-prox{position:fixed;left:0;right:0;bottom:0;z-index:50;display:flex;
+  align-items:center;justify-content:center;height:38px;
+  background:rgba(20,48,74,.62);backdrop-filter:blur(6px);
+  -webkit-backdrop-filter:blur(6px);border-top:1px solid var(--dourado);
+  color:rgba(255,255,255,.92);font-size:12.5px;font-weight:600;
+  letter-spacing:.16em;text-transform:uppercase;cursor:pointer;user-select:none;}
+.barra-prox.oculta{display:none;}
 </style>
 <script>
 (function(){
   var L1='Quiero saber más', L='Continuar';
   var secoes=[].slice.call(document.querySelectorAll('section'));
-  for(var i=0;i<secoes.length-1;i++){
-    (function(i){
-      var prox=secoes[i+1];
-      var a=document.createElement('a');
-      a.className='prox'+(i===0?' prox-capa':'');
-      a.href='javascript:void(0)';
-      a.textContent=(i===0?L1:L)+' ↓';
-      a.addEventListener('click',function(){
-        prox.scrollIntoView({behavior:'smooth'});
-        if(typeof gtag==='function')gtag('event','informativo_avancar',{de_pagina:i+1});
-      });
-      if(i===0){
-        var badges=secoes[0].querySelector('.badges');
-        if(badges&&badges.parentNode){badges.parentNode.insertBefore(a,badges);}
-        else{secoes[0].appendChild(a);}
-      }else{secoes[i].appendChild(a);}
-    })(i);
+  if(secoes.length<3)return;
+  function marcar(n){if(typeof gtag==='function')gtag('event','informativo_avancar',{de_pagina:n});}
+  // capa: link discreto para a pagina 2
+  var g=document.createElement('a');
+  g.className='capa-gancho';
+  g.href='javascript:void(0)';
+  g.textContent=L1+' ↓';
+  g.addEventListener('click',function(){secoes[1].scrollIntoView({behavior:'smooth'});marcar(1);});
+  var alvo=secoes[0].querySelector('.capa-inner')||secoes[0];
+  var badges=alvo.querySelector('.badges');
+  if(badges){alvo.insertBefore(g,badges);}else{alvo.appendChild(g);}
+  g.style.marginBottom='22px';
+  // pagina 2: WhatsApp cedo (abertura oficial do CLIQUE_AUTOMATICO do bot)
+  var W=document.createElement('a');
+  W.className='whats-cedo';
+  W.setAttribute('data-btn','informativo-cedo');
+  W.href='https://wa.me/5521992973454?text=Hola%2C%20me%20gustar%C3%ADa%20m%C3%A1s%20informaci%C3%B3n%20sobre%20la%20Escola%20Montessoriana%20de%20Laranjeiras.';
+  W.rel='noopener';
+  W.textContent='Quiero más información';
+  secoes[1].appendChild(W);
+  // barra fixa "Continuar" — oculta na capa e no CTA final
+  var B=document.createElement('div');
+  B.className='barra-prox oculta';
+  B.textContent=L+' ↓';
+  document.body.appendChild(B);
+  function atual(){
+    var meio=window.scrollY+window.innerHeight/2;
+    for(var i=secoes.length-1;i>=0;i--){if(secoes[i].offsetTop<=meio)return i;}
+    return 0;
   }
-  // Botao de conversao antecipado na pagina 2 (decisao 22/08: "tem que ter botao
-  // antes, ou na primeira ou na segunda") — abertura oficial reconhecida pelo bot
-  if(secoes[1]){
-    var W=document.createElement('a');
-    W.className='whats-cedo';
-    W.setAttribute('data-btn','informativo-cedo');
-    W.href='https://wa.me/5521992973454?text=Hola%2C%20me%20gustar%C3%ADa%20m%C3%A1s%20informaci%C3%B3n%20sobre%20la%20Escola%20Montessoriana%20de%20Laranjeiras.';
-    W.textContent='Quiero más información';
-    W.rel='noopener';
-    secoes[1].appendChild(W);
+  function ajustar(){
+    var i=atual();
+    if(i===0||i>=secoes.length-1){B.classList.add('oculta');}
+    else{B.classList.remove('oculta');}
   }
+  B.addEventListener('click',function(){
+    var i=atual();
+    if(i<secoes.length-1){secoes[i+1].scrollIntoView({behavior:'smooth'});marcar(i+1);}
+  });
+  window.addEventListener('scroll',ajustar,{passive:true});
+  ajustar();
 })();
 </script>
 
