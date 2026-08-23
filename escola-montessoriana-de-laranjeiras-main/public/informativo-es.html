@@ -525,6 +525,9 @@ fbq('init','1183448566465118');fbq('track','PageView');
   color:#14304A;background:var(--dourado-claro);padding:10px 24px;border-radius:999px;
   text-decoration:none;box-shadow:0 3px 12px rgba(20,48,74,.35);cursor:pointer;}
 .prox-capa{font-size:17px;padding:13px 30px;}
+.whats-cedo{display:block;width:fit-content;margin:24px auto 0;background:#25D366;
+  color:#fff;font-weight:700;font-size:16px;padding:12px 28px;border-radius:999px;
+  text-decoration:none;box-shadow:0 3px 12px rgba(20,48,74,.30);}
 </style>
 <script>
 (function(){
@@ -543,6 +546,17 @@ fbq('init','1183448566465118');fbq('track','PageView');
       });
       secoes[i].appendChild(a);
     })(i);
+  }
+  // Botao de conversao antecipado na pagina 2 (decisao 22/08: "tem que ter botao
+  // antes, ou na primeira ou na segunda") — abertura oficial reconhecida pelo bot
+  if(secoes[1]){
+    var W=document.createElement('a');
+    W.className='whats-cedo';
+    W.setAttribute('data-btn','informativo-cedo');
+    W.href='https://wa.me/5521992973454?text=Hola%2C%20me%20gustar%C3%ADa%20m%C3%A1s%20informaci%C3%B3n%20sobre%20la%20Escola%20Montessoriana%20de%20Laranjeiras.';
+    W.textContent='Quiero más información';
+    W.rel='noopener';
+    secoes[1].appendChild(W);
   }
 })();
 </script>
