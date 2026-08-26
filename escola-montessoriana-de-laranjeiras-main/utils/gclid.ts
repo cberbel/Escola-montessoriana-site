@@ -18,6 +18,7 @@ const CHAVE_GCLID = 'alm_gclid';
 const CHAVE_REF = 'alm_ref';
 const CHAVE_REGISTRADO = 'alm_ref_registrado';
 const CHAVE_ORIGEM = 'alm_origem';
+const CHAVE_CAMPANHA = 'alm_campanha';
 const VALIDADE_MS = 90 * 24 * 60 * 60 * 1000; // 90 dias
 
 /** Projeto Supabase ponto-escola-montessoriana. Chave publicável — feita para o navegador. */
@@ -36,6 +37,29 @@ type RegistroGclid = {
   net?: string;
   /** Id do grupo de anúncios ({adgroupid}). */
   agid?: string;
+};
+
+/**
+ * Detalhe da peça que trouxe a visita, quando o referrer sozinho não basta.
+ *
+ * Por que isso existe: o referrer do Instagram é sempre `instagram.com`, e no
+ * navegador interno do app costuma chegar VAZIO. Link da bio, story, reels e
+ * anúncio pago são indistinguíveis por referrer — a única forma de separá-los é
+ * marcar o link na origem (`utm_content=bio|story|reels|post`).
+ *
+ * O `fbclid` é a exceção: o Meta o acrescenta sozinho na URL de destino de todo
+ * anúncio. A presença dele é prova de clique PAGO, mesmo sem nenhuma utm.
+ */
+type RegistroCampanha = {
+  ts: number;
+  /** Click ID do Meta. Presente = clique pago. */
+  fbclid?: string;
+  utm_source?: string;
+  /** 'pago' | 'organico' */
+  utm_medium?: string;
+  utm_campaign?: string;
+  /** 'bio' | 'story' | 'reels' | 'post' | nome do anúncio */
+  utm_content?: string;
 };
 
 /**
@@ -120,6 +144,57 @@ function detectarOrigem(): Origem | null {
 }
 
 /**
+ * Lê `fbclid` e as `utm_*` da URL e guarda.
+ *
+ * Ao contrário da origem (primeiro toque vence), aqui vale o toque MAIS RECENTE:
+ * estes campos identificam a peça que trouxe ESTA visita, e quem voltou por um
+ * story depois de ter vindo pela bio veio, desta vez, pelo story.
+ *
+ * Sem nenhum destes parâmetros na URL a função não faz nada — não apaga o que já
+ * estava guardado, senão qualquer navegação interna zeraria a marcação.
+ *
+ * Os cortes de tamanho espelham os limites da política de RLS da tabela: campo
+ * grande demais faria o insert inteiro ser recusado, e a medição sumiria em
+ * silêncio (foi assim que o gclid se perdeu até 18/08/2026).
+ */
+function capturarCampanha(): void {
+  if (typeof window === 'undefined') return;
+  const params = new URLSearchParams(window.location.search);
+  const reg: RegistroCampanha = { ts: Date.now() };
+
+  const fbclid = (params.get('fbclid') ?? '').trim();
+  // A política recusa fbclid com espaço em branco; um valor quebrado é melhor
+  // descartado do que levar junto o resto do registro.
+  if (fbclid && !/\s/.test(fbclid)) reg.fbclid = fbclid.slice(0, 255);
+
+  const texto = (chave: string, max: number): string | undefined => {
+    const v = (params.get(chave) ?? '').trim();
+    return v ? v.slice(0, max).toLowerCase() : undefined;
+  };
+  const source = texto('utm_source', 60);
+  const medium = texto('utm_medium', 60);
+  const campaign = texto('utm_campaign', 120);
+  const content = texto('utm_content', 120);
+  if (source) reg.utm_source = source;
+  if (medium) reg.utm_medium = medium;
+  if (campaign) reg.utm_campaign = campaign;
+  if (content) reg.utm_content = content;
+
+  const temSinal = reg.fbclid || reg.utm_source || reg.utm_medium || reg.utm_campaign || reg.utm_content;
+  if (!temSinal) return;
+  gravarJson(CHAVE_CAMPANHA, reg);
+}
+
+/** Marcação de campanha guardada, ou null se não houver ou já tiver passado de 90 dias. */
+function obterCampanha(): RegistroCampanha | null {
+  if (typeof window === 'undefined') return null;
+  const reg = lerJson<RegistroCampanha>(CHAVE_CAMPANHA);
+  if (!reg) return null;
+  if (Date.now() - reg.ts > VALIDADE_MS) return null;
+  return reg;
+}
+
+/**
  * Guarda a origem da visita. Regra: **o primeiro toque vence** — quem chegou pela
  * busca e voltou depois direto continua creditado à busca. A única exceção é o
  * anúncio: gclid novo sempre promove, porque é o único caminho que custou dinheiro
@@ -179,6 +254,10 @@ export function capturarGclid(): void {
     // sucesso) e o gclid do anúncio NUNCA chegava ao banco. A assinatura origem+gclid
     // já detecta sozinha que algo mudou e força um ref novo via renovarRef().
   }
+  // A marcação de campanha entra antes da origem: `detectarOrigem()` lê
+  // `utm_source` da URL, e é ela que decide se um clique do Instagram é
+  // instagram ou cai em 'direto' por falta de referrer.
+  capturarCampanha();
   // A origem tem que estar decidida antes do POST.
   definirOrigem();
   // Registra o par código → origem/GCLID no banco. Feito no carregamento, e não no
@@ -216,7 +295,21 @@ async function registrarClique(): Promise<void> {
         }
       : {};
 
-  const assinatura = `${origem ?? 'sem'}|${gclid ?? 'sem'}`;
+  // Detalhe da peça (bio, story, anúncio…). Entra no POST e TAMBÉM na assinatura:
+  // sem isso, quem já tinha visitado pela bio e volta por um story reusaria o
+  // mesmo registro — origem e gclid não mudaram — e o story nunca apareceria.
+  const campanha = obterCampanha();
+  const daCampanha = campanha
+    ? {
+        ...(campanha.fbclid ? { fbclid: campanha.fbclid } : {}),
+        ...(campanha.utm_source ? { utm_source: campanha.utm_source } : {}),
+        ...(campanha.utm_medium ? { utm_medium: campanha.utm_medium } : {}),
+        ...(campanha.utm_campaign ? { utm_campaign: campanha.utm_campaign } : {}),
+        ...(campanha.utm_content ? { utm_content: campanha.utm_content } : {})
+      }
+    : {};
+
+  const assinatura = `${origem ?? 'sem'}|${gclid ?? 'sem'}|${campanha?.fbclid ?? 'sem'}|${campanha?.utm_content ?? 'sem'}`;
   const jaRegistrado = lerJson<string>(CHAVE_REGISTRADO);
   if (jaRegistrado === assinatura) return;
 
@@ -240,7 +333,7 @@ async function registrarClique(): Promise<void> {
           // POST em upsert, e upsert exigiria também política de UPDATE no RLS.
           Prefer: 'return=minimal'
         },
-        body: JSON.stringify({ ref: codigo, ...(origem ? { origem } : {}), ...(gclid ? { gclid } : {}), ...doClique })
+        body: JSON.stringify({ ref: codigo, ...(origem ? { origem } : {}), ...(gclid ? { gclid } : {}), ...doClique, ...daCampanha })
       });
 
     let r = await enviar(ref);
