@@ -202,7 +202,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
      MESMAS chaves de localStorage (alm_*). Qualquer mudança lá deve refletir aqui. -->
 <script>
 (function(){
-  var K_G='alm_gclid',K_R='alm_ref',K_REG='alm_ref_registrado',K_O='alm_origem';
+  var K_G='alm_gclid',K_R='alm_ref',K_REG='alm_ref_registrado',K_O='alm_origem',K_C='alm_campanha';
   var VAL=90*24*60*60*1000;
   var SB='https://rmpnqrvsmxhnrwlgqmdp.supabase.co';
   var SBK='sb_publishable_bg4n-MXnoYVWomRN90WTOg_HOdq3_9G';
@@ -218,6 +218,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     ['kw','mt','net','agid'].forEach(function(c){var v=params.get(c);if(v)regG[c]=v;});
     gravar(K_G,regG);
   }
+  // fbclid/utm_*: e o que separa story, reels, bio e pago no Instagram — o referrer
+  // do app vem vazio e nao distingue peca (ver docs/utm-instagram.md, 25/08/2026).
+  // Vale o toque MAIS RECENTE; sem parametro na URL nao apaga o que ja estava guardado.
+  // Os cortes espelham os limites da RLS: campo grande demais faz o insert inteiro
+  // ser recusado e a medicao some em silencio.
+  var fbclidUrl=(params.get('fbclid')||'').trim();
+  (function(){
+    var reg={ts:Date.now()};
+    if(fbclidUrl&&!/\s/.test(fbclidUrl))reg.fbclid=fbclidUrl.slice(0,255);
+    [['utm_source',60],['utm_medium',60],['utm_campaign',120],['utm_content',120]].forEach(function(p){
+      var v=(params.get(p[0])||'').trim();
+      if(v)reg[p[0]]=v.slice(0,p[1]).toLowerCase();
+    });
+    if(reg.fbclid||reg.utm_source||reg.utm_medium||reg.utm_campaign||reg.utm_content)gravar(K_C,reg);
+  })();
+  function obterC(){var r=ler(K_C);if(!r)return null;if(Date.now()-r.ts>VAL)return null;return r}
   function detectar(){
     if(gclidUrl)return 'google_ads';
     var utm=(params.get('utm_source')||'').toLowerCase();
@@ -244,7 +260,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   if(det){
     var at=ler(K_O);
     var valida=at&&(Date.now()-at.ts<=VAL);
-    if(!valida||det==='google_ads'){var efetiva=(det!=='google_ads'&&obterG())?'google_ads':det;gravar(K_O,{origem:efetiva,ts:Date.now()});}
+    // Clique pago sempre promove. O fbclid so promove quando a peca se identifica
+    // como Meta: anuncio sem utm e sem referrer seria detectado como 'direto' e
+    // apagaria uma origem boa que ja estava guardada.
+    var pagoAgora=!!gclidUrl||(!!fbclidUrl&&(det==='instagram'||det==='facebook'));
+    if(!valida||pagoAgora){var efetiva=(det!=='google_ads'&&obterG())?'google_ads':det;gravar(K_O,{origem:efetiva,ts:Date.now()});}
   }
   function obterG(){var r=ler(K_G);if(!r||!r.gclid)return null;if(Date.now()-r.ts>VAL)return null;return r.gclid}
   function obterO(){var r=ler(K_O);if(!r||!r.origem)return null;if(Date.now()-r.ts>VAL)return null;return r.origem}
@@ -253,7 +273,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   (function registrar(){
     var g=obterG(),o=obterO();
     if(!g&&!o)return;
-    var ass=(o||'sem')+'|'+(g||'sem');
+    // A peca entra na assinatura: sem isso, quem ja visitou pela bio e volta por um
+    // story reusaria o registro antigo (origem e gclid nao mudaram) e o story sumiria.
+    var c=obterC()||{};
+    var ass=(o||'sem')+'|'+(g||'sem')+'|'+(c.fbclid||'sem')+'|'+(c.utm_content||'sem');
     var ja=ler(K_REG);
     if(ja===ass)return;
     var ref=obterRef();
@@ -263,8 +286,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     if(g){
       body.gclid=g;
       var rg=ler(K_G)||{};
-      ['kw','mt','net','agid'].forEach(function(c){if(rg[c])body[c]=rg[c];});
+      ['kw','mt','net','agid'].forEach(function(x){if(rg[x])body[x]=rg[x];});
     }
+    ['fbclid','utm_source','utm_medium','utm_campaign','utm_content'].forEach(function(k){if(c[k])body[k]=c[k];});
     var enviar=function(codigo){
       body.ref=codigo;
       return fetch(SB+'/rest/v1/cliques_anuncio',{
