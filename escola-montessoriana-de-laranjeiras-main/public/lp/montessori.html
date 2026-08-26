@@ -227,9 +227,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   (function(){
     var reg={ts:Date.now()};
     if(fbclidUrl&&!/\s/.test(fbclidUrl))reg.fbclid=fbclidUrl.slice(0,255);
+    // O link da bio usa utm_source=ig; normalizar evita dois nomes para a mesma coisa
+    // (detectar() ja trata ig e instagram como a mesma origem).
+    var APELIDOS={ig:'instagram',fb:'facebook'};
     [['utm_source',60],['utm_medium',60],['utm_campaign',120],['utm_content',120]].forEach(function(p){
       var v=(params.get(p[0])||'').trim();
-      if(v)reg[p[0]]=v.slice(0,p[1]).toLowerCase();
+      if(!v)return;
+      v=v.slice(0,p[1]).toLowerCase();
+      if(p[0]==='utm_source'&&APELIDOS[v])v=APELIDOS[v];
+      reg[p[0]]=v;
     });
     if(reg.fbclid||reg.utm_source||reg.utm_medium||reg.utm_campaign||reg.utm_content)gravar(K_C,reg);
   })();

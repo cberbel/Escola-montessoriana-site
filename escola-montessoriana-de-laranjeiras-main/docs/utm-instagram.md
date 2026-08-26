@@ -21,31 +21,34 @@ Todo link do Instagram para o site leva estes parâmetros:
 
 | Parâmetro | Valor | Para quê |
 |---|---|---|
-| `utm_source` | `instagram` | garante a origem mesmo sem referrer |
-| `utm_medium` | `pago` ou `organico` | separa o que custou dinheiro |
-| `utm_content` | `bio`, `story`, `reels`, `post` ou o nome do anúncio | **qual peça trouxe** |
+| `utm_source` | `ig` ou `instagram` | garante a origem mesmo sem referrer |
+| `utm_medium` | `social` (orgânico) ou `paid_social` | intenção; para pago **confie no `fbclid`** |
+| `utm_content` | `link_in_bio`, `story`, `reels` ou o nome do anúncio | **qual peça trouxe** |
 | `utm_campaign` | nome da campanha (opcional) | agrupa peças de uma mesma ação |
+
+**`ig` e `instagram` são a mesma coisa.** O link da bio já estava no ar com `ig` antes
+desta medição existir; o site normaliza `ig` → `instagram` na gravação, para não ficarem
+dois nomes da mesma coisa no banco. Sempre consulte por `instagram`.
 
 ### Links prontos
 
-Link da bio (troque uma vez e deixe):
-```
-https://www.escolamontessoriana.com.br/?utm_source=instagram&utm_medium=organico&utm_content=bio
-```
+**Bio — já está no ar e já está marcada, não mexa.** Verificado em 25/08/2026 no perfil:
+`utm_source=ig`, `utm_medium=social`, `utm_content=link_in_bio`. Além disso, **link de bio
+só é editável pelo app do celular** ("Editing your links is only available on mobile").
 
 Story (figurinha de link):
 ```
-https://www.escolamontessoriana.com.br/?utm_source=instagram&utm_medium=organico&utm_content=story
+https://www.escolamontessoriana.com.br/?utm_source=ig&utm_medium=social&utm_content=story
 ```
 
 Quando o story for divulgar um reel específico:
 ```
-https://www.escolamontessoriana.com.br/?utm_source=instagram&utm_medium=organico&utm_content=reels
+https://www.escolamontessoriana.com.br/?utm_source=ig&utm_medium=social&utm_content=reels
 ```
 
 Anúncio do Meta — no campo **Parâmetros de URL** do anúncio:
 ```
-utm_source=instagram&utm_medium=pago&utm_campaign={{campaign.name}}&utm_content={{ad.name}}
+utm_source=ig&utm_medium=paid_social&utm_campaign={{campaign.name}}&utm_content={{ad.name}}
 ```
 
 ## O que o `fbclid` resolve sozinho
@@ -73,6 +76,9 @@ Isso continua dependendo das utm.
 - **Vale o toque mais recente.** Quem veio pela bio e voltou por um story é contado, na
   segunda visita, como story. A `origem` (instagram) continua sendo primeiro toque; só
   o detalhe da peça é do último.
+- **`utm_medium` não é prova de pago.** A bio está no ar com `medium=social` desde antes
+  disto, e um anúncio mal configurado pode vir com qualquer coisa. Para pago x orgânico,
+  a prova é o `fbclid`.
 
 ## `origem` x `utm_source`: qual usar para contar
 

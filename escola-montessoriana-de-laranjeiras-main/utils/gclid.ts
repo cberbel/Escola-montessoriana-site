@@ -175,7 +175,13 @@ function capturarCampanha(): void {
   const medium = texto('utm_medium', 60);
   const campaign = texto('utm_campaign', 120);
   const content = texto('utm_content', 120);
-  if (source) reg.utm_source = source;
+  // O link da bio do @escola_montessoriana está no ar desde antes desta medição e usa
+  // `utm_source=ig`. Sem normalizar, o banco guardaria dois nomes para a mesma coisa e
+  // qualquer contagem por 'instagram' perderia exatamente o tráfego da bio — que é o
+  // maior. `detectarOrigem()` já trata `ig` e `instagram` como a mesma origem; aqui a
+  // gravação passa a concordar com ela.
+  const APELIDOS: Record<string, string> = { ig: 'instagram', fb: 'facebook' };
+  if (source) reg.utm_source = APELIDOS[source] ?? source;
   if (medium) reg.utm_medium = medium;
   if (campaign) reg.utm_campaign = campaign;
   if (content) reg.utm_content = content;
