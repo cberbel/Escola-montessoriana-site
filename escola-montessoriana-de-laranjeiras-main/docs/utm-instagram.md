@@ -74,6 +74,24 @@ Isso continua dependendo das utm.
   segunda visita, como story. A `origem` (instagram) continua sendo primeiro toque; só
   o detalhe da peça é do último.
 
+## `origem` x `utm_source`: qual usar para contar
+
+**Use `utm_source`/`fbclid`, não `origem`.**
+
+`origem` guarda o **primeiro toque** e vale 90 dias: quem conheceu o site pela busca
+em julho e clicou num anúncio do Instagram hoje continua com `origem = google_organico`.
+Contar Instagram por `origem` subestima, e subestima justamente os visitantes que
+voltam — que são os mais próximos de matricular.
+
+Medido em 25/08/2026 durante o teste desta mudança: um navegador que tinha visitado o
+site em 23/08 recebeu um clique com `utm_source=instagram` e gravou `origem = direto`.
+As colunas `utm_*` e `fbclid` registraram tudo certo — elas descrevem ESTE clique, não
+a história do visitante.
+
+Desde 25/08/2026 o clique **pago** promove a origem (antes só o `gclid` fazia isso),
+então anúncio do Meta com `utm_source` configurado passa a corrigir a origem sozinho.
+O tráfego **orgânico** continua respeitando o primeiro toque, de propósito.
+
 ## Como ler o resultado
 
 ```sql
@@ -85,7 +103,7 @@ select coalesce(utm_content,'(sem marcação)') as peca,
        count(distinct l.id) as leads
 from public.cliques_anuncio c
 left join crm.leads l on l.ref = c.ref
-where c.origem = 'instagram'
+where (c.utm_source = 'instagram' or c.origem = 'instagram')
   and c.criado_em >= now() - interval '30 days'
 group by 1,2 order by visitas desc;
 ```

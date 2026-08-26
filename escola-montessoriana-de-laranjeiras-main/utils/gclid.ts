@@ -196,9 +196,19 @@ function obterCampanha(): RegistroCampanha | null {
 
 /**
  * Guarda a origem da visita. Regra: **o primeiro toque vence** — quem chegou pela
- * busca e voltou depois direto continua creditado à busca. A única exceção é o
- * anúncio: gclid novo sempre promove, porque é o único caminho que custou dinheiro
- * e o único que identifica a campanha.
+ * busca e voltou depois direto continua creditado à busca. A exceção é o clique
+ * PAGO, que sempre promove: é o caminho que custou dinheiro e o que identifica a
+ * campanha.
+ *
+ * Até 25/08/2026 só o `gclid` promovia, porque o Google era o único anunciante.
+ * Medido naquele dia: um navegador que tinha visitado o site em 23/08 e guardado
+ * `direto` recebeu um clique com `utm_source=instagram` e continuou gravando
+ * `origem = 'direto'`. Com o Meta de volta isso esconderia todo clique pago de
+ * visitante que já conhecia o site.
+ *
+ * O `fbclid` só promove quando a peça se identifica como Meta (`instagram` ou
+ * `facebook`). Sem essa guarda, um anúncio sem `utm_source` e sem referrer seria
+ * detectado como `direto` e apagaria uma origem boa que já estava guardada.
  */
 function definirOrigem(): void {
   const detectada = detectarOrigem();
@@ -206,7 +216,14 @@ function definirOrigem(): void {
 
   const atual = lerJson<RegistroOrigem>(CHAVE_ORIGEM);
   const valida = atual && Date.now() - atual.ts <= VALIDADE_MS;
-  if (valida && detectada !== 'google_ads') return; // primeiro toque vence
+
+  // Lido da URL, e não do storage: o valor guardado sobrevive 90 dias, e usá-lo aqui
+  // faria toda visita seguinte re-promover a origem como se fosse um clique novo.
+  const params = new URLSearchParams(window.location.search);
+  const pagoAgora =
+    !!params.get('gclid') ||
+    (!!params.get('fbclid') && (detectada === 'instagram' || detectada === 'facebook'));
+  if (valida && !pagoAgora) return; // primeiro toque vence
 
   // Coorte anterior a 18/08/2026: tem gclid guardado (clicou em anúncio no fluxo
   // antigo) mas nenhuma origem. Sem esta linha, a visita de RETORNO dela ("direto",
