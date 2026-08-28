@@ -1,4 +1,5 @@
 {
   "supabaseUrl": "https://rmpnqrvsmxhnrwlgqmdp.supabase.co",
-  "supabaseAnonKey": "sb_publishable_bg4n-MXnoYVWomRN90WTOg_HOdq3_9G"
+  "supabaseAnonKey": "sb_publishable_bg4n-MXnoYVWomRN90WTOg_HOdq3_9G",
+  "vapidPublica": "BPjBaN_xLhCscA492iT0HTc_xjR2J-tWX6KGL2h5z2_ezB4r2cbVv5hpznnDAObFrJzmtpa7870yGBKlyh1r3og"
 }

@@ -1,3 +1,14 @@
 {
-  "rewrites": [{ "source": "/((?!config\\.json).*)", "destination": "/index.html" }]
+  "rewrites": [
+    { "source": "/((?!config\.json|sw\.js|manifest\.webmanifest|icone-512\.png).*)", "destination": "/index.html" }
+  ],
+  "headers": [
+    {
+      "source": "/sw.js",
+      "headers": [
+        { "key": "Cache-Control", "value": "no-cache, no-store, must-revalidate" },
+        { "key": "Service-Worker-Allowed", "value": "/" }
+      ]
+    }
+  ]
 }

@@ -1,9 +1,11 @@
 export interface AppConfig {
   supabaseUrl: string;
   supabaseAnonKey: string;
+  /** Chave publica VAPID, usada para inscrever o aparelho no aviso de ponto. */
+  vapidPublica?: string;
 }
 
-let config: AppConfig = { supabaseUrl: '', supabaseAnonKey: '' };
+export let config: AppConfig = { supabaseUrl: '', supabaseAnonKey: '' };
 
 export function definirConfig(c: AppConfig): void {
   config = c;

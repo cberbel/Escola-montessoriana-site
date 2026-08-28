@@ -14,6 +14,7 @@ import {
   Check,
 } from 'lucide-react';
 import { Batida, Funcionario } from './types';
+import { AvisoPonto } from './AvisoPonto';
 import { idDispositivo, obterPosicao, rpc, temConfig } from './api';
 import { formatarHora, rotuloBatida } from './utils';
 
@@ -317,6 +318,8 @@ export const PontoFuncionario: React.FC<{ modoCompartilhado?: boolean }> = ({ mo
                     </>
                   )}
                 </button>
+                {!modoCompartilhado && <AvisoPonto pin={pin || localStorage.getItem(CHAVE_PIN_SALVO) || ''} />}
+
                 <button
                   onClick={sair}
                   className="mt-3 flex items-center gap-1 mx-auto text-ponto-cinza hover:text-ponto-escuro"
