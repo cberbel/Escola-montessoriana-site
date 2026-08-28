@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="format-detection" content="telephone=no">
 <meta name="theme-color" content="#14304A">
 <meta name="googlebot" content="noindex, nofollow">
 <meta name="bingbot" content="noindex, nofollow">
@@ -171,7 +172,15 @@
     border-radius:999px;padding:7px 15px;
     color:var(--dourado-claro);
     background:rgba(20,48,74,.35);
+    text-decoration:none;cursor:pointer;
+    -webkit-tap-highlight-color:rgba(228,200,102,.35);
+    transition:background .15s ease, color .15s ease;
   }
+  /* o balao precisa parecer tocavel: em 26/08 o mais tocado do informativo era
+     justamente o unico que nao levava a lugar nenhum */
+  .badge::after{content:' ↓';opacity:.75;}
+  .badge:active{background:var(--dourado-claro);color:var(--azul);}
+  html{scroll-behavior:smooth;}
   /* Carta */
   .assinatura{
     font-family:'Fraunces',serif;
@@ -305,9 +314,9 @@ fbq('init','1183448566465118');fbq('track','PageView');
     <h1>Uma escola que acolhe — e deixa a criança <em>florescer.</em></h1>
     <p>Método Montessori dos 9 meses aos 11 anos. Acolhimento único, educação personalizada, autonomia e inglês por imersão todos os dias, com professoras nativas.</p>
     <div class="badges">
-      <a class="badge" href="#horarios" style="text-decoration:none;">Flexibilidade de horários</a>
-      <a class="badge" href="#espacos" style="text-decoration:none;">Espaços amplos</a>
-      <span class="badge">Alimentação saudável</span>
+      <a class="badge" href="#horarios">Flexibilidade de horários</a>
+      <a class="badge" href="#espacos">Espaços amplos</a>
+      <a class="badge" href="#horarios">Alimentação saudável</a>
     </div>
   </div>
   <div class="pagenum">1/3</div>
@@ -345,8 +354,7 @@ fbq('init','1183448566465118');fbq('track','PageView');
 <section class="cta">
   <h2>Venha conhecer.</h2>
   <p>Sinta o acolhimento de perto e garanta o melhor para o futuro do seu filho. Vagas limitadas para 2026.</p>
-  <a class="botao" data-btn="informativo2-cta" href="https://wa.me/5521992973454?text=Ol%C3%A1%2C%20eu%20gostaria%20de%20agendar%20uma%20visita%20%C3%A0%20Escola%20Montessoriana%20de%20Laranjeiras.">Agendar uma visita pelo WhatsApp</a>
-  <div class="whats"><small>(21) 99297-3454 · WhatsApp da escola</small></div>
+  <a class="botao" data-btn="informativo2-cta" href="https://wa.me/5521992973454?text=Eu%20gostaria%20de%20conversar%20com%20a%20Escola%20Montessoriana.">Gostaria de falar com a escola pelo WhatsApp</a>
   <div class="transporte">🚐 Temos parcerias com serviços de transporte escolar — pergunte como funciona.</div>
   <div class="endereco">
     📍 Rua das Laranjeiras, 540 — fundos, 2º andar · Laranjeiras, RJ<br>
@@ -425,6 +433,13 @@ section .pagenum{bottom:56px;}
   });
   window.addEventListener('scroll',ajustar,{passive:true});
   ajustar();
+  // baloes da capa: medir o toque, para a proxima leitura do Clarity/GA4 saber
+  // se eles passaram a levar gente para dentro da pagina
+  [].slice.call(document.querySelectorAll('.badges .badge')).forEach(function(b){
+    b.addEventListener('click',function(){
+      if(typeof gtag==='function')gtag('event','informativo_balao',{balao:(b.textContent||'').trim()});
+    });
+  });
 })();
 </script>
 

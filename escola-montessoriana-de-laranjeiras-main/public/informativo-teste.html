@@ -6,20 +6,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Escola Montessoriana</title>
 <script>
-/* Sorteador do teste de landing (23/08): distribui 1/3 entre o informativo longo,
-   o curto e o curto com precos — e FIXA a versao por visitante (localStorage),
-   para a mesma pessoa sempre ver a mesma pagina. UTMs/gclid seguem intactos. */
+/* 27/08: o teste A/B/C das tres paginas ficou parado — em 2 dias a linha de
+   "chegou ao fim" separava as tres por 4, 2 e 1 visitante, ou seja, ruido.
+   A pedido do Claudio, TODO o trafego passa a cair no informativo2.html, que
+   e a versao que recebeu os ajustes (baloes clicaveis, CTA novo, sem Calendly
+   e sem telefone). O sorteio de 1/3 fica registrado abaixo para voltar depois.
+
+   VERSOES = ['informativo.html', 'informativo2.html', 'informativo3.html'];
+
+   Cuidado que motivou a linha do removeItem: o sorteio antigo FIXAVA a versao
+   por visitante em localStorage. Sem limpar a chave, quem ja tinha caido no
+   informativo.html continuaria vendo a pagina velha e o teste sairia sujo.
+   UTMs/gclid/hash seguem intactos. */
 (function(){
-  var VERSOES = ['informativo.html', 'informativo2.html', 'informativo3.html'];
-  var alvo;
-  try {
-    alvo = localStorage.getItem('alm_lp_teste');
-    if (VERSOES.indexOf(alvo) === -1) {
-      alvo = VERSOES[Math.floor(Math.random() * VERSOES.length)];
-      localStorage.setItem('alm_lp_teste', alvo);
-    }
-  } catch (e) { alvo = VERSOES[0]; }
-  location.replace('/' + alvo + location.search + location.hash);
+  try { localStorage.removeItem('alm_lp_teste'); } catch (e) {}
+  location.replace('/informativo2.html' + location.search + location.hash);
 })();
 </script>
 </head>
