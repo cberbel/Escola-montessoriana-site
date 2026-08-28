@@ -23,7 +23,8 @@ async function segredo(
 ): Promise<string> {
   const doAmbiente = (Deno.env.get(env) ?? "").trim();
   if (doAmbiente) return doAmbiente;
-  const { data } = await db.rpc("_segredo", { p_nome: nome });
+  const { data, error } = await db.rpc("_segredo", { p_nome: nome });
+  if (error) throw new Error(`nao li o segredo ${nome}: ${error.message}`);
   return (data ?? "").trim();
 }
 
@@ -69,11 +70,24 @@ async function cabecalhoVapid(endpoint: string, chave: CryptoKey): Promise<strin
 }
 
 Deno.serve(async (req) => {
+  try {
+    return await atender(req);
+  } catch (e) {
+    // Falhar fechado: sem enviar e sem gravar. O tique seguinte tenta de novo,
+    // e a pendencia continua visivel na tela da direcao.
+    console.error("avisa-ponto:", e);
+    return new Response(JSON.stringify({ erro: String(e).slice(0, 300) }), { status: 500 });
+  }
+});
+
+async function atender(req: Request): Promise<Response> {
   const url = new URL(req.url);
   const db = createClient(URL_SUPA, SERVICE);
 
+  // Sem chave em maos nao ha como conferir quem esta chamando: recusa.
+  // Nunca deixar passar por falta de chave - isso abriria a funcao para qualquer um.
   const chaveCron = await segredo(db, "aviso_ponto_key", "AVISO_KEY");
-  if (chaveCron && url.searchParams.get("key") !== chaveCron) {
+  if (!chaveCron || url.searchParams.get("key") !== chaveCron) {
     return new Response("nao autorizado", { status: 401 });
   }
 
@@ -165,4 +179,4 @@ Deno.serve(async (req) => {
   }
 
   return Response.json({ pendentes: lista.length, enviados: resultado.length, detalhe: resultado });
-});
+}
