@@ -42,6 +42,8 @@ export interface RegistroAdmin {
   lng: number | null;
   precisao_m: number | null;
   dispositivo: string | null;
+  justificativa: string | null;
+  hora_alegada: string | null;
 }
 
 export interface LocalEscola {

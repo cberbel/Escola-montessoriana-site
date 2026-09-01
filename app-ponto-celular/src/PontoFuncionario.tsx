@@ -23,6 +23,8 @@ interface RespostaFuncionario {
   erro?: string;
   funcionario?: Funcionario;
   batidas?: Batida[];
+  fotos_pendentes?: boolean;
+  avisos?: string[];
 }
 
 const CHAVE_PIN_SALVO = 'ponto.pinFuncionario';
@@ -44,6 +46,13 @@ export const PontoFuncionario: React.FC<{ modoCompartilhado?: boolean }> = ({ mo
   const [sucesso, setSucesso] = useState('');
   const [semGps, setSemGps] = useState(false);
   const [agora, setAgora] = useState(new Date());
+  const [fotosPendentes, setFotosPendentes] = useState(false);
+  const [avisos, setAvisos] = useState<string[]>([]);
+  // esqueci de bater: a batida real fica registrada e a pessoa anexa o motivo
+  // e o horario que alega; a direcao ve os dois no /admin
+  const [justAberta, setJustAberta] = useState(false);
+  const [justTexto, setJustTexto] = useState('');
+  const [horaCerta, setHoraCerta] = useState('');
 
   useEffect(() => {
     const timer = setInterval(() => setAgora(new Date()), 1000);
@@ -81,6 +90,8 @@ export const PontoFuncionario: React.FC<{ modoCompartilhado?: boolean }> = ({ mo
       if (!modoCompartilhado) localStorage.setItem(CHAVE_PIN_SALVO, pinDigitado);
       setFuncionario(r.funcionario);
       setBatidas(r.batidas ?? []);
+      setFotosPendentes(r.fotos_pendentes === true);
+      setAvisos(r.avisos ?? []);
       setFase('home');
     } catch (e) {
       setErro(e instanceof Error ? e.message : 'Erro inesperado.');
@@ -139,12 +150,15 @@ export const PontoFuncionario: React.FC<{ modoCompartilhado?: boolean }> = ({ mo
     const pos = await obterPosicao();
     setRegistrando('enviando');
     try {
+      const justificativa = justAberta ? justTexto.trim() : '';
       const r = await rpc<RespostaFuncionario>('bater_ponto', {
         p_pin: pinAtual,
         p_lat: pos.lat,
         p_lng: pos.lng,
         p_precisao: pos.precisao,
         p_dispositivo: idDispositivo(),
+        p_justificativa: justificativa || null,
+        p_hora_alegada: justAberta && horaCerta ? horaCerta : null,
       });
       if (!r.ok) {
         setErro(r.erro ?? 'Não foi possível registrar.');
@@ -154,8 +168,14 @@ export const PontoFuncionario: React.FC<{ modoCompartilhado?: boolean }> = ({ mo
         setSemGps(pos.lat === null);
         const ultima = novas[novas.length - 1];
         setSucesso(
-          `${rotuloBatida(novas.length - 1)} registrada às ${ultima ? formatarHora(ultima.ts) : ''}!`
+          `${rotuloBatida(novas.length - 1)} registrada às ${ultima ? formatarHora(ultima.ts) : ''}!` +
+          (justAberta && (justTexto.trim() || horaCerta) ? ' Justificativa anotada para a direção.' : '')
         );
+        setFotosPendentes(r.fotos_pendentes === true);
+        setAvisos(r.avisos ?? []);
+        setJustAberta(false);
+        setJustTexto('');
+        setHoraCerta('');
       }
     } catch (e) {
       setErro(e instanceof Error ? e.message : 'Erro inesperado.');
@@ -318,6 +338,67 @@ export const PontoFuncionario: React.FC<{ modoCompartilhado?: boolean }> = ({ mo
                     </>
                   )}
                 </button>
+                {!justAberta ? (
+                  <button
+                    onClick={() => setJustAberta(true)}
+                    className="mt-3 mx-auto block text-sm text-ponto-cinza underline hover:text-ponto-escuro"
+                  >
+                    Esqueci de bater na hora certa
+                  </button>
+                ) : (
+                  <div className="mt-3 text-left border border-amber-300 bg-amber-50 rounded-xl p-3">
+                    <p className="text-sm font-bold text-amber-900 mb-2">
+                      Bata agora e conte o que houve — a direção vê a justificativa junto do registro.
+                    </p>
+                    <label className="block text-sm text-ponto-cinza mb-2">
+                      Horário em que você realmente {rotuloBatida(batidas.length) === 'Entrada' ? 'chegou' : 'saiu'}
+                      <input
+                        type="time"
+                        value={horaCerta}
+                        onChange={(e) => setHoraCerta(e.target.value)}
+                        className="mt-1 block border-2 border-amber-300 rounded-lg px-3 py-2 bg-white outline-none focus:border-ponto-azul"
+                      />
+                    </label>
+                    <textarea
+                      value={justTexto}
+                      onChange={(e) => setJustTexto(e.target.value)}
+                      maxLength={500}
+                      placeholder="Ex.: cheguei 7h30 mas o celular ficou sem bateria."
+                      className="w-full border-2 border-amber-300 rounded-lg px-3 py-2 text-sm bg-white outline-none focus:border-ponto-azul min-h-[64px]"
+                    />
+                    <p className="text-xs text-ponto-cinza mt-1">
+                      Preencha e toque em <b>Registrar</b> ali em cima. A batida fica com a hora de agora;
+                      o que você escreveu vai junto.
+                    </p>
+                    <button
+                      onClick={() => { setJustAberta(false); setJustTexto(''); setHoraCerta(''); }}
+                      className="mt-1 text-xs text-ponto-cinza underline"
+                    >
+                      cancelar
+                    </button>
+                  </div>
+                )}
+
+                {avisos.length > 0 && (
+                  <div className="mt-3 text-left space-y-2">
+                    {avisos.map((a, i) => (
+                      <div key={i} className="border border-ponto-dourado/50 bg-amber-50 rounded-xl p-3 text-sm text-ponto-escuro">
+                        <span className="font-bold">📣 Aviso da escola: </span>{a}
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {fotosPendentes && (
+                  <div className="mt-3 text-left border border-blue-200 bg-blue-50 rounded-xl p-3 text-sm">
+                    <p className="font-bold text-blue-900">📸 Faltam suas fotos do ponto por reconhecimento</p>
+                    <p className="text-blue-900/80 mt-1">
+                      Abra a sua ficha em <b>colaborador.escolamontessoriana.com.br</b> (entre com seu
+                      e-mail e este mesmo código) e envie 3 fotos do rosto na seção de fotos. Leva um minuto.
+                    </p>
+                  </div>
+                )}
+
                 {!modoCompartilhado && <AvisoPonto pin={pin || localStorage.getItem(CHAVE_PIN_SALVO) || ''} />}
 
                 <button

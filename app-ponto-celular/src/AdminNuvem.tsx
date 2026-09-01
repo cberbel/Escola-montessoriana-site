@@ -970,6 +970,12 @@ const AbaRegistros: React.FC<{ pinAdmin: string; localEscola: LocalEscola | null
                           <span className="flex-grow">
                             {r.nome}
                             {r.manual && <span className="text-ponto-cinza"> · manual</span>}
+                            {r.justificativa && (
+                              <span className="block text-xs text-amber-800 bg-amber-50 border border-amber-200 rounded-lg px-2 py-1 mt-1">
+                                📝 {r.justificativa}
+                                {r.hora_alegada && <> — alega {r.hora_alegada}</>}
+                              </span>
+                            )}
                           </span>
                           {r.dispositivo && dispositivosCompartilhados.has(r.dispositivo) && (
                             <span
@@ -1098,6 +1104,122 @@ interface ResumoFuncionario {
 
 interface RespostaResumo { ok: boolean; erro?: string; resumo: ResumoFuncionario[] }
 
+interface AvisoPonto {
+  id: string;
+  texto: string;
+  ate: string | null;
+  para: string;
+  criado_em: string;
+}
+
+interface RespostaAvisos { ok: boolean; erro?: string; avisos: AvisoPonto[] }
+
+// Canal de avisos que aparecem no app na hora de bater: para todos ou para
+// uma pessoa. Some sozinho na validade (padrão 7 dias).
+const CartaoAvisos: React.FC<{ pinAdmin: string; equipe: ResumoFuncionario[] }> = ({ pinAdmin, equipe }) => {
+  const [avisos, setAvisos] = useState<AvisoPonto[]>([]);
+  const [texto, setTexto] = useState('');
+  const [para, setPara] = useState('');
+  const [dias, setDias] = useState('7');
+  const [enviando, setEnviando] = useState(false);
+  const [erro, setErro] = useState('');
+
+  const carregar = useCallback(async () => {
+    try {
+      const r = await rpc<RespostaAvisos>('admin_avisos_listar', { p_pin_admin: pinAdmin });
+      if (r.ok) setAvisos(r.avisos);
+    } catch { /* lista fica como está */ }
+  }, [pinAdmin]);
+
+  useEffect(() => { carregar(); }, [carregar]);
+
+  async function criar() {
+    if (!texto.trim()) return;
+    setEnviando(true);
+    setErro('');
+    try {
+      const r = await rpc<{ ok: boolean; erro?: string }>('admin_aviso_criar', {
+        p_pin_admin: pinAdmin,
+        p_texto: texto.trim(),
+        p_funcionario_id: para || null,
+        p_dias: Number(dias) || 7,
+      });
+      if (!r.ok) setErro(r.erro ?? 'Não salvou.');
+      else { setTexto(''); setPara(''); carregar(); }
+    } catch (e) {
+      setErro(e instanceof Error ? e.message : 'Erro inesperado.');
+    } finally {
+      setEnviando(false);
+    }
+  }
+
+  async function apagar(id: string) {
+    await rpc('admin_aviso_apagar', { p_pin_admin: pinAdmin, p_id: id });
+    carregar();
+  }
+
+  return (
+    <div className="bg-white rounded-2xl shadow p-4 mb-4">
+      <h3 className="font-bold mb-1">Avisos no ponto</h3>
+      <p className="text-xs text-ponto-cinza mb-3">
+        Aparece para a pessoa quando ela abre o app para bater — para todos ou para uma pessoa só.
+      </p>
+      <div className="flex flex-wrap gap-2 mb-2">
+        <input
+          value={texto}
+          onChange={(e) => setTexto(e.target.value)}
+          maxLength={400}
+          placeholder="Ex.: reunião pedagógica sexta 13h na sala 2"
+          className="flex-grow min-w-[220px] border-2 border-ponto-cinza/30 rounded-lg px-3 py-2 text-sm focus:border-ponto-azul outline-none"
+        />
+        <select
+          value={para}
+          onChange={(e) => setPara(e.target.value)}
+          className="border-2 border-ponto-cinza/30 rounded-lg px-2 py-2 text-sm bg-white"
+        >
+          <option value="">Todos</option>
+          {equipe.map((f) => (
+            <option key={f.funcionario_id} value={f.funcionario_id}>{f.nome.split(' ')[0]} {f.nome.split(' ')[1] ?? ''}</option>
+          ))}
+        </select>
+        <select
+          value={dias}
+          onChange={(e) => setDias(e.target.value)}
+          className="border-2 border-ponto-cinza/30 rounded-lg px-2 py-2 text-sm bg-white"
+        >
+          <option value="1">por 1 dia</option>
+          <option value="3">por 3 dias</option>
+          <option value="7">por 7 dias</option>
+          <option value="30">por 30 dias</option>
+        </select>
+        <button
+          onClick={criar}
+          disabled={enviando || !texto.trim()}
+          className="bg-ponto-azul text-white font-bold px-4 py-2 rounded-full text-sm disabled:opacity-50"
+        >
+          {enviando ? 'Publicando…' : 'Publicar'}
+        </button>
+      </div>
+      {erro && <p className="text-red-600 text-sm mb-2">{erro}</p>}
+      {avisos.length > 0 && (
+        <ul className="divide-y divide-ponto-claro text-sm">
+          {avisos.map((a) => (
+            <li key={a.id} className="py-2 flex items-start gap-2">
+              <span className="flex-grow">
+                <b>{a.para}</b>: {a.texto}
+                {a.ate && <span className="text-xs text-ponto-cinza"> · até {a.ate.split('-').reverse().join('/')}</span>}
+              </span>
+              <button onClick={() => apagar(a.id)} className="text-xs text-red-700 underline shrink-0">
+                tirar
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+};
+
 const AbaResumo: React.FC<{ pinAdmin: string }> = ({ pinAdmin }) => {
   const [resumo, setResumo] = useState<ResumoFuncionario[] | null>(null);
   const [erro, setErro] = useState('');
@@ -1127,6 +1249,7 @@ const AbaResumo: React.FC<{ pinAdmin: string }> = ({ pinAdmin }) => {
 
   return (
     <section>
+      <CartaoAvisos pinAdmin={pinAdmin} equipe={resumo} />
       <p className="text-ponto-cinza mb-4">
         <strong className="text-ponto-escuro">{naEscola}</strong> na escola agora ·
         semana começa na segunda · mês compara trabalhado × previsto (já sem o almoço).
