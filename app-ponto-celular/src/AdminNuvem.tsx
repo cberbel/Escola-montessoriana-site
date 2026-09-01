@@ -39,7 +39,7 @@ import {
   rotuloBatida,
 } from './utils';
 
-type Aba = 'registros' | 'funcionarios' | 'banco' | 'config';
+type Aba = 'resumo' | 'registros' | 'funcionarios' | 'banco' | 'config';
 
 interface RespostaBase { ok: boolean; erro?: string }
 interface RespostaConfig extends RespostaBase { local: LocalEscola | null; exigir_presenca: boolean; pin_padrao: boolean }
@@ -174,9 +174,10 @@ const Painel: React.FC<{
   pinPadrao: boolean;
   aoTrocarPin: (novo: string) => void;
 }> = ({ pinAdmin, localEscola, setLocalEscola, exigirPresenca, setExigirPresenca, pinPadrao, aoTrocarPin }) => {
-  const [aba, setAba] = useState<Aba>('registros');
+  const [aba, setAba] = useState<Aba>('resumo');
 
   const abas: { id: Aba; rotulo: string; icone: React.ReactNode }[] = [
+    { id: 'resumo', rotulo: 'Resumo', icone: <Users size={18} /> },
     { id: 'registros', rotulo: 'Registros', icone: <CalendarDays size={18} /> },
     { id: 'funcionarios', rotulo: 'Funcionários', icone: <Users size={18} /> },
     { id: 'banco', rotulo: 'Banco de Horas', icone: <Wallet size={18} /> },
@@ -204,6 +205,7 @@ const Painel: React.FC<{
         ))}
       </nav>
 
+      {aba === 'resumo' && <AbaResumo pinAdmin={pinAdmin} />}
       {aba === 'registros' && <AbaRegistros pinAdmin={pinAdmin} localEscola={localEscola} />}
       {aba === 'funcionarios' && <AbaFuncionarios pinAdmin={pinAdmin} />}
       {aba === 'banco' && <AbaBancoHoras pinAdmin={pinAdmin} />}
@@ -1073,6 +1075,131 @@ const FormBatidaManual: React.FC<{
       </button>
       {erro && <p className="text-red-600 w-full">{erro}</p>}
     </form>
+  );
+};
+
+// ---------- Resumo por funcionário ----------
+// A visão de chegada do admin: quem está na escola agora, o dia de cada um,
+// a semana e o mês (trabalhado × previsto) — tudo numa tela só.
+
+interface ResumoFuncionario {
+  funcionario_id: string;
+  nome: string;
+  cargo: string | null;
+  entrada: string;
+  saida: string;
+  batidas_hoje: string[];
+  na_escola: boolean;
+  min_hoje: number;
+  min_semana: number;
+  min_mes: number;
+  min_mes_previsto: number;
+}
+
+interface RespostaResumo { ok: boolean; erro?: string; resumo: ResumoFuncionario[] }
+
+const AbaResumo: React.FC<{ pinAdmin: string }> = ({ pinAdmin }) => {
+  const [resumo, setResumo] = useState<ResumoFuncionario[] | null>(null);
+  const [erro, setErro] = useState('');
+
+  const carregar = useCallback(async () => {
+    setErro('');
+    try {
+      const r = await rpc<RespostaResumo>('admin_resumo_funcionarios', { p_pin_admin: pinAdmin });
+      if (!r.ok) return setErro(r.erro ?? 'Erro ao carregar.');
+      setResumo(r.resumo);
+    } catch (e) {
+      setErro(e instanceof Error ? e.message : 'Erro inesperado.');
+    }
+  }, [pinAdmin]);
+
+  useEffect(() => {
+    carregar();
+    const timer = setInterval(carregar, 60000); // o quadro se atualiza sozinho
+    return () => clearInterval(timer);
+  }, [carregar]);
+
+  if (erro) return <p className="text-red-600 bg-white rounded-2xl shadow p-6">{erro}</p>;
+  if (!resumo) return <Carregando />;
+
+  const h = (min: number) => formatarMinutos(min);
+  const naEscola = resumo.filter((f) => f.na_escola).length;
+
+  return (
+    <section>
+      <p className="text-ponto-cinza mb-4">
+        <strong className="text-ponto-escuro">{naEscola}</strong> na escola agora ·
+        semana começa na segunda · mês compara trabalhado × previsto (já sem o almoço).
+      </p>
+      <div className="bg-white rounded-2xl shadow overflow-hidden">
+        <div className="overflow-x-auto">
+          <table className="w-full text-left text-sm">
+            <thead className="bg-ponto-claro text-xs uppercase tracking-wide text-ponto-cinza">
+              <tr>
+                <th className="px-4 py-3">Funcionário</th>
+                <th className="px-4 py-3">Agora</th>
+                <th className="px-4 py-3">Hoje</th>
+                <th className="px-4 py-3">Semana</th>
+                <th className="px-4 py-3">Mês</th>
+              </tr>
+            </thead>
+            <tbody>
+              {resumo.map((f) => {
+                const saldoMes = f.min_mes - f.min_mes_previsto;
+                return (
+                  <tr key={f.funcionario_id} className="border-t border-ponto-claro align-top">
+                    <td className="px-4 py-3">
+                      <p className="font-bold">{f.nome}</p>
+                      <p className="text-xs text-ponto-cinza">
+                        {f.cargo || '—'} · {f.entrada}–{f.saida}
+                      </p>
+                    </td>
+                    <td className="px-4 py-3">
+                      {f.na_escola ? (
+                        <span className="px-2 py-0.5 rounded-full text-xs font-bold bg-green-100 text-green-800">
+                          na escola
+                        </span>
+                      ) : f.batidas_hoje.length > 0 ? (
+                        <span className="px-2 py-0.5 rounded-full text-xs font-bold bg-ponto-claro text-ponto-cinza">
+                          saiu
+                        </span>
+                      ) : (
+                        <span className="text-ponto-cinza text-xs">sem batida</span>
+                      )}
+                    </td>
+                    <td className="px-4 py-3">
+                      {f.batidas_hoje.length ? (
+                        <>
+                          <p className="tabular-nums">{f.batidas_hoje.join(' → ')}</p>
+                          <p className="text-xs text-ponto-cinza">{h(f.min_hoje)} trabalhadas</p>
+                        </>
+                      ) : (
+                        '—'
+                      )}
+                    </td>
+                    <td className="px-4 py-3 tabular-nums">{f.min_semana ? h(f.min_semana) : '—'}</td>
+                    <td className="px-4 py-3">
+                      <p className="tabular-nums">
+                        {h(f.min_mes)} <span className="text-ponto-cinza">/ {h(f.min_mes_previsto)}</span>
+                      </p>
+                      {f.min_mes_previsto > 0 && (
+                        <p
+                          className={`text-xs font-bold ${
+                            saldoMes < 0 ? 'text-red-700' : 'text-green-700'
+                          }`}
+                        >
+                          {formatarSaldo(saldoMes)}
+                        </p>
+                      )}
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
   );
 };
 
