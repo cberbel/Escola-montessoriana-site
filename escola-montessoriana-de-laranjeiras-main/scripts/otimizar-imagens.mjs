@@ -24,9 +24,27 @@ async function varrer(pasta) {
     const base = nome.slice(0, -ext.length);
     if (!['.jpg', '.jpeg', '.png', '.webp'].includes(ext) || PULAR.has(nome)) continue;
     if (LARGURAS.some((w) => base.endsWith(`-${w}`))) continue; // já é variante
+    let larguraOrigem;
+    try {
+      larguraOrigem = (await sharp(p).metadata()).width;
+    } catch (e) {
+      console.warn('otimizar-imagens: ignorado', p, e.message);
+      continue;
+    }
     for (const w of LARGURAS) {
       const destino = path.join(pasta, `${base}-${w}.webp`);
-      if (fs.existsSync(destino) && fs.statSync(destino).mtimeMs >= fs.statSync(p).mtimeMs) continue;
+      // A largura esperada é a mesma regra do withoutEnlargement abaixo. Comparar
+      // dimensão (e não mtime) porque o cache de build da Vercel devolve variantes
+      // de deploys antigos com mtime imprevisível: uma foto recomprimida de 1903
+      // para 960 px continuava sendo servida em 1903 px, justamente na imagem de LCP.
+      const esperada = Math.min(w, larguraOrigem);
+      if (fs.existsSync(destino)) {
+        try {
+          if ((await sharp(destino).metadata()).width === esperada) continue;
+        } catch {
+          /* variante ilegível: regera abaixo */
+        }
+      }
       try {
         await sharp(p).rotate().resize({ width: w, withoutEnlargement: true }).webp({ quality: 75, effort: 5 }).toFile(destino);
         gerados++;
