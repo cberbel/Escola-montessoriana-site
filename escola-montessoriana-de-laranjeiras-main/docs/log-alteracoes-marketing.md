@@ -16,6 +16,183 @@ Contêiner GTM: **GTM-56ZSQTXF** · Projeto Supabase: **ponto-escola-montessoria
 
 ---
 
+## 02–03/09/2026
+
+### Leitura de 14 dias e correções na conta Google Ads (autorizadas pelo Claudio)
+
+Leitura completa em `Documents\bot-escola\leituras-ads\2026-09-02.md`. Resumo do período
+19/08–01/09: R$ 2.011 (Pesquisa R$ 1.673, PMax R$ 339), 1.520 cliques, 52 contatos no
+WhatsApp, **30 conversas reais, 3 visitas** — R$ 65 por conversa, R$ 670 por visita.
+Semana a semana os cliques pagos caíram 37% a partir de 27/08; as conversas reais ficaram
+iguais e o "só o clique" caiu de 16 para 5.
+
+**1. Metas de conversão da `[ALM] [C3] Campanha de Leads` (Pesquisa) — o achado principal.**
+A campanha usava metas específicas: *Contatos, Enviar formulários de lead, Leads de
+mensagens*. As metas **Lead qualificado** (Conversa respondida R$ 10 + Visita agendada
+R$ 50) e **Lead convertido** (Matrícula R$ 500) existiam na conta mas **não entravam no
+lance da Pesquisa** — toda a escada offline (view → planilha → import 06:00) chegava à
+conta e ficava fora da campanha. Como "Contato no Whatsapp" virou secundária em 22/08,
+desde então o Maximizar conversões perseguia só clique no botão de mensagem do anúncio.
+Hipótese: é isso que derrubou os cliques a partir de 27/08.
+**Feito (02/09):** Configurações → Metas de conversão → incluídos *Leads qualificados* e
+*Leads convertidos*. **Feito (03/09, a pedido do Claudio — "conversão principal é
+conversa, não clique nem primeira mensagem sem resposta"):** removidos *Contatos* (meta
+sem ação principal) e *Leads de mensagens* (toque no botão de mensagem do anúncio = primeira
+mensagem). Estado final: **Enviar formulários de lead + Leads qualificados + Leads convertidos.**
+Esperar até 2 semanas de reajuste do lance; os primeiros dias podem oscilar.
+**Desfazer:** mesma tela → Alterar as metas da campanha → marcar de volta.
+
+**2. Anúncio do grupo de concorrentes — inserção dinâmica de palavra-chave removida.**
+O RSA do `[ALM] Grupo de anúncios com nome dos concorrentes` tinha 2 títulos
+`{Keyword:...}`: quando alguém buscava "colégio imperial botafogo", o título 1 do anúncio
+virava literalmente "Colégio Imperial Botafogo". As 2 "conversões" desse termo (o mais
+caro dos 14 dias, R$ 44) eram mães achando que falavam com o Colégio Imperial (Katia e
+Louise, 28/08 e 01/09). **Feito:** `{Keyword:Escola Montessoriana}` → "Montessoriana de
+Laranjeiras" **fixado na posição 1**; "Escola Montessoriana RJ" também fixado na posição 1
+(o Google alterna os dois); `{Keyword:Escola Montessori Laranjeiras}` → "Conheça a Escola
+Montessoriana". Anúncio "Pendente" (em análise). A qualidade do anúncio cai para "Ruim"
+por causa do pino — é a régua do Google, não a do resultado.
+**Desfazer:** editar o anúncio, soltar os pinos, recolocar os `{Keyword:}`.
+
+**3. Dois grupos estavam SEM ANÚNCIO desde a criação (18/08):** `[ALM] Marca` e
+`[ALM] Montessori metodo (LP)` — 0 impressões em 14 dias (a recomendação do Google "2 grupos
+não contêm anúncios" confirmou; o log de 18/08 dizia que os 3 grupos novos tinham RSA, mas
+só o de Creche + bairro tinha). Era também a causa do status "Qualificada (limitada) — não
+há palavras-chave relevantes suficientes". Buscas pela marca caíam no grupo amplo a R$ 2-3.
+**Feito (03/09):** RSA criado nos dois (7 títulos + 2 descrições cada, qualidade "Médio",
+sem problema de política). Marca → home, caminho `/laranjeiras`; Montessori → `/lp/montessori.html`,
+caminho `/montessori/laranjeiras`. Textos só com afirmações já usadas nos anúncios
+existentes (trilíngue, meio período/integral/estendido, ambiente arborizado, adaptação no
+ritmo da criança, acolhimento e autonomia).
+**Desfazer:** Anúncios → filtrar pelos 2 grupos → pausar.
+
+**4. 142 negativas de frase na `[ALM] [C3] Campanha de Leads`** (nível campanha), com e
+sem acento: os bairros que apareceram nos termos de pesquisa (maricá, nilópolis, guapimirim,
+bonsucesso, cachambi, méier, olaria, vidigal, rio comprido) mais Barra da Tijuca, Recreio,
+Tijuca, Niterói, São Gonçalo e o resto da Zona Norte, Zona Oeste, Baixada e cidades vizinhas
+— decisão do Claudio: "tudo diferente da Zona Sul pode negativar". Santa Teresa, Centro e
+"barra" sozinha NÃO entraram ("berenice barra botafogo" é escola em Botafogo).
+**Desfazer:** Palavras-chave negativas → filtrar por adicionadas em 02/09 → remover.
+
+**5. Orçamentos (Claudio, à mão — o classificador bloqueia campo de orçamento para o
+Claude):** Pesquisa R$ 120 → **R$ 130/dia**; PMax R$ 25 → **R$ 15/dia**. A PMax continua
+rodando por decisão dele ("roda ao mesmo tempo pra ver se não melhora"). Leitura dos 14 dias:
+R$ 339 → 22 contatos, 17 nunca responderam, 4 dos 5 que responderam eram erro; 1 morno.
+
+**6. Supabase — `medicao.conversoes_offline` deixa de subir candidato e descartado**
+(migração `conversoes_offline_exclui_candidato_descartado`, 02/09). Antes só `spam` ficava
+de fora; 5 dos 31 que conversaram nos 14 dias eram candidatos a emprego e recebiam o degrau
+de R$ 10 — ensinava o lance a caçar candidato. Mesmo raciocínio da regra da bolsa.
+**Desfazer:** recriar a view com `status IS DISTINCT FROM 'spam'` (definição anterior no
+histórico de migrações).
+
+**7. 17 palavras-chave de frase novas no `[ALM] Educacao infantil (LP)`** (03/09) — a LP com
+melhor conversão da conta ganhou irmãs das buscas que trouxeram lead: escola/educação infantil
++ zona sul, botafogo, flamengo, catete, cosme velho, humaitá; "perto de mim"; "particular";
+"bilíngue laranjeiras"; "matrícula educação infantil 2027". Várias entram como "baixo volume"
+— esperado, custam zero até alguém buscar.
+**Desfazer:** Palavras-chave → filtrar pelo grupo e por adicionadas em 03/09 → remover.
+
+**8. Autoaplicação de recomendações DESLIGADA (Claudio, à mão, 03/09 ~01h).** Estava ligada em 11 tipos,
+entre eles *Melhorar seus anúncios responsivos* (reescreve o texto do anúncio), *Remover
+negativas em conflito* (foi ela que em 24/08 removeu sozinha a negativa "pequena cruzada")
+e três de *estratégia de lances* (parcela de impressões, Maximizar cliques, Maximizar
+conversões). O classificador bloqueia essa tela para o Claude. Tela: Recomendações →
+Configurações de aplicação automática → Gerenciar. **Desfazer:** marcar de novo lá.
+
+**Conferido sem mudança:** geo da Pesquisa continua "Presença" (log de 18/08) com raio de
+4 km em Botafogo; AI Max está DESLIGADA (o log de 18/08 a registrava ligada — alguém
+desligou depois; não foi tocada hoje).
+
+**Leitura prévia do teste das LPs (revisão marcada ~05/09):** Educação infantil (LP) 26
+cliques → 5 contatos (19%), R$ 33/contato — a melhor peça da conta; Creche + bairro (LP)
+16 → 1 (R$ 122); Montessori (LP) só começa a rodar agora.
+
+---
+
+## 20/08/2026
+
+### O bot vinha marcando visita sozinho havia uma semana — e nada registrava
+
+Em 19/08, às 12h09, a Maria levou uma família de clique pago da primeira mensagem até
+visita marcada em 13 minutos, sem nenhum humano na conversa: coletou idade e horário,
+passou o valor, ofereceu datas, pediu o e-mail, **criou o evento na agenda** e mandou
+endereço e instrução de estacionamento.
+
+E não foi a primeira. O backfill do carimbo revelou **três** visitas agendadas pelo bot,
+nenhuma com mensagem humana antes do agendamento: **Maria Andrade em 14/08 11h55**,
+**Giuliana Siciliano em 17/08 17h23** e a Ana em 19/08. Duas têm gclid e viram conversão
+de R$ 50; a Giuliana veio por WhatsApp orgânico e não é atribuível. Isso vinha
+acontecendo desde o terceiro dia do bot no ar e ninguém sabia — não porque o dado não
+existisse, mas porque nada o lia.
+
+A rotina diária não viu. E não veria: nenhuma view olhava para visita. `resultado_diario`
+para em "conversa respondida", `crm.eventos` está vazia (o bot cria no Calendly e não
+devolve nada ao banco) e `visitou_em` só é carimbado quando **uma pessoa** muda o status
+no painel. O evento mais valioso da cadeia era invisível por construção.
+
+**1. Carimbo novo — `crm.leads.visita_agendada_em`** (migration `carimbo_visita_agendada`).
+Agendar e comparecer são momentos diferentes: `visitou_em` continua significando que a
+família veio. O gatilho `carimbar_matricula` passou a preencher o carimbo de agendamento
+junto, como rede de segurança, para quem for marcado direto como `visitou`.
+
+**2. `conversoes_offline` migrou para os 3 degraus com valor** (migration
+`conversoes_offline_tres_degraus`): `Conversa respondida (WhatsApp)` R$ 10 ·
+`Visita agendada (WhatsApp)` R$ 50 · `Matricula (WhatsApp)` R$ 500. Antes a view emitia
+um evento único, sem valor — a visita agendada chegava ao Google com o mesmo peso de
+qualquer conversa. As 3 ações já existiam no Ads desde 18/08.
+
+Efeito colateral bom: `resultado_diario.conversas_respondidas` estava **zerada há dias**
+porque contava pelo nome novo enquanto a view emitia o antigo. Voltou a ter número
+(19/08 = 3, 17/08 = 3) sem tocar nela.
+
+**Falta no painel do Google Ads (não dá para fazer por API aqui):** rebaixar
+`Conversa qualificada (WhatsApp)` para **secundária**. Enquanto ela for primária junto
+com `Conversa respondida`, o mesmo evento conta duas vezes no lance automático.
+
+**3. Schema `medicao` — `crm` voltou a ser só sobre leads e clientes** (migration
+`schema_medicao_separa_do_crm`). Saíram de `crm` para `medicao`: `saude_medicao`,
+`resultado_diario`, `qualidade_por_origem` e `conversoes_offline`. Ficaram em `crm` as
+views por lead (`classificacao_contatos`, `vw_crm_leads`, `vw_retornos`). Views
+dependentes seguem por OID e não quebram; a função `public.conversoes_offline_csv`
+resolve por nome e foi reapontada (`csv_conversoes_aponta_para_medicao`). Nenhum código
+lê essas views — só a função e os documentos.
+
+**4. `saude_medicao` perdeu o alerta de "conversões esperando upload".** Com a planilha
+se realimentando pelo IMPORTDATA, a view *é* a fila e vive cheia (janela de 88 dias): o
+alarme tocaria todo dia sem significar nada, e alerta que sempre toca é alerta que
+ninguém lê. As contagens viraram `linhas_no_arquivo` e `visitas_agendadas`, informativas.
+
+**5. O bot já avisava o banco — faltava alguém escutando** (migration
+`carimbar_visita_pelo_follow_up_do_bot`). Quando `agendarVisita` fecha uma visita de
+verdade no Calendly, ele grava um `crm.follow_ups` com a mensagem exata
+`Visita agendada às HH:MM`, no mesmo segundo (o caminho de simulação retorna antes e não
+grava). Bastou um gatilho `after insert` escutando esse formato para carimbar
+`visita_agendada_em` — **sem depender de deploy da edge function**. O regex é ancorado de
+propósito: as outras notas `manual` são texto livre do modelo ou do Claudio no painel, e
+não podem disparar o carimbo. Testado nos dois sentidos com um lead de simulação: texto
+livre não carimba, o formato do bot carimba.
+
+**6. O bot também grava o carimbo direto — `whatsapp-bot` v69.** `agendarVisita` passa a
+escrever `visita_agendada_em = coalesce(visita_agendada_em, now())` junto com o e-mail e
+o status (o `coalesce` existe para que remarcar não gere conversão nova). Convive com o
+gatilho do item 5 sem duplicar: as duas escritas são idempotentes, e o gatilho continua
+sendo a rede de segurança caso alguém mexa no código do bot.
+
+O deploy custou três tentativas — o painel do Supabase serve a página do function presa
+em "Deploy status unavailable" por vários minutos antes de montar o Monaco. **Não
+adianta recarregar em sequência: tem que esperar na mesma aba.** Colagem conferida antes
+de publicar (110.358 chars, 1.940 linhas, exatamente o arquivo local normalizado para LF)
+e fumaça depois: `curl` na função devolve **403 forbidden**, que é o certo.
+
+**Desfazer:** `drop trigger follow_ups_carimbar_visita on crm.follow_ups;` tira o
+carimbo automático; `drop schema medicao cascade;` derruba as 4 views (recriáveis a partir
+desta migration); `alter table crm.leads drop column visita_agendada_em;` tira o carimbo.
+Para voltar ao evento único, recriar `conversoes_offline` com o nome
+`Conversa qualificada (WhatsApp)` e valor vazio, como estava até 19/08.
+
+---
+
 ## 19/08/2026
 
 ### AEO: as páginas de creche passaram a responder pergunta, e não só descrever a escola
