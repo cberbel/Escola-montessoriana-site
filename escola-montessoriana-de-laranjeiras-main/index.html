@@ -9,13 +9,8 @@
     <link rel="preload" as="image" href="/images/hero-criancas.webp" fetchpriority="high" />
     <meta name="google-site-verification" content="-dBk2BDnacf_yRcNfTJfRoFMBvFVZYwJNAtKnGeVSRg" />
     <meta name="facebook-domain-verification" content="75h9y3hlx67drboph7vhldf3fokk8i" />
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-56ZSQTXF');</script>
-    <!-- End Google Tag Manager -->
+    <!-- Google Tag Manager: o snippet oficial foi movido para o fim do <body> e só baixa o
+         gtm.js depois do evento 'load' (o dataLayer é criado já aqui, então nada se perde). -->
     <!-- Filas de tracking (criadas já aqui no <head>, custo ~0) -->
     <script>
       // As BIBLIOTECAS de GA4/Ads/Meta só são baixadas depois do evento 'load'
@@ -24,6 +19,7 @@
       // WhatsApp nesse intervalo fica guardado e é enviado assim que as bibliotecas
       // carregam — antes disso, esses cliques se perdiam por completo.
       window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
       window.gtag = function(){ window.dataLayer.push(arguments); };
       gtag('js', new Date());
       gtag('config', 'AW-16743400376');
@@ -46,7 +42,7 @@
       };
     </script>
     <title>Escola Montessoriana de Laranjeiras | Montessori de 9 meses a 11 anos</title>
-    <meta name="description" content="Escola Montessoriana em Laranjeiras, Rio de Janeiro — a minutos do Cosme Velho, Flamengo e Catete. Montessori de 9 meses a 11 anos com imersão em inglês, alimentação saudável, política de zero telas e ambiente acolhedor e arborizado. Agende sua visita." />
+    <meta name="description" content="Creche, pré-escola e Fundamental Montessori em Laranjeiras, de 9 meses a 11 anos, com inglês por imersão diária. A minutos do Flamengo, Catete e Cosme Velho." />
     <link rel="icon" type="image/png" href="/images/logo-escola.png" />
     <!-- Open Graph / prévia ao compartilhar (WhatsApp, redes sociais) -->
     <meta property="og:type" content="website" />
@@ -65,50 +61,79 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": ["Preschool", "ElementarySchool"],
-      "@id": "https://www.escolamontessoriana.com.br/#escola",
-      "name": "Escola Montessoriana de Laranjeiras",
-      "description": "Escola Montessori de 9 meses a 11 anos em Laranjeiras, Rio de Janeiro. Imersão em inglês, alimentação saudável e política de zero telas.",
-      "url": "https://www.escolamontessoriana.com.br/",
-      "logo": "https://www.escolamontessoriana.com.br/images/logo-escola.png",
-      "image": "https://www.escolamontessoriana.com.br/images/hero-criancas.jpg",
-      "telephone": "+55-21-99297-3454",
-      "email": "contato@escolamontessoriana.com.br",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Rua das Laranjeiras, 540, fundos, segundo andar",
-        "addressLocality": "Rio de Janeiro",
-        "addressRegion": "RJ",
-        "postalCode": "22240-000",
-        "addressCountry": "BR"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": -22.9381103,
-        "longitude": -43.1949080
-      },
-      "hasMap": "https://www.google.com/maps/search/?api=1&query=Escola+Montessoriana+de+Laranjeiras+Rio+de+Janeiro",
-      "openingHoursSpecification": {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-        "opens": "07:30",
-        "closes": "19:00"
-      },
-      "sameAs": ["https://www.instagram.com/escola_montessoriana/"],
-      "areaServed": [
-        { "@type": "Place", "name": "Laranjeiras, Rio de Janeiro" },
-        { "@type": "Place", "name": "Cosme Velho, Rio de Janeiro" },
-        { "@type": "Place", "name": "Flamengo, Rio de Janeiro" },
-        { "@type": "Place", "name": "Catete, Rio de Janeiro" },
-        { "@type": "Place", "name": "Botafogo, Rio de Janeiro" }
+      "@graph": [
+        {
+          "@type": ["Preschool", "ElementarySchool", "LocalBusiness"],
+          "@id": "https://www.escolamontessoriana.com.br/#escola",
+          "name": "Escola Montessoriana de Laranjeiras",
+          "alternateName": ["Escola Montessoriana", "Escola Montessoriana Educação Infantil"],
+          "description": "Creche, pré-escola e Ensino Fundamental Montessori em Laranjeiras, Rio de Janeiro, de 9 meses a 11 anos. Inglês por imersão diária, alimentação preparada na escola, pátio arborizado e ambiente sem telas.",
+          "url": "https://www.escolamontessoriana.com.br/",
+          "logo": "https://www.escolamontessoriana.com.br/images/logo-escola.png",
+          "image": "https://www.escolamontessoriana.com.br/images/hero-criancas.jpg",
+          "telephone": "+55-21-96455-1080",
+          "email": "contato@escolamontessoriana.com.br",
+          "founder": { "@id": "https://www.escolamontessoriana.com.br/sobre#claudio" },
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Rua das Laranjeiras, 540, fundos, segundo andar",
+            "addressLocality": "Rio de Janeiro",
+            "addressRegion": "RJ",
+            "postalCode": "22240-006",
+            "addressCountry": "BR"
+          },
+          "geo": { "@type": "GeoCoordinates", "latitude": -22.9381103, "longitude": -43.1949080 },
+          "hasMap": "https://www.google.com/maps/search/?api=1&query=Escola+Montessoriana+de+Laranjeiras+Rio+de+Janeiro",
+          "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            "opens": "07:30",
+            "closes": "19:00"
+          },
+          "sameAs": [
+            "https://www.instagram.com/escola_montessoriana/",
+            "https://www.google.com/maps/search/?api=1&query=Escola+Montessoriana+de+Laranjeiras+Rio+de+Janeiro",
+            "https://querobolsa.com.br/escolas/escola-montessoriana",
+            "https://www.melhorescola.com.br/escola/escola-montessoriana",
+            "https://montessori-ami.org/training-programmes/job-openings/escola-montessoriana-rio-de-janeiro"
+          ],
+          "knowsLanguage": ["pt-BR", "en", "es", "fr"],
+          "areaServed": [
+            { "@type": "Place", "name": "Laranjeiras, Rio de Janeiro" },
+            { "@type": "Place", "name": "Cosme Velho, Rio de Janeiro" },
+            { "@type": "Place", "name": "Flamengo, Rio de Janeiro" },
+            { "@type": "Place", "name": "Catete, Rio de Janeiro" },
+            { "@type": "Place", "name": "Botafogo, Rio de Janeiro" }
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://www.escolamontessoriana.com.br/#site",
+          "url": "https://www.escolamontessoriana.com.br/",
+          "name": "Escola Montessoriana de Laranjeiras",
+          "inLanguage": "pt-BR",
+          "publisher": { "@id": "https://www.escolamontessoriana.com.br/#escola" }
+        }
       ]
     }
     </script>
     <meta name="twitter:card" content="summary_large_image" />
-    <!-- Fontes otimizadas - apenas pesos necessários -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Playfair+Display:wght@400;500;600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Fontes servidas do próprio domínio (public/fonts, via @fontsource). Antes vinham do
+         Google Fonts: o CSS de fonts.googleapis.com bloqueava a renderização por ~780 ms no 4G
+         e o H1 do hero (elemento LCP) só aparecia depois dele. Agora o @font-face está inline,
+         a fonte do H1 é pré-carregada e, com font-display: swap, o texto aparece de imediato
+         com a fonte de sistema e troca quando a definitiva chega. -->
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/playfair-display-latin-wght-normal.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/lato-latin-400-normal.woff2" crossorigin />
+    <style>
+      @font-face { font-family: 'Playfair Display'; font-style: normal; font-weight: 400 900; font-display: swap; src: url(/fonts/playfair-display-latin-wght-normal.woff2) format('woff2-variations'); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+      @font-face { font-family: 'Playfair Display'; font-style: normal; font-weight: 400 900; font-display: swap; src: url(/fonts/playfair-display-latin-ext-wght-normal.woff2) format('woff2-variations'); unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
+      @font-face { font-family: 'Lato'; font-style: normal; font-weight: 400; font-display: swap; src: url(/fonts/lato-latin-400-normal.woff2) format('woff2'); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+      @font-face { font-family: 'Lato'; font-style: normal; font-weight: 400; font-display: swap; src: url(/fonts/lato-latin-ext-400-normal.woff2) format('woff2'); unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
+      @font-face { font-family: 'Lato'; font-style: normal; font-weight: 700; font-display: swap; src: url(/fonts/lato-latin-700-normal.woff2) format('woff2'); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+      @font-face { font-family: 'Lato'; font-style: normal; font-weight: 700; font-display: swap; src: url(/fonts/lato-latin-ext-700-normal.woff2) format('woff2'); unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
+      @font-face { font-family: 'Nunito'; font-style: normal; font-weight: 700; font-display: swap; src: url(/fonts/nunito-latin-700-normal.woff2) format('woff2'); }
+    </style>
     <style>
       html { scroll-behavior: smooth; }
       .fade-in { animation: fadeIn 1s ease-in; }
@@ -146,6 +171,13 @@
       // Microsoft Clarity: carregado via Google Tag Manager (projeto da conta da escola).
       window.addEventListener('load', function() {
         var primeiroScript = document.getElementsByTagName('script')[0];
+
+        // Google Tag Manager (carrega Clarity, tags de conversão etc.). Fora do caminho
+        // crítico: era o maior bloqueio da thread principal (gtag do Ads, ~370 ms no Moto G).
+        var gtm = document.createElement('script');
+        gtm.async = true;
+        gtm.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-56ZSQTXF';
+        document.head.appendChild(gtm);
 
         // Meta Pixel
         var fb = document.createElement('script');
