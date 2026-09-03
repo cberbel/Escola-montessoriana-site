@@ -2,12 +2,15 @@ import React from 'react';
 import { Quote } from 'lucide-react';
 import { Section } from './ui/Section';
 import { trackWhatsAppClick } from '../utils/tracking';
+import { Foto } from './ui/Foto';
+import { VideoYouTube } from './ui/VideoYouTube';
 
 interface VideoTestimonial {
   id: number;
   name: string;
   role: string;
-  src: string;
+  /** ID do vídeo no YouTube (canal da escola, não listado). */
+  youtube: string;
   poster: string;
   vertical: boolean;
 }
@@ -24,7 +27,7 @@ export const Testimonials: React.FC = () => {
       id: 1,
       name: "Fran",
       role: "mãe da Estephany",
-      src: "/videos/depoimento-fran.mp4",
+      youtube: 'XAtDqyad7v8',
       poster: "/images/thumb-depoimento-fran.jpg",
       vertical: true
     },
@@ -32,7 +35,7 @@ export const Testimonials: React.FC = () => {
       id: 2,
       name: "Jean e Anastácia",
       role: "pais do Nicolas",
-      src: "/videos/depoimento-jean.mp4",
+      youtube: 'wzRkQS-_HWw',
       poster: "/images/thumb-depoimento-jean.jpg",
       vertical: false
     },
@@ -40,7 +43,7 @@ export const Testimonials: React.FC = () => {
       id: 3,
       name: "Manu",
       role: "mãe da Nina",
-      src: "/videos/depoimento-manu.mp4",
+      youtube: 'AuXg8Nwhal8',
       poster: "/images/thumb-depoimento-manu.jpg",
       vertical: true
     },
@@ -48,17 +51,12 @@ export const Testimonials: React.FC = () => {
       id: 4,
       name: "Pai da Madalena",
       role: "",
-      src: "/videos/depoimento-madalena.mp4",
+      youtube: 'gAvZmWAqpE0',
       poster: "/images/thumb-depoimento-madalena.jpg",
       vertical: true
     }
   ];
 
-  const pauseOthers = (e: React.SyntheticEvent<HTMLVideoElement>) => {
-    document.querySelectorAll('video').forEach((v) => {
-      if (v !== e.currentTarget) v.pause();
-    });
-  };
 
   const imageTestimonials: ImageTestimonial[] = [
     {
@@ -100,17 +98,7 @@ export const Testimonials: React.FC = () => {
           {videoTestimonials.map((v) => (
             <div key={v.id} className={v.vertical ? "w-[240px] sm:w-[260px] min-w-0" : "w-full max-w-[560px] min-w-0"}>
               <div className={`${v.vertical ? "aspect-[9/16]" : "aspect-video"} bg-black/30 rounded-sm overflow-hidden border border-white/10`}>
-                <video
-                  src={v.src}
-                  poster={v.poster}
-                  controls
-                  playsInline
-                  preload="none"
-                  onPlay={pauseOthers}
-                  className="w-full h-full object-cover"
-                >
-                  Seu navegador não suporta vídeo.
-                </video>
+                <VideoYouTube id={v.youtube} poster={v.poster} titulo={v.name} rotuloPlay="Assistir ao depoimento" />
               </div>
               <div className="mt-3 text-center">
                 <h4 className="font-serif text-lg text-white leading-tight">{v.name}</h4>
@@ -124,7 +112,7 @@ export const Testimonials: React.FC = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
           {imageTestimonials.map((t) => (
             <div key={t.name} className="rounded-sm overflow-hidden shadow-lg border border-white/10 bg-white/5">
-              <img
+              <Foto
                 src={t.image}
                 alt={`Depoimento de ${t.name}: ${t.quote}`}
                 loading="lazy"

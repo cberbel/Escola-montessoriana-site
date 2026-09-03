@@ -1,5 +1,6 @@
 import React from 'react';
 import { Section } from '../ui/Section';
+import { Foto } from '../ui/Foto';
 
 const activities = [
   {
@@ -61,7 +62,7 @@ export const AtividadesExtrasFr: React.FC = () => (
           key={a.name}
           className="group relative rounded-sm overflow-hidden shadow-md border border-montessori-green/10 min-w-0"
         >
-          <img
+          <Foto
             src={a.image}
             alt={`Atelier ${a.name} à l'Escola Montessoriana`}
             loading="lazy"

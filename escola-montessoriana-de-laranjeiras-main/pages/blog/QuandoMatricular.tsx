@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { BlogLayout, H2 } from '../../components/blog/BlogLayout';
+import { BlogLayout, H2, Referencias } from '../../components/blog/BlogLayout';
 import { P, Bullets, Highlight, LandingImage } from '../../components/landing/Landing';
 
 const L: React.FC<{ to: string; children: React.ReactNode }> = ({ to, children }) => (
@@ -88,5 +88,13 @@ export const QuandoMatricular: React.FC = () => (
       ver os bebês da nossa Agrupada 1 em ação. Às vezes, dez minutos observando uma sala tranquila respondem mais
       do que qualquer artigo.
     </P>
+    <Referencias
+      itens={[
+        { texto: "Center on the Developing Child, Harvard University. Brain Architecture — mais de 1 milhão de novas conexões neurais por segundo nos primeiros anos.", url: "https://developingchild.harvard.edu/science/key-concepts/brain-architecture/" },
+        { texto: "Center on the Developing Child, Harvard University. InBrief: The Science of Early Childhood Development (períodos sensíveis e interações de servir e devolver).", url: "https://developingchild.harvard.edu/resources/inbrief-science-of-ecd/" },
+        { texto: "NICHD Early Child Care Research Network (2006). The NICHD Study of Early Child Care and Youth Development: Findings for Children up to Age 4½ Years — a qualidade do cuidado prediz mais os resultados do que a idade de entrada ou a quantidade de horas.", url: "https://www.nichd.nih.gov/sites/default/files/publications/pubs/documents/seccyd_06.pdf" },
+        { texto: "Heckman, J. J. Invest in early childhood development: reduce deficits, strengthen the economy. The Heckman Equation.", url: "https://heckmanequation.org/resource/invest-in-early-childhood-development-reduce-deficits-strengthen-the-economy/" },
+      ]}
+    />
   </BlogLayout>
 );

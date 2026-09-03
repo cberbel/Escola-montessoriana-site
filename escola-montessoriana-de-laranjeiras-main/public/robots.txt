@@ -1,5 +1,25 @@
 User-agent: *
 Allow: /
 Disallow: /docs/
+# /lp, /informativo*.html e /daycare.html saem do índice por X-Robots-Tag: noindex (vercel.json),
+# não por Disallow — bloquear o rastreio impediria o Google de ver o noindex.
+
+# Rastreadores de IA são bem-vindos (o conteúdo público é para ser citado).
+User-agent: GPTBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: Claude-SearchBot
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: Google-Extended
+Allow: /
+User-agent: Bingbot
+Allow: /
 
 Sitemap: https://www.escolamontessoriana.com.br/sitemap.xml

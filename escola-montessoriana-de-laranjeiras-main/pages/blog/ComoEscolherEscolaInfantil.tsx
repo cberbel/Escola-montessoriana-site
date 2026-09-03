@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { BlogLayout, H2 } from '../../components/blog/BlogLayout';
+import { BlogLayout, H2, Referencias } from '../../components/blog/BlogLayout';
 import { P, Bullets, Highlight } from '../../components/landing/Landing';
 
 const L: React.FC<{ to: string; children: React.ReactNode }> = ({ to, children }) => (
@@ -86,5 +86,13 @@ export const ComoEscolherEscolaInfantil: React.FC = () => (
       Montessori, <L to="/ingles-primeira-infancia">imersão diária em inglês</L>, alimentação saudável feita na
       escola, política de zero telas e um pátio verde onde a infância acontece ao ar livre.
     </P>
+    <Referencias
+      itens={[
+        { texto: "Center on the Developing Child, Harvard University. Brain Architecture — mais de 1 milhão de novas conexões neurais por segundo nos primeiros anos.", url: "https://developingchild.harvard.edu/science/key-concepts/brain-architecture/" },
+        { texto: "NICHD Early Child Care Research Network (2006). The NICHD Study of Early Child Care and Youth Development: Findings for Children up to Age 4½ Years — a qualidade do cuidado prediz mais os resultados do que a idade de entrada ou a quantidade de horas.", url: "https://www.nichd.nih.gov/sites/default/files/publications/pubs/documents/seccyd_06.pdf" },
+        { texto: "Sociedade Brasileira de Pediatria (2019). Manual de Orientação: #MenosTelas #MaisSaúde — recomenda evitar telas antes dos 2 anos.", url: "https://www.sbp.com.br/fileadmin/user_upload/_22246c-ManOrient_-__MenosTelas__MaisSaude.pdf" },
+        { texto: "American Academy of Pediatrics, Council on Communications and Media (2016). Media and Young Minds. Pediatrics, 138(5).", url: "https://doi.org/10.1542/peds.2016-2591" },
+      ]}
+    />
   </BlogLayout>
 );

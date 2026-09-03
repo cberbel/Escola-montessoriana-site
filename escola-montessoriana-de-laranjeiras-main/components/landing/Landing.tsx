@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Calendar } from 'lucide-react';
 import { trackWhatsAppClick } from '../../utils/tracking';
+import { Foto } from '../ui/Foto';
 
 /** Ajusta título e descrição da página (SPA) e restaura os padrões ao sair. */
 export function usePageMeta(title: string, description: string) {
@@ -75,11 +76,11 @@ export const Highlight: React.FC<{ children: React.ReactNode }> = ({ children })
 export const LandingImage: React.FC<{ src: string; alt: string; portrait?: boolean; position?: string }> = ({ src, alt, portrait = false, position }) =>
   portrait ? (
     <div className="overflow-hidden rounded-sm shadow-lg my-6 max-w-md mx-auto">
-      <img src={src} alt={alt} loading="lazy" className="w-full h-auto" />
+      <Foto src={src} alt={alt} loading="lazy" className="w-full h-auto" />
     </div>
   ) : (
     <div className="overflow-hidden rounded-sm shadow-lg my-6">
-      <img
+      <Foto
         src={src}
         alt={alt}
         loading="lazy"
@@ -94,7 +95,7 @@ export const LandingImagePair: React.FC<{ images: { src: string; alt: string }[]
     <div className="grid grid-cols-2 gap-2 sm:gap-4">
       {images.map((im) => (
         <div key={im.src} className="overflow-hidden rounded-sm shadow-lg">
-          <img src={im.src} alt={im.alt} loading="lazy" className="w-full h-56 sm:h-80 object-cover" />
+          <Foto src={im.src} alt={im.alt} loading="lazy" className="w-full h-56 sm:h-80 object-cover" />
         </div>
       ))}
     </div>

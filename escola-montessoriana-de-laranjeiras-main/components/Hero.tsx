@@ -82,7 +82,7 @@ export const Hero: React.FC = () => {
             </h1>
           </a>
           <a
-            href="/lp/creche.html"
+            href="/creche-laranjeiras"
             onClick={() => trackCuriosidade('hero-subtitulo-creche')}
             className="block rounded-lg focus:outline focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-montessori-green/60"
           >

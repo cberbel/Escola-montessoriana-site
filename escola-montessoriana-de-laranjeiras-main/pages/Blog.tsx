@@ -4,11 +4,12 @@ import { Instagram, Calendar, Clock } from 'lucide-react';
 import { usePageMeta } from '../components/landing/Landing';
 import { trackWhatsAppClick } from '../utils/tracking';
 import { blogPosts } from './blog/posts';
+import { Foto } from '../components/ui/Foto';
 
 export const Blog: React.FC = () => {
   usePageMeta(
     'Blog | Escola Montessoriana de Laranjeiras',
-    'Artigos sobre método Montessori, desenvolvimento infantil, bilinguismo e escolha de escola, escritos pela equipe da Escola Montessoriana de Laranjeiras.'
+    'Artigos sobre método Montessori, desenvolvimento infantil, bilinguismo e escolha de escola, escritos pela equipe da Escola Montessoriana de Laranjeiras, com fontes citadas.'
   );
 
   return (
@@ -24,7 +25,7 @@ export const Blog: React.FC = () => {
           </h1>
           <p className="font-sans text-lg sm:text-xl text-montessori-cream/90 leading-relaxed">
             Educação, desenvolvimento infantil e a arte de criar filhos com presença — escrito pela Equipe Escola
-            Montessoriana, que vive isso todos os dias.
+            Montessoriana, que vive isso todos os dias, com as fontes citadas ao fim de cada artigo.
           </p>
         </div>
       </div>
@@ -40,7 +41,7 @@ export const Blog: React.FC = () => {
                 className="group flex flex-col bg-white border border-montessori-green/10 rounded-sm shadow-md hover:shadow-xl transition-shadow overflow-hidden"
               >
                 <div className="overflow-hidden">
-                  <img
+                  <Foto
                     src={post.image}
                     alt={post.imageAlt}
                     loading="lazy"

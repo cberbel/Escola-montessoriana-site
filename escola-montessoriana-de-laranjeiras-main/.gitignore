@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Variantes WebP geradas no build (scripts/otimizar-imagens.mjs)
+public/images/**/*-800.webp
+public/images/**/*-1400.webp

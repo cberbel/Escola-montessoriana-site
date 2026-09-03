@@ -2,12 +2,14 @@ import React from 'react';
 import { Quote } from 'lucide-react';
 import { Section } from '../ui/Section';
 import { trackWhatsAppClick } from '../../utils/tracking';
+import { VideoYouTube } from '../ui/VideoYouTube';
 
 interface VideoTestimonial {
   id: number;
   name: string;
   role: string;
-  src: string;
+  /** ID do vídeo no YouTube (canal da escola, não listado). */
+  youtube: string;
   poster: string;
   vertical: boolean;
 }
@@ -18,7 +20,7 @@ export const TestimonialsEs: React.FC = () => {
       id: 1,
       name: 'Fran',
       role: 'Mamá de Estephany',
-      src: '/videos/depoimento-fran.mp4',
+      youtube: 'LlA6vo7SE2w', // versão com legendas em inglês
       poster: '/images/thumb-depoimento-fran.jpg',
       vertical: true
     },
@@ -26,7 +28,7 @@ export const TestimonialsEs: React.FC = () => {
       id: 2,
       name: 'Jean y Anastácia',
       role: 'Papás de Nicolas',
-      src: '/videos/depoimento-jean.mp4',
+      youtube: 'nM9CHRizxVA', // versão com legendas em inglês
       poster: '/images/thumb-depoimento-jean.jpg',
       vertical: false
     },
@@ -34,7 +36,7 @@ export const TestimonialsEs: React.FC = () => {
       id: 3,
       name: 'Manu',
       role: 'Mamá de Nina',
-      src: '/videos/depoimento-manu.mp4',
+      youtube: 'wJJn-oarv4w', // versão com legendas em inglês
       poster: '/images/thumb-depoimento-manu.jpg',
       vertical: true
     },
@@ -42,17 +44,12 @@ export const TestimonialsEs: React.FC = () => {
       id: 4,
       name: 'Papá de Madalena',
       role: '',
-      src: '/videos/depoimento-madalena.mp4',
+      youtube: '5K3a2ssRWRA', // versão com legendas em inglês
       poster: '/images/thumb-depoimento-madalena.jpg',
       vertical: true
     }
   ];
 
-  const pauseOthers = (e: React.SyntheticEvent<HTMLVideoElement>) => {
-    document.querySelectorAll('video').forEach((v) => {
-      if (v !== e.currentTarget) v.pause();
-    });
-  };
 
   return (
     <Section id="testimonials" className="bg-montessori-green text-white relative overflow-hidden">
@@ -72,17 +69,7 @@ export const TestimonialsEs: React.FC = () => {
           {videoTestimonials.map((v) => (
             <div key={v.id} className={v.vertical ? 'w-[240px] sm:w-[260px] min-w-0' : 'w-full max-w-[560px] min-w-0'}>
               <div className={`${v.vertical ? 'aspect-[9/16]' : 'aspect-video'} bg-black/30 rounded-sm overflow-hidden border border-white/10`}>
-                <video
-                  src={v.src}
-                  poster={v.poster}
-                  controls
-                  playsInline
-                  preload="none"
-                  onPlay={pauseOthers}
-                  className="w-full h-full object-cover"
-                >
-                  Tu navegador no soporta video.
-                </video>
+                <VideoYouTube id={v.youtube} poster={v.poster} titulo={v.name} rotuloPlay="Ver el testimonio" />
               </div>
               <div className="mt-3 text-center">
                 <h4 className="font-serif text-lg text-white leading-tight">{v.name}</h4>
