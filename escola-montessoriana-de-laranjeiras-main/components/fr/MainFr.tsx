@@ -3,6 +3,7 @@ import { Outlet } from 'react-router-dom';
 import { NavbarFr } from './NavbarFr';
 import { trackWhatsAppClick } from '../../utils/tracking';
 import { MapPin, Instagram, Mail } from 'lucide-react';
+import { MapaEscola } from '../ui/MapaEscola';
 
 const WHATSAPP_VISIT_FR =
   'https://wa.me/5521992973454?text=Bonjour%2C%20je%20souhaiterais%20plus%20d%27informations%20sur%20l%27Escola%20Montessoriana%20de%20Laranjeiras.';
@@ -51,16 +52,7 @@ export const MainFr: React.FC = () => {
               Aider chaque enfant à devenir l'adulte qu'il porte en lui.
             </p>
             <div className="pt-4">
-              <iframe
-                title="Localisation de l'Escola Montessoriana de Laranjeiras"
-                src="https://maps.google.com/maps?q=Rua%20das%20Laranjeiras%2C%20540%2C%20fundos%2C%20Laranjeiras%2C%20Rio%20de%20Janeiro%20-%20RJ&t=&z=15&ie=UTF8&iwloc=B&output=embed"
-                width="100%"
-                height="200"
-                className="rounded-lg shadow-md border-0 w-full"
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
+              <MapaEscola titulo="Localisation de l'Escola Montessoriana de Laranjeiras" rotulo="Voir la carte" abrir="Ouvrir dans Google Maps" />
             </div>
             <a
               href="https://www.google.com/maps/search/?api=1&query=Escola+Montessoriana+de+Laranjeiras+Rio+de+Janeiro"
