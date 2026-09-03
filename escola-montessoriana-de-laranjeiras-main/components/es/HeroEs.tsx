@@ -9,24 +9,29 @@ const WhatsAppIcon = ({ size = 20, className = '' }: { size?: number; className?
 );
 
 export const HeroEs: React.FC = () => {
-  const bgImageUrl = '/images/hero-criancas.webp';
-
   // Altura: no celular o hero para em 82vh para que a próxima seção apareça na
   // borda da tela e convide a rolar. Metade dos visitantes não passava de 5% da
   // página — a tela cheia era o teto. No desktop segue tela cheia.
   return (
     <div className="relative min-h-[82vh] md:min-h-screen w-full flex items-center justify-center md:items-start md:pt-[8.5rem] md:justify-center md:pb-16">
-      <div
-        className="absolute inset-0 z-0 overflow-hidden bg-montessori-green"
-        style={{
-          backgroundImage: `url(${bgImageUrl})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-        }}
-        role="img"
-        aria-label="Niños trabajando en la Escola Montessoriana de Laranjeiras"
-      />
+      {/* Background: foto da escola. É o elemento de LCP da home. Como <img> com
+          fetchPriority="high" no HTML pré-renderizado, o preload scanner do navegador
+          acha a foto na primeira varredura, antes do CSS e do JS — como background-image
+          ela só era descoberta depois do CSS, e o LCP de laboratório ficava em ~10 s. */}
+      <div className="absolute inset-0 z-0 overflow-hidden bg-montessori-green">
+        <img
+          src="/images/hero-criancas-1400.webp"
+          srcSet="/images/hero-criancas-800.webp 800w, /images/hero-criancas-1400.webp 960w"
+          sizes="100vw"
+          alt="Niños trabajando en la Escola Montessoriana de Laranjeiras"
+          width={960}
+          height={1280}
+          loading="eager"
+          fetchPriority="high"
+          decoding="async"
+          className="w-full h-full object-cover object-center"
+        />
+      </div>
       <div
         className="absolute inset-0 bg-gradient-to-b from-montessori-dark/55 via-montessori-dark/20 to-transparent z-10"
         aria-hidden="true"
