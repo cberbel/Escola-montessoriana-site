@@ -100,6 +100,31 @@ e três de *estratégia de lances* (parcela de impressões, Maximizar cliques, M
 conversões). O classificador bloqueia essa tela para o Claude. Tela: Recomendações →
 Configurações de aplicação automática → Gerenciar. **Desfazer:** marcar de novo lá.
 
+**9. Lista de clientes (Customer Match) — 03/09, ~04h.** Arquivo gerado de `public.responsaveis`
++ `public.alunos` (68 responsáveis, mãe e pai, ativos e que saíram; 57 e-mails, 65 telefones
++55) em `Documents\google-ads-clientes\clientes-escola-customer-match.csv` (LEIA-ME ao lado).
+O upload foi feito pelo Claudio no Gerenciador de públicos (o classificador do Claude bloqueia
+upload de dado pessoal em massa) com o nome **"clientes 2025/26"** — tamanho "menos de 100".
+- **Exclusão aplicada na `[ALM] [C3] Campanha de Leads`** (Públicos-alvo → Exclusões, nível
+  campanha; confirmado na tabela). Família que já é da escola deixa de ver o anúncio ao buscar
+  o nome. O painel avisa "muito pequeno para usar nos Serviços do Google" — a lista tem menos
+  de 1.000 pessoas; a exclusão fica registrada, mas não há como garantir que o Google a
+  aplique abaixo desse tamanho.
+- **Sinal de público na PMax NÃO entrou:** o seletor "Seus dados" devolve "não é possível
+  exibir 1 segmento relacionado à lista de clientes devido a problemas de qualificação" —
+  a conta ainda não é elegível para usar Customer Match em segmentação (exigência de
+  histórico/conformidade do Google). Reavaliar em ~30 dias.
+- Também vi que o grupo de recursos da PMax mostra "Não há nenhum indicador de público-alvo"
+  na tabela, embora o editor liste os in-market (Ensino, Creche, Cuidados com crianças...).
+  Não mexi.
+**Desfazer:** Públicos-alvo da campanha → Editar exclusões → remover; a lista pode ser apagada
+no Gerenciador de públicos.
+
+**10. Metas de conversão da `[ALM] [C3] [PMAX]` (campaignId 21811674402) — mesmo erro, mesma
+correção (03/09).** Estava em *Contatos, Enviar formulários de lead, Leads de mensagens*.
+Agora: **Enviar formulários de lead + Leads qualificados + Leads convertidos** (conferido no
+resumo da campanha). **Desfazer:** Configurações → Metas de conversão → Alterar.
+
 **Conferido sem mudança:** geo da Pesquisa continua "Presença" (log de 18/08) com raio de
 4 km em Botafogo; AI Max está DESLIGADA (o log de 18/08 a registrava ligada — alguém
 desligou depois; não foi tocada hoje).
