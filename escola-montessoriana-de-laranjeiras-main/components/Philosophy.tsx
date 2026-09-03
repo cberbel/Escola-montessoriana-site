@@ -2,6 +2,7 @@ import React from 'react';
 import { Focus, Sun, Heart, Hand, BookOpen, Compass, Globe } from 'lucide-react';
 import { Section } from './ui/Section';
 import { trackWhatsAppClick } from '../utils/tracking';
+import { Foto } from './ui/Foto';
 
 export const Philosophy: React.FC = () => {
   const traits = [
@@ -59,7 +60,7 @@ export const Philosophy: React.FC = () => {
       {/* A criança transformada: foto de concentração + introdução */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 items-center max-w-5xl mx-auto mb-12 sm:mb-16 min-w-0">
         <div className="relative overflow-hidden rounded-sm shadow-lg border-l-4 border-montessori-gold min-w-0">
-          <img
+          <Foto
             src="/images/Crianca-brincando.jpg"
             alt="Crianças com os braços para o alto, encantadas, caçando bolhas de sabão no pátio da escola"
             loading="lazy"

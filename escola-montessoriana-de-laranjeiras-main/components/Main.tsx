@@ -4,6 +4,7 @@ import { Navbar } from './Navbar';
 import { FloatingWhatsApp } from './FloatingWhatsApp';
 import { trackWhatsAppClick } from '../utils/tracking';
 import { MapPin, Instagram, Mail } from 'lucide-react';
+import { MapaEscola } from './ui/MapaEscola';
 
 const WhatsAppIcon = ({ size = 20, className = '' }: { size?: number; className?: string }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" className={className}>
@@ -33,16 +34,7 @@ export const Main: React.FC = () => {
               Ajudando as crianças a construirem os homens e mulheres nos quais se transformarão.
             </p>
             <div className="pt-4">
-              <iframe
-                title="Localização da Escola Montessoriana de Laranjeiras"
-                src="https://maps.google.com/maps?q=Rua%20das%20Laranjeiras%2C%20540%2C%20fundos%2C%20Laranjeiras%2C%20Rio%20de%20Janeiro%20-%20RJ&t=&z=15&ie=UTF8&iwloc=B&output=embed"
-                width="100%"
-                height="200"
-                className="rounded-lg shadow-md border-0 w-full"
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
+              <MapaEscola titulo="Localização da Escola Montessoriana de Laranjeiras" rotulo="Ver o mapa" abrir="Abrir no Google Maps" />
             </div>
             <a
               href="https://www.google.com/maps/search/?api=1&query=Escola+Montessoriana+de+Laranjeiras+Rio+de+Janeiro"
@@ -89,6 +81,7 @@ export const Main: React.FC = () => {
               <li><Link to="/creche-flamengo" className="hover:text-yellow-400 transition-colors">Creche perto do Flamengo</Link></li>
               <li><Link to="/turmas" className="hover:text-yellow-400 transition-colors">Turmas</Link></li>
               <li><Link to="/metodo-montessori" className="hover:text-yellow-400 transition-colors">O Método Montessori</Link></li>
+              <li><Link to="/sobre" className="hover:text-yellow-400 transition-colors">Sobre a escola e o fundador</Link></li>
               <li><Link to="/blog" className="hover:text-yellow-400 transition-colors">Blog</Link></li>
             </ul>
             <h4 className="font-bold uppercase tracking-widest text-montessori-gold text-base pt-4">Acompanhe</h4>
