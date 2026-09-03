@@ -190,7 +190,7 @@ const rotasBase: RotaPrerender[] = [
   },
   {
     url: '/en',
-    title: `Montessori School & Daycare in Laranjeiras, Rio | Escola Montessoriana`,
+    title: `Montessori School & Daycare in Laranjeiras, Rio de Janeiro`,
     description:
       'Montessori school in Laranjeiras, Rio de Janeiro, from 9 months to 11 years: daily English immersion, homemade food and a screen-free, green environment.',
   },
@@ -264,7 +264,7 @@ const rotasBase: RotaPrerender[] = [
     url: '/fr/immersion-anglais',
     title: `Immersion en anglais | ${MARCA_CURTA}`,
     description:
-      'Immersion en anglais dès la crèche, avec des enseignantes anglophones : l’enfant acquiert la langue naturellement, au moment où le cerveau y est le plus réceptif.',
+      'Immersion en anglais dès la crèche, avec des enseignantes anglophones : l’enfant acquiert la langue au moment où le cerveau y est le plus réceptif.',
   },
   {
     url: '/fr/nature-education-cosmique',
