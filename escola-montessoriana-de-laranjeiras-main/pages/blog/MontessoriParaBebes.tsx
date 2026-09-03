@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { BlogLayout, H2 } from '../../components/blog/BlogLayout';
+import { BlogLayout, H2, Referencias } from '../../components/blog/BlogLayout';
 import { P, Bullets, Highlight, LandingImage } from '../../components/landing/Landing';
 
 const L: React.FC<{ to: string; children: React.ReactNode }> = ({ to, children }) => (
@@ -90,5 +90,12 @@ export const MontessoriParaBebes: React.FC = () => (
       se quiser ver uma sala Montessori de verdade funcionando, com bebês concentrados e crianças autônomas,{' '}
       <strong>venha nos visitar em Laranjeiras</strong>.
     </P>
+    <Referencias
+      itens={[
+        { texto: "Center on the Developing Child, Harvard University. InBrief: The Science of Early Childhood Development (períodos sensíveis e interações de servir e devolver).", url: "https://developingchild.harvard.edu/resources/inbrief-science-of-ecd/" },
+        { texto: "Lillard, A. S. et al. (2017). Montessori Preschool Elevates and Equalizes Child Outcomes: A Longitudinal Study. Frontiers in Psychology, 8:1783.", url: "https://www.frontiersin.org/articles/10.3389/fpsyg.2017.01783/full" },
+        { texto: "Lillard, A.; Else-Quest, N. (2006). Evaluating Montessori Education. Science, 313(5795), 1893–1894.", url: "https://www.science.org/doi/10.1126/science.1132362" },
+      ]}
+    />
   </BlogLayout>
 );

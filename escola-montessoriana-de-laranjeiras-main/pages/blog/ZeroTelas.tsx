@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { BlogLayout, H2 } from '../../components/blog/BlogLayout';
+import { BlogLayout, H2, Referencias } from '../../components/blog/BlogLayout';
 import { P, Bullets, Highlight, LandingImage } from '../../components/landing/Landing';
 
 const L: React.FC<{ to: string; children: React.ReactNode }> = ({ to, children }) => (
@@ -79,5 +79,14 @@ export const ZeroTelas: React.FC = () => (
       primeira infância inteira é vivida sem telas. O cérebro do seu filho agradece —{' '}
       <L to="/desenvolvimento-cerebral">a ciência explica por quê</L>.
     </Highlight>
+    <Referencias
+      itens={[
+        { texto: "Lillard, A. S.; Peterson, J. (2011). The Immediate Impact of Different Types of Television on Young Children's Executive Function. Pediatrics, 128(4), 644–649.", url: "https://doi.org/10.1542/peds.2010-1919" },
+        { texto: "Kuhl, P. K.; Tsao, F.-M.; Liu, H.-M. (2003). Foreign-language experience in infancy: effects of short-term exposure and social interaction on phonetic learning. PNAS, 100(15), 9096–9101.", url: "https://www.pnas.org/doi/10.1073/pnas.1532872100" },
+        { texto: "American Academy of Pediatrics, Council on Communications and Media (2016). Media and Young Minds. Pediatrics, 138(5).", url: "https://doi.org/10.1542/peds.2016-2591" },
+        { texto: "Organização Mundial da Saúde (2019). Guidelines on physical activity, sedentary behaviour and sleep for children under 5 years of age — nenhum tempo de tela antes de 1 ano; no máximo 1 hora entre 2 e 4 anos.", url: "https://www.who.int/publications/i/item/9789241550536" },
+        { texto: "Sociedade Brasileira de Pediatria (2019). Manual de Orientação: #MenosTelas #MaisSaúde — recomenda evitar telas antes dos 2 anos.", url: "https://www.sbp.com.br/fileadmin/user_upload/_22246c-ManOrient_-__MenosTelas__MaisSaude.pdf" },
+      ]}
+    />
   </BlogLayout>
 );

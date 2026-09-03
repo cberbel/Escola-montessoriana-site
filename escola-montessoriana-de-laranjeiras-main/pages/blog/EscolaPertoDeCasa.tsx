@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { BlogLayout, H2 } from '../../components/blog/BlogLayout';
+import { BlogLayout, H2, Referencias } from '../../components/blog/BlogLayout';
 import { P, Bullets, Highlight, LandingImage } from '../../components/landing/Landing';
 
 const L: React.FC<{ to: string; children: React.ReactNode }> = ({ to, children }) => (
@@ -147,5 +147,15 @@ export const EscolaPertoDeCasa: React.FC = () => (
       opções perto de você — e depois venha nos conhecer. Deixe as crianças (as nossas e o seu filho) mostrarem a
       diferença.
     </P>
+    <Referencias
+      itens={[
+        { texto: "Center on the Developing Child, Harvard University. Brain Architecture — mais de 1 milhão de novas conexões neurais por segundo nos primeiros anos.", url: "https://developingchild.harvard.edu/science/key-concepts/brain-architecture/" },
+        { texto: "Center on the Developing Child, Harvard University. InBrief: The Science of Early Childhood Development (períodos sensíveis e interações de servir e devolver).", url: "https://developingchild.harvard.edu/resources/inbrief-science-of-ecd/" },
+        { texto: "Cunha, F.; Heckman, J. J. (2007). The Technology of Skill Formation (\"skills beget skills\"). American Economic Review, 97(2). NBER Working Paper 12840.", url: "https://www.nber.org/papers/w12840" },
+        { texto: "Heckman, J. J. Invest in early childhood development: reduce deficits, strengthen the economy. The Heckman Equation.", url: "https://heckmanequation.org/resource/invest-in-early-childhood-development-reduce-deficits-strengthen-the-economy/" },
+        { texto: "Lillard, A.; Else-Quest, N. (2006). Evaluating Montessori Education. Science, 313(5795), 1893–1894.", url: "https://www.science.org/doi/10.1126/science.1132362" },
+        { texto: "Lillard, A. S. et al. (2017). Montessori Preschool Elevates and Equalizes Child Outcomes: A Longitudinal Study. Frontiers in Psychology, 8:1783.", url: "https://www.frontiersin.org/articles/10.3389/fpsyg.2017.01783/full" },
+      ]}
+    />
   </BlogLayout>
 );

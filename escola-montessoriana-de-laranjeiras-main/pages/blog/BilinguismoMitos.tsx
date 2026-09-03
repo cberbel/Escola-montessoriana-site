@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { BlogLayout, H2 } from '../../components/blog/BlogLayout';
+import { BlogLayout, H2, Referencias } from '../../components/blog/BlogLayout';
 import { P, Bullets, Highlight, LandingImage } from '../../components/landing/Landing';
 
 const L: React.FC<{ to: string; children: React.ReactNode }> = ({ to, children }) => (
@@ -76,5 +76,13 @@ export const BilinguismoMitos: React.FC = () => (
       <L to="/ingles-primeira-infancia">Leia nossa página sobre inglês na primeira infância</L> ou venha ouvir as
       crianças vivendo em dois idiomas — de perto, numa visita.
     </P>
+    <Referencias
+      itens={[
+        { texto: "Byers-Heinlein, K.; Lew-Williams, C. (2013). Bilingualism in the Early Years: What the Science Says. LEARNing Landscapes, 7(1), 95–112 — bilinguismo não causa atraso de linguagem nem confusão.", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC6168212/" },
+        { texto: "Kuhl, P. K.; Tsao, F.-M.; Liu, H.-M. (2003). Foreign-language experience in infancy: effects of short-term exposure and social interaction on phonetic learning. PNAS, 100(15), 9096–9101.", url: "https://www.pnas.org/doi/10.1073/pnas.1532872100" },
+        { texto: "Kuhl, P. K. (2010). The linguistic genius of babies. TED.", url: "https://www.ted.com/talks/patricia_kuhl_the_linguistic_genius_of_babies" },
+        { texto: "Bialystok, E.; Craik, F. I. M.; Luk, G. (2012). Bilingualism: consequences for mind and brain. Trends in Cognitive Sciences, 16(4), 240–250.", url: "https://doi.org/10.1016/j.tics.2012.03.001" },
+      ]}
+    />
   </BlogLayout>
 );
