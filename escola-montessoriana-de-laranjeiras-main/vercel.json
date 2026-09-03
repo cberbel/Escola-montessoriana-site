@@ -1,59 +1,125 @@
 {
-  "$comment": "SEO/performance (set/2026). Não há mais rewrite catch-all para /index.html: cada rota real já existe em dist/<rota>/index.html (prerender.mjs), e o que não existe cai no dist/404.html com status 404 de verdade — antes qualquer URL inválida devolvia a home com 200 (soft 404). trailingSlash:false faz /turmas/ virar 308 para /turmas; /index.html tem redirect explícito.",
   "trailingSlash": false,
   "redirects": [
     {
       "source": "/(.*)",
-      "has": [{ "type": "host", "value": "escolamontessoriana.com.br" }],
+      "has": [
+        {
+          "type": "host",
+          "value": "escolamontessoriana.com.br"
+        }
+      ],
       "destination": "https://www.escolamontessoriana.com.br/$1",
       "permanent": true
     },
-    { "source": "/index.html", "destination": "/", "permanent": true },
-    { "source": "/sobre/", "destination": "/sobre", "permanent": true }
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/sobre/",
+      "destination": "/sobre",
+      "permanent": true
+    }
   ],
   "headers": [
     {
       "source": "/assets/(.*)",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
     },
     {
       "source": "/fonts/(.*)",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
     },
     {
       "source": "/images/(.*)",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=2592000, stale-while-revalidate=86400" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=2592000, stale-while-revalidate=86400"
+        }
+      ]
     },
     {
       "source": "/videos/(.*)",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=2592000, stale-while-revalidate=86400" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=2592000, stale-while-revalidate=86400"
+        }
+      ]
     },
     {
       "source": "/(.*)\\.(png|jpg|jpeg|webp|svg|ico|gif)",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=2592000, stale-while-revalidate=86400" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=2592000, stale-while-revalidate=86400"
+        }
+      ]
     },
     {
       "source": "/docs/(.*)",
-      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
     },
     {
       "source": "/lp/(.*)",
-      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, follow" }]
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, follow"
+        }
+      ]
     },
     {
       "source": "/(informativo[^/]*|daycare)\\.html",
-      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
     },
     {
       "source": "/(informativo[^/]*|daycare)",
-      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
     },
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
-        { "key": "Strict-Transport-Security", "value": "max-age=63072000; includeSubDomains" }
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=63072000; includeSubDomains"
+        }
       ]
     }
   ]
