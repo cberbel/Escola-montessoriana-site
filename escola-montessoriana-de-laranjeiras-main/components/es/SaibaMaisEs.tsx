@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { Section } from '../ui/Section';
+import { Foto } from '../ui/Foto';
 
 const topics = [
   {
@@ -76,7 +77,7 @@ export const SaibaMaisEs: React.FC = () => (
             className="group snap-center shrink-0 basis-[85%] sm:basis-auto bg-montessori-cream border border-montessori-green/10 rounded-sm overflow-hidden hover:shadow-lg hover:border-montessori-green/30 transition-all min-w-0 break-words flex flex-col"
           >
             <div className="overflow-hidden">
-              <img
+              <Foto
                 src={topic.image}
                 alt={topic.alt}
                 loading="lazy"
