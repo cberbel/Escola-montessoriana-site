@@ -84,11 +84,11 @@ export const faqCrecheFlamengo: ItemFAQ[] = [
   },
 ];
 
-/** Página /mensalidade. Valor de partida e como ele é composto — sem tabela completa. */
+/** Página /mensalidade. Valor de partida e como ele é composto. */
 export const faqMensalidade: ItemFAQ[] = [
   {
     p: 'Quanto custa a mensalidade da Escola Montessoriana de Laranjeiras?',
-    r: 'A mensalidade começa em R$ 2.000. O valor final depende do período (meio período, semi-integral, integral ou estendido) e da frequência semanal. A secretaria passa o valor exato para a rotina da sua família.',
+    r: 'A mensalidade começa em R$ 2.000. O valor depende do período (meio período, semi-integral, integral ou estendido) e da frequência semanal. O Atendimento informa o valor para o horário que a família precisa.',
   },
   {
     p: 'O que muda o valor da mensalidade?',
@@ -108,6 +108,6 @@ export const faqMensalidade: ItemFAQ[] = [
   },
   {
     p: 'Como sei o valor exato para o meu caso?',
-    r: 'Mande uma mensagem para o Atendimento pelo WhatsApp com a idade da criança e o horário que você precisa. A resposta vem em minutos, e a visita à escola não tem compromisso.',
+    r: 'Mande uma mensagem para o Atendimento pelo WhatsApp com a idade da criança e o horário de que precisa. A resposta vem em minutos.',
   },
 ];
