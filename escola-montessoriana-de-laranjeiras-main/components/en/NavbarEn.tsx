@@ -126,7 +126,7 @@ export const NavbarEn: React.FC = () => {
              </div>
            )}
            <span className="font-logo font-bold text-lg md:text-xl tracking-tight text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.9),0_2px_4px_rgba(0,0,0,0.7)]">
-             Montessoriana
+             Escola Montessoriana
            </span>
         </Link>
 
