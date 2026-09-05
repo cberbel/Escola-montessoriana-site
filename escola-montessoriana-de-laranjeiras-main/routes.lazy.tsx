@@ -50,6 +50,7 @@ export const pages: Pages = {
   GruposEs: lazy(() => import('./pages/es/GruposEs').then((m) => ({ default: m.GruposEs }))),
   AgendarVisitaEs: lazy(() => import('./pages/es/AgendarVisitaEs').then((m) => ({ default: m.AgendarVisitaEs }))),
   Sobre: lazy(() => import('./pages/Sobre').then((m) => ({ default: m.Sobre }))),
+  Mensalidade: lazy(() => import('./pages/Mensalidade').then((m) => ({ default: m.Mensalidade }))),
   NotFound: lazy(() => import('./pages/NotFound').then((m) => ({ default: m.NotFound }))),
   blogPosts: blogPostComponents,
 };

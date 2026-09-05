@@ -6,6 +6,7 @@
 import type { Pages } from './routes.types';
 import { blogPostComponents } from './pages/blog/posts.eager';
 import { Sobre } from './pages/Sobre';
+import { Mensalidade } from './pages/Mensalidade';
 import { NotFound } from './pages/NotFound';
 import { Agendamento } from './pages/Agendamento';
 import { Blog } from './pages/Blog';
@@ -86,6 +87,7 @@ export const pages: Pages = {
   GruposEs,
   AgendarVisitaEs,
   Sobre,
+  Mensalidade,
   NotFound,
   blogPosts: blogPostComponents,
 };

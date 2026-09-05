@@ -41,6 +41,7 @@ export interface Pages {
   GruposEs: React.ComponentType;
   AgendarVisitaEs: React.ComponentType;
   Sobre: React.ComponentType;
+  Mensalidade: React.ComponentType;
   NotFound: React.ComponentType;
   /** slug -> componente do artigo */
   blogPosts: Record<string, React.ComponentType>;

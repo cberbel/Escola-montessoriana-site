@@ -12,7 +12,7 @@ import { StaticRouter } from 'react-router-dom/server';
 import { AppShell } from './App';
 import { pages } from './routes.eager';
 import { blogPosts } from './pages/blog/posts';
-import { faqCrecheLaranjeiras, faqCrecheFlamengo, type ItemFAQ } from './pages/landing/faqs';
+import { faqCrecheLaranjeiras, faqCrecheFlamengo, faqMensalidade, type ItemFAQ } from './pages/landing/faqs';
 
 export function render(url: string): string {
   return renderToString(
@@ -100,6 +100,15 @@ const rotasBase: RotaPrerender[] = [
       'Claudio Berbel, formador Montessori pela ABEM e doutor em economia pela FGV, e a história de uma escola em Laranjeiras criada para os próprios filhos.',
     breadcrumb: [BC_HOME, { name: 'Sobre', url: '/sobre' }],
     lastmod: REVISAO,
+  },
+  {
+    url: '/mensalidade',
+    title: 'Mensalidade a partir de R$ 2.000 | Escola Montessoriana',
+    description:
+      'Mensalidade a partir de R$ 2.000, com inglês por imersão, alimentação e atividades incluídos. O valor varia com o período. E a conta que vale fazer antes.',
+    faq: faqMensalidade,
+    breadcrumb: [BC_HOME, { name: 'Mensalidade', url: '/mensalidade' }],
+    lastmod: '2026-09-05',
   },
   {
     // Gravada como dist/404.html (ver prerender.mjs). Fora do sitemap.
