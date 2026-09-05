@@ -86,6 +86,7 @@ export const AppShell: React.FC<{ pages?: Pages }> = ({ pages: P = lazyPages }) 
           <Route path="/" element={<Main />}>
             <Route index element={<Home />} />
             <Route path="sobre" element={<P.Sobre />} />
+            <Route path="mensalidade" element={<P.Mensalidade />} />
             <Route path="agendamento" element={<P.Agendamento />} />
             <Route path="blog" element={<P.Blog />} />
             {blogPosts.map((post) => {
