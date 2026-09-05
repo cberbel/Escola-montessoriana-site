@@ -54,6 +54,30 @@ perto de mim" raramente mostrada (baixo índice de qualidade). Custam zero.
 
 ---
 
+### Executado com ok do Claudio (sugestões 1 e 5 da revisão) — 05/09, ~19h
+
+**1. Pinos removidos do RSA do grupo de concorrentes** (adId 784767160713):
+"Montessoriana de Laranjeiras" e "Escola Montessoriana RJ" voltaram a "Mostrar em
+qualquer posição não fixada". Os títulos continuam SEM `{Keyword:}` — a parte que
+resolveu a confusão com concorrente fica. Salvo; conferido "0 pinos restantes" antes
+do salvar. Expectativa: qualidade sai de "Ruim" e o grupo volta a entregar.
+**Desfazer:** editar o anúncio → fixar de novo na posição 1.
+
+**2. Raios recentrados na escola (Rua das Laranjeiras, 540), 4 km, nas duas campanhas:**
+- `[ALM] [C3] Campanha de Leads`: era Rua Voluntários da Pátria (Botafogo) → agora
+  Laranjeiras 540 (conferido na tabela de Locais).
+- `[ALM] [C3] [PMAX]`: era Humaitá → agora Laranjeiras 540. As 27 exclusões de local
+  da PMax não foram tocadas (aba separada). Opção Presença/Interesse não foi mexida.
+O círculo novo ganha Catete/Glória/Santa Teresa e perde a ponta sul de Copacabana.
+**Desfazer:** Locais da campanha → lápis → modo Raio → readicionar o centro antigo.
+
+Observado no cabeçalho da PMax: status **"Limitada pelo orçamento"** (R$ 15/dia).
+Anotado apenas — sem mudança.
+
+Itens 2, 3, 4 e 6 da revisão seguem aguardando decisão.
+
+---
+
 ## 02–03/09/2026
 
 ### Leitura de 14 dias e correções na conta Google Ads (autorizadas pelo Claudio)
