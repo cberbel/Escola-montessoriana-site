@@ -105,7 +105,7 @@ const rotasBase: RotaPrerender[] = [
     url: '/mensalidade',
     title: 'Mensalidade a partir de R$ 2.000 | Escola Montessoriana',
     description:
-      'Mensalidade a partir de R$ 2.000, com inglês por imersão, alimentação e atividades incluídos. O valor varia com o período. E a conta que vale fazer antes.',
+      'Mensalidade a partir de R$ 2.000. O valor varia com o período — meio período, semi-integral, integral ou estendido. Consulte o Atendimento pelo WhatsApp.',
     faq: faqMensalidade,
     breadcrumb: [BC_HOME, { name: 'Mensalidade', url: '/mensalidade' }],
     lastmod: '2026-09-05',
