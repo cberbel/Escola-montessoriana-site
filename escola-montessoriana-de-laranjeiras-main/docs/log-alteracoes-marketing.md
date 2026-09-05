@@ -16,6 +16,44 @@ Contêiner GTM: **GTM-56ZSQTXF** · Projeto Supabase: **ponto-escola-montessoria
 
 ---
 
+## 05/09/2026
+
+### Revisão de 2 dias pós-mudanças — achados (execução suspensa a pedido do Claudio)
+
+Regra nova a partir de hoje: **sugestões primeiro, execução só com ok dele.**
+
+**Achado principal: o grupo de concorrentes ZEROU depois da edição de 03/09.**
+14 dias: 143 cliques, CTR 18,1%, R$ 403,93, 7 conversões. Dia 04/09 isolado: 30
+impressões, **0 cliques, R$ 0** (banco confirma: 0 cliques com o agid desde 03/09,
+antes ~10/dia). Causa provável: os DOIS títulos fixados na posição 1 derrubaram a
+qualidade do anúncio para "Ruim" e com ela o ad rank. Sugerido (não executado):
+soltar os pinos mantendo os títulos sem {Keyword:}. Tirar o {Keyword:} resolveu a
+confusão com concorrente; o pino foi o excesso.
+
+Campanha de Pesquisa em 3-4/09: 44 cliques, 904 impr, CTR 4,87% (era 8,36%),
+R$ 145,52, 0 conversões no painel (esperado: série mudou de natureza em 03/09 e o
+offline sobe com atraso). Esteira offline viva: conversa 04/09 10:18, visita 04/09
+10:47 — **visita agendada PAGA em 04/09 (com gclid), a 4ª**. PMax: ~40 cliques/2d,
+0 contatos. Marca rodou (CTR 27%, CPC R$ 1,97); Montessori (LP) estreou; kw nova
+"escola infantil botafogo" deu 1 lead; nenhum bairro negativado vazou.
+
+**Correção aplicada (única execução do dia, antes do "sugestões primeiro"):**
+`medicao.conversoes_offline` (migração `conversoes_offline_emprego_por_conteudo`) —
+a exclusão por status `candidato` de 02/09 era perigosa: o balde mistura candidato a
+emprego (lauu, Nanda, Nath...) com família real (Nailza, Raphaelle, Marcela). Hoje os
+3 bloqueados eram todos emprego (sem dano), mas trocei por regra de CONTEÚDO
+(estágio|currículo|auxiliar de creche/turma|vaga de emprego, só mensagens de entrada).
+Saída idêntica (26 linhas); família em `candidato` não é mais descartada em silêncio.
+**Desfazer:** restaurar a view anterior (histórico de migrações).
+
+Também removi um filtro travado na tela Termos de pesquisa ("creche rio de janeiro")
+que escondia o relatório inteiro — só visualização, nada de campanha.
+
+Menor: kw novas "escola infantil humaitá" e "catete" = baixo volume; "escola infantil
+perto de mim" raramente mostrada (baixo índice de qualidade). Custam zero.
+
+---
+
 ## 02–03/09/2026
 
 ### Leitura de 14 dias e correções na conta Google Ads (autorizadas pelo Claudio)
