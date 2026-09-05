@@ -99,6 +99,7 @@ export const Main: React.FC = () => {
               <li><Link to="/turmas" className="hover:text-yellow-400 transition-colors">Turmas</Link></li>
               <li><Link to="/metodo-montessori" className="hover:text-yellow-400 transition-colors">O Método Montessori</Link></li>
               <li><Link to="/sobre" className="hover:text-yellow-400 transition-colors">Sobre a escola e o fundador</Link></li>
+              <li><Link to="/mensalidade" className="hover:text-yellow-400 transition-colors">Mensalidade</Link></li>
               <li><Link to="/blog" className="hover:text-yellow-400 transition-colors">Blog</Link></li>
             </ul>
             <h4 className="font-bold uppercase tracking-widest text-montessori-gold text-base pt-4">Acompanhe</h4>
