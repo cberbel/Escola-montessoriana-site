@@ -12,7 +12,7 @@ const L: React.FC<{ to: string; children: React.ReactNode }> = ({ to, children }
 
 const WHATSAPP_MENSALIDADE =
   'https://wa.me/5521992973454?text=' +
-  encodeURIComponent('Olá! Gostaria de saber o valor da mensalidade para uma criança de ___ (idade), no período ___.');
+  encodeURIComponent('Olá! Gostaria de saber o valor da mensalidade para uma criança de ___ (idade), no horário ___.');
 
 /**
  * /mensalidade — valor de partida, períodos, consulta pelo WhatsApp e o
@@ -22,7 +22,7 @@ const WHATSAPP_MENSALIDADE =
 export const Mensalidade: React.FC = () => {
   usePageMeta(
     'Mensalidade a partir de R$ 2.000 | Escola Montessoriana',
-    'Mensalidade a partir de R$ 2.000. O valor varia com o período — meio período, semi-integral, integral ou estendido. Consulte o Atendimento pelo WhatsApp.'
+    'Mensalidade a partir de R$ 2.000. O valor acompanha o horário, montado com a família: meio período, integral, estendido ou um formato próprio. Consulte pelo WhatsApp.'
   );
 
   return (
@@ -36,7 +36,7 @@ export const Mensalidade: React.FC = () => {
             A partir de R$ 2.000
           </h1>
           <p className="font-sans text-lg sm:text-xl text-montessori-cream/90 leading-relaxed mb-6">
-            O valor depende do período e da frequência semanal.
+            O valor acompanha o horário, e o horário é montado com a família.
           </p>
           <a
             href={WHATSAPP_MENSALIDADE}
@@ -50,12 +50,13 @@ export const Mensalidade: React.FC = () => {
         </div>
       </div>
 
-      <LandingSection heading="Períodos">
+      <LandingSection heading="Horários">
         <P>
-          Meio período, pela manhã (8h–12h) ou pela tarde (13h–17h). Semi-integral, das 8h às 15h ou das 10h às 17h.
-          Integral, das 8h às 17h, com almoço e descanso. Estendido, das 7h30 às 19h. Também é possível combinar
-          frequência reduzida, com menos dias na semana. Para saber o valor do período que a sua família precisa,
-          mande a idade da criança e o horário — a resposta vem em minutos.
+          O horário é montado com a família. Há formatos de referência — meio período (8h–12h ou 13h–17h),
+          semi-integral (8h–15h ou 10h–17h), integral (8h–17h) e estendido (7h30–19h) — mas eles não esgotam as
+          possibilidades: dá para ficar 6 horas, entrar mais cedo e sair mais cedo, ou vir menos dias na semana. O
+          valor acompanha o tempo que a criança passa na escola. Para saber o valor do horário que a sua família
+          precisa, mande a idade da criança e a rotina de vocês — a resposta vem em minutos.
         </P>
       </LandingSection>
 
