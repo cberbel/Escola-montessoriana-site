@@ -88,26 +88,14 @@ export const faqCrecheFlamengo: ItemFAQ[] = [
 export const faqMensalidade: ItemFAQ[] = [
   {
     p: 'Quanto custa a mensalidade da Escola Montessoriana de Laranjeiras?',
-    r: 'A mensalidade começa em R$ 2.000. O valor depende do período (meio período, semi-integral, integral ou estendido) e da frequência semanal. O Atendimento informa o valor para o horário que a família precisa.',
+    r: 'A mensalidade começa em R$ 2.000. O valor depende do período (meio período, semi-integral, integral ou estendido) e da frequência semanal. O Atendimento, pelo WhatsApp, informa o valor para o horário que a família precisa.',
   },
   {
     p: 'O que muda o valor da mensalidade?',
-    r: 'Basicamente o tempo que a criança passa na escola: meio período (8h–12h ou 13h–17h), semi-integral (8h–15h ou 10h–17h), integral (8h–17h) e estendido (7h30–19h). Também é possível combinar frequência reduzida, com menos dias na semana.',
-  },
-  {
-    p: 'A alimentação está incluída na mensalidade?',
-    r: 'Sim. As refeições são preparadas na escola, sem açúcar e sem ultraprocessados, e fazem parte do período contratado — lanche e refeição no meio período, almoço e jantar conforme o horário.',
-  },
-  {
-    p: 'O inglês e as atividades complementares são cobrados à parte?',
-    r: 'Não. A imersão em inglês com professoras nativas e bilíngues acontece todos os dias, dentro da rotina, e as atividades complementares (capoeira, musicalização, circo e teatro, permacultura, contação de histórias) entram duas vezes ao dia, sem custo adicional. Só um terceiro idioma, quando a família escolhe, é atividade extra.',
+    r: 'O tempo que a criança passa na escola: meio período (8h–12h ou 13h–17h), semi-integral (8h–15h ou 10h–17h), integral (8h–17h) e estendido (7h30–19h). Também é possível combinar frequência reduzida, com menos dias na semana.',
   },
   {
     p: 'A partir de que idade a criança pode entrar?',
     r: 'A partir de 9 meses, no berçário, com um educador para cada três crianças até os 18 meses. A escola vai até o Ensino Fundamental.',
-  },
-  {
-    p: 'Como sei o valor exato para o meu caso?',
-    r: 'Mande uma mensagem para o Atendimento pelo WhatsApp com a idade da criança e o horário de que precisa. A resposta vem em minutos.',
   },
 ];
