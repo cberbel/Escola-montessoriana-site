@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { usePageMeta, LandingSection, P, Bullets, Highlight, FAQ, LandingCTA } from '../components/landing/Landing';
+import { usePageMeta, LandingSection, P, Highlight, FAQ, LandingCTA } from '../components/landing/Landing';
 import { faqMensalidade } from './landing/faqs';
 import { trackWhatsAppClick } from '../utils/tracking';
 
@@ -12,14 +12,14 @@ const L: React.FC<{ to: string; children: React.ReactNode }> = ({ to, children }
 
 const WHATSAPP_MENSALIDADE =
   'https://wa.me/5521992973454?text=' +
-  encodeURIComponent('Olá! Quero saber o valor da mensalidade para o meu filho de ___ meses/anos, no período ___.');
+  encodeURIComponent('Olá! Gostaria de saber o valor da mensalidade para uma criança de ___ (idade), no período ___.');
 
 /**
- * /mensalidade — a página que a busca "mensalidade escola montessori rio" não
- * encontrava. Diz o valor de partida (R$ 2.000) e como ele é composto, e faz a
- * conta que a família raramente faz sozinha: o custo real da escola não é a
- * mensalidade, é o que se deixa de aproveitar na etapa que não volta.
- * O FAQ vem de pages/landing/faqs.ts e alimenta também o schema FAQPage.
+ * /mensalidade — o valor de partida e a conta que a família raramente faz.
+ * Escrita no mesmo registro das páginas /desenvolvimento-cerebral e
+ * /metodo-montessori: prosa, referência científica onde cabe (Heckman, Kuhl),
+ * Montessori como fundamento e não como item de lista. O FAQ vem de
+ * pages/landing/faqs.ts e alimenta também o schema FAQPage.
  */
 export const Mensalidade: React.FC = () => {
   usePageMeta(
@@ -35,11 +35,11 @@ export const Mensalidade: React.FC = () => {
             Mensalidade
           </span>
           <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl leading-tight mb-4 sm:mb-5 break-words">
-            A partir de R$ 2.000 por mês
+            A partir de R$ 2.000
           </h1>
           <p className="font-sans text-lg sm:text-xl text-montessori-cream/90 leading-relaxed mb-6">
-            O valor depende do período e da frequência que a sua família precisa. Inglês por imersão, alimentação feita
-            na escola e atividades complementares já estão dentro.
+            O valor varia com o período e com a frequência. Antes do número, porém, há uma conta que vale a pena fazer
+            — e que quase nenhuma família faz.
           </p>
           <a
             href={WHATSAPP_MENSALIDADE}
@@ -48,173 +48,107 @@ export const Mensalidade: React.FC = () => {
             onClick={() => trackWhatsAppClick('mensalidade-hero')}
             className="inline-flex items-center justify-center min-h-[52px] px-8 py-3 bg-montessori-gold text-montessori-dark font-semibold rounded-sm hover:bg-yellow-300 transition-colors"
           >
-            Consultar o valor para o meu caso
+            Consultar o valor
           </a>
         </div>
       </div>
 
-      <LandingSection heading="O que está dentro da mensalidade">
+      <LandingSection heading="O que a mensalidade sustenta">
         <P>
-          Antes de comparar números, vale saber o que cada número compra. Aqui, a mensalidade cobre o dia inteiro da
-          criança, não só a sala de aula:
+          A mensalidade paga um dia inteiro de uma criança em uma{' '}
+          <L to="/metodo-montessori">escola Montessori</L> — e Montessori não é uma sala, é o fundamento de tudo o que
+          acontece aqui. É o ambiente preparado em que a criança escolhe o próprio trabalho e se concentra nele sem ser
+          interrompida; é a professora que observa cada uma individualmente e apresenta o material certo na hora
+          certa; são as turmas de idades misturadas, em que o mais velho ensina e o mais novo observa. A mensalidade
+          sustenta esse ambiente, e o resto se organiza em torno dele.
         </P>
-        <Bullets
-          items={[
-            <>
-              <strong>Sala Montessori</strong> com ambiente preparado, material completo e turmas de idades
-              misturadas — a criança escolhe o próprio trabalho e é acompanhada individualmente.
-            </>,
-            <>
-              <strong>Inglês por imersão, todos os dias</strong>, com professoras nativas e bilíngues dentro da rotina.
-              Não é aula de inglês: é o inglês vivido enquanto se brinca, come e trabalha.
-            </>,
-            <>
-              <strong>Alimentação feita na escola</strong>, sem açúcar e sem ultraprocessados, incluída no período —
-              lanche e refeição no meio período; almoço e jantar conforme o horário.
-            </>,
-            <>
-              <strong>Atividades complementares duas vezes ao dia</strong>: capoeira, musicalização, circo e teatro,
-              dança e movimento, horta e permacultura, cozinha experimental, contação de histórias.
-            </>,
-            <>
-              <strong>Um educador para cada três bebês</strong> até os 18 meses, e adultos presentes de verdade em
-              todas as idades — colo, escuta e vínculo não são extras.
-            </>,
-            <>
-              <strong>Horário das 7h30 às 19h</strong>, com meio período, semi-integral, integral e estendido, e a
-              opção de frequência reduzida.
-            </>,
-          ]}
-        />
         <P>
-          O único item cobrado à parte é um terceiro idioma, quando a família escolhe — francês, mandarim, espanhol,
-          italiano ou alemão.
+          O inglês atravessa o dia por <L to="/ingles-primeira-infancia">imersão</L>, com professoras nativas e
+          bilíngues que só falam inglês, na idade em que o cérebro ainda distingue os sons de qualquer língua. As
+          refeições são feitas na escola, sem açúcar e sem ultraprocessados, e as crianças comem juntas — a mesa
+          também educa. Duas vezes ao dia, o corpo e a arte: capoeira no pátio, musicalização, circo e teatro, a
+          horta e a permacultura, a contação de histórias. No berçário, um educador para cada três crianças. E um
+          horário que cabe na vida da família, das 7h30 às 19h.
+        </P>
+        <P>
+          Nada disso é cobrado à parte. A única exceção é um terceiro idioma, quando a família escolhe — francês,
+          mandarim, espanhol, italiano ou alemão.
         </P>
       </LandingSection>
 
-      <LandingSection heading="A conta que quase ninguém faz" className="bg-montessori-cream/40">
+      <LandingSection heading="A conta que raramente se faz" className="bg-montessori-cream/40">
         <P>
-          A comparação natural é mensalidade contra mensalidade. É a comparação errada, por dois motivos. O primeiro é
-          simples: a mensalidade de uma escola convencional raramente é o que a família paga por mês. Somam-se em volta
-          dela, quase sem perceber:
+          A comparação instintiva é mensalidade contra mensalidade. Ela engana duas vezes. A primeira é aritmética:
+          a mensalidade de uma escola convencional raramente é o que a família gasta com a escola. Em volta dela vão
+          se acumulando, um a um, os complementos — as aulas de inglês contratadas aos cinco ou seis anos para suprir
+          o que não veio; a natação, a música, o judô, cada um com seu horário e seu deslocamento; o contraturno ou a
+          babá para cobrir a tarde que a escola não cobre; a lancheira; e, mais adiante, o reforço, a fonoaudióloga, a
+          psicopedagoga — para reconstruir a concentração, a linguagem e a autonomia que, aos dois anos, se construíam
+          sozinhas, brincando.
         </P>
-        <Bullets
-          items={[
-            <>
-              O <strong>cursinho de inglês</strong> a partir dos 4 ou 5 anos, duas vezes por semana, para tentar
-              compensar o que a escola não deu — e que aqui já vem dentro, na idade em que o cérebro absorve idiomas
-              sem esforço.
-            </>,
-            <>
-              A <strong>natação, o judô, a música, o balé</strong> — cada um com sua mensalidade, seu uniforme, seu
-              deslocamento e seu dia da semana.
-            </>,
-            <>
-              O <strong>contraturno</strong> ou a <strong>babá</strong> para cobrir o intervalo entre as 12h em que a
-              escola acaba e as 18h em que a família chega.
-            </>,
-            <>
-              A <strong>alimentação</strong> comprada fora, a lancheira montada às pressas, o lanche pronto que se
-              compra no caminho.
-            </>,
-            <>
-              O <strong>reforço escolar</strong> e, mais tarde, a <strong>fonoaudióloga</strong>, a{' '}
-              <strong>psicopedagoga</strong>, a <strong>terapia ocupacional</strong> — para recuperar concentração,
-              linguagem ou autonomia que teriam custado quase nada para construir aos dois anos.
-            </>,
-          ]}
-        />
         <P>
-          Feita a soma honesta, a distância entre as mensalidades costuma encolher ou desaparecer. Mas esse ainda é o
-          motivo menor.
+          Somados com honestidade, os números se aproximam. Mas esse é o menor dos dois enganos.
         </P>
         <Highlight>
-          O maior custo de uma escola não aparece no boleto. É o custo de oportunidade: o que a criança deixa de
-          construir na única etapa da vida em que construir era barato, natural e alegre.
+          O maior custo de uma escola não está no boleto. Está no que a criança deixa de construir na única fase da
+          vida em que construir custa pouco — porque é exatamente para isso que o cérebro dessa idade está preparado.
         </Highlight>
         <P>
-          Entre o nascimento e os seis anos, o cérebro forma{' '}
-          <L to="/desenvolvimento-cerebral">mais de um milhão de conexões por segundo</L>. É a fase em que a
-          concentração profunda se instala, em que a linguagem — inclusive uma segunda língua — se grava sem sotaque e
-          sem estudo, em que a criança aprende a se vestir, a se servir, a cuidar do que é seu, a esperar a vez e a
-          terminar o que começou. Nenhuma dessas conquistas é impossível depois. Todas ficam mais caras, mais lentas
-          e mais sofridas.
+          Em economia, o custo de uma escolha é aquilo de que se abre mão. Na primeira infância, abre-se mão de algo
+          que não volta. O economista James Heckman, Prêmio Nobel, passou décadas medindo o retorno de investir em
+          cada fase da vida e chegou a uma curva que se tornou célebre: quanto mais cedo, maior o retorno — e nenhuma
+          fase posterior chega perto dos primeiros anos. A razão está na{' '}
+          <L to="/desenvolvimento-cerebral">arquitetura do cérebro</L>: até 1 milhão de conexões por segundo, uma
+          fundação que se constrói uma vez, e sobre a qual tudo o que vem depois se apoia. Habilidade gera habilidade.
+          O atraso também se acumula.
         </P>
         <P>
-          O que essa etapa produz, quando é bem aproveitada, é o que se vê em casa: a criança de três anos que se
-          concentra vinte minutos num trabalho e não quer ser interrompida; a de quatro que responde em inglês à
-          professora sem saber que está "falando inglês"; a de cinco que põe a mesa, resolve uma briga com o colega e
-          escolhe o próprio desafio. Isso não é resultado de cobrança. É resultado de ambiente.
+          É nessa janela que a concentração profunda se instala — ou não. Que uma segunda língua entra sem sotaque e
+          sem estudo — ou vira matéria. Que a criança aprende a se vestir, a se servir, a cuidar do que é seu, a
+          esperar a vez, a terminar o que começou — ou aprende a esperar que façam por ela. Nenhuma dessas conquistas
+          é impossível mais tarde. Todas ficam mais caras, mais lentas e mais difíceis. Uma escola que não aproveita
+          essa janela não custa menos: custa o que a criança deixou de construir, e a conta chega depois.
         </P>
       </LandingSection>
 
-      <LandingSection heading="Aproveitar ao máximo — com respeito, sem pressão">
+      <LandingSection heading="Aproveitar ao máximo — e com respeito">
         <P>
-          "Aproveitar ao máximo" costuma ser lido como acelerar: alfabetizar aos três, encher a agenda, cobrar
-          resultado. Não é disso que se trata, e é o contrário do que fazemos. Aproveitar ao máximo é oferecer, no
-          momento certo, o que a criança já está pronta para pegar — e deixar que ela pegue no seu ritmo.
+          "Aproveitar ao máximo" costuma ser confundido com acelerar: alfabetizar aos três, encher a agenda, cobrar.
+          É o contrário do que fazemos, e é o contrário do que a ciência recomenda. Maria Montessori descreveu os{' '}
+          <L to="/metodo-montessori">períodos sensíveis</L> — as janelas em que certos aprendizados acontecem quase
+          sem esforço — e a neurociência as confirmou. Aproveitar ao máximo é oferecer, no momento em que a criança
+          está pronta, aquilo que ela já quer pegar. E deixar que ela pegue no seu ritmo.
         </P>
-        <Bullets
-          items={[
-            <>
-              A criança que ainda não se interessa por letras tem letras de lixa ao alcance da mão, e ninguém a
-              chama. Um dia ela passa o dedo por uma, pergunta o som, e a alfabetização começa por vontade própria.
-            </>,
-            <>
-              O inglês entra pela música, pela história e pelo pedido da professora na hora do lanche — nunca por
-              lição de casa. A criança não estuda a língua; convive com ela.
-            </>,
-            <>
-              A matemática começa em contas de ouro e cubos que se empilham e se trocam. A criança vê e toca o que o
-              número significa antes de escrever um único algarismo.
-            </>,
-            <>
-              O bebê de dez meses que ainda não anda tem o chão, o espelho baixo e a barra para se puxar. Ninguém o
-              coloca em pé; o ambiente o convida a levantar quando o corpo pedir.
-            </>,
-            <>
-              Quem chega inseguro é <L to="/acolhimento">acolhido no colo</L> pelo tempo que precisar. Só é convidado
-              a trabalhar quando se sente seguro — e por isso, quando trabalha, trabalha de verdade.
-            </>,
-          ]}
-        />
         <P>
-          Respeito, aqui, não é o oposto de aproveitar. É a condição. A criança pressionada aprende a evitar; a
-          criança respeitada aprende a querer. E querer aprender, construído aos dois, três, quatro anos, é o ativo que
-          rende pela vida inteira — na escola seguinte, no vestibular, no trabalho, nas relações.
+          As letras de lixa ficam na estante, ao alcance da mão, e ninguém chama a criança para elas. Um dia ela
+          passa o dedo por uma, pergunta o som, e a alfabetização começa por vontade própria — como começa a
+          matemática, nas contas de ouro que se pegam e se contam antes de qualquer algarismo. O inglês entra pela
+          canção, pela história, pelo pedido da professora na hora do lanche; a criança não estuda a língua, convive
+          com ela. O bebê de dez meses tem o chão, o espelho baixo e a barra: ninguém o coloca em pé, o ambiente o
+          convida a levantar quando o corpo pedir. E quem chega inseguro é <L to="/acolhimento">acolhido</L> pelo
+          tempo que precisar, porque só se trabalha de verdade quando se está seguro.
+        </P>
+        <P>
+          Respeito não é o oposto de aproveitar; é a condição. A criança pressionada aprende a evitar. A criança
+          respeitada aprende a querer — e querer aprender, construído aos dois, aos três, aos quatro anos, é o que
+          rende pela vida inteira.
         </P>
         <Highlight>
-          Colocar na escolinha mais perto de casa, ou na mais barata, não é economia. É trocar os anos que mais
-          rendem por minutos de trajeto ou por uma diferença de boleto que, na soma honesta, muitas vezes nem existe.
+          "Colocar na escolinha mais perto de casa não era um erro que eu me permitiria cometer." —{' '}
+          <L to="/sobre">Claudio Berbel, fundador</L>
         </Highlight>
       </LandingSection>
 
       <LandingSection heading="Como o valor é composto" className="bg-montessori-cream/40">
         <P>
           O ponto de partida é R$ 2.000. A partir daí, o que define o valor é o tempo que a criança passa na escola:
+          meio período, pela manhã (8h–12h) ou pela tarde (13h–17h); semi-integral, das 8h às 15h ou das 10h às 17h;
+          integral, das 8h às 17h, com almoço e descanso; e estendido, das 7h30 às 19h, para famílias que precisam de
+          mais tempo nas pontas do dia. Também é possível combinar frequência reduzida, com menos dias na semana.
         </P>
-        <Bullets
-          items={[
-            <>
-              <strong>Meio período</strong> — manhã (8h–12h) ou tarde (13h–17h).
-            </>,
-            <>
-              <strong>Semi-integral</strong> — 8h–15h ou 10h–17h, o formato mais escolhido pelas famílias.
-            </>,
-            <>
-              <strong>Integral</strong> — 8h–17h, com almoço e descanso.
-            </>,
-            <>
-              <strong>Estendido</strong> — 7h30–19h, para quem precisa de mais tempo nas pontas do dia.
-            </>,
-            <>
-              <strong>Frequência reduzida</strong> — menos dias por semana, combinada caso a caso.
-            </>,
-          ]}
-        />
         <P>
-          Não publicamos a tabela completa porque a rotina de cada família é diferente, e o valor certo é o da sua
-          rotina. Diga a idade da criança e o horário de que precisa; a resposta vem em minutos.
+          Para saber o valor do período que a sua família precisa, mande a idade da criança e o horário. A resposta
+          vem em minutos.
         </P>
         <a
           href={WHATSAPP_MENSALIDADE}
@@ -227,13 +161,13 @@ export const Mensalidade: React.FC = () => {
         </a>
       </LandingSection>
 
-      <LandingSection heading="Perguntas frequentes sobre a mensalidade">
+      <LandingSection heading="Perguntas frequentes">
         <FAQ itens={faqMensalidade} />
       </LandingSection>
 
       <LandingCTA
         heading="O melhor jeito de decidir é ver a escola funcionando"
-        text="Agende uma visita, conheça as salas com as crianças trabalhando e saia com o valor exato para a sua rotina."
+        text="Agende uma visita, veja as salas com as crianças trabalhando e saia com o valor exato para a sua rotina."
       />
     </div>
   );
