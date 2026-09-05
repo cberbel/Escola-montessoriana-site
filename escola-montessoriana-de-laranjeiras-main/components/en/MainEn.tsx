@@ -2,7 +2,7 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import { NavbarEn } from './NavbarEn';
 import { trackWhatsAppClick } from '../../utils/tracking';
-import { MapPin, Instagram, Mail } from 'lucide-react';
+import { MapPin, Instagram, Mail, Phone } from 'lucide-react';
 import { MapaEscola } from '../ui/MapaEscola';
 
 const WHATSAPP_VISIT_EN =
@@ -76,15 +76,32 @@ export const MainEn: React.FC = () => {
               <MapPin size={20} className="mt-1 shrink-0 text-yellow-400" />
               <span>Rua das Laranjeiras, 540, fundos<br />Laranjeiras, Rio de Janeiro - RJ, Brazil</span>
             </a>
+            {/* Dois telefones, dois papéis. Atendimento é o WhatsApp que responde a família
+                interessada (o mesmo dos botões e dos informativos); Secretaria é o administrativo.
+                Rotulados aqui e no schema do index.html, para que Google e LLMs não leiam como
+                duas escolas. */}
             <a
-              href="https://wa.me/5521964551080"
+              href="https://wa.me/5521992973454?text=Hello%2C%20I%20would%20like%20more%20information%20about%20Escola%20Montessoriana%20de%20Laranjeiras."
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => trackWhatsAppClick('rodape')}
-              className="flex items-center space-x-3 text-gray-300 hover:text-yellow-400 transition-colors"
+              className="flex items-start space-x-3 text-gray-300 hover:text-yellow-400 transition-colors"
             >
-              <WhatsAppIcon size={20} className="text-yellow-400 shrink-0" />
-              <span>+55 (21) 96455-1080</span>
+              <WhatsAppIcon size={20} className="mt-1 text-yellow-400 shrink-0" />
+              <span>
+                <span className="block text-xs uppercase tracking-wider text-gray-400">Admissions (WhatsApp)</span>
+                +55 (21) 99297-3454
+              </span>
+            </a>
+            <a
+              href="tel:+5521964551080"
+              className="flex items-start space-x-3 text-gray-300 hover:text-yellow-400 transition-colors"
+            >
+              <Phone size={20} className="mt-1 text-yellow-400 shrink-0" />
+              <span>
+                <span className="block text-xs uppercase tracking-wider text-gray-400">School office</span>
+                +55 (21) 96455-1080
+              </span>
             </a>
             <div className="flex items-center space-x-3 text-gray-300">
               <Mail size={20} className="text-yellow-400" />
