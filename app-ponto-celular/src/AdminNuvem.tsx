@@ -1359,7 +1359,8 @@ const AbaBancoHoras: React.FC<{ pinAdmin: string }> = ({ pinAdmin }) => {
   return (
     <section>
       <p className="text-ponto-cinza mb-4">
-        Acumulado desde a admissão de cada funcionário, com tolerância de 10 minutos para atrasos.
+        Acumulado desde o início do ponto (ou desde a admissão, se for depois), com a tolerância
+        de atraso da escola — a mesma do quadro do painel.
         Só aparecem aqui os funcionários com horário cadastrado (aba Funcionários).
       </p>
 
