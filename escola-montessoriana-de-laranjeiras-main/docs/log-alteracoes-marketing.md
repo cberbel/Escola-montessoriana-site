@@ -16,6 +16,28 @@ Contêiner GTM: **GTM-56ZSQTXF** · Projeto Supabase: **ponto-escola-montessoria
 
 ---
 
+## 14/09/2026
+
+### Pesquisa: estratégia de lances → Maximizar o VALOR da conversão (ok do Claudio, item 1 da revisão)
+
+Aplicada a recomendação "Definir lances mais eficientes com a estratégia Maximizar o
+valor da conversão" (+16,1%) na `[ALM] [C3] Campanha de Leads`. Conferido na tabela de
+campanhas: coluna Tipo de estratégia de lances agora mostra **"Maximizar o valor da
+conversão"**. Com isso o lance passa a pesar a escada offline (conversa R$ 10, visita
+R$ 50, matrícula R$ 500) em vez de contar toda conversão igual. Pontuação de otimização
+na tela após aplicar: conta 62,9% → **79%**; campanha 60% → **90%** (as recomendações de
+lance alternativas — CPA desejado etc. — saíram da lista sozinhas: "Algumas recomendações
+não são mais válidas devido a essa aplicação"). PMax não foi tocada (segue Maximizar
+conversões). Esperar ~2 semanas de reajuste; primeiros dias podem oscilar.
+**Desfazer:** Configurações da campanha → Lances → voltar para Maximizar conversões.
+
+**Achado ao revisar a LP de creche (fotografada a pedido do Claudio):** em 390px de
+largura o título da 1ª dobra sai cortado na direita — e o mesmo corte aparece na LP de
+educação infantil (template comum às 3 LPs). Prints enviados no chat; correção de CSS
+aguardando ok. Nada mais executado — itens 2, 3, 4, 5 da revisão de 14/09 em discussão.
+
+---
+
 ## 05/09/2026
 
 ### Revisão de 2 dias pós-mudanças — achados (execução suspensa a pedido do Claudio)
