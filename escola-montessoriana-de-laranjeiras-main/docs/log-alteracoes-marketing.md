@@ -18,6 +18,32 @@ Contêiner GTM: **GTM-56ZSQTXF** · Projeto Supabase: **ponto-escola-montessoria
 
 ## 14/09/2026
 
+### Execuções com ok do Claudio (itens 2, 3 e 5 da revisão) + textos da LP — 14/09, ~01-02h
+
+**Ads — tudo conferido na tela após cada passo:**
+- **AI Max: recomendação DISPENSADA** (motivo "Verificarei mais tarde"). Não muda a
+  veiculação; tira da lista e pode ser reativada. Reavaliar ~novembro.
+- **Correspondência ampla: a recomendação SUMIU SOZINHA** depois que o Maximizar valor
+  da conversão entrou (recalculo do Google) — não houve o que dispensar.
+- **"Remover palavras-chave redundantes" APLICADA** — removeu a duplicada
+  "escolinha infantil laranjeiras" (frase) do grupo Educacao infantil (LP).
+- **Grupo de anúncios 2 (Campanha (google) Leads-Search-2 #2): PAUSADO** — 3 semanas
+  com R$ 313,01, 69 cliques e 0,00 conversões (tela); buscas dele caem no Grupo 1
+  amplo, que converte a R$ 69-73. Desfazer: dot de status → Ativar.
+- Pontuação de otimização após a sequência (tela): conta 62,9% → **95%**; campanha
+  60% → **94,8%**. A tabela de grupos ganhou colunas de Valor conv. (interface
+  acompanhou a estratégia nova).
+
+**LPs (commit `20a025a`, deploy conferido no HTML servido):** h1/title da creche com
+"filosofia Montessori"; h2 "No coração de Laranjeiras" → "Entre Laranjeiras e o Cosme
+Velho" na creche E na educação infantil (o 540 é tecnicamente Cosme Velho — correção
+factual do Claudio). O corte de título que apareceu no headless NÃO se reproduz no
+celular dele — era artefato do teste; nenhum CSS alterado.
+**Pendente: troca do logo no topo das LPs** — a LP usa o MESMO logo-escola.png do site;
+aguardando o Claudio dizer o que quer no lugar.
+
+---
+
 ### Pesquisa: estratégia de lances → Maximizar o VALOR da conversão (ok do Claudio, item 1 da revisão)
 
 Aplicada a recomendação "Definir lances mais eficientes com a estratégia Maximizar o
