@@ -511,6 +511,30 @@ section .pagenum{bottom:56px;}
     if (e) return e;
     return renovarRef();
   }
+  /* Marcacao da peca (utm_* e fbclid) — espelha capturarCampanha() de utils/gclid.ts.
+     Ate 19/09/2026 este port nao mandava nada disso: 862 sessoes pagas/semana no Clarity
+     e 0 linhas com utm_campaign no banco. Vale o toque MAIS RECENTE; sem sinal na URL
+     nao apaga o guardado. Cortes de tamanho = limites da politica de RLS. */
+  var K_CAMPANHA = 'alm_campanha';
+  function capturarCampanha() {
+    var reg = { ts: Date.now() };
+    var fb = (params.get('fbclid') || '').trim();
+    if (fb && !/\s/.test(fb)) reg.fbclid = fb.slice(0, 255);
+    function txt(c, max) { var v = (params.get(c) || '').trim(); return v ? v.slice(0, max).toLowerCase() : null; }
+    var APELIDOS = { ig: 'instagram', fb: 'facebook' };
+    var s = txt('utm_source', 60), m = txt('utm_medium', 60), c = txt('utm_campaign', 120), ct = txt('utm_content', 120);
+    if (s) reg.utm_source = APELIDOS[s] || s;
+    if (m) reg.utm_medium = m;
+    if (c) reg.utm_campaign = c;
+    if (ct) reg.utm_content = ct;
+    if (!(reg.fbclid || reg.utm_source || reg.utm_medium || reg.utm_campaign || reg.utm_content)) return;
+    gravar(K_CAMPANHA, reg);
+  }
+  function obterCampanha() {
+    var r = ler(K_CAMPANHA);
+    if (!r || Date.now() - r.ts > VALIDADE) return null;
+    return r;
+  }
   function registrarClique() {
     var gclid = obterGclid();
     var origem = obterOrigem();
@@ -527,7 +551,10 @@ section .pagenum{bottom:56px;}
         if (reg.agid) corpo.agid = reg.agid;
       }
     }
-    var assinatura = (origem || 'sem') + '|' + (gclid || 'sem');
+    var camp = obterCampanha();
+    if (camp) ['fbclid', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_content'].forEach(function (c) { if (camp[c]) corpo[c] = camp[c]; });
+    /* Mesma assinatura do app React: quem volta por outra peca gera registro novo. */
+    var assinatura = (origem || 'sem') + '|' + (gclid || 'sem') + '|' + ((camp && camp.fbclid) || 'sem') + '|' + ((camp && camp.utm_content) || 'sem');
     if (ler(K_REG) === assinatura) return;
     var ref = obterOuCriarRef();
     if (!ref) return;
@@ -553,6 +580,7 @@ section .pagenum{bottom:56px;}
     ['kw', 'mt', 'net', 'agid'].forEach(function (c) { var v = params.get(c); if (v) novoReg[c] = v; });
     gravar(K_GCLID, novoReg);
   }
+  capturarCampanha();
   definirOrigem();
   registrarClique();
 
