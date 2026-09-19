@@ -22,7 +22,7 @@ const WHATSAPP_MENSALIDADE =
 export const Mensalidade: React.FC = () => {
   usePageMeta(
     'Mensalidade a partir de R$ 2.000 | Escola Montessoriana',
-    'Mensalidade a partir de R$ 2.000. O valor acompanha o horário, montado com a família: meio período, integral, estendido ou um formato próprio. Consulte pelo WhatsApp.'
+    'Mensalidade a partir de R$ 2.000. O valor acompanha o horário, montado com a família: de meio período a estendido ou um formato próprio. Consulte no WhatsApp.'
   );
 
   return (
