@@ -88,11 +88,11 @@ export const faqCrecheFlamengo: ItemFAQ[] = [
 export const faqMensalidade: ItemFAQ[] = [
   {
     p: 'Quanto custa a mensalidade da Escola Montessoriana de Laranjeiras?',
-    r: 'A mensalidade começa em R$ 2.000. O valor depende do período (meio período, semi-integral, integral ou estendido) e da frequência semanal. O Atendimento, pelo WhatsApp, informa o valor para o horário que a família precisa.',
+    r: 'A mensalidade começa em R$ 2.000. O valor acompanha o horário, que é montado com a família — de meio período a estendido (7h30–19h), com formatos intermediários. O Atendimento, pelo WhatsApp, informa o valor para a rotina de cada família.',
   },
   {
-    p: 'O que muda o valor da mensalidade?',
-    r: 'O tempo que a criança passa na escola: meio período (8h–12h ou 13h–17h), semi-integral (8h–15h ou 10h–17h), integral (8h–17h) e estendido (7h30–19h). Também é possível combinar frequência reduzida, com menos dias na semana.',
+    p: 'Quais horários existem?',
+    r: 'Os formatos de referência são meio período (8h–12h ou 13h–17h), semi-integral (8h–15h ou 10h–17h), integral (8h–17h) e estendido (7h30–19h), mas o horário é flexível: é possível ficar 6 horas, entrar mais cedo e sair mais cedo, ou vir menos dias na semana. O valor acompanha o tempo que a criança passa na escola.',
   },
   {
     p: 'A partir de que idade a criança pode entrar?',
