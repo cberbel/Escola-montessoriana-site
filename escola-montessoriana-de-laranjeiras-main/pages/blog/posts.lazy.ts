@@ -3,6 +3,7 @@ import type React from 'react';
 
 /** slug -> componente carregado sob demanda (um chunk por artigo). */
 export const blogPostComponents: Record<string, React.ComponentType> = {
+  'liberdade-de-escolha-montessori': lazy(() => import('./LiberdadeDeEscolha').then((m) => ({ default: m.LiberdadeDeEscolha }))),
   'escola-montessori-rio-de-janeiro-como-avaliar': lazy(() => import('./EscolaMontessoriRio').then((m) => ({ default: m.EscolaMontessoriRio }))),
   'erro-escolher-escola-perto-de-casa': lazy(() => import('./EscolaPertoDeCasa').then((m) => ({ default: m.EscolaPertoDeCasa }))),
   'zero-telas-primeira-infancia': lazy(() => import('./ZeroTelas').then((m) => ({ default: m.ZeroTelas }))),

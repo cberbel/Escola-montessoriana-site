@@ -1,4 +1,5 @@
 import type React from 'react';
+import { LiberdadeDeEscolha } from './LiberdadeDeEscolha';
 import { EscolaMontessoriRio } from './EscolaMontessoriRio';
 import { EscolaPertoDeCasa } from './EscolaPertoDeCasa';
 import { ZeroTelas } from './ZeroTelas';
@@ -10,6 +11,7 @@ import { QuandoMatricular } from './QuandoMatricular';
 
 /** slug -> componente (imports estáticos; só o prerender usa). */
 export const blogPostComponents: Record<string, React.ComponentType> = {
+  'liberdade-de-escolha-montessori': LiberdadeDeEscolha,
   'escola-montessori-rio-de-janeiro-como-avaliar': EscolaMontessoriRio,
   'erro-escolher-escola-perto-de-casa': EscolaPertoDeCasa,
   'zero-telas-primeira-infancia': ZeroTelas,

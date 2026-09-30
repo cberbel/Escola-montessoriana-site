@@ -26,6 +26,18 @@ export interface BlogPostMeta {
  */
 export const blogPosts: BlogPostMeta[] = [
   {
+    slug: 'liberdade-de-escolha-montessori',
+    date: '2026-09-30',
+    seoTitle: 'Liberdade de escolha na Montessori: o dia da criança',
+    title: 'Liberdade de escolha na Montessori: como a criança decide o próprio dia',
+    excerpt:
+      'Duas salas, duas manhãs, duas lógicas de escolha. Como funciona a liberdade na sala Montessori, quais são os limites e por que escolher sustenta a aprendizagem.',
+    image: '/images/montessori/vida-pratica-tapete.jpg',
+    imageAlt: 'Criança escolhe um trabalho e o leva para o tapete, na sala Montessori',
+    dateDisplay: '30 de setembro de 2026',
+    readingTime: '5 min',
+  },
+  {
     slug: 'escola-montessori-rio-de-janeiro-como-avaliar',
     date: '2026-08-18',
     dateModified: '2026-09-03',
