@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<!-- Página de anúncio do Instagram (teste "duas manhãs"). O anúncio traz o gancho; o
+     toque abre esta página em tela cheia: 4 perguntas com duas opções SEM rótulo
+     (escola tradicional x Escola Montessoriana, pares da série de reels comparativos) e, na 5ª tela,
+     a afinidade com a Escola Montessoriana + WhatsApp. A ordem das opções é sorteada a cada
+     visita, para a posição não entregar qual é qual. Fora do Google orgânico, como as
+     demais LPs. -->
+<meta name="googlebot" content="noindex, nofollow">
+<meta name="bingbot" content="noindex, nofollow">
+<title>Qual manhã você escolheria para o seu filho? | Escola Montessoriana</title>
+<meta name="description" content="Quatro escolhas rápidas sobre a manhã do seu filho. No fim, você descobre a sua afinidade com a Escola Montessoriana.">
+<link rel="canonical" href="https://www.escolamontessoriana.com.br/lp/duas-manhas.html">
+<link rel="icon" type="image/png" href="/images/logo-escola.png">
+<link rel="preload" as="image" href="/images/logo-escola.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Qual manhã você escolheria para o seu filho?">
+<meta property="og:description" content="Quatro escolhas rápidas. No fim, a sua afinidade com a Escola Montessoriana.">
+<meta property="og:image" content="https://www.escolamontessoriana.com.br/images/turmas/agrupada-2.jpg">
+<meta property="og:url" content="https://www.escolamontessoriana.com.br/lp/duas-manhas.html">
+<meta property="og:locale" content="pt_BR">
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-56ZSQTXF');</script>
+<!-- End Google Tag Manager -->
+<!-- Filas de tracking (mesmo padrão do index.html: fila no head, download no load) -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function(){ window.dataLayer.push(arguments); };
+  gtag('js', new Date());
+  gtag('config', 'AW-16743400376');
+  gtag('config', 'G-79X03K7F7F');
+  (function(f){
+    if (f.fbq) return;
+    var n = f.fbq = function(){ n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
+    if (!f._fbq) f._fbq = n;
+    n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = [];
+  })(window);
+  fbq('init', '1183448566465118');
+  fbq('track', 'PageView');
+  window.trackWhatsAppConversion = function() {
+    fbq('track', 'Contact');
+    gtag('event', 'conversion', { 'send_to': 'AW-16743400376/psM9CKCH4PUbELiH8K8-' });
+  };
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --azul:#1e40af; --azul-esc:#1e3a8a; --dourado:#debb05;
+    --escuro:#1e293b; --suave:#c9d8f5; --branco:#fff;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{background:var(--azul-esc);-webkit-text-size-adjust:100%}
+  body{font-family:'Lato','Segoe UI',system-ui,-apple-system,sans-serif;color:var(--branco);background:linear-gradient(180deg,var(--azul-esc) 0%,var(--azul) 78%);min-height:100vh;min-height:100svh;line-height:1.5;font-size:17px;-webkit-tap-highlight-color:transparent}
+  h1,h2,.fecho,.anel strong{font-family:'Playfair Display',Georgia,serif}
+  img{max-width:100%;display:block}
+  button{font:inherit;color:inherit}
+  .app{max-width:480px;margin:0 auto;min-height:100vh;min-height:100svh;display:flex;flex-direction:column;padding:calc(14px + env(safe-area-inset-top)) 20px calc(22px + env(safe-area-inset-bottom))}
+  /* Topo */
+  .topo{display:flex;align-items:center;gap:10px;min-height:40px}
+  .topo img{width:36px;height:36px;border-radius:9px;background:var(--branco);padding:3px;flex:none}
+  .topo .nome{font-weight:700;font-size:.95rem}
+  .voltar{flex:none;width:36px;height:40px;margin-left:-8px;background:none;border:0;font-size:1.9rem;line-height:1;cursor:pointer}
+  .voltar[hidden]{display:none}
+  .progresso{display:flex;gap:6px;margin-top:14px}
+  .progresso i{flex:1;height:4px;border-radius:2px;background:rgba(255,255,255,.26);transition:background .25s}
+  .progresso i.atual{background:rgba(255,255,255,.75)}
+  .progresso i.feito{background:var(--dourado)}
+  /* Telas */
+  .palco{flex:1;display:flex;flex-direction:column}
+  .tela{flex:1;display:flex;flex-direction:column;animation:entra .32s ease both}
+  .tela.sai{animation:sai .2s ease both}
+  @keyframes entra{from{opacity:0;transform:translateX(26px)}to{opacity:1;transform:none}}
+  @keyframes sai{to{opacity:0;transform:translateX(-26px)}}
+  .kicker{margin-top:26px;color:var(--dourado);font-weight:900;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase}
+  h1{font-weight:700;font-size:clamp(1.9rem,8.4vw,2.5rem);line-height:1.15;margin-top:10px}
+  .dica{color:var(--suave);margin-top:10px}
+  /* Opções: dois cartões iguais, sem rótulo */
+  .opcoes{flex:1;display:flex;flex-direction:column;justify-content:center;padding:18px 0 6px}
+  .opcao{display:flex;align-items:center;gap:14px;width:100%;min-height:clamp(96px,18svh,150px);padding:18px;background:var(--branco);color:var(--escuro);border:3px solid transparent;border-radius:18px;font-weight:700;font-size:1.12rem;line-height:1.35;text-align:left;cursor:pointer;box-shadow:0 6px 22px rgba(4,12,44,.3);transition:transform .12s,border-color .15s,opacity .2s}
+  .opcao:active{transform:scale(.985)}
+  .opcao:focus-visible{outline:3px solid var(--dourado);outline-offset:3px}
+  .opcao .bola{flex:none;width:26px;height:26px;border-radius:50%;border:2.5px solid #b6c6ea;display:grid;place-items:center;transition:background .15s,border-color .15s}
+  .opcao .bola svg{opacity:0;transition:opacity .15s}
+  .opcao.escolhida{border-color:var(--dourado)}
+  .opcao.escolhida .bola{background:var(--dourado);border-color:var(--dourado)}
+  .opcao.escolhida .bola svg{opacity:1}
+  .opcao.apagada{opacity:.45}
+  .ou{align-self:center;margin:10px 0;color:var(--suave);font-weight:700;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase}
+  /* Resultado */
+  .anel{position:relative;width:172px;height:172px;margin:20px auto 0}
+  .anel svg{display:block;transform:rotate(-90deg)}
+  .anel circle{fill:none;stroke-width:10}
+  .anel .fundo{stroke:rgba(255,255,255,.18)}
+  .anel .valor{stroke:var(--dourado);stroke-linecap:round;transition:stroke-dashoffset 1.1s cubic-bezier(.2,.7,.2,1)}
+  .anel strong{position:absolute;inset:0;display:grid;place-items:center;font-size:3rem;font-weight:700}
+  .rotulo{text-align:center;color:var(--suave);margin-top:8px}
+  .resultado .kicker{text-align:center}
+  .resultado h1{font-size:clamp(1.45rem,6.3vw,1.9rem);line-height:1.22;text-align:center;margin-top:16px}
+  .sub{text-align:center;color:var(--suave);margin-top:10px}
+  h2{font-size:1.25rem;font-weight:700;margin:30px 0 12px}
+  .recap{list-style:none;display:grid;gap:10px}
+  .recap li{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:14px}
+  .recap .q{display:block;color:var(--suave);font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+  .recap .r{display:block;font-weight:700;margin-top:4px}
+  .selo{display:inline-block;margin-top:9px;font-size:.74rem;font-weight:900;letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;border-radius:999px}
+  .selo.m{background:var(--dourado);color:var(--escuro)}
+  .selo.t{border:1.5px solid rgba(255,255,255,.55)}
+  .nota{display:block;margin-top:9px;color:var(--suave);font-size:.93rem}
+  .nota b{display:block;color:var(--branco);font-size:.78rem;letter-spacing:.06em;text-transform:uppercase}
+  .foto{margin-top:26px}
+  .foto img{width:100%;height:300px;object-fit:cover;object-position:center 22%;border-radius:16px}
+  .foto figcaption{font-size:.85rem;color:var(--suave);padding-top:8px}
+  .fecho{font-size:1.3rem;font-weight:600;line-height:1.3;margin-top:26px}
+  .convite{color:var(--suave);margin-top:8px}
+  .btn{display:flex;align-items:center;justify-content:center;gap:10px;background:#25D366;color:var(--branco);font-weight:900;font-size:1.08rem;padding:16px 22px;border-radius:999px;text-decoration:none;box-shadow:0 6px 20px rgba(0,0,0,.28);margin-top:18px}
+  .btn svg{flex:none}
+  .refazer{display:block;margin:16px auto 0;padding:8px;background:none;border:0;color:var(--suave);font-size:.95rem;text-decoration:underline;cursor:pointer}
+  footer{margin-top:20px;text-align:center;font-size:.82rem;color:var(--suave)}
+  footer a{color:var(--branco)}
+  /* WhatsApp fixo: só existe na tela do resultado, depois que o número aparece */
+  .cta-fixo{position:fixed;left:0;right:0;bottom:0;z-index:10;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:rgba(20,36,110,.94);border-top:1px solid rgba(222,187,5,.5);display:flex;justify-content:center;transform:translateY(120%);transition:transform .35s ease}
+  .cta-fixo.visivel{transform:none}
+  .cta-fixo .btn{margin-top:0;width:100%;max-width:440px}
+  body.fim{padding-bottom:86px}
+  @media(max-height:620px){
+    .kicker{margin-top:16px}
+    h1{font-size:1.75rem}
+    .opcao{min-height:84px;padding:14px 16px;font-size:1.04rem}
+    .ou{margin:7px 0}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .tela,.tela.sai{animation:none}
+    .anel .valor,.cta-fixo,.opcao{transition:none}
+  }
+</style>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-56ZSQTXF"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<div class="app">
+  <header class="topo">
+    <button class="voltar" id="voltar" type="button" aria-label="Voltar à pergunta anterior" hidden>‹</button>
+    <img src="/images/logo-escola.png" alt="" width="36" height="36">
+    <span class="nome">Escola Montessoriana de Laranjeiras</span>
+  </header>
+  <div class="progresso" id="progresso" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <main class="palco" id="palco" aria-live="polite">
+    <noscript>
+      <p class="kicker">A manhã do seu filho</p>
+      <h1>Qual manhã você escolheria para o seu filho?</h1>
+      <p class="dica">Este teste precisa de JavaScript. Fale com a escola pelo WhatsApp (21) 99297-3454.</p>
+    </noscript>
+  </main>
+</div>
+
+<div class="cta-fixo" id="ctaFixo">
+  <a class="btn" id="waFixo" data-botao="lp-duas-manhas-fixo" href="https://wa.me/5521992973454?text=Ol%C3%A1%2C%20eu%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20a%20Escola%20Montessoriana%20de%20Laranjeiras.">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2Zm5.4 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.9-1.2-4.7-4.1-4.9-4.3-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.4l.9 2.1c.1.2.1.4 0 .6l-.4.6-.5.5c-.2.2-.3.4-.1.7.2.3.8 1.4 1.8 2.2 1.3 1.1 2.3 1.5 2.6 1.6.3.1.5.1.7-.1l1-1.2c.2-.3.4-.2.7-.1l2.1 1c.3.1.5.2.6.4 0 .1 0 .7-.2 1.3Z"/></svg>
+    Quero conhecer a escola
+  </a>
+</div>
+
+<!-- O teste. Textos das opções = pares da série de reels comparativos de 03/10/2026
+     (instagram-maquina-conteudo\_ferramentas\reels_comparativos_0310.py: v1, v2 e v3),
+     sem o nome de cada escola. t = escola tradicional, m = Escola Montessoriana.
+     O nome só aparece no resultado. -->
+<script>
+(function(){
+  var WA='5521992973454';
+  var ABERTURA='Olá, eu gostaria de mais informações sobre a Escola Montessoriana de Laranjeiras.';
+  var P=[
+    {q:'Quem escolhe a atividade?',
+     t:'A professora escolhe: todos fazem a mesma atividade.',
+     m:'A criança escolhe: cada uma faz o seu trabalho.'},
+    {q:'Como seu filho aprende os números?',
+     t:'Vendo: o número fica no quadro.',
+     m:'Fazendo: a quantidade está na mão.'},
+    {q:'Em que ritmo seu filho avança?',
+     t:'No ritmo da turma: todos avançam juntos.',
+     m:'No próprio ritmo: repete até dominar.'},
+    {q:'Com quem seu filho aprende?',
+     t:'Com colegas da mesma idade.',
+     m:'Com idades misturadas, como na vida.'}
+  ];
+  var FAIXAS=[
+    {h:'Você escolheria a manhã da escola tradicional.',
+     s:'Na Escola Montessoriana também há condução: o adulto apresenta cada material, e a criança escolhe entre o que já foi apresentado.'},
+    {h:'Uma das suas quatro escolhas é a rotina da Escola Montessoriana.',
+     s:'Na Escola Montessoriana também há condução: o adulto apresenta cada material, e a criança escolhe entre o que já foi apresentado.'},
+    {h:'Duas das suas quatro escolhas são a rotina da Escola Montessoriana.',
+     s:'Você valoriza a escolha da criança e também a condução do adulto. Na Escola Montessoriana as duas andam juntas: o adulto apresenta, e a criança repete sozinha.'},
+    {h:'Três das suas quatro escolhas são a rotina da Escola Montessoriana.',
+     s:'A manhã que você escolheria para o seu filho é muito parecida com a manhã da nossa escola.'},
+    {h:'As suas quatro escolhas são a rotina da Escola Montessoriana.',
+     s:'A manhã que você escolheria para o seu filho é a manhã da nossa escola.'}
+  ];
+  var ICONE_WA='<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2Zm5.4 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.9-1.2-4.7-4.1-4.9-4.3-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.4l.9 2.1c.1.2.1.4 0 .6l-.4.6-.5.5c-.2.2-.3.4-.1.7.2.3.8 1.4 1.8 2.2 1.3 1.1 2.3 1.5 2.6 1.6.3.1.5.1.7-.1l1-1.2c.2-.3.4-.2.7-.1l2.1 1c.3.1.5.2.6.4 0 .1 0 .7-.2 1.3Z"/></svg>';
+  var CHECK='<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1e3a8a" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+
+  var palco=document.getElementById('palco');
+  var barras=document.getElementById('progresso').children;
+  var voltar=document.getElementById('voltar');
+  var ctaFixo=document.getElementById('ctaFixo');
+  var passo=0,resp=[],travado=false;
+
+  // Metade das perguntas traz a opção Montessori em cima, metade embaixo, em ordem
+  // sorteada: a posição não entrega qual é qual, e o resultado não depende de sorte.
+  var emCima=[true,true,false,false];
+  for(var i=emCima.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var x=emCima[i];emCima[i]=emCima[j];emCima[j]=x;}
+
+  // Medição: Pixel do Meta (evento personalizado, é o que a campanha enxerga) e
+  // dataLayer. Nada de gtag('event') aqui: ver a armadilha do disparo duplo.
+  function medir(nomeMeta,nomeGa,dados){
+    try{fbq('trackCustom',nomeMeta,dados);}catch(e){}
+    var d={event:nomeGa,page_path:location.pathname};
+    for(var k in dados){d['quiz_'+k]=dados[k];}
+    window.dataLayer=window.dataLayer||[];
+    window.dataLayer.push(d);
+  }
+  function el(tag,cls,txt){var n=document.createElement(tag);if(cls)n.className=cls;if(txt!=null)n.textContent=txt;return n;}
+  function pintarProgresso(){
+    for(var k=0;k<barras.length;k++){
+      barras[k].className=k<passo?'feito':(k===passo?'atual':'');
+    }
+    voltar.hidden=!(passo>0&&passo<P.length);
+  }
+  function trocar(montar){
+    var atual=palco.querySelector('.tela');
+    var entrar=function(){palco.textContent='';palco.appendChild(montar());window.scrollTo(0,0);travado=false;};
+    if(!atual){entrar();return;}
+    atual.classList.add('sai');
+    setTimeout(entrar,190);
+  }
+  function telaPergunta(){
+    var p=P[passo];
+    var s=el('section','tela');
+    s.appendChild(el('p','kicker','A manhã do seu filho · '+(passo+1)+' de '+P.length));
+    s.appendChild(el('h1',null,p.q));
+    if(passo===0)s.appendChild(el('p','dica','São 4 escolhas rápidas. Toque na que você prefere.'));
+    var caixa=el('div','opcoes');
+    var ordem=emCima[passo]?['m','t']:['t','m'];
+    ordem.forEach(function(v,pos){
+      if(pos===1)caixa.appendChild(el('div','ou','ou'));
+      var b=el('button','opcao');
+      b.type='button';
+      var bola=el('span','bola');bola.innerHTML=CHECK;
+      b.appendChild(bola);
+      b.appendChild(el('span',null,p[v]));
+      b.addEventListener('click',function(){responder(v,pos,b,caixa);});
+      caixa.appendChild(b);
+    });
+    s.appendChild(caixa);
+    return s;
+  }
+  function responder(v,pos,botao,caixa){
+    if(travado)return;
+    travado=true;
+    resp[passo]=v;
+    var todos=caixa.querySelectorAll('.opcao');
+    for(var k=0;k<todos.length;k++){todos[k].classList.add(todos[k]===botao?'escolhida':'apagada');}
+    medir('QuizResposta','quiz_resposta',{pergunta:passo+1,escolha:v==='m'?'montessori':'tradicional',posicao:pos===0?'cima':'baixo'});
+    setTimeout(function(){
+      passo++;
+      pintarProgresso();
+      trocar(passo<P.length?telaPergunta:telaResultado);
+    },430);
+  }
+  function linkWhats(pct){
+    var texto=ABERTURA+'\n\nFiz o teste das duas manhãs: '+pct+'% de afinidade com a Escola Montessoriana.';
+    return 'https://wa.me/'+WA+'?text='+encodeURIComponent(texto);
+  }
+  function telaResultado(){
+    var acertos=0;
+    for(var k=0;k<P.length;k++){if(resp[k]==='m')acertos++;}
+    var pct=Math.round(acertos*100/P.length);
+    var faixa=FAIXAS[acertos];
+    var href=linkWhats(pct);
+    var s=el('section','tela resultado');
+    s.appendChild(el('p','kicker','Seu resultado'));
+
+    var anel=el('div','anel');
+    var R=76,C=2*Math.PI*R;
+    anel.innerHTML='<svg width="172" height="172" viewBox="0 0 172 172" aria-hidden="true">'+
+      '<circle class="fundo" cx="86" cy="86" r="'+R+'"/>'+
+      '<circle class="valor" cx="86" cy="86" r="'+R+'" stroke-dasharray="'+C.toFixed(1)+'" stroke-dashoffset="'+C.toFixed(1)+'"/></svg>';
+    var num=el('strong',null,'0%');
+    anel.appendChild(num);
+    s.appendChild(anel);
+    s.appendChild(el('p','rotulo','de afinidade com a Escola Montessoriana'));
+    s.appendChild(el('h1',null,faixa.h));
+    s.appendChild(el('p','sub',faixa.s));
+
+    s.appendChild(el('h2',null,'Suas escolhas'));
+    var lista=el('ol','recap');
+    P.forEach(function(p,k){
+      var li=el('li');
+      li.appendChild(el('span','q',p.q));
+      li.appendChild(el('span','r',p[resp[k]]));
+      if(resp[k]==='m'){
+        li.appendChild(el('span','selo m','Escola Montessoriana'));
+      }else{
+        li.appendChild(el('span','selo t','Escola tradicional'));
+        var nota=el('span','nota');
+        nota.appendChild(el('b',null,'Na Escola Montessoriana'));
+        nota.appendChild(document.createTextNode(p.m));
+        li.appendChild(nota);
+      }
+      lista.appendChild(li);
+    });
+    s.appendChild(lista);
+
+    var fig=el('figure','foto');
+    var img=el('img');
+    img.src='/images/turmas/agrupada-2.jpg';
+    img.alt='Criança ao lado da torre que montou, na sala da Agrupada 2';
+    img.loading='lazy';
+    fig.appendChild(img);
+    fig.appendChild(el('figcaption',null,'Sala da Agrupada 2 (2,5 a 6 anos), na nossa escola em Laranjeiras.'));
+    s.appendChild(fig);
+
+    s.appendChild(el('p','fecho','A liberdade de escolher é a estrutura do dia.'));
+    s.appendChild(el('p','convite','Vem ver uma manhã de escolhas de perto.'));
+    var a=el('a','btn');
+    a.href=href;
+    a.setAttribute('data-botao','lp-duas-manhas-fim');
+    a.innerHTML=ICONE_WA;
+    a.appendChild(document.createTextNode('Quero conhecer a escola'));
+    s.appendChild(a);
+
+    var refazer=el('button','refazer','Refazer o teste');
+    refazer.type='button';
+    refazer.addEventListener('click',reiniciar);
+    s.appendChild(refazer);
+
+    var rodape=el('footer');
+    rodape.appendChild(document.createTextNode('Acolhimento, natureza e imersão em inglês · Montessori dos 9 meses aos 11 anos'));
+    rodape.appendChild(el('br'));
+    rodape.appendChild(document.createTextNode('Rua das Laranjeiras, 540, fundos — Rio de Janeiro · '));
+    var site=el('a',null,'Conhecer o site completo');
+    site.href='https://www.escolamontessoriana.com.br/';
+    rodape.appendChild(site);
+    s.appendChild(rodape);
+
+    // Número e anel sobem juntos; o WhatsApp fixo entra quando o número fecha.
+    document.getElementById('waFixo').href=href;
+    document.body.classList.add('fim');
+    var parado=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    setTimeout(function(){
+      anel.querySelector('.valor').setAttribute('stroke-dashoffset',(C*(1-pct/100)).toFixed(1));
+      if(parado||pct===0){num.textContent=pct+'%';return;}
+      var t0=null,DUR=1000;
+      (function quadro(t){
+        if(t0===null)t0=t;
+        var f=Math.min(1,(t-t0)/DUR);
+        num.textContent=Math.round(pct*f)+'%';
+        if(f<1)requestAnimationFrame(quadro);
+      })(performance.now());
+    },260);
+    setTimeout(function(){ctaFixo.classList.add('visivel');},1500);
+    // Some quando o botão do fim da página aparece, para não ficarem dois na tela.
+    if('IntersectionObserver' in window){
+      new IntersectionObserver(function(es){
+        ctaFixo.style.display=es[0].isIntersecting?'none':'';
+      }).observe(a);
+    }
+
+    // Conta UMA conclusão por navegador: refazer o teste não infla a conversão.
+    var jaContou=false;
+    try{jaContou=localStorage.getItem('alm_quiz_manhas')==='1';}catch(e){}
+    if(!jaContou){
+      medir('QuizConcluido','quiz_resultado',{afinidade:pct});
+      try{localStorage.setItem('alm_quiz_manhas','1');}catch(e){}
+    }
+    return s;
+  }
+  function reiniciar(){
+    passo=0;resp=[];
+    document.body.classList.remove('fim');
+    ctaFixo.classList.remove('visivel');
+    ctaFixo.style.display='';
+    pintarProgresso();
+    trocar(telaPergunta);
+  }
+  voltar.addEventListener('click',function(){
+    if(travado||passo===0||passo>=P.length)return;
+    travado=true;
+    passo--;
+    pintarProgresso();
+    trocar(telaPergunta);
+  });
+  pintarProgresso();
+  trocar(telaPergunta);
+})();
+</script>
+
+<!-- Medição de origem/gclid: versão estática do utils/gclid.ts do site principal.
+     MESMAS chaves de localStorage (alm_*) — quem navega entre a LP e o site
+     mantém o mesmo código de protocolo. Qualquer mudança lá deve refletir aqui. -->
+<script>
+(function(){
+  var K_G='alm_gclid',K_R='alm_ref',K_REG='alm_ref_registrado',K_O='alm_origem',K_C='alm_campanha';
+  var VAL=90*24*60*60*1000;
+  var SB='https://rmpnqrvsmxhnrwlgqmdp.supabase.co';
+  var SBK='sb_publishable_bg4n-MXnoYVWomRN90WTOg_HOdq3_9G';
+  function ler(k){try{var b=localStorage.getItem(k);return b?JSON.parse(b):null}catch(e){return null}}
+  function gravar(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+  var params=new URLSearchParams(location.search);
+  var gclidUrl=params.get('gclid');
+  if(gclidUrl){
+    // kw/mt/net/agid vem do modelo de acompanhamento e pertencem ao mesmo clique.
+    // NAO apagar K_REG aqui (correcao 15edfd1 do site): a assinatura origem+gclid
+    // ja detecta a mudanca e o 409 forca ref novo.
+    var regG={gclid:gclidUrl,ts:Date.now()};
+    ['kw','mt','net','agid'].forEach(function(c){var v=params.get(c);if(v)regG[c]=v;});
+    gravar(K_G,regG);
+  }
+  // fbclid/utm_*: e o que separa story, reels, bio e pago no Instagram — o referrer
+  // do app vem vazio e nao distingue peca (ver docs/utm-instagram.md, 25/08/2026).
+  // Vale o toque MAIS RECENTE; sem parametro na URL nao apaga o que ja estava guardado.
+  // Os cortes espelham os limites da RLS: campo grande demais faz o insert inteiro
+  // ser recusado e a medicao some em silencio.
+  var fbclidUrl=(params.get('fbclid')||'').trim();
+  (function(){
+    var reg={ts:Date.now()};
+    if(fbclidUrl&&!/\s/.test(fbclidUrl))reg.fbclid=fbclidUrl.slice(0,255);
+    // O link da bio usa utm_source=ig; normalizar evita dois nomes para a mesma coisa
+    // (detectar() ja trata ig e instagram como a mesma origem).
+    var APELIDOS={ig:'instagram',fb:'facebook'};
+    [['utm_source',60],['utm_medium',60],['utm_campaign',120],['utm_content',120]].forEach(function(p){
+      var v=(params.get(p[0])||'').trim();
+      if(!v)return;
+      v=v.slice(0,p[1]).toLowerCase();
+      if(p[0]==='utm_source'&&APELIDOS[v])v=APELIDOS[v];
+      reg[p[0]]=v;
+    });
+    if(reg.fbclid||reg.utm_source||reg.utm_medium||reg.utm_campaign||reg.utm_content)gravar(K_C,reg);
+  })();
+  function obterC(){var r=ler(K_C);if(!r)return null;if(Date.now()-r.ts>VAL)return null;return r}
+  function detectar(){
+    if(gclidUrl)return 'google_ads';
+    var utm=(params.get('utm_source')||'').toLowerCase();
+    if(utm){
+      if(utm.indexOf('instagram')>=0||utm==='ig')return 'instagram';
+      if(utm.indexOf('facebook')>=0||utm==='fb')return 'facebook';
+      if(utm.indexOf('bing')>=0)return 'bing';
+      if(utm.indexOf('google')>=0)return 'google_organico';
+    }
+    var ref=document.referrer;
+    if(!ref)return 'direto';
+    try{
+      var u=new URL(ref);
+      if(u.hostname===location.hostname){return u.pathname.indexOf('/informativo')===0?'informativo':null}
+      var h=u.hostname;
+      if(/(^|\.)google\./.test(h))return 'google_organico';
+      if(/(^|\.)instagram\.com$/.test(h))return 'instagram';
+      if(/(^|\.)(facebook\.com|fb\.me)$/.test(h))return 'facebook';
+      if(/(^|\.)bing\.com$/.test(h))return 'bing';
+      return 'outro_site';
+    }catch(e){return 'direto'}
+  }
+  var det=detectar();
+  if(det){
+    var at=ler(K_O);
+    var valida=at&&(Date.now()-at.ts<=VAL);
+    // Clique pago sempre promove. O fbclid so promove quando a peca se identifica
+    // como Meta: anuncio sem utm e sem referrer seria detectado como 'direto' e
+    // apagaria uma origem boa que ja estava guardada.
+    var pagoAgora=!!gclidUrl||(!!fbclidUrl&&(det==='instagram'||det==='facebook'));
+    if(!valida||pagoAgora){var efetiva=(det!=='google_ads'&&obterG())?'google_ads':det;gravar(K_O,{origem:efetiva,ts:Date.now()});}
+  }
+  function obterG(){var r=ler(K_G);if(!r||!r.gclid)return null;if(Date.now()-r.ts>VAL)return null;return r.gclid}
+  function obterO(){var r=ler(K_O);if(!r||!r.origem)return null;if(Date.now()-r.ts>VAL)return null;return r.origem}
+  function novoRef(){var n=Math.random().toString(36).slice(2,8).toUpperCase();gravar(K_R,n);return n}
+  function obterRef(){var e=ler(K_R);return e||novoRef()}
+  (function registrar(){
+    var g=obterG(),o=obterO();
+    if(!g&&!o)return;
+    // A peca entra na assinatura: sem isso, quem ja visitou pela bio e volta por um
+    // story reusaria o registro antigo (origem e gclid nao mudaram) e o story sumiria.
+    var c=obterC()||{};
+    var ass=(o||'sem')+'|'+(g||'sem')+'|'+(c.fbclid||'sem')+'|'+(c.utm_content||'sem');
+    var ja=ler(K_REG);
+    if(ja===ass)return;
+    var ref=obterRef();
+    if(!ref)return;
+    var body={ref:ref};
+    if(o)body.origem=o;
+    if(g){
+      body.gclid=g;
+      var rg=ler(K_G)||{};
+      ['kw','mt','net','agid'].forEach(function(x){if(rg[x])body[x]=rg[x];});
+    }
+    ['fbclid','utm_source','utm_medium','utm_campaign','utm_content'].forEach(function(k){if(c[k])body[k]=c[k];});
+    var enviar=function(codigo){
+      body.ref=codigo;
+      return fetch(SB+'/rest/v1/cliques_anuncio',{
+        method:'POST',
+        headers:{apikey:SBK,Authorization:'Bearer '+SBK,'Content-Type':'application/json',Prefer:'return=minimal'},
+        body:JSON.stringify(body)
+      });
+    };
+    // 409 = ref ja usado por assinatura antiga: gera codigo novo e tenta UMA vez
+    // (mesma semantica da correcao 15edfd1 do site). So r.ok marca como registrado.
+    enviar(ref).then(function(r){
+      if(r.status===409){var n=novoRef();if(n)return enviar(n);}
+      return r;
+    }).then(function(r){if(r&&r.ok)gravar(K_REG,ass)}).catch(function(){});
+  })();
+  document.addEventListener('click',function(e){
+    var alvo=e.target;
+    var link=alvo&&alvo.closest?alvo.closest('a[href*="wa.me"]'):null;
+    if(!link)return;
+    var codigo=obterRef();
+    if(codigo){
+      try{
+        var url=new URL(link.href);
+        var texto=url.searchParams.get('text')||'';
+        if(!/Protocolo:/i.test(texto)){
+          url.searchParams.set('text',texto+'\n\nProtocolo: '+codigo);
+          link.href=url.toString();
+        }
+      }catch(err){}
+    }
+    if(typeof window.trackWhatsAppConversion==='function')window.trackWhatsAppConversion();
+    window.dataLayer=window.dataLayer||[];
+    window.dataLayer.push({event:'whatsapp_click',page_path:location.pathname,button_id:link.getAttribute('data-botao')||'lp'});
+  },true);
+})();
+</script>
+<!-- Download das bibliotecas de tracking, adiado (mesmo padrão do index.html) -->
+<script>
+  window.addEventListener('load', function() {
+    var primeiroScript = document.getElementsByTagName('script')[0];
+    var fb = document.createElement('script');
+    fb.async = true;
+    fb.src = 'https://connect.facebook.net/en_US/fbevents.js';
+    primeiroScript.parentNode.insertBefore(fb, primeiroScript);
+    var g = document.createElement('script');
+    g.async = true;
+    g.src = 'https://www.googletagmanager.com/gtag/js?id=G-79X03K7F7F';
+    document.head.appendChild(g);
+  });
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1183448566465118&ev=PageView&noscript=1" alt=""></noscript>
+</body>
+</html>
