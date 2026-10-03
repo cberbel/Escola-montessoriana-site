@@ -384,6 +384,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     try{jaContou=localStorage.getItem('alm_quiz_manhas')==='1';}catch(e){}
     if(!jaContou){
       medir('QuizConcluido','quiz_resultado',{afinidade:pct});
+      // A campanha otimiza por este evento PADRÃO ("Concluir inscrição" no Gerenciador):
+      // evento personalizado só entra na otimização por conversão personalizada, e a Meta
+      // demora a listar evento novo. Nenhuma outra página do site dispara este evento.
+      try{fbq('track','CompleteRegistration',{content_name:'teste-duas-manhas'});}catch(e){}
       try{localStorage.setItem('alm_quiz_manhas','1');}catch(e){}
     }
     return s;
