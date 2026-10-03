@@ -367,6 +367,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         num.textContent=Math.round(pct*f)+'%';
         if(f<1)requestAnimationFrame(quadro);
       })(performance.now());
+      // Com a aba em segundo plano o requestAnimationFrame não roda e o número
+      // ficaria em 0%: o valor final é garantido por tempo.
+      setTimeout(function(){num.textContent=pct+'%';},DUR+300);
     },260);
     setTimeout(function(){ctaFixo.classList.add('visivel');},1500);
     // Some quando o botão do fim da página aparece, para não ficarem dois na tela.
