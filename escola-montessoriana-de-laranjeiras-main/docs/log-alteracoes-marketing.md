@@ -32,11 +32,19 @@ otimizando por conclusão do teste.
   por `CompleteRegistration` ("Concluir inscrição" no Gerenciador): aqui ele quer dizer
   teste concluído, não cadastro. O `QuizConcluido` não aparecia na lista de eventos meia
   hora depois do primeiro disparo, por isso o evento padrão.
-- **dataLayer:** `quiz_resposta` e `quiz_resultado`, ainda sem tag no GTM (não chegam ao GA4).
+- **dataLayer + GTM (versão 12, publicada 03/10 19h53):** `quiz_resposta` e `quiz_resultado`
+  chegam ao GA4 pela tag `GA4 - Evento quiz_resposta e quiz_resultado` (acionador por regex
+  `^quiz_(resposta|resultado)$`; variáveis `DLV - quiz_pergunta`, `DLV - quiz_escolha`,
+  `DLV - quiz_afinidade`). Conferido ao vivo interceptando o `/g/collect`. Nenhuma tag
+  existente foi alterada; o espaço de trabalho estava com 0 alterações antes. Para ver os
+  parâmetros nos relatórios do GA4 ainda faltam as dimensões personalizadas.
 - **Campanha `[ALM] [M4] [SITE] [TESTE-DUAS-MANHAS]`** (id 120255182861630357): objetivo
   Leads, conversão no Site, orçamento da campanha R$ 20/dia. Conjunto
-  `teste-duas-manhas · ZS 3km 25+`: público salvo `[ALM] 3km 25+ so ZS Centro Gloria Rio
-  Comprido`, término 17/10/2026 23h59, posicionamentos Advantage+ (a Meta não deixa mais
+  `teste-duas-manhas · ZS 3km 25-45` (renomeado às 19h40, por ordem do Claudio: "usar 25 a
+  45 é melhor"): público salvo NOVO `[ALM] 3km 25-45 so ZS Centro Gloria Rio Comprido`, que
+  é o de 25+ com a idade em 25 a 45 (o salvo de 25+ dos outros conjuntos não foi tocado). Nesta
+  campanha a Meta trata o 45 como sugestão, não como limite; o limite firme é só o mínimo de
+  25. Estimativa: 190 a 224 mil. Término 17/10/2026 23h59, posicionamentos Advantage+ (a Meta não deixa mais
   excluir). Anúncio `q1-teste-duas-manhas`: vídeo de 13 s, botão "Saiba mais", parâmetros
   `utm_source=ig&utm_medium=paid_social&utm_campaign=m4-teste-duas-manhas&utm_content=q1-teste-duas-manhas`.
 - **Desligado no anúncio** (vinha ligado por padrão): complemento de navegador "WhatsApp",
@@ -46,6 +54,9 @@ otimizando por conclusão do teste.
   identidade passou a ser o do bot.
 - **Aviso da Meta ao publicar:** "sua campanha poderá ter 0 resultado diário" com sugestão
   de R$ 48/dia. Recusado: o evento não tem histórico, a estimativa parte do zero.
+
+- **Remarketing:** o vídeo do anúncio entrou no público `[ALM] Video 50% - 60D` (112 vídeos).
+  Para a Meta aceitar a atualização saíram dois "vídeo sem título" sem data (excluídos).
 
 **Leitura:**
 `select utm_content, count(*) from public.cliques_anuncio where utm_campaign = 'm4-teste-duas-manhas' group by 1;`

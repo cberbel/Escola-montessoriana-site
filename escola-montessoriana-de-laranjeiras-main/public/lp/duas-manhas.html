@@ -224,7 +224,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   // dataLayer. Nada de gtag('event') aqui: ver a armadilha do disparo duplo.
   function medir(nomeMeta,nomeGa,dados){
     try{fbq('trackCustom',nomeMeta,dados);}catch(e){}
-    var d={event:nomeGa,page_path:location.pathname};
+    // As chaves quiz_* comecam vazias a cada evento: a camada de dados do GTM guarda o
+    // ultimo valor, e o quiz_resultado saia com a pergunta e a escolha da resposta anterior.
+    var d={event:nomeGa,page_path:location.pathname,quiz_pergunta:undefined,quiz_escolha:undefined,quiz_posicao:undefined,quiz_afinidade:undefined};
     for(var k in dados){d['quiz_'+k]=dados[k];}
     window.dataLayer=window.dataLayer||[];
     window.dataLayer.push(d);
