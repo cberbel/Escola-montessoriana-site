@@ -44,7 +44,7 @@ export const QuandoMatricular: React.FC = () => (
         <><strong>O risco está no cuidado de baixa qualidade</strong> — muitas crianças por adulto, rotatividade, telas, pouco colo. Não na escola em si.</>,
       ]}
     />
-    <LandingImage src="/images/acolhimento/bebe-tranquilo.jpg" alt="Bebê tranquilo no colo de uma professora, em ambiente acolhedor da escola" portrait />
+    <LandingImage src="/images/acolhimento/servir-agua.jpg" alt="Menina pequena concentrada, servindo água de uma jarra em uma sala da escola" portrait />
 
     <H2>Sinais de que pode ser a hora</H2>
     <Bullets

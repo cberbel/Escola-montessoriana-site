@@ -37,7 +37,7 @@ export const WelcomingFr: React.FC = () => {
         <LandingImagePair
           images={[
             { src: '/images/acolhimento/sorriso-professora.jpg', alt: "Éducatrice et enfant qui se serrent dans les bras en souriant, dans la cour de l'école" },
-            { src: '/images/acolhimento/bebe-tranquilo.jpg', alt: "Bébé paisible explorant un matériel dans l'ambiance, les étagères en arrière-plan" },
+            { src: '/images/acolhimento/servir-agua.jpg', alt: "Petite fille concentrée versant de l'eau d'un pichet dans l'ambiance, les étagères en arrière-plan" },
           ]}
           caption="Le sourire d'un enfant qui se sent en sécurité — tout le reste pousse à partir de là."
         />

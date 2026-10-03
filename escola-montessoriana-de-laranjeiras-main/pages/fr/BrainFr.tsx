@@ -122,7 +122,7 @@ export const BrainFr: React.FC = () => {
         </P>
         <LandingImagePair
           images={[
-            { src: '/images/cerebro/bebes-escada.jpg', alt: "Trois bébés souriants en haut de l'escalier Montessori en bois, dans l'ambiance" },
+            { src: '/images/cerebro/balanco-arco.jpg', alt: "Petite fille grimpant sur l'arche à bascule en bois, dans l'ambiance" },
             { src: '/images/cerebro/patio-musica.jpg', alt: "Séance de mouvement et de musique dans la cour couverte, avec bébés, éducatrices et arbres en arrière-plan" },
           ]}
           caption="Grimper, danser, tenir en équilibre : le mouvement est le carburant du cerveau — dans l'ambiance comme dans la cour."

@@ -35,7 +35,7 @@ export const AcogidaEs: React.FC = () => {
         <LandingImagePair
           images={[
             { src: '/images/acolhimento/sorriso-professora.jpg', alt: 'Maestra y niño abrazados y sonrientes en el patio de la escuela' },
-            { src: '/images/acolhimento/bebe-tranquilo.jpg', alt: 'Bebé tranquilo explorando un material en el salón, con las estanterías al fondo' },
+            { src: '/images/acolhimento/servir-agua.jpg', alt: 'Niña pequeña concentrada mientras sirve agua de una jarra en el salón, con las estanterías al fondo' },
           ]}
           caption="La sonrisa de un niño que se siente seguro — de ahí crece todo lo demás."
         />

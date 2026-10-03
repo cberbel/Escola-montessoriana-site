@@ -35,7 +35,7 @@ export const WelcomingEn: React.FC = () => {
         <LandingImagePair
           images={[
             { src: '/images/acolhimento/sorriso-professora.jpg', alt: 'Teacher and child hugging and smiling together in the school patio' },
-            { src: '/images/acolhimento/bebe-tranquilo.jpg', alt: 'Calm baby exploring a material in the classroom, with the shelves in the background' },
+            { src: '/images/acolhimento/servir-agua.jpg', alt: 'A little girl concentrating as she pours water from a small pitcher in the classroom, with the shelves in the background' },
           ]}
           caption="The smile of a child who feels safe — everything else grows from it."
         />

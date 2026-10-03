@@ -117,7 +117,7 @@ export const CerebroEs: React.FC = () => {
         </P>
         <LandingImagePair
           images={[
-            { src: '/images/cerebro/bebes-escada.jpg', alt: 'Tres bebés sonriendo en lo alto de la escalera Montessori de madera, dentro del salón' },
+            { src: '/images/cerebro/balanco-arco.jpg', alt: 'Niña pequeña subiéndose al balancín de madera en forma de arco, dentro del salón' },
             { src: '/images/cerebro/patio-musica.jpg', alt: 'Clase de movimiento y música en el patio techado, con bebés, maestras y árboles al fondo' },
           ]}
           caption="Trepar, bailar, equilibrarse: el movimiento es combustible para el cerebro — en el salón y en el patio."

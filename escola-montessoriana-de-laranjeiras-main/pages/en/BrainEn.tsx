@@ -114,7 +114,7 @@ export const BrainEn: React.FC = () => {
         </P>
         <LandingImagePair
           images={[
-            { src: '/images/cerebro/bebes-escada.jpg', alt: 'Three babies smiling at the top of the wooden Montessori stairs, inside the classroom' },
+            { src: '/images/cerebro/balanco-arco.jpg', alt: 'A little girl climbing onto the wooden rocker arch, inside the classroom' },
             { src: '/images/cerebro/patio-musica.jpg', alt: 'Movement and music class in the covered patio, with babies, teachers and trees in the background' },
           ]}
           caption="Climbing, dancing, balancing: movement is brain fuel — in the classroom and in the patio."

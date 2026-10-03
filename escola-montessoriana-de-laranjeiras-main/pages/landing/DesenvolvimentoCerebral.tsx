@@ -114,7 +114,7 @@ export const DesenvolvimentoCerebral: React.FC = () => {
         </P>
         <LandingImagePair
           images={[
-            { src: '/images/cerebro/bebes-escada.jpg', alt: 'Três bebês sorrindo no alto da escada Montessori de madeira, dentro da sala' },
+            { src: '/images/cerebro/balanco-arco.jpg', alt: 'Menina pequena subindo no balanço-arco de madeira, dentro da sala' },
             { src: '/images/cerebro/patio-musica.jpg', alt: 'Aula de movimento e música no pátio coberto, com bebês e professores e as árvores ao fundo' },
           ]}
           caption="Subir, dançar, equilibrar: movimento é combustível do cérebro — na sala e no pátio."
