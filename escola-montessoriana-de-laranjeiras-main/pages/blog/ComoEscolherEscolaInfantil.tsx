@@ -81,7 +81,8 @@ export const ComoEscolherEscolaInfantil: React.FC = () => (
     </Highlight>
 
     <P>
-      Se você está nessa busca em Laranjeiras, Flamengo, Botafogo, Catete ou Cosme Velho, venha nos visitar: a
+      Se você está nessa busca em <L to="/creche-laranjeiras">Laranjeiras</L>, <L to="/creche-flamengo">Flamengo</L>,{' '}
+      <L to="/creche-botafogo">Botafogo</L>, Catete ou Cosme Velho, venha nos visitar: a
       Escola Montessoriana de Laranjeiras atende crianças <strong>a partir de 9 meses</strong>, com método
       Montessori, <L to="/ingles-primeira-infancia">imersão diária em inglês</L>, alimentação saudável feita na
       escola, política de zero telas e um pátio verde onde a infância acontece ao ar livre.

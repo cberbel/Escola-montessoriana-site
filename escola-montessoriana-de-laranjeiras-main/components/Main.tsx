@@ -96,6 +96,7 @@ export const Main: React.FC = () => {
             <ul className="space-y-2 text-gray-300">
               <li><Link to="/creche-laranjeiras" className="hover:text-yellow-400 transition-colors">Creche em Laranjeiras</Link></li>
               <li><Link to="/creche-flamengo" className="hover:text-yellow-400 transition-colors">Creche perto do Flamengo</Link></li>
+              <li><Link to="/creche-botafogo" className="hover:text-yellow-400 transition-colors">Creche perto de Botafogo</Link></li>
               <li><Link to="/turmas" className="hover:text-yellow-400 transition-colors">Turmas</Link></li>
               <li><Link to="/metodo-montessori" className="hover:text-yellow-400 transition-colors">O Método Montessori</Link></li>
               <li><Link to="/sobre" className="hover:text-yellow-400 transition-colors">Sobre a escola e o fundador</Link></li>

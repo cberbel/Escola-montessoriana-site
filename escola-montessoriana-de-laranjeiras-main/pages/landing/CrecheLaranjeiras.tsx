@@ -115,6 +115,9 @@ export const CrecheLaranjeiras: React.FC = () => {
           Vem do Flamengo ou do Catete?{' '}
           <Link to="/creche-flamengo" className="text-montessori-green font-semibold underline hover:no-underline">
             São cinco minutos — e explicamos por que valem a pena
+          </Link>. Vem de Botafogo?{' '}
+          <Link to="/creche-botafogo" className="text-montessori-green font-semibold underline hover:no-underline">
+            Veja os dois caminhos até a escola
           </Link>.
         </P>
         <P>

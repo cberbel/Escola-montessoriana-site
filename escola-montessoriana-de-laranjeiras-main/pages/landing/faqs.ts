@@ -84,6 +84,29 @@ export const faqCrecheFlamengo: ItemFAQ[] = [
   },
 ];
 
+export const faqCrecheBotafogo: ItemFAQ[] = [
+  {
+    p: 'A Escola Montessoriana fica em Botafogo?',
+    r: 'Não. A escola fica no final da Rua das Laranjeiras, no número 540, entre Laranjeiras e o Cosme Velho — cerca de 10 minutos de carro da Praia de Botafogo, fora do horário de pico.',
+  },
+  {
+    p: 'Qual o melhor caminho de Botafogo até a escola?',
+    r: 'Perto da praia ou da Farani, subir a Rua Pinheiro Machado e seguir a Rua das Laranjeiras até o fim (cerca de 3 km). Da São Clemente, da Voluntários da Pátria ou do Humaitá, o Túnel Rebouças com saída no Cosme Velho costuma ser tão rápido quanto.',
+  },
+  {
+    p: 'Dá para chegar de transporte público?',
+    r: 'Sim: metrô até o Largo do Machado e ônibus pela Rua das Laranjeiras acima. Saindo da estação Botafogo, o trajeto leva de 30 a 40 minutos, conforme a espera do ônibus.',
+  },
+  {
+    p: 'A partir de que idade a escola recebe bebês?',
+    r: 'A partir de 9 meses, com 1 professora para cada 3 bebês até os 18 meses. A escola vai da creche ao Ensino Fundamental, na mesma casa.',
+  },
+  {
+    p: 'Quais são os horários?',
+    r: 'Das 7h30 às 19h, com meio período (8h às 12h ou 13h às 17h), integral (8h às 17h), estendido (7h30 às 19h) e frequência reduzida em dias alternados.',
+  },
+];
+
 /** Página /mensalidade. Valor de partida e como ele é composto. */
 export const faqMensalidade: ItemFAQ[] = [
   {

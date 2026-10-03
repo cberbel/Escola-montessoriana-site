@@ -89,7 +89,8 @@ export const EscolaMontessoriRio: React.FC = () => (
     <H2>Onde entra a nossa escola nessa conversa</H2>
     <P>
       A <strong>Escola Montessoriana de Laranjeiras</strong> fica na Zona Sul do Rio, na Rua das Laranjeiras, 540 —
-      a poucos minutos do Cosme Velho, do Catete, do Flamengo e de Botafogo. Atendemos do{' '}
+      a poucos minutos do Cosme Velho, do Catete, do <L to="/creche-flamengo">Flamengo</L> e de{' '}
+      <L to="/creche-botafogo">Botafogo</L>. Atendemos do{' '}
       <L to="/creche-laranjeiras">berçário, a partir dos 9 meses</L>, ao Ensino Fundamental, em{' '}
       <L to="/turmas">turmas de idades misturadas</L>, com ciclo de trabalho longo, política de zero telas e
       imersão diária no inglês. E fazemos questão do critério mais exigente da lista: <strong>visite e observe uma

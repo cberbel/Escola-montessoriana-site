@@ -22,6 +22,7 @@ export const pages: Pages = {
   Agrupada3: lazy(() => import('./pages/landing/Agrupada3').then((m) => ({ default: m.Agrupada3 }))),
   CrecheLaranjeiras: lazy(() => import('./pages/landing/CrecheLaranjeiras').then((m) => ({ default: m.CrecheLaranjeiras }))),
   CrecheFlamengo: lazy(() => import('./pages/landing/CrecheFlamengo').then((m) => ({ default: m.CrecheFlamengo }))),
+  CrecheBotafogo: lazy(() => import('./pages/landing/CrecheBotafogo').then((m) => ({ default: m.CrecheBotafogo }))),
   MainEn: lazy(() => import('./components/en/MainEn').then((m) => ({ default: m.MainEn }))),
   MainFr: lazy(() => import('./components/fr/MainFr').then((m) => ({ default: m.MainFr }))),
   HomeFr: lazy(() => import('./pages/fr/HomeFr').then((m) => ({ default: m.HomeFr }))),

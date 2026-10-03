@@ -12,7 +12,7 @@ import { StaticRouter } from 'react-router-dom/server';
 import { AppShell } from './App';
 import { pages } from './routes.eager';
 import { blogPosts } from './pages/blog/posts';
-import { faqCrecheLaranjeiras, faqCrecheFlamengo, faqMensalidade, type ItemFAQ } from './pages/landing/faqs';
+import { faqCrecheLaranjeiras, faqCrecheFlamengo, faqCrecheBotafogo, faqMensalidade, type ItemFAQ } from './pages/landing/faqs';
 
 export function render(url: string): string {
   return renderToString(
@@ -190,6 +190,14 @@ const rotasBase: RotaPrerender[] = [
     description:
       'Creche e berçário Montessori a 5 minutos do Flamengo, na Rua das Laranjeiras. A partir de 9 meses, 1 professora para cada 3 bebês e horários das 7h30 às 19h.',
     faq: faqCrecheFlamengo,
+  },
+  {
+    url: '/creche-botafogo',
+    title: 'Creche perto de Botafogo, a 10 minutos | Escola Montessoriana',
+    description:
+      'Creche e berçário Montessori a cerca de 10 minutos de Botafogo, no final da Rua das Laranjeiras. Os caminhos pela Pinheiro Machado e pelo Rebouças.',
+    faq: faqCrecheBotafogo,
+    lastmod: '2026-10-03',
   },
   {
     url: '/agrupada-3',

@@ -102,6 +102,7 @@ export const AppShell: React.FC<{ pages?: Pages }> = ({ pages: P = lazyPages }) 
             <Route path="agrupada-3" element={<P.Agrupada3 />} />
             <Route path="creche-laranjeiras" element={<P.CrecheLaranjeiras />} />
             <Route path="creche-flamengo" element={<P.CrecheFlamengo />} />
+            <Route path="creche-botafogo" element={<P.CrecheBotafogo />} />
             {/* 404 de verdade: o prerender grava esta tela em dist/404.html e a Vercel a
                 serve com status 404 para qualquer caminho que não exista (antes, a home
                 voltava com 200 — "soft 404" para o Google). */}

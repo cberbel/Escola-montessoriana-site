@@ -122,7 +122,8 @@ export const EscolaPertoDeCasa: React.FC = () => (
       <p className="mt-2 text-sm text-gray-500">
         Estimativas em horário fora de pico, a partir da Rua das Laranjeiras, 540 (fundos) — o trajeto da Praia do
         Flamengo foi cronometrado de verdade, de carro, no meio da manhã. Vale conferir no seu aplicativo de mapas
-        no seu horário real.
+        no seu horário real. Os caminhos em detalhe:{' '}
+        <L to="/creche-flamengo">do Flamengo e do Catete</L> e <L to="/creche-botafogo">de Botafogo</L>.
       </p>
     </div>
     <P>

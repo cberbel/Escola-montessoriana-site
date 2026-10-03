@@ -19,6 +19,7 @@ import { Turmas } from './pages/landing/Turmas';
 import { Agrupada3 } from './pages/landing/Agrupada3';
 import { CrecheLaranjeiras } from './pages/landing/CrecheLaranjeiras';
 import { CrecheFlamengo } from './pages/landing/CrecheFlamengo';
+import { CrecheBotafogo } from './pages/landing/CrecheBotafogo';
 import { MainEn } from './components/en/MainEn';
 import { MainFr } from './components/fr/MainFr';
 import { HomeFr } from './pages/fr/HomeFr';
@@ -59,6 +60,7 @@ export const pages: Pages = {
   Agrupada3,
   CrecheLaranjeiras,
   CrecheFlamengo,
+  CrecheBotafogo,
   MainEn,
   MainFr,
   HomeFr,

@@ -13,6 +13,7 @@ export interface Pages {
   Agrupada3: React.ComponentType;
   CrecheLaranjeiras: React.ComponentType;
   CrecheFlamengo: React.ComponentType;
+  CrecheBotafogo: React.ComponentType;
   MainEn: React.ComponentType;
   MainFr: React.ComponentType;
   HomeFr: React.ComponentType;
