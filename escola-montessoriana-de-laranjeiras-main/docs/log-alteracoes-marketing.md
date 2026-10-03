@@ -16,6 +16,46 @@ Contêiner GTM: **GTM-56ZSQTXF** · Projeto Supabase: **ponto-escola-montessoria
 
 ---
 
+## 03/10/2026
+
+### Meta: campanha do teste "duas manhãs" e LP nova — 03/10, ~19h30
+
+Pedido do Claudio: anúncio em campanha própria que, depois do gancho, abre uma tela de
+escolhas e termina num score de afinidade. Ordem dele: R$ 20 por dia, duas semanas,
+otimizando por conclusão do teste.
+
+- **LP `/lp/duas-manhas.html`** (commits `6be618e`, `a1534f6`, `063ba1a`): 4 perguntas com
+  duas opções sem o nome de cada escola; a 5ª tela mostra a afinidade e o WhatsApp, com o
+  resultado na mensagem (abertura oficial do site + linha do teste + Protocolo).
+- **Pixel, só nesta página:** `QuizResposta` (uma por pergunta), `QuizConcluido` e
+  `CompleteRegistration` (os dois na conclusão, uma vez por navegador). A campanha otimiza
+  por `CompleteRegistration` ("Concluir inscrição" no Gerenciador): aqui ele quer dizer
+  teste concluído, não cadastro. O `QuizConcluido` não aparecia na lista de eventos meia
+  hora depois do primeiro disparo, por isso o evento padrão.
+- **dataLayer:** `quiz_resposta` e `quiz_resultado`, ainda sem tag no GTM (não chegam ao GA4).
+- **Campanha `[ALM] [M4] [SITE] [TESTE-DUAS-MANHAS]`** (id 120255182861630357): objetivo
+  Leads, conversão no Site, orçamento da campanha R$ 20/dia. Conjunto
+  `teste-duas-manhas · ZS 3km 25+`: público salvo `[ALM] 3km 25+ so ZS Centro Gloria Rio
+  Comprido`, término 17/10/2026 23h59, posicionamentos Advantage+ (a Meta não deixa mais
+  excluir). Anúncio `q1-teste-duas-manhas`: vídeo de 13 s, botão "Saiba mais", parâmetros
+  `utm_source=ig&utm_medium=paid_social&utm_campaign=m4-teste-duas-manhas&utm_content=q1-teste-duas-manhas`.
+- **Desligado no anúncio** (vinha ligado por padrão): complemento de navegador "WhatsApp",
+  que apontava para o número antigo da Página; "anúncios com vários anunciantes"; os quatro
+  aprimoramentos Advantage+ (figurinha, retoques de vídeo, melhorias no texto, detalhes no
+  layout). Imagens e variações de texto de IA não foram marcadas. O número de WhatsApp da
+  identidade passou a ser o do bot.
+- **Aviso da Meta ao publicar:** "sua campanha poderá ter 0 resultado diário" com sugestão
+  de R$ 48/dia. Recusado: o evento não tem histórico, a estimativa parte do zero.
+
+**Leitura:**
+`select utm_content, count(*) from public.cliques_anuncio where utm_campaign = 'm4-teste-duas-manhas' group by 1;`
+e, para as conversas, `crm.mensagens` com `conteudo ilike '%teste das duas manhãs%'`.
+
+**Como desfazer:** desligar a chave da campanha no Gerenciador. A LP pode ficar no ar sem
+tráfego; para tirar, apagar `public/lp/duas-manhas.html`.
+
+---
+
 ## 14/09/2026
 
 ### Execuções com ok do Claudio (itens 2, 3 e 5 da revisão) + textos da LP — 14/09, ~01-02h
