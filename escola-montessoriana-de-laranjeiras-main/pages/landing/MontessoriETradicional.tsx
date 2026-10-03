@@ -1,11 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { LandingHero, LandingSection, LandingCTA, LandingImage, Highlight, P, usePageMeta } from '../../components/landing/Landing';
+import { LandingHero, LandingSection, LandingCTA, LandingImage, Highlight, Bullets, P, usePageMeta } from '../../components/landing/Landing';
 import { Referencias } from '../../components/blog/BlogLayout';
 
-export const MONTESSORI_TRADICIONAL_TITLE = 'Montessori e escola tradicional: as diferenças | Escola Montessoriana';
+export const MONTESSORI_TRADICIONAL_URL = '/montessori-x-tradicional';
+export const MONTESSORI_TRADICIONAL_TITLE = 'Por que Montessori é melhor que a escola tradicional';
 export const MONTESSORI_TRADICIONAL_DESCRIPTION =
-  'Montessori e escola tradicional: as diferenças no dia a dia da sala e o efeito na criança, da concentração à disciplina que vem de dentro.';
+  'Doze diferenças entre a sala Montessori e a sala tradicional, explicadas sem pressa: o dia, o aprendizado e o que cada uma forma na criança.';
 
 const L: React.FC<{ to: string; children: React.ReactNode }> = ({ to, children }) => (
   <Link to={to} className="text-montessori-green font-semibold underline hover:no-underline">
@@ -13,87 +14,169 @@ const L: React.FC<{ to: string; children: React.ReactNode }> = ({ to, children }
   </Link>
 );
 
-/** As diferenças, lado a lado. No celular cada linha vira um cartão com os dois blocos empilhados. */
-const DIFERENCAS: { tema: string; tradicional: string; montessori: string }[] = [
+interface Diferenca {
+  n: number;
+  titulo: string;
+  tradicional: string;
+  montessori: string;
+}
+
+/**
+ * As doze diferenças, em três blocos: o dia, o aprendizado e o resultado.
+ * Mesmo texto-base da série "Duas salas, dois caminhos" (reels e e-mails de outubro de 2026):
+ * ao mudar um, conferir o outro (Documents/email-nutricao/serie-duas-salas/texto-base.md).
+ */
+const DIA: Diferenca[] = [
   {
-    tema: 'Quem escolhe a atividade',
-    tradicional: 'A professora define a atividade, e a turma inteira costuma fazer a mesma coisa ao mesmo tempo.',
-    montessori: 'A criança escolhe o trabalho, entre os que já lhe foram apresentados, e fica nele enquanto o interesse durar.',
+    n: 1,
+    titulo: 'Sentado ou em movimento',
+    tradicional:
+      'A criança passa a manhã sentada, de frente para o quadro, olhando a nuca do colega. Levantar precisa de permissão. Para uma criança pequena, que aprende com o corpo inteiro, é pedir muito. Muitos meninos sofrem especialmente com isso: a energia que não tem para onde ir acaba recebendo o nome de agitação.',
+    montessori:
+      'O movimento faz parte do trabalho. A criança busca o material na estante, escolhe a mesa ou o tapete, carrega, arruma e devolve. Ela se movimenta com propósito, e é por isso que depois consegue ficar tanto tempo concentrada: o corpo não está sendo contido, está sendo usado.',
   },
   {
-    tema: 'O tempo',
-    tradicional: 'O dia é dividido em aulas e atividades curtas, e o relógio marca a hora de trocar.',
-    montessori: 'Um ciclo de três horas de trabalho sem interrupção, para a escolha virar concentração.',
+    n: 2,
+    titulo: 'Tempo fatiado ou três horas sem cortes',
+    tradicional:
+      'A manhã é dividida em aulas, e o horário marca a troca. A criança que acabou de engrenar é interrompida. A que ainda não entendeu segue adiante do mesmo jeito.',
+    montessori:
+      'O ciclo de trabalho da manhã tem 3 horas, sem cortes. Há tempo para escolher, começar, errar, repetir e terminar. A concentração profunda só aparece quando ninguém a interrompe.',
   },
   {
-    tema: 'O papel do adulto',
-    tradicional: 'Ensina à frente da turma: explica, pergunta e corrige.',
-    montessori: 'Prepara o ambiente, apresenta cada material a uma criança ou a um pequeno grupo, e observa.',
+    n: 3,
+    titulo: 'O mesmo material para todos ou um de cada',
+    tradicional:
+      'O material é repetido: trinta folhas iguais, trinta apostilas abertas na mesma página. A atividade é a mesma para a turma inteira.',
+    montessori:
+      'Há um exemplar de cada material, em muitas áreas: vida prática, sensorial, linguagem, matemática, geografia, ciências, arte. A criança explora todas essas áreas pelas próprias mãos. Por haver um só de cada, ela aprende também algo que nenhuma aula ensina: esperar a vez e respeitar o trabalho do colega.',
   },
   {
-    tema: 'O material',
-    tradicional: 'Livros, cadernos e folhas de exercício, iguais para todos.',
-    montessori: 'Materiais concretos, um exemplar de cada, em estantes baixas e abertas, ao alcance da criança.',
-  },
-  {
-    tema: 'O erro',
-    tradicional: 'Quem aponta o erro é o adulto, com a correção e a nota.',
-    montessori: 'O próprio material mostra o erro. A criança percebe sozinha e tenta de novo.',
-  },
-  {
-    tema: 'As idades',
-    tradicional: 'Turmas formadas por ano de nascimento.',
-    montessori: 'Idades misturadas: os menores veem os maiores trabalhando, e os maiores consolidam o que sabem ao ajudar.',
-  },
-  {
-    tema: 'O movimento',
-    tradicional: 'A criança passa a maior parte do tempo sentada, e o movimento fica para o recreio.',
-    montessori: 'A criança circula, carrega, serve, limpa. O movimento faz parte do trabalho.',
-  },
-  {
-    tema: 'Prêmios e castigos',
-    tradicional: 'Estrelas, notas e castigos costumam sustentar o esforço e a disciplina.',
-    montessori: 'Nem prêmio nem castigo. A disciplina vem do interesse e da concentração.',
+    n: 4,
+    titulo: 'Mesma idade ou idades misturadas',
+    tradicional:
+      'As crianças são agrupadas pelo ano em que nasceram. Todas têm a mesma idade e são medidas pela mesma régua.',
+    montessori:
+      'As idades são misturadas, como na vida. Em casa, na família e mais tarde no trabalho, ninguém convive só com gente da mesma idade. A criança mais nova aprende olhando a mais velha. A mais velha consolida o que sabe quando ensina. Quem está adiantado tem para onde avançar, e quem precisa de mais tempo tem tempo, sem rótulo.',
   },
 ];
 
-/** O efeito na criança, com as palavras de Maria Montessori e o texto de onde elas saem. */
-const EFEITOS: { titulo: string; texto: string; citacao: string; fonte: string }[] = [
+const APRENDIZADO: Diferenca[] = [
   {
-    titulo: 'Concentração',
-    texto: 'Foi a primeira surpresa da Casa das Crianças: crianças pequenas absorvidas por muito tempo no mesmo trabalho.',
-    citacao: 'a trabalhar, a trabalhar e a trabalhar sem descanso, numa concentração maravilhosa',
-    fonte: 'Encontrei ouro em vez de trigo',
+    n: 5,
+    titulo: 'Ver ou fazer',
+    tradicional:
+      'O conhecimento chega pelos olhos e pelos ouvidos. O número fica no quadro, a letra é copiada da lousa e a explicação é dada para a turma inteira.',
+    montessori:
+      'O conhecimento chega pelas mãos. Antes de escrever um número grande, a criança segura a quantidade em contas. Antes de pegar o lápis, sente a letra de lixa com o dedo e a traça na areia. O adulto apresenta o material, e depois a criança repete sozinha. O abstrato vem depois do concreto, e não no lugar do concreto.',
   },
   {
-    titulo: 'Independência',
-    texto: 'Vestir-se, servir-se, guardar o que usou. A criança que pode fazer sozinha passa a querer fazer sozinha.',
-    citacao: 'Ajudar a criança a servir-se sozinha: da nossa parte é amor; para a criança é um renascimento.',
-    fonte: "Epígrafes em L'Idea Montessori",
+    n: 6,
+    titulo: 'Ritmo único ou o ritmo de cada criança',
+    tradicional:
+      'O conteúdo corre no ritmo do calendário: tantas páginas por semana, para todos. Quem aprende rápido espera. Quem precisa de mais tempo fica com uma lacuna, e a turma segue. O conteúdo é visto, mas nem sempre é dominado.',
+    montessori:
+      'Cada criança segue o seu ritmo e repete quantas vezes quiser, até dominar. A repetição não é castigo, é escolha: é assim que a criança pequena aperfeiçoa o que acabou de conquistar. Só então ela passa ao passo seguinte.',
+  },
+  {
+    n: 7,
+    titulo: 'O adulto corrige ou o material mostra o erro',
+    tradicional:
+      'O erro é apontado de fora: a caneta vermelha, o "está errado", a nota. A criança aprende a esperar o veredito do adulto.',
+    montessori:
+      'Muitos materiais trazem o controle do erro embutido. Se um cilindro sobra, alguma peça ficou no lugar errado. Se a torre balança, um cubo saiu da ordem. A criança percebe, refaz e acerta, sem que ninguém precise dizer nada. O erro vira informação, e não vergonha.',
+  },
+];
+
+const RESULTADO: Diferenca[] = [
+  {
+    n: 8,
+    titulo: 'Conformidade ou iniciativa',
+    tradicional:
+      'A criança segue comandos o tempo todo: agora abre o caderno, agora copia, agora guarda. Quem passa anos esperando a próxima instrução aprende a se conformar.',
+    montessori:
+      'A criança exercita a escolha todos os dias: o que fazer, onde e por quanto tempo, entre os trabalhos que já conhece. Escolher se aprende escolhendo. O resultado é iniciativa: a criança que começa sozinha, sem esperar que alguém diga.',
+  },
+  {
+    n: 9,
+    titulo: 'Falta de confiança ou autoconfiança',
+    tradicional:
+      'O trabalho vale nota, e o valor do que a criança fez é dito por outra pessoa. Com o tempo, ela passa a perguntar "está certo?" antes de confiar no que vê, e a se medir pela comparação com os colegas.',
+    montessori:
+      'A recompensa é a satisfação de cumprir a tarefa a que a criança se propôs. A confiança nasce de dentro, de uma frase simples: "eu consegui".',
+  },
+  {
+    n: 10,
+    titulo: 'Atrasos ou domínio',
+    tradicional:
+      'A turma avança junta. O que não foi dominado fica para trás, e o conteúdo seguinte se apoia justamente nele. Pequenas lacunas viram atrasos que se acumulam em silêncio.',
+    montessori: 'A criança só avança depois de dominar. A base fica sólida, e o passo seguinte chega como consequência.',
+  },
+  {
+    n: 11,
+    titulo: 'Fazer o que foi mandado ou poder colaborar',
+    tradicional:
+      'Cada criança trabalha na sua carteira, fazendo o que a professora escolheu, sem conversar. Mostrar o trabalho ao colega é cola. A criança aprende que o colega é distração ou concorrência.',
+    montessori:
+      'A criança pode escolher, pode colaborar e pode ensinar. Ensinar é uma das formas mais profundas de aprender, e conviver passa a fazer parte do que se aprende.',
+  },
+  {
+    n: 12,
+    titulo: 'Estudar por obrigação ou querer aprender',
+    tradicional:
+      'A turma segue a ordem do dia, e a pergunta que a criança trouxe de casa precisa esperar. A curiosidade vai sendo adiada, e aprender vira tarefa.',
+    montessori:
+      'A criança segue a própria curiosidade, dentro de um ambiente preparado para respondê-la. Aprender continua sendo o que era desde o berço: uma vontade.',
+  },
+];
+
+/** Uma diferença: título e os dois lados empilhados, para ler no celular sem tabela nem rolagem lateral. */
+const Cartao: React.FC<{ d: Diferenca }> = ({ d }) => (
+  <div className="border border-montessori-green/10 rounded-sm shadow-sm overflow-hidden">
+    <h3 className="font-serif text-xl sm:text-2xl text-montessori-green leading-snug px-4 sm:px-6 pt-5 pb-3 break-words">
+      <span className="text-montessori-gold font-bold mr-2">{d.n}.</span>
+      {d.titulo}
+    </h3>
+    <div className="px-4 sm:px-6 pb-4">
+      <p className="text-xs sm:text-sm uppercase tracking-widest text-gray-500 font-bold mb-1">Na sala tradicional</p>
+      <p className="text-gray-700 text-base sm:text-lg leading-relaxed">{d.tradicional}</p>
+    </div>
+    <div className="px-4 sm:px-6 py-4 bg-montessori-green/5 border-t border-montessori-green/10">
+      <p className="text-xs sm:text-sm uppercase tracking-widest text-montessori-gold font-bold mb-1">Na sala Montessori</p>
+      <p className="text-gray-800 text-base sm:text-lg leading-relaxed">{d.montessori}</p>
+    </div>
+  </div>
+);
+
+const Lista: React.FC<{ itens: Diferenca[] }> = ({ itens }) => (
+  <div className="space-y-5 sm:space-y-6">
+    {itens.map((d) => (
+      <Cartao key={d.n} d={d} />
+    ))}
+  </div>
+);
+
+/** O efeito na criança, nas palavras de Maria Montessori (citações literais dos textos dela que traduzimos). */
+const EFEITOS: { titulo: string; citacao: string; fonte: string }[] = [
+  {
+    titulo: 'Concentração',
+    citacao: 'a trabalhar, a trabalhar e a trabalhar sem descanso, numa concentração maravilhosa',
+    fonte: 'ao contar o começo da primeira Casa das Crianças',
   },
   {
     titulo: 'Disciplina que vem de dentro',
-    texto: 'A obediência deixa de depender de quem vigia. Ela aparece depois que a criança aprende a seguir a própria vontade num trabalho.',
     citacao: 'Como poderia obedecer à vontade alheia, se é incapaz de se submeter à sua própria?',
-    fonte: 'O caráter da criança',
+    fonte: 'O caráter da criança, 1924',
   },
   {
     titulo: 'Gosto por aprender',
-    texto: 'Quando o exercício chega na idade certa, a criança não se cansa. Ela pede mais.',
     citacao: 'cresce e se fortalece trabalhando; não se consome trabalhando',
-    fonte: 'Períodos sensíveis',
+    fonte: 'Períodos sensíveis, 1927',
   },
   {
-    titulo: 'Calma',
-    texto: 'Capricho, medo, briga por brinquedo: em vez de serem corrigidos um por um, esses traços vão sumindo juntos.',
-    citacao: 'como o sol, quando nasce, torna invisíveis todas as estrelas do céu',
-    fonte: 'Segunda Conferência (1934)',
-  },
-  {
-    titulo: 'Convivência',
-    texto: 'Há um exemplar de cada material, e por isso esperar a vez faz parte do dia. A criança aprende a conviver trabalhando ao lado das outras.',
-    citacao: 'a paciência quando é preciso esperar',
-    fonte: 'Perguntas e respostas',
+    titulo: 'Independência',
+    citacao: 'Ajudar a criança a servir-se sozinha: da nossa parte é amor; para a criança é um renascimento.',
+    fonte: "L'Idea Montessori, 1927",
   },
 ];
 
@@ -104,20 +187,30 @@ export const MontessoriETradicional: React.FC = () => {
     <div className="bg-white">
       <LandingHero
         eyebrow="Montessori e escola tradicional"
-        title="Montessori e escola tradicional: o que muda para a criança"
-        subtitle="As diferenças no dia a dia da sala e o efeito que elas têm: concentração, independência, disciplina que vem de dentro e gosto por aprender."
+        title="Por que Montessori é melhor do que a escola tradicional"
+        subtitle="Doze diferenças entre as duas salas, explicadas sem pressa: como a manhã acontece, como o conhecimento entra e o que cada sala forma na criança."
       />
 
-      <LandingSection heading="A diferença começa em quem decide" className="pt-10 sm:pt-14">
+      <LandingSection className="pt-10 sm:pt-14">
         <P>
-          Na escola tradicional, o dia chega pronto. O que fazer, em que ordem e por quanto tempo foi decidido pelo
-          adulto antes de a criança passar pela porta. Na sala Montessori, o adulto prepara o ambiente e apresenta os
-          materiais, e é a criança que escolhe o trabalho e decide quanto tempo fica nele.
+          Quase todos nós estudamos na mesma sala: carteiras em fila, um professor na frente, um quadro e um horário
+          que diz quando cada coisa começa e termina. Ela é tão familiar que parece a única forma possível de escola.
+          Não é.
         </P>
         <P>
-          Parece um detalhe de organização. Na prática, muda o que a criança faz com a própria atenção durante as horas
-          em que está na escola, e é daí que vêm os efeitos que as famílias percebem em casa.
+          Em 1907, em Roma, a médica Maria Montessori abriu a primeira Casa das Crianças e passou a observar, com olhar
+          de cientista, o que as crianças faziam quando o ambiente era preparado para elas. Dessa observação nasceu
+          outra sala, organizada por outra lógica.
         </P>
+        <P>
+          Esta página compara as duas em doze pontos. Os quatro primeiros falam do dia: como a manhã acontece. Os três
+          seguintes, do aprendizado: como o conhecimento entra. Os cinco últimos, do resultado: o que cada sala forma
+          na criança, ano após ano.
+        </P>
+        <Highlight>
+          Não é uma crítica a quem ensina, porque há gente dedicada nos dois modelos. É uma comparação de desenho: o
+          que cada sala pede da criança todos os dias, e no que isso se transforma.
+        </Highlight>
         <LandingImage
           src="/images/montessori/vida-pratica-estante.jpg"
           alt="Criança pega seu trabalho sozinha na estante baixa de uma sala Montessori preparada"
@@ -125,80 +218,98 @@ export const MontessoriETradicional: React.FC = () => {
         />
       </LandingSection>
 
-      <LandingSection heading="Oito diferenças no dia a dia">
-        <div className="space-y-4">
-          {DIFERENCAS.map((d) => (
-            <div key={d.tema} className="border border-montessori-green/10 rounded-sm shadow-sm overflow-hidden">
-              <h3 className="font-serif text-lg sm:text-xl text-montessori-green px-4 sm:px-5 pt-4">{d.tema}</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2">
-                <div className="px-4 sm:px-5 py-3">
-                  <p className="text-xs uppercase tracking-widest text-gray-500 mb-1">Na escola tradicional</p>
-                  <p className="text-gray-700 text-base leading-relaxed">{d.tradicional}</p>
-                </div>
-                <div className="px-4 sm:px-5 py-3 bg-montessori-green/5 border-t sm:border-t-0 sm:border-l border-montessori-green/10">
-                  <p className="text-xs uppercase tracking-widest text-montessori-gold font-bold mb-1">Na sala Montessori</p>
-                  <p className="text-gray-800 text-base leading-relaxed">{d.montessori}</p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+      <LandingSection heading="O dia: como a manhã acontece" id="o-dia">
+        <Lista itens={DIA} />
       </LandingSection>
 
-      <LandingSection heading="O efeito na criança" className="bg-montessori-cream/60 py-10 sm:py-14 rounded-sm">
+      <LandingSection heading="O aprendizado: como o conhecimento entra" id="o-aprendizado">
+        <Lista itens={APRENDIZADO} />
+        <LandingImage
+          src="/images/montessori/sensorial-encaixes.jpg"
+          alt="Criança concentrada trabalhando com os encaixes sólidos"
+          portrait
+        />
+      </LandingSection>
+
+      <LandingSection heading="O resultado: o que cada sala forma" id="o-resultado">
         <P>
-          Maria Montessori não partiu de uma teoria. Ela descreveu o que viu acontecer com as crianças quando o
-          ambiente mudou, e voltou a esses efeitos em artigos e conferências por décadas. Abaixo, seis deles,
-          com as palavras dela e o texto de onde saem. No <L to="/blog">blog</L>, publicamos esses textos traduzidos, cada um
-          com uma apresentação nossa.
+          Nenhuma dessas diferenças é detalhe. Repetidas todos os dias, por anos, elas formam hábitos, e os hábitos
+          formam a pessoa. Os cinco pontos abaixo são o que sobra depois que a aula acaba.
+        </P>
+        <Lista itens={RESULTADO} />
+      </LandingSection>
+
+      <LandingSection heading="O efeito na criança, nas palavras de Maria Montessori" className="bg-montessori-cream/60 py-10 sm:py-14 rounded-sm">
+        <P>
+          Montessori não partiu de uma teoria. Ela descreveu o que viu acontecer com as crianças quando o ambiente
+          mudou, e voltou a esses efeitos em artigos e conferências por décadas. No <L to="/blog">blog</L>, publicamos
+          esses textos traduzidos, cada um com uma apresentação nossa.
         </P>
         <div className="space-y-6 mt-6">
           {EFEITOS.map((e) => (
             <div key={e.titulo}>
-              <h3 className="font-serif text-xl sm:text-2xl text-montessori-green mb-1">{e.titulo}</h3>
-              <p className="text-gray-700 text-base sm:text-lg leading-relaxed mb-2">{e.texto}</p>
+              <h3 className="font-serif text-xl sm:text-2xl text-montessori-green mb-2">{e.titulo}</h3>
               <blockquote className="border-l-4 border-montessori-gold pl-4 text-gray-700 text-base sm:text-lg leading-relaxed italic">
                 “{e.citacao}”
-                <span className="block not-italic text-sm text-gray-500 mt-1">
-                  Maria Montessori, {e.fonte}
-                </span>
+                <span className="block not-italic text-sm text-gray-500 mt-1">Maria Montessori, {e.fonte}</span>
               </blockquote>
             </div>
           ))}
         </div>
       </LandingSection>
 
-      <LandingSection heading="O que as pesquisas encontraram">
+      <LandingSection heading="O que a pesquisa encontrou">
         <P>
-          Comparar escolas é difícil, porque as famílias que escolhem uma escola Montessori podem ser diferentes das
-          outras. Por isso os estudos mais citados usam sorteio: comparam crianças sorteadas para uma vaga numa escola
-          Montessori pública com crianças que se inscreveram no mesmo sorteio e não foram sorteadas.
+          Esses resultados não são só impressão. Comparar escolas é difícil, porque as famílias que escolhem uma
+          escola Montessori podem ser diferentes das outras. Por isso os estudos mais citados usam sorteio.
         </P>
         <P>
-          Angeline Lillard e Nicole Else-Quest, da Universidade da Virgínia e da Universidade de Wisconsin, publicaram
-          na revista Science, em 2006, um estudo desse tipo. Aos cinco anos, as crianças da escola Montessori se saíram
-          melhor em leitura e matemática, em função executiva e em medidas de convivência. Aos doze, escreveram
-          redações mais criativas e relataram mais sentimento de comunidade na escola.
+          A psicóloga Angeline Lillard, da Universidade da Virgínia, acompanhou crianças sorteadas para escolas
+          Montessori públicas nos Estados Unidos e as comparou com crianças que participaram do mesmo sorteio e não
+          foram chamadas. Nos estudos publicados em 2006, na revista Science, e em 2017, na Frontiers in Psychology, as
+          crianças das salas Montessori se saíram melhor em leitura e matemática e em compreensão social. No de 2017,
+          que acompanhou 141 crianças por três anos, elas também mostraram mais disposição para enfrentar tarefas
+          difíceis.
         </P>
         <P>
-          Em 2017, Lillard e colegas acompanharam por três anos crianças de pré-escolas Montessori públicas, também
-          com sorteio. As crianças da Montessori avançaram mais em desempenho acadêmico, compreensão social e gosto por
-          desafios, e a distância entre as de renda mais baixa e as demais diminuiu. Em 2023, uma revisão sistemática
-          coordenada por Justus Randolph reuniu dezenas de estudos e encontrou efeito positivo tanto nos resultados
-          acadêmicos quanto nos não acadêmicos, como função executiva e criatividade.
+          Em 2023, uma revisão sistemática coordenada por Justus Randolph reuniu dezenas de estudos e encontrou efeito
+          positivo tanto nos resultados acadêmicos quanto nos não acadêmicos, como função executiva e criatividade.
         </P>
-        <Highlight>
-          As pesquisas de hoje medem o que Montessori descreveu ao contar o começo da primeira Casa das Crianças, em
-          1907: crianças que se concentram, trabalham por conta própria e convivem bem.
-        </Highlight>
       </LandingSection>
 
-      <LandingSection heading="Como isso acontece aqui na escola">
+      <LandingSection heading="O que observar ao visitar uma escola">
         <P>
-          A manhã é um bloco de três horas de trabalho sem cortes. As estantes são abertas e baixas, com tudo à vista e
-          ao alcance da criança. As turmas são agrupadas por idade, e os menores escolhem inspirados pelo que veem os
-          maiores fazendo. A página sobre o <L to="/metodo-montessori">método Montessori</L> mostra as áreas da sala, e
-          a de <L to="/turmas">turmas</L> explica os agrupamentos.
+          Muito do que descrevemos como tradicional não é culpa de quem ensina. É o desenho de uma sala pensada para
+          ensinar a mesma coisa, ao mesmo tempo, a muitas crianças. A sala Montessori parte de outra pergunta: o que
+          esta criança precisa agora?
+        </P>
+        <P>
+          Nenhuma das doze diferenças aparece no folheto. Elas aparecem na rotina. Por isso, ao escolher a escola, o
+          mais importante é ver como o dia acontece:
+        </P>
+        <Bullets
+          items={[
+            'As crianças se movimentam ou esperam?',
+            'Escolhem ou recebem?',
+            'Trabalham por quanto tempo sem interrupção?',
+            'O que acontece quando alguém erra?',
+            'Há crianças de idades diferentes juntas?',
+          ]}
+        />
+        <P>Alguns minutos observando uma manhã comum dizem mais do que uma hora de conversa na secretaria.</P>
+      </LandingSection>
+
+      <LandingSection heading="A infância acontece uma vez">
+        <P>
+          A sala onde ela acontece ensina muito além do conteúdo: ensina à criança quem ela é. Alguém que espera ou
+          alguém que começa. Alguém que teme o erro ou alguém que aprende com ele. Alguém que estuda por obrigação ou
+          alguém que quer saber.
+        </P>
+        <P>
+          Na Escola Montessoriana, em Laranjeiras, essa sala existe e pode ser vista. A manhã é um bloco de três horas
+          de trabalho sem cortes, as estantes são abertas e baixas, e as turmas reúnem idades diferentes. A página
+          sobre o <L to="/metodo-montessori">método Montessori</L> mostra as áreas da sala, e a de{' '}
+          <L to="/turmas">turmas</L> explica os agrupamentos.
         </P>
         <LandingImage
           src="/images/turmas/agrupada-2.jpg"
@@ -227,7 +338,7 @@ export const MontessoriETradicional: React.FC = () => {
 
       <LandingCTA
         heading="Venha ver a diferença de perto"
-        text="A melhor forma de entender é passar uma manhã olhando as crianças trabalharem. Agende uma visita e conheça nosso espaço, nossa equipe e nossa proposta."
+        text="A melhor forma de entender é acompanhar uma manhã de trabalho. Agende uma visita e conheça nosso espaço, nossa equipe e nossa proposta."
       />
     </div>
   );

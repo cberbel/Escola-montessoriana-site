@@ -2,6 +2,7 @@ import React from 'react';
 import { Hero } from '../components/Hero';
 import { Philosophy } from '../components/Philosophy';
 import { Practice } from '../components/Practice';
+import { PorQueMontessori } from '../components/PorQueMontessori';
 import { Horarios } from '../components/Horarios';
 import { AtividadesExtras } from '../components/AtividadesExtras';
 import { SaibaMais } from '../components/SaibaMais';
@@ -14,6 +15,7 @@ export const Home: React.FC = () => {
       <Hero />
       <Philosophy />
       <Practice />
+      <PorQueMontessori />
       <SaibaMais />
       <Horarios />
       <AtividadesExtras />

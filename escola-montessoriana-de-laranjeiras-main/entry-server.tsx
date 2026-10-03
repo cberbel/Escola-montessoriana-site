@@ -12,7 +12,11 @@ import { StaticRouter } from 'react-router-dom/server';
 import { AppShell } from './App';
 import { pages } from './routes.eager';
 import { blogPosts } from './pages/blog/posts';
-import { MONTESSORI_TRADICIONAL_TITLE, MONTESSORI_TRADICIONAL_DESCRIPTION } from './pages/landing/MontessoriETradicional';
+import {
+  MONTESSORI_TRADICIONAL_URL,
+  MONTESSORI_TRADICIONAL_TITLE,
+  MONTESSORI_TRADICIONAL_DESCRIPTION,
+} from './pages/landing/MontessoriETradicional';
 import { faqCrecheLaranjeiras, faqCrecheFlamengo, faqCrecheBotafogo, faqMensalidade, type ItemFAQ } from './pages/landing/faqs';
 
 export function render(url: string): string {
@@ -149,9 +153,10 @@ const rotasBase: RotaPrerender[] = [
       'Como funciona uma escola Montessori no Rio de Janeiro: ambiente preparado, vida prática, sensorial, linguagem e matemática — da teoria ao dia a dia da sala.',
   },
   {
-    url: '/montessori-e-escola-tradicional',
+    url: MONTESSORI_TRADICIONAL_URL,
     title: MONTESSORI_TRADICIONAL_TITLE,
     description: MONTESSORI_TRADICIONAL_DESCRIPTION,
+    image: '/images/montessori/vida-pratica-estante.jpg',
     lastmod: '2026-10-03',
   },
   {
