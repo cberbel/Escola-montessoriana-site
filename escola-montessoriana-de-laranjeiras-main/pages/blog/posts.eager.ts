@@ -1,4 +1,5 @@
 import type React from 'react';
+import { montessoriComponents } from './montessori/eager';
 import { LiberdadeDeEscolha } from './LiberdadeDeEscolha';
 import { EscolaMontessoriRio } from './EscolaMontessoriRio';
 import { EscolaPertoDeCasa } from './EscolaPertoDeCasa';
@@ -20,4 +21,5 @@ export const blogPostComponents: Record<string, React.ComponentType> = {
   'como-escolher-escola-infantil-laranjeiras': ComoEscolherEscolaInfantil,
   'metodo-montessori-para-bebes': MontessoriParaBebes,
   'quando-matricular-bebe-na-escola': QuandoMatricular,
+  ...montessoriComponents,
 };

@@ -1,3 +1,4 @@
+import { montessoriPosts } from './montessori/registro';
 
 export interface BlogPostMeta {
   slug: string;
@@ -24,7 +25,7 @@ export interface BlogPostMeta {
  * o sitemap e o schema BlogPosting. Os componentes ficam em posts.lazy.ts (navegador)
  * e posts.eager.ts (prerender) para o código de cada artigo virar um chunk próprio.
  */
-export const blogPosts: BlogPostMeta[] = [
+const postsDaEquipe: BlogPostMeta[] = [
   {
     slug: 'liberdade-de-escolha-montessori',
     date: '2026-09-30',
@@ -142,3 +143,11 @@ export const blogPosts: BlogPostMeta[] = [
     readingTime: '6 min',
   },
 ];
+
+/**
+ * Lista do blog: os artigos da equipe e os textos de Maria Montessori com apresentação
+ * (registro gerado em ./montessori), juntos e por data. São posts comuns, sem seção própria.
+ */
+export const blogPosts: BlogPostMeta[] = [...postsDaEquipe, ...montessoriPosts].sort((a, b) =>
+  a.date < b.date ? 1 : a.date > b.date ? -1 : 0
+);

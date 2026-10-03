@@ -94,6 +94,7 @@ export const AppShell: React.FC<{ pages?: Pages }> = ({ pages: P = lazyPages }) 
               return <Route key={post.slug} path={`blog/${post.slug}`} element={<Post />} />;
             })}
             <Route path="metodo-montessori" element={<P.MetodoMontessori />} />
+            <Route path="montessori-e-escola-tradicional" element={<P.MontessoriETradicional />} />
             <Route path="acolhimento" element={<P.Acolhimento />} />
             <Route path="ingles-primeira-infancia" element={<P.InglesPrimeiraInfancia />} />
             <Route path="desenvolvimento-cerebral" element={<P.DesenvolvimentoCerebral />} />

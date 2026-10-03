@@ -5,6 +5,7 @@ export interface Pages {
   Agendamento: React.ComponentType;
   Blog: React.ComponentType;
   MetodoMontessori: React.ComponentType;
+  MontessoriETradicional: React.ComponentType;
   Acolhimento: React.ComponentType;
   InglesPrimeiraInfancia: React.ComponentType;
   DesenvolvimentoCerebral: React.ComponentType;

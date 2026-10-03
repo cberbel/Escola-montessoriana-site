@@ -11,6 +11,7 @@ import { NotFound } from './pages/NotFound';
 import { Agendamento } from './pages/Agendamento';
 import { Blog } from './pages/Blog';
 import { MetodoMontessori } from './pages/landing/MetodoMontessori';
+import { MontessoriETradicional } from './pages/landing/MontessoriETradicional';
 import { Acolhimento } from './pages/landing/Acolhimento';
 import { InglesPrimeiraInfancia } from './pages/landing/InglesPrimeiraInfancia';
 import { DesenvolvimentoCerebral } from './pages/landing/DesenvolvimentoCerebral';
@@ -52,6 +53,7 @@ export const pages: Pages = {
   Agendamento,
   Blog,
   MetodoMontessori,
+  MontessoriETradicional,
   Acolhimento,
   InglesPrimeiraInfancia,
   DesenvolvimentoCerebral,

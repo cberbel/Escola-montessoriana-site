@@ -1,5 +1,6 @@
 import { lazy } from 'react';
 import type React from 'react';
+import { montessoriComponents } from './montessori/lazy';
 
 /** slug -> componente carregado sob demanda (um chunk por artigo). */
 export const blogPostComponents: Record<string, React.ComponentType> = {
@@ -12,4 +13,5 @@ export const blogPostComponents: Record<string, React.ComponentType> = {
   'como-escolher-escola-infantil-laranjeiras': lazy(() => import('./ComoEscolherEscolaInfantil').then((m) => ({ default: m.ComoEscolherEscolaInfantil }))),
   'metodo-montessori-para-bebes': lazy(() => import('./MontessoriParaBebes').then((m) => ({ default: m.MontessoriParaBebes }))),
   'quando-matricular-bebe-na-escola': lazy(() => import('./QuandoMatricular').then((m) => ({ default: m.QuandoMatricular }))),
+  ...montessoriComponents,
 };

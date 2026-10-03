@@ -14,6 +14,7 @@ export const pages: Pages = {
   Agendamento: lazy(() => import('./pages/Agendamento').then((m) => ({ default: m.Agendamento }))),
   Blog: lazy(() => import('./pages/Blog').then((m) => ({ default: m.Blog }))),
   MetodoMontessori: lazy(() => import('./pages/landing/MetodoMontessori').then((m) => ({ default: m.MetodoMontessori }))),
+  MontessoriETradicional: lazy(() => import('./pages/landing/MontessoriETradicional').then((m) => ({ default: m.MontessoriETradicional }))),
   Acolhimento: lazy(() => import('./pages/landing/Acolhimento').then((m) => ({ default: m.Acolhimento }))),
   InglesPrimeiraInfancia: lazy(() => import('./pages/landing/InglesPrimeiraInfancia').then((m) => ({ default: m.InglesPrimeiraInfancia }))),
   DesenvolvimentoCerebral: lazy(() => import('./pages/landing/DesenvolvimentoCerebral').then((m) => ({ default: m.DesenvolvimentoCerebral }))),
