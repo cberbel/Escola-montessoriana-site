@@ -32,6 +32,8 @@ export interface ArtigoMontessori {
   imageAlt: string;
   /** O nosso texto: 6 a 8 parágrafos. */
   intro: string[];
+  /** Título da parte dela: "na íntegra" ou, quando há corte, "com um trecho omitido". */
+  tituloSecao: string;
   /** Outros textos dela, já publicados no blog, ligados a este. */
   relacionados: { slug: string; titulo: string; ano: string }[];
   /** Páginas da escola ligadas ao assunto do texto (a ponte do artigo para a visita). */

@@ -33,7 +33,7 @@ const Bloco: React.FC<{ b: BlocoTexto }> = ({ b }) => {
   }
 };
 
-/** Post do blog com um texto de Maria Montessori: primeiro a apresentação da escola, depois a íntegra dela. */
+/** Post do blog com um texto de Maria Montessori: primeiro a apresentação da escola, depois o texto dela. */
 export const ArtigoMontessoriPage: React.FC<{ artigo: ArtigoMontessori }> = ({ artigo }) => (
   <BlogLayout
     title={artigo.title}
@@ -50,7 +50,7 @@ export const ArtigoMontessoriPage: React.FC<{ artigo: ArtigoMontessori }> = ({ a
 
     <section aria-labelledby="integra" className="mt-10 border-t-2 border-montessori-gold pt-2">
       <H2>
-        <span id="integra">O texto de Maria Montessori, na íntegra</span>
+        <span id="integra">{artigo.tituloSecao}</span>
       </H2>
       {artigo.textos.map((t, i) => (
         <div key={i} className={i > 0 ? 'mt-12 border-t border-gray-200 pt-4' : ''}>
