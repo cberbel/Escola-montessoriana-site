@@ -18,6 +18,30 @@ Contêiner GTM: **GTM-56ZSQTXF** · Projeto Supabase: **ponto-escola-montessoria
 
 ## 03/10/2026
 
+### Teste "duas manhãs", versão 2: LP mais bonita, vídeo novo e botão "Assistir mais" — 03/10, ~23h
+
+O Claudio testou a LP e o anúncio e pediu mudanças. Ele achou a página feia (letra pequena,
+cartões brancos) e o vídeo longo demais e mal escrito; o texto do vídeo novo é dele.
+
+- **LP** (commits `23f0fa4`, `a88f87a`): cartões de opção em azul translúcido com letra A/B
+  dourada (o tocado fica dourado), letras maiores em todas as telas, título e detalhe
+  separados em cada opção. A 4ª pergunta passou a ser "Onde fica a professora?" (na frente da
+  turma x ao lado da criança); antes era mesma idade x idades misturadas. "A quantidade está
+  na mão" virou "na mão da criança".
+- **Anúncio `q1-teste-duas-manhas`** (publicado ~23h, voltou para análise da Meta):
+  - vídeo trocado por `q2-teste-duas-manhas.mp4` (10 s, receita
+    `instagram-maquina-conteudo\_ferramentas\anuncio_duas_manhas_v2.py`);
+  - botão "Saiba mais" → **"Assistir mais"**. A Meta não oferece "Responder" em campanha de
+    Leads e ele escolheu este;
+  - texto principal: "Que manhã você prefere para o seu filho? Toque em Assistir mais e
+    descubra se você combina com Montessori. Escola Montessoriana de Laranjeiras, dos 9 meses
+    aos 11 anos.";
+  - título: "Você combina com Montessori?". A descrição ficou igual.
+  - Mídia relacionada 0, aprimoramentos Advantage+ 0/4, nenhuma variação de texto ou imagem
+    de IA aplicada.
+- **Parâmetros de URL** do anúncio não mudaram (`utm_content=q1-teste-duas-manhas`). Para
+  separar os dois vídeos, usar a hora do clique: depois de 03/10 23h é a versão 2.
+
 ### Meta: campanha do teste "duas manhãs" e LP nova — 03/10, ~19h30
 
 Pedido do Claudio: anúncio em campanha própria que, depois do gancho, abre uma tela de
