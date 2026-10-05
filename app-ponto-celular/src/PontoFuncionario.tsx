@@ -172,7 +172,8 @@ export const PontoFuncionario: React.FC<{ modoCompartilhado?: boolean }> = ({ mo
           (justAberta && (justTexto.trim() || horaCerta) ? ' Justificativa anotada para a direção.' : '')
         );
         setFotosPendentes(r.fotos_pendentes === true);
-        setAvisos(r.avisos ?? []);
+        // a batida nao devolve avisos: mantem os que vieram ao entrar
+        if (r.avisos) setAvisos(r.avisos);
         setJustAberta(false);
         setJustTexto('');
         setHoraCerta('');
@@ -381,11 +382,22 @@ export const PontoFuncionario: React.FC<{ modoCompartilhado?: boolean }> = ({ mo
 
                 {avisos.length > 0 && (
                   <div className="mt-3 text-left space-y-2">
-                    {avisos.map((a, i) => (
-                      <div key={i} className="border border-ponto-dourado/50 bg-amber-50 rounded-xl p-3 text-sm text-ponto-escuro">
-                        <span className="font-bold">📣 Aviso da escola: </span>{a}
-                      </div>
-                    ))}
+                    {avisos.map((a, i) => {
+                      // Aviso de varias linhas (ex.: a recomendacao da semana): a 1a linha e o titulo.
+                      const [titulo, ...resto] = a.split('\n');
+                      return (
+                        <div key={i} className="border border-ponto-dourado/50 bg-amber-50 rounded-xl p-3 text-sm text-ponto-escuro">
+                          {resto.length > 0 ? (
+                            <>
+                              <p className="font-bold">{titulo}</p>
+                              <p className="mt-1 whitespace-pre-line">{resto.join('\n')}</p>
+                            </>
+                          ) : (
+                            <><span className="font-bold">📣 Aviso da escola: </span>{a}</>
+                          )}
+                        </div>
+                      );
+                    })}
                   </div>
                 )}
 
