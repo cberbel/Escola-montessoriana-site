@@ -19,9 +19,11 @@ import {
   UserPlus,
   Check,
   X,
+  ScanFace,
 } from 'lucide-react';
 import { Funcionario, LIMITE_FUNCIONARIOS, LocalEscola, MetricaHoras, RegistroAdmin } from './types';
 import { obterPosicao, rpc, temConfig } from './api';
+import { AbaRostos } from './AbaRostos';
 import {
   chaveDia,
   chaveMesAtual,
@@ -39,7 +41,7 @@ import {
   rotuloBatida,
 } from './utils';
 
-type Aba = 'resumo' | 'registros' | 'funcionarios' | 'banco' | 'config';
+type Aba = 'resumo' | 'registros' | 'rostos' | 'funcionarios' | 'banco' | 'config';
 
 interface RespostaBase { ok: boolean; erro?: string }
 interface RespostaConfig extends RespostaBase { local: LocalEscola | null; exigir_presenca: boolean; pin_padrao: boolean }
@@ -179,6 +181,7 @@ const Painel: React.FC<{
   const abas: { id: Aba; rotulo: string; icone: React.ReactNode }[] = [
     { id: 'resumo', rotulo: 'Resumo', icone: <Users size={18} /> },
     { id: 'registros', rotulo: 'Registros', icone: <CalendarDays size={18} /> },
+    { id: 'rostos', rotulo: 'Rostos', icone: <ScanFace size={18} /> },
     { id: 'funcionarios', rotulo: 'Funcionários', icone: <Users size={18} /> },
     { id: 'banco', rotulo: 'Banco de Horas', icone: <Wallet size={18} /> },
     { id: 'config', rotulo: 'Configurações', icone: <KeyRound size={18} /> },
@@ -207,6 +210,7 @@ const Painel: React.FC<{
 
       {aba === 'resumo' && <AbaResumo pinAdmin={pinAdmin} />}
       {aba === 'registros' && <AbaRegistros pinAdmin={pinAdmin} localEscola={localEscola} />}
+      {aba === 'rostos' && <AbaRostos pinAdmin={pinAdmin} />}
       {aba === 'funcionarios' && <AbaFuncionarios pinAdmin={pinAdmin} />}
       {aba === 'banco' && <AbaBancoHoras pinAdmin={pinAdmin} />}
       {aba === 'config' && (
