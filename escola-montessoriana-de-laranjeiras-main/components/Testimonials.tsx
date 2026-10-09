@@ -24,6 +24,14 @@ interface ImageTestimonial {
 export const Testimonials: React.FC = () => {
   const videoTestimonials: VideoTestimonial[] = [
     {
+      id: 5,
+      name: "Amanda",
+      role: "mãe da Luiza e do Matheus",
+      youtube: '58Lbr1-A3ac',
+      poster: "/images/thumb-depoimento-amanda.jpg",
+      vertical: true
+    },
+    {
       id: 1,
       name: "Fran",
       role: "mãe da Estephany",
