@@ -46,6 +46,8 @@ export const AbaRostos: React.FC<{ pinAdmin: string }> = ({ pinAdmin }) => {
   const [erro, setErro] = useState('');
   const [filtro, setFiltro] = useState<Filtro>('pendente');
   const [visao, setVisao] = useState<Visao>('grupos');
+  // 'a…' = recepção/HALL em alta resolução (desde 09/10); 'g…' = Entrada em baixa (rodada de 08/10)
+  const [fonte, setFonte] = useState<'alta' | 'antigo'>('alta');
 
   const carregar = useCallback(async () => {
     setErro('');
@@ -114,15 +116,17 @@ export const AbaRostos: React.FC<{ pinAdmin: string }> = ({ pinAdmin }) => {
       </div>
     );
 
-  const pendentes = dados.grupos.filter((g) => g.status === 'pendente').length;
-  const lista = dados.grupos.filter((g) =>
+  const daFonte = dados.grupos.filter((g) => (fonte === 'alta') === g.id.startsWith('a'));
+  const pendentes = daFonte.filter((g) => g.status === 'pendente').length;
+  const lista = daFonte.filter((g) =>
     filtro === 'todos' ? true : filtro === 'pendente' ? g.status === 'pendente' : g.status !== 'pendente'
   );
 
   return (
     <section>
       <p className="text-ponto-cinza mb-3 text-sm">
-        Rostos achados nas câmeras <strong>Entrada</strong> e <strong>HALL</strong> (7h30–10h15 e 16h59–19h15).
+        Rostos achados nas câmeras <strong>recepção</strong> e <strong>HALL</strong> em alta resolução (manhã e fim de
+        tarde).
         Cada cartão junta as passagens que parecem ser da mesma pessoa. Diga quem é: o nome confirmado passa a
         ensinar o reconhecimento. A sugestão vem só de quem tem foto na ficha ou de grupos já confirmados.
       </p>
@@ -150,6 +154,24 @@ export const AbaRostos: React.FC<{ pinAdmin: string }> = ({ pinAdmin }) => {
         <VisaoDias dados={dados} nomes={nomes} />
       ) : (
         <>
+          <div className="flex gap-2 mb-2 flex-wrap text-xs">
+            {(
+              [
+                ['alta', 'Recepção e HALL (alta resolução)'],
+                ['antigo', 'Entrada, 05–07/10 (baixa, rodada antiga)'],
+              ] as ['alta' | 'antigo', string][]
+            ).map(([f, r]) => (
+              <button
+                key={f}
+                onClick={() => setFonte(f)}
+                className={`px-3 py-1 rounded-full font-bold ${
+                  fonte === f ? 'bg-ponto-escuro text-white' : 'bg-white text-ponto-cinza'
+                }`}
+              >
+                {r}
+              </button>
+            ))}
+          </div>
           <div className="flex gap-2 mb-4 flex-wrap text-sm">
             {(
               [
@@ -269,7 +291,7 @@ const CartaoGrupo: React.FC<{
           </li>
         ))}
       </ul>
-      <p className="text-[11px] text-ponto-cinza">ʰ = câmera do HALL; sem marca = Entrada</p>
+      <p className="text-[11px] text-ponto-cinza">ʰ = câmera do HALL</p>
 
       <div className="mt-3">
         {g.status === 'pendente' ? (
