@@ -1222,14 +1222,32 @@ const CartaoAvisos: React.FC<{ pinAdmin: string; equipe: ResumoFuncionario[] }> 
 
 const AbaResumo: React.FC<{ pinAdmin: string }> = ({ pinAdmin }) => {
   const [resumo, setResumo] = useState<ResumoFuncionario[] | null>(null);
+  const [comentarios, setComentarios] = useState<RegistroAdmin[]>([]);
   const [erro, setErro] = useState('');
 
   const carregar = useCallback(async () => {
     setErro('');
     try {
-      const r = await rpc<RespostaResumo>('admin_resumo_funcionarios', { p_pin_admin: pinAdmin });
+      // Comentários de atraso/esquecimento dos últimos 30 dias (conferência do pagamento), sem precisar abrir Registros
+      const agora = new Date();
+      const inicio = new Date(agora.getFullYear(), agora.getMonth(), agora.getDate() - 29);
+      const [r, rr] = await Promise.all([
+        rpc<RespostaResumo>('admin_resumo_funcionarios', { p_pin_admin: pinAdmin }),
+        rpc<RespostaRegistros>('admin_listar_registros', {
+          p_pin_admin: pinAdmin,
+          p_de: inicio.toISOString(),
+          p_ate: new Date(agora.getTime() + 60000).toISOString(),
+        }),
+      ]);
       if (!r.ok) return setErro(r.erro ?? 'Erro ao carregar.');
       setResumo(r.resumo);
+      if (rr.ok) {
+        setComentarios(
+          rr.registros
+            .filter((x) => x.justificativa)
+            .sort((a, b) => b.ts.localeCompare(a.ts))
+        );
+      }
     } catch (e) {
       setErro(e instanceof Error ? e.message : 'Erro inesperado.');
     }
@@ -1246,9 +1264,37 @@ const AbaResumo: React.FC<{ pinAdmin: string }> = ({ pinAdmin }) => {
 
   const h = (min: number) => formatarMinutos(min);
   const naEscola = resumo.filter((f) => f.na_escola).length;
+  const hoje = chaveDia(new Date().toISOString());
+  const comentouHoje = new Set(
+    comentarios.filter((c) => chaveDia(c.ts) === hoje).map((c) => c.funcionario_id)
+  );
 
   return (
     <section>
+      {comentarios.length > 0 && (
+        <div className="bg-amber-50 border border-amber-300 rounded-2xl shadow p-4 mb-4">
+          <h2 className="font-bold uppercase tracking-wide text-sm text-amber-900 mb-2">
+            📝 Comentários da equipe — últimos 30 dias ({comentarios.length})
+          </h2>
+          <ul className="divide-y divide-amber-200 max-h-80 overflow-y-auto">
+            {comentarios.map((c) => (
+              <li key={c.id} className="py-2 text-sm">
+                <p>
+                  <strong>{c.nome}</strong>{' '}
+                  <span className="text-ponto-cinza">
+                    · <span className="capitalize">{formatarData(chaveDia(c.ts))}</span> · bateu {formatarHora(c.ts)}
+                    {c.hora_alegada && <> · alega {formatarHoraSimples(c.hora_alegada)}</>}
+                  </span>
+                </p>
+                <p className="text-amber-900">{c.justificativa}</p>
+              </li>
+            ))}
+          </ul>
+          <p className="text-xs text-ponto-cinza mt-2">
+            Para aceitar o horário alegado, lance a batida manual na aba Registros.
+          </p>
+        </div>
+      )}
       <CartaoAvisos pinAdmin={pinAdmin} equipe={resumo} />
       <p className="text-ponto-cinza mb-4">
         <strong className="text-ponto-escuro">{naEscola}</strong> na escola agora ·
@@ -1272,7 +1318,12 @@ const AbaResumo: React.FC<{ pinAdmin: string }> = ({ pinAdmin }) => {
                 return (
                   <tr key={f.funcionario_id} className="border-t border-ponto-claro align-top">
                     <td className="px-4 py-3">
-                      <p className="font-bold">{f.nome}</p>
+                      <p className="font-bold">
+                        {f.nome}
+                        {comentouHoje.has(f.funcionario_id) && (
+                          <span title="Deixou comentário hoje" className="ml-1">📝</span>
+                        )}
+                      </p>
                       <p className="text-xs text-ponto-cinza">
                         {f.cargo || '—'} · {f.entrada}–{f.saida}
                       </p>
