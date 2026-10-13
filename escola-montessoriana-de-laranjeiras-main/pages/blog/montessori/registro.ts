@@ -4,6 +4,17 @@ import type { BlogPostMeta } from '../posts';
 /** Textos de Maria Montessori com apresentação da escola: posts comuns do blog, publicados pela data. */
 export const montessoriPosts: BlogPostMeta[] = [
  {
+  "slug": "montessori-desvio-e-normalizacao",
+  "date": "2026-10-13",
+  "seoTitle": "Desvio e Normalização, por Maria Montessori (1934)",
+  "title": "Desvio e Normalização: o que as primeiras crianças mostraram a Montessori",
+  "excerpt": "Concentração, trabalho repetido, disciplina sem vigilância: em 1934, Montessori conta o que viu nas primeiras crianças e chamou de normalização.",
+  "image": "/images/montessori/vida-pratica-estante.jpg",
+  "imageAlt": "Criança pega seu trabalho sozinha na estante baixa de uma sala Montessori preparada",
+  "dateDisplay": "13 de outubro de 2026",
+  "readingTime": "19 min"
+ },
+ {
   "slug": "montessori-como-recebemos-a-crianca-na-vida",
   "date": "2026-10-09",
   "seoTitle": "Montessori: como recebemos a criança na vida",
