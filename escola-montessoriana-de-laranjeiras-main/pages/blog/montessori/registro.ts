@@ -4,6 +4,17 @@ import type { BlogPostMeta } from '../posts';
 /** Textos de Maria Montessori com apresentação da escola: posts comuns do blog, publicados pela data. */
 export const montessoriPosts: BlogPostMeta[] = [
  {
+  "slug": "montessori-a-crianca-pequena-construtora-da-independencia",
+  "date": "2026-10-16",
+  "seoTitle": "Montessori: a criança, construtora da independência",
+  "title": "A criança pequena, construtora da independência: seguir a criança, no passo dela",
+  "excerpt": "Banquinhos carregados, degraus escalados, passeios sem destino: por que Montessori pede que o adulto não interrompa e siga a criança.",
+  "image": "/images/cerebro/leitura-bebes.jpg",
+  "imageAlt": "Professora lendo um livro ilustrado para bebês atentos",
+  "dateDisplay": "16 de outubro de 2026",
+  "readingTime": "12 min"
+ },
+ {
   "slug": "montessori-desvio-e-normalizacao",
   "date": "2026-10-13",
   "seoTitle": "Desvio e Normalização, por Maria Montessori (1934)",
