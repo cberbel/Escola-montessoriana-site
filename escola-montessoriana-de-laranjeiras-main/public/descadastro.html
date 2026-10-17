@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Descadastro · Escola Montessoriana</title>
+<!-- Link "Não quero mais receber" dos e-mails dos fluxos de visita (funcao email-fluxos, 17/10/2026).
+     So descadastra quando a pessoa toca no botao (POST): antivirus que abre o link sozinho nao tira ninguem da lista. -->
+<style>
+  body { margin: 0; background: #f8fafc; color: #0f172a; font-family: Lato, Arial, Helvetica, sans-serif; }
+  .caixa { max-width: 480px; margin: 48px auto; background: #fff; border-radius: 12px; padding: 28px 24px;
+           border-top: 4px solid #debb05; box-sizing: border-box; }
+  @media (max-width: 520px) { .caixa { margin: 24px 16px; } }
+  img { display: block; width: 150px; margin-bottom: 20px; }
+  h1 { font-size: 20px; margin: 0 0 12px; }
+  p { line-height: 1.6; margin: 0 0 20px; }
+  button { background: #1e40af; color: #fff; border: 0; border-radius: 8px; padding: 14px 22px; font-size: 16px;
+           font-weight: bold; cursor: pointer; width: 100%; }
+  button:disabled { opacity: .6; }
+  a { color: #1e40af; }
+</style>
+</head>
+<body>
+<div class="caixa">
+  <img src="/images/logo-escola.png" alt="Escola Montessoriana">
+  <div id="conteudo">
+    <h1>Parar de receber e-mails?</h1>
+    <p>Você não vai mais receber e-mails da Escola Montessoriana.</p>
+    <button id="sair" type="button">Não quero mais receber</button>
+  </div>
+</div>
+<script>
+  var token = new URLSearchParams(location.search).get('t') || '';
+  var alvo = document.getElementById('conteudo');
+  var zap = '<a href="https://wa.me/5521992973454">WhatsApp (21) 99297-3454</a>';
+  if (!/^[0-9a-f-]{36}$/.test(token)) {
+    alvo.innerHTML = '<h1>Link incompleto</h1><p>Abra o link direto do e-mail, ou peça pelo ' + zap + '.</p>';
+  } else {
+    document.getElementById('sair').addEventListener('click', function (e) {
+      e.target.disabled = true;
+      fetch('https://rmpnqrvsmxhnrwlgqmdp.supabase.co/functions/v1/email-fluxos?sair=' + token, { method: 'POST' })
+        .then(function (r) { return r.json(); })
+        .then(function () {
+          alvo.innerHTML = '<h1>Pronto.</h1><p>Você não vai mais receber e-mails da Escola Montessoriana. ' +
+            'Se quiser falar com a escola, é só chamar no ' + zap + '.</p>';
+        })
+        .catch(function () {
+          e.target.disabled = false;
+          alvo.insertAdjacentHTML('beforeend', '<p>Não consegui agora. Tente de novo ou peça pelo ' + zap + '.</p>');
+        });
+    });
+  }
+</script>
+</body>
+</html>
