@@ -1100,6 +1100,7 @@ interface ResumoFuncionario {
   min_semana: number;
   min_mes: number;
   min_mes_previsto: number;
+  aviso_hoje: { tipo: 'falta' | 'atraso'; hora_prevista: string | null; motivo: string | null; dia_ate: string } | null;
 }
 
 interface RespostaResumo { ok: boolean; erro?: string; resumo: ResumoFuncionario[] }
@@ -1220,9 +1221,78 @@ const CartaoAvisos: React.FC<{ pinAdmin: string; equipe: ResumoFuncionario[] }> 
   );
 };
 
+interface AusenciaAdmin {
+  id: string;
+  funcionario_id: string;
+  nome: string;
+  tipo: 'falta' | 'atraso';
+  dia: string;
+  dia_ate: string;
+  hora_prevista: string | null;
+  motivo: string | null;
+  criado_em: string;
+  cancelado_em: string | null;
+}
+
+interface RespostaAusencias { ok: boolean; erro?: string; hoje: string; ausencias: AusenciaAdmin[] }
+
+// Avisos de falta/atraso que a propria equipe deu pelo app: ultimos 30 dias e
+// os futuros. Nao sao abono — abonar continua no financeiro-mei, se a direcao quiser.
+const CartaoAusencias: React.FC<{ ausencias: AusenciaAdmin[]; hoje: string }> = ({ ausencias, hoje }) => {
+  const ativos = ausencias.filter((a) => !a.cancelado_em);
+  if (ativos.length === 0) return null;
+  const futuros = ativos.filter((a) => a.dia_ate >= hoje);
+  const passados = ativos.filter((a) => a.dia_ate < hoje);
+  const linha = (a: AusenciaAdmin) => (
+    <li key={a.id} className="py-2 text-sm">
+      <p>
+        <strong>{a.nome}</strong>{' '}
+        <span className={`px-1.5 py-0.5 rounded-full text-xs font-bold ${
+          a.tipo === 'falta' ? 'bg-red-100 text-red-800' : 'bg-amber-100 text-amber-900'
+        }`}>
+          {a.tipo === 'falta' ? 'falta' : 'atraso'}
+        </span>{' '}
+        <span className="text-ponto-cinza capitalize">
+          {a.dia === a.dia_ate ? formatarData(a.dia) : `${formatarData(a.dia)} a ${formatarData(a.dia_ate)}`}
+          {a.tipo === 'atraso' && a.hora_prevista && <> · chega às {a.hora_prevista}</>}
+          {' '}· avisou {formatarData(chaveDia(a.criado_em))} {formatarHora(a.criado_em)}
+        </span>
+      </p>
+      {a.motivo && <p className="text-ponto-escuro">{a.motivo}</p>}
+    </li>
+  );
+  return (
+    <div className="bg-white border border-ponto-azul/30 rounded-2xl shadow p-4 mb-4">
+      <h2 className="font-bold uppercase tracking-wide text-sm text-ponto-azul mb-1">
+        📣 Avisos de falta e atraso da equipe ({ativos.length})
+      </h2>
+      <p className="text-xs text-ponto-cinza mb-2">
+        Dados pela própria pessoa no app, antes. Não é abono: o desconto segue a regra; quem
+        decide se abona é a direção, no financeiro-mei.
+      </p>
+      {futuros.length > 0 && (
+        <>
+          <p className="text-xs font-bold text-ponto-cinza mt-1">Hoje e próximos dias</p>
+          <ul className="divide-y divide-ponto-claro">{futuros.map(linha)}</ul>
+        </>
+      )}
+      {passados.length > 0 && (
+        <details className="mt-2">
+          <summary className="text-xs font-bold text-ponto-cinza cursor-pointer">
+            Últimos 30 dias ({passados.length})
+          </summary>
+          <ul className="divide-y divide-ponto-claro max-h-80 overflow-y-auto">{passados.map(linha)}</ul>
+        </details>
+      )}
+    </div>
+  );
+};
+
 const AbaResumo: React.FC<{ pinAdmin: string }> = ({ pinAdmin }) => {
   const [resumo, setResumo] = useState<ResumoFuncionario[] | null>(null);
   const [comentarios, setComentarios] = useState<RegistroAdmin[]>([]);
+  const [ausencias, setAusencias] = useState<AusenciaAdmin[]>([]);
+  const [hojeServidor, setHojeServidor] = useState('');
   const [erro, setErro] = useState('');
 
   const carregar = useCallback(async () => {
@@ -1231,16 +1301,18 @@ const AbaResumo: React.FC<{ pinAdmin: string }> = ({ pinAdmin }) => {
       // Comentários de atraso/esquecimento dos últimos 30 dias (conferência do pagamento), sem precisar abrir Registros
       const agora = new Date();
       const inicio = new Date(agora.getFullYear(), agora.getMonth(), agora.getDate() - 29);
-      const [r, rr] = await Promise.all([
+      const [r, rr, ra] = await Promise.all([
         rpc<RespostaResumo>('admin_resumo_funcionarios', { p_pin_admin: pinAdmin }),
         rpc<RespostaRegistros>('admin_listar_registros', {
           p_pin_admin: pinAdmin,
           p_de: inicio.toISOString(),
           p_ate: new Date(agora.getTime() + 60000).toISOString(),
         }),
+        rpc<RespostaAusencias>('admin_ausencias_listar', { p_pin_admin: pinAdmin }),
       ]);
       if (!r.ok) return setErro(r.erro ?? 'Erro ao carregar.');
       setResumo(r.resumo);
+      if (ra.ok) { setAusencias(ra.ausencias); setHojeServidor(ra.hoje); }
       if (rr.ok) {
         setComentarios(
           rr.registros
@@ -1295,6 +1367,7 @@ const AbaResumo: React.FC<{ pinAdmin: string }> = ({ pinAdmin }) => {
           </p>
         </div>
       )}
+      <CartaoAusencias ausencias={ausencias} hoje={hojeServidor || hoje} />
       <CartaoAvisos pinAdmin={pinAdmin} equipe={resumo} />
       <p className="text-ponto-cinza mb-4">
         <strong className="text-ponto-escuro">{naEscola}</strong> na escola agora ·
@@ -1336,6 +1409,14 @@ const AbaResumo: React.FC<{ pinAdmin: string }> = ({ pinAdmin }) => {
                       ) : f.batidas_hoje.length > 0 ? (
                         <span className="px-2 py-0.5 rounded-full text-xs font-bold bg-ponto-claro text-ponto-cinza">
                           saiu
+                        </span>
+                      ) : f.aviso_hoje?.tipo === 'falta' ? (
+                        <span title={f.aviso_hoje.motivo ?? ''} className="px-2 py-0.5 rounded-full text-xs font-bold bg-red-100 text-red-800">
+                          avisou falta
+                        </span>
+                      ) : f.aviso_hoje?.tipo === 'atraso' ? (
+                        <span title={f.aviso_hoje.motivo ?? ''} className="px-2 py-0.5 rounded-full text-xs font-bold bg-amber-100 text-amber-900">
+                          avisou: chega {f.aviso_hoje.hora_prevista ?? 'mais tarde'}
                         </span>
                       ) : (
                         <span className="text-ponto-cinza text-xs">sem batida</span>

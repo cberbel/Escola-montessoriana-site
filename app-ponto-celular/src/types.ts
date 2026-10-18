@@ -25,6 +25,17 @@ export interface MetricaHoras {
   saldo_min: number;
 }
 
+/** Aviso de falta ou atraso que a propria pessoa deu pelo app (nao e abono). */
+export interface AvisoAusencia {
+  id: string;
+  tipo: 'falta' | 'atraso';
+  dia: string; // AAAA-MM-DD
+  dia_ate: string;
+  hora_prevista: string | null; // "HH:MM" (atraso)
+  motivo: string | null;
+  criado_em: string;
+}
+
 export interface Batida {
   id: string;
   ts: string; // timestamptz do servidor, ISO 8601

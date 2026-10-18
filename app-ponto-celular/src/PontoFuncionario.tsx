@@ -13,8 +13,9 @@ import {
   CloudOff,
   Check,
 } from 'lucide-react';
-import { Batida, Funcionario } from './types';
+import { AvisoAusencia as AvisoAusenciaDado, Batida, Funcionario } from './types';
 import { AvisoPonto } from './AvisoPonto';
+import { AvisoAusencia } from './AvisoAusencia';
 import { idDispositivo, obterPosicao, rpc, temConfig } from './api';
 import { formatarHora, rotuloBatida } from './utils';
 
@@ -25,6 +26,7 @@ interface RespostaFuncionario {
   batidas?: Batida[];
   fotos_pendentes?: boolean;
   avisos?: string[];
+  ausencias?: AvisoAusenciaDado[];
 }
 
 const CHAVE_PIN_SALVO = 'ponto.pinFuncionario';
@@ -48,6 +50,8 @@ export const PontoFuncionario: React.FC<{ modoCompartilhado?: boolean }> = ({ mo
   const [agora, setAgora] = useState(new Date());
   const [fotosPendentes, setFotosPendentes] = useState(false);
   const [avisos, setAvisos] = useState<string[]>([]);
+  // avisos de falta/atraso que a propria pessoa deu (vigentes)
+  const [ausencias, setAusencias] = useState<AvisoAusenciaDado[]>([]);
   // esqueci de bater: a batida real fica registrada e a pessoa anexa o motivo
   // e o horario que alega; a direcao ve os dois no /admin
   const [justAberta, setJustAberta] = useState(false);
@@ -92,6 +96,7 @@ export const PontoFuncionario: React.FC<{ modoCompartilhado?: boolean }> = ({ mo
       setBatidas(r.batidas ?? []);
       setFotosPendentes(r.fotos_pendentes === true);
       setAvisos(r.avisos ?? []);
+      setAusencias(r.ausencias ?? []);
       setFase('home');
     } catch (e) {
       setErro(e instanceof Error ? e.message : 'Erro inesperado.');
@@ -174,6 +179,7 @@ export const PontoFuncionario: React.FC<{ modoCompartilhado?: boolean }> = ({ mo
         setFotosPendentes(r.fotos_pendentes === true);
         // a batida nao devolve avisos: mantem os que vieram ao entrar
         if (r.avisos) setAvisos(r.avisos);
+        if (r.ausencias) setAusencias(r.ausencias);
         setJustAberta(false);
         setJustTexto('');
         setHoraCerta('');
@@ -379,6 +385,16 @@ export const PontoFuncionario: React.FC<{ modoCompartilhado?: boolean }> = ({ mo
                     </button>
                   </div>
                 )}
+
+                {/* Avisar falta/atraso antes: quem nao bate e nao avisa fica como falta sem
+                    explicacao no fechamento. Na estacao compartilhada tambem vale (usa o PIN
+                    digitado), ja que nem todo mundo tem o app no celular. */}
+                <AvisoAusencia
+                  pin={modoCompartilhado ? pin : localStorage.getItem(CHAVE_PIN_SALVO) || pin}
+                  horaEntrada={funcionario.hora_entrada ?? null}
+                  avisos={ausencias}
+                  aoMudar={setAusencias}
+                />
 
                 {avisos.length > 0 && (
                   <div className="mt-3 text-left space-y-2">
