@@ -4,6 +4,7 @@ import type React from 'react';
 
 /** slug -> artigo carregado sob demanda (um chunk por artigo). */
 export const montessoriComponents: Record<string, React.ComponentType> = {
+  'montessori-o-carater-da-crianca': lazy(() => import('./artigos/montessori-o-carater-da-crianca')),
   'montessori-a-crianca-pequena-construtora-da-independencia': lazy(() => import('./artigos/montessori-a-crianca-pequena-construtora-da-independencia')),
   'montessori-desvio-e-normalizacao': lazy(() => import('./artigos/montessori-desvio-e-normalizacao')),
   'montessori-como-recebemos-a-crianca-na-vida': lazy(() => import('./artigos/montessori-como-recebemos-a-crianca-na-vida')),

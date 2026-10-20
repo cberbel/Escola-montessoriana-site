@@ -4,6 +4,17 @@ import type { BlogPostMeta } from '../posts';
 /** Textos de Maria Montessori com apresentação da escola: posts comuns do blog, publicados pela data. */
 export const montessoriPosts: BlogPostMeta[] = [
  {
+  "slug": "montessori-o-carater-da-crianca",
+  "date": "2026-10-20",
+  "seoTitle": "O caráter da criança, por Maria Montessori (1924)",
+  "title": "O caráter da criança: quando a inquietação não é cansaço, segundo Montessori",
+  "excerpt": "A criança agitada no meio da manhã pode não estar cansada, e sim à beira do seu trabalho mais importante. Montessori sobre concentração e repouso.",
+  "image": "/images/turmas/agrupada-2.jpg",
+  "imageAlt": "Menina trabalha com a torre rosa enquanto a sala segue em atividade ao redor",
+  "dateDisplay": "20 de outubro de 2026",
+  "readingTime": "19 min"
+ },
+ {
   "slug": "montessori-a-crianca-pequena-construtora-da-independencia",
   "date": "2026-10-16",
   "seoTitle": "Montessori: a criança, construtora da independência",
