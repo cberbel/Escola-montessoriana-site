@@ -4,6 +4,17 @@ import type { BlogPostMeta } from '../posts';
 /** Textos de Maria Montessori com apresentação da escola: posts comuns do blog, publicados pela data. */
 export const montessoriPosts: BlogPostMeta[] = [
  {
+  "slug": "montessori-o-chamado",
+  "date": "2026-10-23",
+  "seoTitle": "O chamado (1924): Montessori e as defesas da criança",
+  "title": "O chamado: por que Montessori via nos caprichos e medos da criança uma defesa",
+  "excerpt": "Desatenção, mentira, medo do escuro, desobediência: no editorial de 1924, Montessori trata esses traços como defesas contra um ambiente cheio de obstáculos.",
+  "image": "/images/montessori/vida-pratica-tapete.jpg",
+  "imageAlt": "Criança escolhe um trabalho e o leva para o tapete, na sala Montessori",
+  "dateDisplay": "23 de outubro de 2026",
+  "readingTime": "11 min"
+ },
+ {
   "slug": "montessori-o-carater-da-crianca",
   "date": "2026-10-20",
   "seoTitle": "O caráter da criança, por Maria Montessori (1924)",
