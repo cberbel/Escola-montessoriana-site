@@ -4,6 +4,17 @@ import type { BlogPostMeta } from '../posts';
 /** Textos de Maria Montessori com apresentação da escola: posts comuns do blog, publicados pela data. */
 export const montessoriPosts: BlogPostMeta[] = [
  {
+  "slug": "montessori-o-estudo-das-criancas-bem-pequenas",
+  "date": "2026-10-27",
+  "seoTitle": "Montessori: a vida psíquica das crianças bem pequenas",
+  "title": "O estudo das crianças bem pequenas: o que a criança de dois anos tenta nos dizer",
+  "excerpt": "“Dormir”, “coelho”, “balão”: em anedotas contadas em Londres, em 1923, Montessori mostra o que a criança de dois anos observa, lembra e tenta dizer.",
+  "image": "/images/acolhimento/colo-patio.jpg",
+  "imageAlt": "Professora com bebê no colo no pátio arborizado da escola",
+  "dateDisplay": "27 de outubro de 2026",
+  "readingTime": "14 min"
+ },
+ {
   "slug": "montessori-o-chamado",
   "date": "2026-10-23",
   "seoTitle": "O chamado (1924): Montessori e as defesas da criança",
