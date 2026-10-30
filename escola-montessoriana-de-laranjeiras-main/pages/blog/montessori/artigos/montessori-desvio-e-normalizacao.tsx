@@ -22,7 +22,13 @@ const artigo: ArtigoMontessori = {
   "Das duas palavras do título, esta primeira conferência trata de uma só; o desvio fica para as seguintes. Ela serve de base para o resto do ciclo e desloca a pergunta de quem educa: em vez de como fazer a criança prestar atenção, em que condições a atenção aparece por si. A última linha vai na mesma direção e é dirigida a nós, adultos, que segundo ela devemos fazer alguma coisa para ser dignos de nos aproximar da criança. A seguir, o texto completo."
  ],
  "tituloSecao": "O texto de Maria Montessori, na íntegra",
- "relacionados": [],
+ "relacionados": [
+  {
+   "slug": "montessori-os-desvios-da-crianca",
+   "titulo": "Segunda Conferência",
+   "ano": "1934"
+  }
+ ],
  "ponte": [
   {
    "to": "/montessori-x-tradicional",

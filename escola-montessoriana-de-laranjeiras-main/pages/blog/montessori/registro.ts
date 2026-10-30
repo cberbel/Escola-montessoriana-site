@@ -4,6 +4,17 @@ import type { BlogPostMeta } from '../posts';
 /** Textos de Maria Montessori com apresentação da escola: posts comuns do blog, publicados pela data. */
 export const montessoriPosts: BlogPostMeta[] = [
  {
+  "slug": "montessori-os-desvios-da-crianca",
+  "date": "2026-10-30",
+  "seoTitle": "Montessori: os desvios da criança e a independência",
+  "title": "Os desvios da criança: por que Montessori não corrigia os defeitos um a um",
+  "excerpt": "Capricho, mentira, medo, timidez: na segunda conferência de 1934, Montessori explica por que esses traços somem juntos quando a criança pode trabalhar por si.",
+  "image": "/images/montessori/concentracao.jpg",
+  "imageAlt": "Criança pequena profundamente concentrada em um trabalho manual com material concreto",
+  "dateDisplay": "30 de outubro de 2026",
+  "readingTime": "25 min"
+ },
+ {
   "slug": "montessori-o-estudo-das-criancas-bem-pequenas",
   "date": "2026-10-27",
   "seoTitle": "Montessori: a vida psíquica das crianças bem pequenas",
