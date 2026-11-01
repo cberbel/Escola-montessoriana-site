@@ -12,7 +12,7 @@ export const montessoriPosts: BlogPostMeta[] = [
   "image": "/images/montessori/concentracao.jpg",
   "imageAlt": "Criança pequena profundamente concentrada em um trabalho manual com material concreto",
   "dateDisplay": "30 de outubro de 2026",
-  "readingTime": "25 min"
+  "readingTime": "24 min"
  },
  {
   "slug": "montessori-o-estudo-das-criancas-bem-pequenas",
@@ -23,7 +23,7 @@ export const montessoriPosts: BlogPostMeta[] = [
   "image": "/images/acolhimento/colo-patio.jpg",
   "imageAlt": "Professora com bebê no colo no pátio arborizado da escola",
   "dateDisplay": "27 de outubro de 2026",
-  "readingTime": "14 min"
+  "readingTime": "13 min"
  },
  {
   "slug": "montessori-o-chamado",
@@ -34,7 +34,7 @@ export const montessoriPosts: BlogPostMeta[] = [
   "image": "/images/montessori/vida-pratica-tapete.jpg",
   "imageAlt": "Criança escolhe um trabalho e o leva para o tapete, na sala Montessori",
   "dateDisplay": "23 de outubro de 2026",
-  "readingTime": "11 min"
+  "readingTime": "10 min"
  },
  {
   "slug": "montessori-o-carater-da-crianca",
@@ -45,7 +45,7 @@ export const montessoriPosts: BlogPostMeta[] = [
   "image": "/images/turmas/agrupada-2.jpg",
   "imageAlt": "Menina trabalha com a torre rosa enquanto a sala segue em atividade ao redor",
   "dateDisplay": "20 de outubro de 2026",
-  "readingTime": "19 min"
+  "readingTime": "18 min"
  },
  {
   "slug": "montessori-a-crianca-pequena-construtora-da-independencia",
@@ -67,7 +67,7 @@ export const montessoriPosts: BlogPostMeta[] = [
   "image": "/images/montessori/vida-pratica-estante.jpg",
   "imageAlt": "Criança pega seu trabalho sozinha na estante baixa de uma sala Montessori preparada",
   "dateDisplay": "13 de outubro de 2026",
-  "readingTime": "19 min"
+  "readingTime": "18 min"
  },
  {
   "slug": "montessori-como-recebemos-a-crianca-na-vida",
@@ -78,7 +78,7 @@ export const montessoriPosts: BlogPostMeta[] = [
   "image": "/images/cerebro/bebe-material.jpg",
   "imageAlt": "Bebê concentrado encaixando discos coloridos em pinos de madeira",
   "dateDisplay": "9 de outubro de 2026",
-  "readingTime": "10 min"
+  "readingTime": "9 min"
  },
  {
   "slug": "montessori-encontrei-ouro-em-vez-de-trigo",
@@ -89,6 +89,6 @@ export const montessoriPosts: BlogPostMeta[] = [
   "image": "/images/montessori/concentracao.jpg",
   "imageAlt": "Criança pequena profundamente concentrada em um trabalho manual com material concreto",
   "dateDisplay": "6 de outubro de 2026",
-  "readingTime": "10 min"
+  "readingTime": "9 min"
  }
 ];

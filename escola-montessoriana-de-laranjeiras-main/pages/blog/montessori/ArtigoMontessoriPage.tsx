@@ -33,7 +33,7 @@ const Bloco: React.FC<{ b: BlocoTexto }> = ({ b }) => {
   }
 };
 
-/** Post do blog com um texto de Maria Montessori: primeiro a apresentação da escola, depois o texto dela. */
+/** Post do blog com um texto de Maria Montessori: introdução de um parágrafo, o texto dela e, se houver, a análise complementar. */
 export const ArtigoMontessoriPage: React.FC<{ artigo: ArtigoMontessori }> = ({ artigo }) => (
   <BlogLayout
     title={artigo.title}
@@ -71,6 +71,17 @@ export const ArtigoMontessoriPage: React.FC<{ artigo: ArtigoMontessori }> = ({ a
         </div>
       ))}
     </section>
+
+    {artigo.analise && artigo.analise.length > 0 && (
+      <section aria-labelledby="analise" className="mt-10 border-t-2 border-montessori-gold pt-2">
+        <H2>
+          <span id="analise">Análise complementar</span>
+        </H2>
+        {artigo.analise.map((p, i) => (
+          <P key={i}>{p}</P>
+        ))}
+      </section>
+    )}
 
     {(artigo.relacionados.length > 0 || artigo.ponte.length > 0) && (
       <aside className="mt-10 border-l-4 border-montessori-gold bg-montessori-green/5 rounded-sm p-5 sm:p-6">
