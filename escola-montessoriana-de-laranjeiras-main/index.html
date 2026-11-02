@@ -214,6 +214,15 @@
         g.async = true;
         g.src = 'https://www.googletagmanager.com/gtag/js?id=G-79X03K7F7F';
         document.head.appendChild(g);
+
+        // Vercel Web Analytics (segunda fonte de acessos, sem depender de login no Google).
+        // Servido pelo próprio domínio (sem terceiro, sem cookie); só funciona com o
+        // Web Analytics ativado no projeto da Vercel — em preview/local o script dá 404
+        // e nada acontece. Rastreia também as trocas de rota do SPA (pushState).
+        var va = document.createElement('script');
+        va.defer = true;
+        va.src = '/_vercel/insights/script.js';
+        document.head.appendChild(va);
       });
     </script>
     <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1183448566465118&ev=PageView&noscript=1" alt="" /></noscript>
