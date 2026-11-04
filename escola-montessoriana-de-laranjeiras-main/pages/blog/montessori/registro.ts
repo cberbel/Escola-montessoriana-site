@@ -4,6 +4,17 @@ import type { BlogPostMeta } from '../posts';
 /** Textos de Maria Montessori com apresentação da escola: posts comuns do blog, publicados pela data. */
 export const montessoriPosts: BlogPostMeta[] = [
  {
+  "slug": "montessori-sobre-a-disciplina",
+  "date": "2026-11-04",
+  "seoTitle": "Sobre a disciplina, por Maria Montessori (1924)",
+  "title": "Sobre a disciplina: Montessori e o que fazer quando a liberdade vira desordem",
+  "excerpt": "A sala livre que vira desordem, a ordem frágil que engana e a hora certa de o adulto se retirar: as etapas da disciplina, descritas por Montessori em 1924.",
+  "image": "/images/montessori/vida-pratica-tapete.jpg",
+  "imageAlt": "Criança escolhe um trabalho e o leva para o tapete, na sala Montessori",
+  "dateDisplay": "4 de novembro de 2026",
+  "readingTime": "26 min"
+ },
+ {
   "slug": "montessori-os-desvios-da-crianca",
   "date": "2026-10-30",
   "seoTitle": "Montessori: os desvios da criança e a independência",

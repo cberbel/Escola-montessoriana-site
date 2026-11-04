@@ -21,7 +21,13 @@ const artigo: ArtigoMontessori = {
   "Diante da criança que larga uma coisa, pega outra e começa a provocar os vizinhos, a conferência deixa uma pergunta prática: é cansaço ou é fome de um trabalho maior? A resposta não vem de uma regra, vem de esperar o bastante para ver o que acontece depois. A imagem que fecha o texto ajuda a guardar isso: a água de uma inundação seca ao sol, e a água canalizada vira força motriz. Para Montessori, a concentração é esse canal, e por isso ela considera “inútil ensinar os princípios da força”."
  ],
  "tituloSecao": "O texto de Maria Montessori, na íntegra",
- "relacionados": [],
+ "relacionados": [
+  {
+   "slug": "montessori-sobre-a-disciplina",
+   "titulo": "Sobre a disciplina (Reflexões e conselhos)",
+   "ano": "1924"
+  }
+ ],
  "ponte": [
   {
    "to": "/montessori-x-tradicional",
