@@ -41,6 +41,18 @@
         fbq('track', 'Contact');
         gtag('event', 'conversion', { 'send_to': 'AW-16743400376/psM9CKCH4PUbELiH8K8-' });
       };
+
+      // E-mails da escola (03/11/2026): o link traz em=<id do envio>. Vira a tag "email" no
+      // Clarity, para filtrar a gravação do que a família leu. A fila abaixo é a mesma do
+      // snippet do Clarity: se ele ainda não chegou, a chamada espera por ele.
+      (function(){
+        try {
+          var em = new URLSearchParams(location.search).get('em');
+          if (!em || !/^[0-9a-f-]{36}$/.test(em)) return;
+          window.clarity = window.clarity || function(){ (window.clarity.q = window.clarity.q || []).push(arguments); };
+          window.clarity('set', 'email', em);
+        } catch (e) {}
+      })();
     </script>
     <title>Escola Montessoriana de Laranjeiras | Montessori de 9 meses a 11 anos</title>
     <meta name="description" content="Creche, pré-escola e Fundamental Montessori em Laranjeiras, de 9 meses a 11 anos, com inglês por imersão diária. A minutos do Flamengo, Catete e Cosme Velho." />
