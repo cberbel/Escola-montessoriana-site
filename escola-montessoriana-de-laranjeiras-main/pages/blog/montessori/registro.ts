@@ -4,6 +4,17 @@ import type { BlogPostMeta } from '../posts';
 /** Textos de Maria Montessori com apresentação da escola: posts comuns do blog, publicados pela data. */
 export const montessoriPosts: BlogPostMeta[] = [
  {
+  "slug": "montessori-o-renascimento",
+  "date": "2026-11-09",
+  "seoTitle": "O renascimento, de Maria Montessori: amor e independência",
+  "title": "O renascimento: por que ajudar a criança a fazer sozinha é amor",
+  "excerpt": "Nascer, desmamar, andar, falar: para Montessori, crescer é um caminho de independência. Um texto de poucas linhas, de 1927, sobre a ajuda inútil.",
+  "image": "/images/cerebro/bebe-material.jpg",
+  "imageAlt": "Bebê concentrado encaixando discos coloridos em pinos de madeira",
+  "dateDisplay": "9 de novembro de 2026",
+  "readingTime": "2 min"
+ },
+ {
   "slug": "montessori-sobre-a-disciplina",
   "date": "2026-11-04",
   "seoTitle": "Sobre a disciplina, por Maria Montessori (1924)",
