@@ -4,6 +4,17 @@ import type { BlogPostMeta } from '../posts';
 /** Textos de Maria Montessori com apresentação da escola: posts comuns do blog, publicados pela data. */
 export const montessoriPosts: BlogPostMeta[] = [
  {
+  "slug": "montessori-a-crianca-pequena-construtora-da-inteligencia",
+  "date": "2026-11-14",
+  "seoTitle": "Montessori e o bebê, construtor da inteligência",
+  "title": "A criança pequena, construtora da inteligência: o chocalho, a colher e o choro do bebê",
+  "excerpt": "Um chocalho jogado no chão, uma colher disputada, um choro sem causa aparente: três princípios de Montessori para entender o bebê.",
+  "image": "/images/cerebro/leitura-bebes.jpg",
+  "imageAlt": "Professora lendo um livro ilustrado para bebês atentos",
+  "dateDisplay": "14 de novembro de 2026",
+  "readingTime": "11 min"
+ },
+ {
   "slug": "montessori-o-renascimento",
   "date": "2026-11-09",
   "seoTitle": "O renascimento, de Maria Montessori: amor e independência",

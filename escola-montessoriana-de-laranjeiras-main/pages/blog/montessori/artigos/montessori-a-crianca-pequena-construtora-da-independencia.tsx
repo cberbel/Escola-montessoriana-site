@@ -21,7 +21,13 @@ const artigo: ArtigoMontessori = {
   "A revista imprimiu a tradução italiana de 1970, feita por outra pessoa; a versão em português foi traduzida do original inglês, onde o capítulo se chama Imitative Action and Cycles of Activity. O fecho sai do passeio para a vida pública, com a ideia de que a educação nunca começa cedo demais para formar um cidadão livre: “A verdadeira liberdade começa no início da vida, não na idade adulta”. Fica um critério simples de pôr à prova: diante de uma atividade que parece sem sentido, esperar para ver se há ali um ciclo que a criança quer completar."
  ],
  "tituloSecao": "O texto de Maria Montessori, na íntegra",
- "relacionados": [],
+ "relacionados": [
+  {
+   "slug": "montessori-a-crianca-pequena-construtora-da-inteligencia",
+   "titulo": "A criança pequena, construtora da inteligência",
+   "ano": "2003"
+  }
+ ],
  "ponte": [
   {
    "to": "/montessori-x-tradicional",

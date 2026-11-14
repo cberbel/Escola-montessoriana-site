@@ -1,5 +1,6 @@
 // GERADO por gera.py (Documents/Montessori - Obras gratuitas/07 - Artigos comentados (blog)). Não editar à mão.
 import type React from 'react';
+import A73 from './artigos/montessori-a-crianca-pequena-construtora-da-inteligencia';
 import A13 from './artigos/montessori-o-renascimento';
 import A08 from './artigos/montessori-sobre-a-disciplina';
 import A55 from './artigos/montessori-os-desvios-da-crianca';
@@ -13,6 +14,7 @@ import A59 from './artigos/montessori-encontrei-ouro-em-vez-de-trigo';
 
 /** slug -> artigo (imports estáticos; só o prerender usa). */
 export const montessoriComponents: Record<string, React.ComponentType> = {
+  'montessori-a-crianca-pequena-construtora-da-inteligencia': A73,
   'montessori-o-renascimento': A13,
   'montessori-sobre-a-disciplina': A08,
   'montessori-os-desvios-da-crianca': A55,
