@@ -4,6 +4,17 @@ import type { BlogPostMeta } from '../posts';
 /** Textos de Maria Montessori com apresentação da escola: posts comuns do blog, publicados pela data. */
 export const montessoriPosts: BlogPostMeta[] = [
  {
+  "slug": "montessori-periodos-sensiveis",
+  "date": "2026-11-19",
+  "seoTitle": "Períodos sensíveis, por Maria Montessori (1927)",
+  "title": "Períodos sensíveis: a idade certa de cada aprendizado, segundo Montessori",
+  "excerpt": "A abelha-rainha, a lagarta que busca a luz e a criança que aprende uma língua sem sotaque: por que cada idade tem a sua janela para aprender.",
+  "image": "/images/cerebro/patio-musica.jpg",
+  "imageAlt": "Crianças pequenas em roda de música no pátio da escola",
+  "dateDisplay": "19 de novembro de 2026",
+  "readingTime": "10 min"
+ },
+ {
   "slug": "montessori-a-crianca-pequena-construtora-da-inteligencia",
   "date": "2026-11-14",
   "seoTitle": "Montessori e o bebê, construtor da inteligência",
