@@ -61,7 +61,7 @@ export const MainEs: React.FC = () => {
               className="inline-flex items-center gap-2 mt-3 text-gray-300 hover:text-yellow-400 transition-colors text-sm"
             >
               <span className="text-montessori-gold" aria-hidden="true">★★★★★</span>
-              Calificación 5.0 en Google
+              Calificación 4,9 en Google
             </a>
           </div>
 
@@ -74,7 +74,7 @@ export const MainEs: React.FC = () => {
               className="flex items-start space-x-3 text-gray-300 hover:text-yellow-400 transition-colors"
             >
               <MapPin size={20} className="mt-1 shrink-0 text-yellow-400" />
-              <span>Rua das Laranjeiras, 540, fundos<br />Laranjeiras, Río de Janeiro - RJ, Brasil</span>
+              <span>Rua das Laranjeiras, 540, fundos, segundo piso<br />Laranjeiras, Río de Janeiro - RJ, 22240-006, Brasil</span>
             </a>
             {/* Dois telefones, dois papéis. Atendimento é o WhatsApp que responde a família
                 interessada (o mesmo dos botões e dos informativos); Secretaria é o administrativo.

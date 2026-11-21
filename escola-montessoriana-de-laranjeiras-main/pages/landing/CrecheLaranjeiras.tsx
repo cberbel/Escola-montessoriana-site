@@ -121,7 +121,7 @@ export const CrecheLaranjeiras: React.FC = () => {
           </Link>.
         </P>
         <P>
-          Nossa nota no Google é <strong>5,0</strong>, nas avaliações das famílias que vivem a escola todos os
+          Nossa nota no Google é <strong>4,9</strong>, nas avaliações das famílias que vivem a escola todos os
           dias.{' '}
           <Link to="/agendamento" className="text-montessori-green font-semibold underline hover:no-underline">
             Agende uma visita
