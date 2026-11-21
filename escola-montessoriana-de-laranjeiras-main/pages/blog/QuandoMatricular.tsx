@@ -85,7 +85,8 @@ export const QuandoMatricular: React.FC = () => (
 
     <P>
       Se quiser conversar sobre o momento da sua família — sem pressa e sem pressão — venha tomar um café conosco e
-      ver os bebês da nossa Agrupada 1 em ação. Às vezes, dez minutos observando uma sala tranquila respondem mais
+      ver os bebês da nossa Agrupada 1 em ação. Veja antes como funciona a{' '}
+      <L to="/creche-laranjeiras">creche em Laranjeiras</L>, a partir de 9 meses. Às vezes, dez minutos observando uma sala tranquila respondem mais
       do que qualquer artigo.
     </P>
     <Referencias

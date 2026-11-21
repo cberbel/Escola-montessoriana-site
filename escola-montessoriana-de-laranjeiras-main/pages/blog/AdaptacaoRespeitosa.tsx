@@ -72,7 +72,8 @@ export const AdaptacaoRespeitosa: React.FC = () => (
     <P>
       Quer entender melhor como cuidamos dessa fase — e de toda a rotina de acolhimento?{' '}
       <L to="/acolhimento">Conheça nossa página sobre acolhimento</L>, ou venha visitar a escola e ver uma adaptação
-      acontecendo de perto.
+      acontecendo de perto. Para bebês a partir de 9 meses, veja como é a{' '}
+      <L to="/creche-laranjeiras">creche em Laranjeiras</L>.
     </P>
     <Referencias
       itens={[

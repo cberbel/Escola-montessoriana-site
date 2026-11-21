@@ -88,7 +88,8 @@ export const MontessoriParaBebes: React.FC = () => (
       Quer entender o método a fundo? Preparamos uma página completa sobre{' '}
       <L to="/metodo-montessori">o método Montessori</L> — de Maria Montessori ao currículo de cada área da sala. E
       se quiser ver uma sala Montessori de verdade funcionando, com bebês concentrados e crianças autônomas,{' '}
-      <strong>venha nos visitar em Laranjeiras</strong>.
+      <strong>venha nos visitar em Laranjeiras</strong>. Os bebês entram a partir de 9 meses na{' '}
+      <L to="/creche-laranjeiras">creche em Laranjeiras</L>.
     </P>
     <Referencias
       itens={[
