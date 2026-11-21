@@ -15,6 +15,8 @@ export interface Pages {
   CrecheLaranjeiras: React.ComponentType;
   CrecheFlamengo: React.ComponentType;
   CrecheBotafogo: React.ComponentType;
+  CrecheCatete: React.ComponentType;
+  CrecheCosmeVelho: React.ComponentType;
   MainEn: React.ComponentType;
   MainFr: React.ComponentType;
   HomeFr: React.ComponentType;

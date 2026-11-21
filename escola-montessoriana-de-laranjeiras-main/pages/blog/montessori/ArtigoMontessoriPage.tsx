@@ -43,6 +43,7 @@ export const ArtigoMontessoriPage: React.FC<{ artigo: ArtigoMontessori }> = ({ a
     readingTime={artigo.readingTime}
     image={artigo.image}
     imageAlt={artigo.imageAlt}
+    autoria="maria-montessori"
   >
     {artigo.intro.map((p, i) => (
       <P key={i}>{p}</P>

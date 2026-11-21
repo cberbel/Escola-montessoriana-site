@@ -69,13 +69,19 @@ export const Turmas: React.FC = () => {
           Procurando creche em Laranjeiras?{' '}
           <Link to="/creche-laranjeiras" className="text-montessori-green font-semibold underline hover:no-underline">
             Conheça o nosso berçário em detalhes
-          </Link>. Mora no Flamengo ou em Botafogo? Veja o caminho{' '}
+          </Link>. Mora no Flamengo, em Botafogo ou no Catete? Veja o caminho{' '}
           <Link to="/creche-flamengo" className="text-montessori-green font-semibold underline hover:no-underline">
             do Flamengo
-          </Link>{' '}
-          e{' '}
+          </Link>,{' '}
           <Link to="/creche-botafogo" className="text-montessori-green font-semibold underline hover:no-underline">
             de Botafogo
+          </Link>{' '}
+          e{' '}
+          <Link to="/creche-catete" className="text-montessori-green font-semibold underline hover:no-underline">
+            do Catete
+          </Link>. Mora no Cosme Velho?{' '}
+          <Link to="/creche-cosme-velho" className="text-montessori-green font-semibold underline hover:no-underline">
+            Veja a caminhada até a escola
           </Link>.
         </P>
       </LandingSection>

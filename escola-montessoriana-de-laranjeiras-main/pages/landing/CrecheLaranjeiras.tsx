@@ -118,6 +118,12 @@ export const CrecheLaranjeiras: React.FC = () => {
           </Link>. Vem de Botafogo?{' '}
           <Link to="/creche-botafogo" className="text-montessori-green font-semibold underline hover:no-underline">
             Veja os dois caminhos até a escola
+          </Link>. Vem do Catete?{' '}
+          <Link to="/creche-catete" className="text-montessori-green font-semibold underline hover:no-underline">
+            Veja os caminhos de carro, de ônibus e a pé
+          </Link>. Mora no Cosme Velho?{' '}
+          <Link to="/creche-cosme-velho" className="text-montessori-green font-semibold underline hover:no-underline">
+            Somos vizinhos: veja a caminhada até a escola
           </Link>.
         </P>
         <P>

@@ -17,7 +17,7 @@ import {
   MONTESSORI_TRADICIONAL_TITLE,
   MONTESSORI_TRADICIONAL_DESCRIPTION,
 } from './pages/landing/MontessoriETradicional';
-import { faqCrecheLaranjeiras, faqCrecheFlamengo, faqCrecheBotafogo, faqMensalidade, type ItemFAQ } from './pages/landing/faqs';
+import { faqCrecheLaranjeiras, faqCrecheFlamengo, faqCrecheBotafogo, faqCrecheCatete, faqCrecheCosmeVelho, faqMensalidade, type ItemFAQ } from './pages/landing/faqs';
 
 export function render(url: string): string {
   return renderToString(
@@ -48,8 +48,8 @@ export interface RotaPrerender {
   lang?: 'pt-BR' | 'en' | 'es' | 'fr';
   /** Rota-irmã em cada idioma (hreflang). Só as páginas com tradução real entram. */
   alternates?: Partial<Record<'pt-BR' | 'en' | 'es' | 'fr', string>>;
-  /** Artigo do blog: alimenta o schema BlogPosting. */
-  post?: { datePublished: string; dateModified?: string; headline: string; image: string };
+  /** Artigo do blog: alimenta o schema BlogPosting. `autor` ausente = Claudio Berbel (Person de /sobre). */
+  post?: { datePublished: string; dateModified?: string; headline: string; image: string; autor?: 'maria-montessori' };
   /** Trilha de breadcrumb (o último item é a própria página). */
   breadcrumb?: { name: string; url: string }[];
   /** lastmod do sitemap (YYYY-MM-DD). Blog usa a data do post; o resto, a data da última revisão do conteúdo. */
@@ -92,7 +92,7 @@ const MARCA_CURTA = 'Escola Montessoriana';
 const rotasBase: RotaPrerender[] = [
   {
     url: '/',
-    title: `${MARCA} | Montessori no Rio`,
+    title: `${MARCA} | Creche Montessori no Rio`,
     // ≤ 155 caracteres: o Google corta a partir daí (a anterior tinha 226).
     description:
       'Creche, pré-escola e Fundamental Montessori em Laranjeiras, de 9 meses a 11 anos, com inglês por imersão diária. A minutos do Flamengo, Catete e Cosme Velho.',
@@ -142,7 +142,7 @@ const rotasBase: RotaPrerender[] = [
     title: p.seoTitle,
     description: p.excerpt,
     image: p.image,
-    post: { datePublished: p.date, dateModified: p.dateModified ?? p.date, headline: p.title, image: p.image },
+    post: { datePublished: p.date, dateModified: p.dateModified ?? p.date, headline: p.title, image: p.image, autor: p.autor },
     breadcrumb: [BC_HOME, { name: 'Blog', url: '/blog' }, { name: p.title, url: `/blog/${p.slug}` }],
     lastmod: p.dateModified ?? p.date,
   })),
@@ -210,6 +210,22 @@ const rotasBase: RotaPrerender[] = [
       'Creche e berçário Montessori a cerca de 10 minutos de Botafogo, no final da Rua das Laranjeiras. Os caminhos pela Pinheiro Machado e pelo Rebouças.',
     faq: faqCrecheBotafogo,
     lastmod: '2026-10-03',
+  },
+  {
+    url: '/creche-catete',
+    title: 'Creche perto do Catete, a 10 minutos | Escola Montessoriana',
+    description:
+      'Creche e berçário Montessori a cerca de 10 minutos do Catete, no fim da Rua das Laranjeiras. Os caminhos de carro, de ônibus (linha 422) e a pé, e os tempos.',
+    faq: faqCrecheCatete,
+    lastmod: '2026-11-21',
+  },
+  {
+    url: '/creche-cosme-velho',
+    title: 'Creche perto do Cosme Velho, a 10 min a pé | Escola Montessoriana',
+    description:
+      'Creche e berçário Montessori no fim da Rua das Laranjeiras, junto ao Cosme Velho: 7 minutos a pé da estação do Trem do Corcovado. A partir de 9 meses.',
+    faq: faqCrecheCosmeVelho,
+    lastmod: '2026-11-21',
   },
   {
     url: '/agrupada-3',

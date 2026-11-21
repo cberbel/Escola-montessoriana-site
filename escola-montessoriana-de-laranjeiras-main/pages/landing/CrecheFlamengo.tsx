@@ -120,6 +120,15 @@ export const CrecheFlamengo: React.FC = () => {
             veja todas as turmas
           </Link>.
         </P>
+        <P>
+          Mora no Catete?{' '}
+          <Link to="/creche-catete" className="text-montessori-green font-semibold underline hover:no-underline">
+            Veja os caminhos do Catete até a escola, de carro, de ônibus e a pé
+          </Link>. No Cosme Velho?{' '}
+          <Link to="/creche-cosme-velho" className="text-montessori-green font-semibold underline hover:no-underline">
+            Veja as distâncias a pé
+          </Link>.
+        </P>
       </LandingSection>
 
 

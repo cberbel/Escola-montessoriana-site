@@ -107,6 +107,54 @@ export const faqCrecheBotafogo: ItemFAQ[] = [
   },
 ];
 
+/** Página /creche-catete. Tempos do Google Maps (21/11/2026); manter iguais aos de CrecheCatete.tsx. */
+export const faqCrecheCatete: ItemFAQ[] = [
+  {
+    p: 'A Escola Montessoriana fica no Catete?',
+    r: 'Não. A escola fica em Laranjeiras, na Rua das Laranjeiras, 540, no trecho final da rua, perto do Cosme Velho. Do Largo do Machado são 2 km pela própria Rua das Laranjeiras.',
+  },
+  {
+    p: 'Quanto tempo leva de carro do Catete até a escola?',
+    r: 'Num dia útil às 7h45, o Google Maps estima de 6 a 16 minutos saindo do Largo do Machado (2 km) e de 9 a 22 minutos saindo do Palácio do Catete (3,2 km). A distância é curta; o que varia é o trânsito.',
+  },
+  {
+    p: 'Qual ônibus vai do Catete até a escola?',
+    r: 'A linha 422, no sentido Cosme Velho, vai direto, sem baldeação. Do ponto ao lado do Largo do Machado são 6 paradas e cerca de 6 minutos de viagem, e a descida é no ponto Pires de Almeida, a menos de um minuto a pé da escola.',
+  },
+  {
+    p: 'Dá para ir a pé do Catete até a escola?',
+    r: 'Dá, mas é uma caminhada longa para o dia a dia: cerca de 29 minutos do Largo do Machado (2 km) e 38 minutos do Palácio do Catete (2,7 km), em trajeto quase todo plano.',
+  },
+  {
+    p: 'A partir de que idade a escola recebe bebês, e em que horários?',
+    r: 'A partir de 9 meses, com 1 professora para cada 3 bebês até os 18 meses. A escola funciona das 7h30 às 19h, com meio período, integral, estendido e frequência reduzida em dias alternados.',
+  },
+];
+
+/** Página /creche-cosme-velho. Tempos do Google Maps (21/11/2026); manter iguais aos de CrecheCosmeVelho.tsx. */
+export const faqCrecheCosmeVelho: ItemFAQ[] = [
+  {
+    p: 'A Escola Montessoriana fica no Cosme Velho?',
+    r: 'O endereço oficial é Laranjeiras: Rua das Laranjeiras, 540, fundos, segundo andar. O número 540 fica no último trecho da rua, junto à divisa com o Cosme Velho, tanto que o Google Maps mostra o endereço como Cosme Velho.',
+  },
+  {
+    p: 'Dá para ir a pé do Cosme Velho até a creche?',
+    r: 'Sim. Da estação do Trem do Corcovado são 500 metros, cerca de 7 minutos. Do Largo do Boticário são 850 metros, cerca de 10 minutos. É descer a Rua Cosme Velho, em trajeto predominantemente plano.',
+  },
+  {
+    p: 'Quanto tempo leva de carro do Cosme Velho até a escola?',
+    r: 'Numa segunda-feira às 8h, o Google Maps estima de 2 a 6 minutos saindo do Largo do Boticário (850 metros) e de 2 a 3 minutos saindo da estação do Trem do Corcovado ou da Praça São Judas Tadeu.',
+  },
+  {
+    p: 'E para quem mora nas ladeiras do Cosme Velho?',
+    r: 'A distância aumenta e há desnível. Da Ladeira do Ascurra, por exemplo, são cerca de 1,5 km: uns 20 minutos a pé, com descida na ida e subida na volta, ou de 4 a 8 minutos de carro às 8h de um dia útil.',
+  },
+  {
+    p: 'A partir de que idade a creche recebe bebês e qual é o horário?',
+    r: 'A partir de 9 meses, com 1 professora para cada 3 bebês até os 18 meses. A escola funciona das 7h30 às 19h, com meio período (8h às 12h ou 13h às 17h), integral (8h às 17h), estendido e frequência reduzida em dias alternados.',
+  },
+];
+
 /** Página /mensalidade. Valor de partida e como ele é composto. */
 export const faqMensalidade: ItemFAQ[] = [
   {

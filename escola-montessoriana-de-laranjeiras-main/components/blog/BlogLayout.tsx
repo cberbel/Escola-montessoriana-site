@@ -14,8 +14,17 @@ interface BlogLayoutProps {
   readingTime: string;
   image: string;
   imageAlt: string;
+  /**
+   * Quem assina. Sem isso, vale o registro do post (posts.ts) e, por fim, Claudio Berbel.
+   * 'maria-montessori' = texto dela, traduzido, com apresentação da escola.
+   */
+  autoria?: 'maria-montessori';
   children: React.ReactNode;
 }
+
+/** Link da assinatura. O py/-my amplia a área de toque no celular sem mexer na altura da linha. */
+const linkAssinatura =
+  'inline-block py-3 -my-3 font-bold text-montessori-cream underline underline-offset-4 decoration-montessori-gold/70 hover:text-montessori-gold transition-colors touch-manipulation';
 
 /** Layout padrão dos artigos do blog: capa, título, assinatura do autor, referências e CTA final. */
 export const BlogLayout: React.FC<BlogLayoutProps> = ({
@@ -26,6 +35,7 @@ export const BlogLayout: React.FC<BlogLayoutProps> = ({
   readingTime,
   image,
   imageAlt,
+  autoria,
   children,
 }) => {
   // O <title> curto (seoTitle, ≤ 60) vem do registro do post; sem isso, o título
@@ -34,6 +44,18 @@ export const BlogLayout: React.FC<BlogLayoutProps> = ({
   const meta = blogPosts.find((p) => pathname.endsWith(`/blog/${p.slug}`));
   usePageMeta(meta?.seoTitle ?? title, metaDescription);
   const dateIso = date ?? meta?.date;
+  const textoDeMontessori = (autoria ?? meta?.autor) === 'maria-montessori';
+  // "Leia também": os três posts seguintes da mesma coleção (textos de Montessori entre si,
+  // artigos da equipe entre si), dando a volta na lista. Sem isso cada artigo só recebia
+  // link do índice /blog.
+  const mesmaColecao = meta ? blogPosts.filter((p) => p.autor === meta.autor) : [];
+  const posicao = meta ? mesmaColecao.findIndex((p) => p.slug === meta.slug) : -1;
+  const relacionados =
+    posicao >= 0 && mesmaColecao.length > 1
+      ? [1, 2, 3]
+          .map((d) => mesmaColecao[(posicao + d) % mesmaColecao.length])
+          .filter((p, i, lista) => p.slug !== meta!.slug && lista.findIndex((q) => q.slug === p.slug) === i)
+      : [];
 
   return (
     <div className="bg-white">
@@ -53,11 +75,33 @@ export const BlogLayout: React.FC<BlogLayoutProps> = ({
           <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl leading-tight mb-4 sm:mb-5 break-words">
             {title}
           </h1>
-          {/* Autoria institucional (a equipe escreve; o schema BlogPosting aponta a escola como
-              autora e editora). A credibilidade vem das Referências ao fim de cada artigo e da
-              página /sobre, que diz quem responde pela escola. */}
-          <p className="text-montessori-cream/80 text-sm sm:text-base">
-            Por <strong className="text-montessori-cream">Equipe Escola Montessoriana</strong> ·{' '}
+          {/* Assinatura: a equipe escreve e o Claudio responde pelo conteudo (e o que a pagina
+              /sobre afirma). O nome dele leva a /sobre, o mesmo Person que entra como `editor`
+              no schema BlogPosting (ver prerender.mjs). Nos textos de Maria Montessori a autora é ela, e a escola só
+              apresenta. No celular a assinatura ocupa a própria linha; a data vem embaixo. */}
+          <p className="text-montessori-cream/80 text-sm sm:text-base leading-relaxed">
+            <span className="block sm:inline">
+              {textoDeMontessori ? (
+                <>
+                  Texto de <strong className="text-montessori-cream">Maria Montessori</strong>, com{' '}
+                  <Link to="/sobre" className={linkAssinatura}>
+                    apresentação da escola
+                  </Link>
+                </>
+              ) : (
+                <>
+                  Por <strong className="text-montessori-cream">Equipe Escola Montessoriana</strong>, sob
+                  responsabilidade de{' '}
+                  <Link to="/sobre" className={linkAssinatura}>
+                    Claudio Berbel
+                  </Link>
+                </>
+              )}
+            </span>
+            <span aria-hidden="true" className="hidden sm:inline">
+              {' '}
+              ·{' '}
+            </span>
             <time dateTime={dateIso}>{dateDisplay}</time> · {readingTime} de leitura
           </p>
         </div>
@@ -74,7 +118,28 @@ export const BlogLayout: React.FC<BlogLayoutProps> = ({
 
       {/* Conteúdo */}
       <article className="px-4 sm:px-6 md:px-12 pb-4 overflow-x-hidden">
-        <div className="max-w-3xl mx-auto min-w-0">{children}</div>
+        <div className="max-w-3xl mx-auto min-w-0">
+          {children}
+          {relacionados.length > 0 && (
+            <nav aria-labelledby="leia-tambem" className="mt-10 border-t border-gray-200 pt-6">
+              <h2 id="leia-tambem" className="font-serif text-xl sm:text-2xl text-montessori-green mb-3">
+                Leia também
+              </h2>
+              <ul className="space-y-3">
+                {relacionados.map((p) => (
+                  <li key={p.slug}>
+                    <Link
+                      to={`/blog/${p.slug}`}
+                      className="block py-1 text-base sm:text-lg text-montessori-green font-semibold underline underline-offset-4 hover:no-underline break-words"
+                    >
+                      {p.title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          )}
+        </div>
       </article>
 
       <LandingCTA

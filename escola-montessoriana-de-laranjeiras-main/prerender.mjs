@@ -76,6 +76,24 @@ const autorJsonLd = () => ({
   knowsAbout: ['Educação Montessori', 'Primeira infância', 'Desenvolvimento infantil'],
 });
 
+/**
+ * Responsavel (editor) pelos artigos do blog: o mesmo Person de /sobre, em forma resumida. O @id é o que
+ * liga o artigo à ficha completa (credenciais) que só a página /sobre carrega.
+ */
+const autorDoPostJsonLd = () => ({
+  '@type': 'Person',
+  '@id': AUTOR_ID,
+  name: 'Claudio Berbel',
+  url: `${SITE}/sobre`,
+});
+
+/**
+ * Posts de pages/blog/montessori: o texto é de Maria Montessori (traduzido), com apresentação
+ * da escola. A autora é ela; a escola entra só como `publisher`. Não há tradutor nem editor
+ * nomeado no conteúdo, então nenhum desses campos é preenchido.
+ */
+const MARIA_MONTESSORI = { '@type': 'Person', name: 'Maria Montessori' };
+
 const blogPostingJsonLd = (canonical, post, description) => ({
   '@context': 'https://schema.org',
   '@graph': [
@@ -90,8 +108,11 @@ const blogPostingJsonLd = (canonical, post, description) => ({
       datePublished: post.datePublished,
       dateModified: post.dateModified ?? post.datePublished,
       inLanguage: 'pt-BR',
-      // Autoria institucional: os textos são da equipe da escola, não do fundador.
-      author: { '@id': ESCOLA_ID },
+      // Posts da equipe: autora = a escola (os textos sao da equipe, nao do fundador) e
+      // `editor` = Claudio, que responde pelo conteudo (pagina /sobre). Textos de Maria
+      // Montessori: a autora e ela, e nao ha editor nomeado.
+      author: post.autor === 'maria-montessori' ? MARIA_MONTESSORI : { '@id': ESCOLA_ID },
+      ...(post.autor === 'maria-montessori' ? {} : { editor: autorDoPostJsonLd() }),
       publisher: { '@id': ESCOLA_ID },
       isPartOf: { '@type': 'Blog', '@id': `${SITE}/blog#blog`, name: 'Blog da Escola Montessoriana de Laranjeiras' },
     },

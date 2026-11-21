@@ -18,6 +18,12 @@ export interface BlogPostMeta {
    * cortado no Google.
    */
   seoTitle: string;
+  /**
+   * Autor do texto. Sem isso, Claudio Berbel (o Person de /sobre). 'maria-montessori' é o
+   * texto dela, traduzido, com apresentação da escola: o schema BlogPosting e a assinatura
+   * da página creditam Maria Montessori, não o fundador.
+   */
+  autor?: 'maria-montessori';
 }
 
 /**
@@ -148,6 +154,8 @@ const postsDaEquipe: BlogPostMeta[] = [
  * Lista do blog: os artigos da equipe e os textos de Maria Montessori com apresentação
  * (registro gerado em ./montessori), juntos e por data. São posts comuns, sem seção própria.
  */
-export const blogPosts: BlogPostMeta[] = [...postsDaEquipe, ...montessoriPosts].sort((a, b) =>
-  a.date < b.date ? 1 : a.date > b.date ? -1 : 0
-);
+export const blogPosts: BlogPostMeta[] = [
+  ...postsDaEquipe,
+  // O registro de ./montessori é gerado (gera.py): a marca de autoria entra aqui, não lá.
+  ...montessoriPosts.map((p): BlogPostMeta => ({ ...p, autor: 'maria-montessori' })),
+].sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0));

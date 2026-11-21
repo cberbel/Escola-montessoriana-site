@@ -109,7 +109,7 @@ export const Testimonials: React.FC = () => {
                 <VideoYouTube id={v.youtube} poster={v.poster} titulo={v.name} rotuloPlay="Assistir ao depoimento" />
               </div>
               <div className="mt-3 text-center">
-                <h4 className="font-serif text-lg text-white leading-tight">{v.name}</h4>
+                <h3 className="font-serif text-lg text-white leading-tight">{v.name}</h3>
                 {v.role && <p className="text-white/70 text-sm">{v.role}</p>}
               </div>
             </div>

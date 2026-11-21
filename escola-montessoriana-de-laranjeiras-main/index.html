@@ -57,6 +57,7 @@
     <title>Escola Montessoriana de Laranjeiras | Montessori de 9 meses a 11 anos</title>
     <meta name="description" content="Creche, pré-escola e Fundamental Montessori em Laranjeiras, de 9 meses a 11 anos, com inglês por imersão diária. A minutos do Flamengo, Catete e Cosme Velho." />
     <link rel="icon" type="image/png" href="/images/logo-escola.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <!-- Open Graph / prévia ao compartilhar (WhatsApp, redes sociais) -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Escola Montessoriana de Laranjeiras" />
@@ -210,11 +211,23 @@
         gtm.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-56ZSQTXF';
         document.head.appendChild(gtm);
 
-        // Meta Pixel
-        var fb = document.createElement('script');
-        fb.async = true;
-        fb.src = 'https://connect.facebook.net/en_US/fbevents.js';
-        primeiroScript.parentNode.insertBefore(fb, primeiroScript);
+        // Meta Pixel: baixa na primeira interacao (toque, rolagem, tecla) ou 4 s depois do
+        // load, o que vier primeiro. O fbevents.js travava a thread principal por ~370 ms
+        // logo na abertura (Lighthouse mobile, 21/11/2026). A fila do fbq ja existe no
+        // <head>: PageView e Contact feitos antes do download sao enviados quando ele chega.
+        var pixelCarregado = false;
+        var eventosPixel = ['pointerdown', 'touchstart', 'scroll', 'keydown'];
+        function carregarPixel() {
+          if (pixelCarregado) return;
+          pixelCarregado = true;
+          eventosPixel.forEach(function (ev) { window.removeEventListener(ev, carregarPixel); });
+          var fb = document.createElement('script');
+          fb.async = true;
+          fb.src = 'https://connect.facebook.net/en_US/fbevents.js';
+          primeiroScript.parentNode.insertBefore(fb, primeiroScript);
+        }
+        eventosPixel.forEach(function (ev) { window.addEventListener(ev, carregarPixel, { passive: true }); });
+        setTimeout(carregarPixel, 4000);
 
         // Google Ads + Google Analytics 4 (propriedade "site escola")
         // ATENÇÃO: o id da URL precisa ser o do GA4 (G-...), não o do Ads (AW-...).

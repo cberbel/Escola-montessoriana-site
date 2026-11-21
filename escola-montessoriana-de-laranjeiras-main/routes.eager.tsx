@@ -21,6 +21,8 @@ import { Agrupada3 } from './pages/landing/Agrupada3';
 import { CrecheLaranjeiras } from './pages/landing/CrecheLaranjeiras';
 import { CrecheFlamengo } from './pages/landing/CrecheFlamengo';
 import { CrecheBotafogo } from './pages/landing/CrecheBotafogo';
+import { CrecheCatete } from './pages/landing/CrecheCatete';
+import { CrecheCosmeVelho } from './pages/landing/CrecheCosmeVelho';
 import { MainEn } from './components/en/MainEn';
 import { MainFr } from './components/fr/MainFr';
 import { HomeFr } from './pages/fr/HomeFr';
@@ -63,6 +65,8 @@ export const pages: Pages = {
   CrecheLaranjeiras,
   CrecheFlamengo,
   CrecheBotafogo,
+  CrecheCatete,
+  CrecheCosmeVelho,
   MainEn,
   MainFr,
   HomeFr,
