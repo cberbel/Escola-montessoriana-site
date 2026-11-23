@@ -221,9 +221,9 @@ const rotasBase: RotaPrerender[] = [
   },
   {
     url: '/creche-cosme-velho',
-    title: 'Creche perto do Cosme Velho, a 10 min a pé | Escola Montessoriana',
+    title: 'Creche no Cosme Velho, a partir de 9 meses | Escola Montessoriana',
     description:
-      'Creche e berçário Montessori no fim da Rua das Laranjeiras, junto ao Cosme Velho: 7 minutos a pé da estação do Trem do Corcovado. A partir de 9 meses.',
+      'Creche e berçário Montessori no Cosme Velho, no trecho final da Rua das Laranjeiras: 7 minutos a pé da estação do Trem do Corcovado. A partir de 9 meses.',
     faq: faqCrecheCosmeVelho,
     lastmod: '2026-11-21',
   },

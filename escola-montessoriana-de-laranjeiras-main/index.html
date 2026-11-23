@@ -204,41 +204,51 @@
       window.addEventListener('load', function() {
         var primeiroScript = document.getElementsByTagName('script')[0];
 
-        // Google Tag Manager (carrega Clarity, tags de conversão etc.). Fora do caminho
-        // crítico: era o maior bloqueio da thread principal (gtag do Ads, ~370 ms no Moto G).
-        var gtm = document.createElement('script');
-        gtm.async = true;
-        gtm.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-56ZSQTXF';
-        document.head.appendChild(gtm);
+        // Tags de terceiros (Google Tag Manager, gtag do GA4/Ads e Meta Pixel): baixam na
+        // primeira interacao do visitante ou 5 s depois do load, o que vier primeiro.
+        // Motivo (Lighthouse mobile, 21 e 23/11/2026): GTM + gtag travavam a thread principal
+        // por ~900 ms e o Pixel por ~370 ms logo na abertura da pagina.
+        // Nada se perde: as filas (dataLayer, gtag, fbq), o init do Pixel e os config do
+        // GA4/Ads sao criados no <head>, entao PageView, cliques de WhatsApp e conversoes
+        // feitos antes do download ficam enfileirados e sao enviados quando as tags chegam.
+        // Toque e tecla baixam na hora (um clique no WhatsApp abre outra aba; a tag precisa
+        // estar a caminho). Rolagem espera a thread ficar livre, para nao travar o gesto.
+        // O GTM carrega tambem o Clarity e as tags de conversao.
+        // ATENCAO: o id da URL do gtag precisa ser o do GA4 (G-...), nao o do Ads (AW-...).
+        // Com o id do Ads, o gtag criava container so para o Ads e os eventos personalizados
+        // (whatsapp_click, generate_lead, schedule_visit) eram descartados. O Ads continua
+        // funcionando pelo gtag('config','AW-...') feito no <head>.
+        var tagsPedidas = false;
+        var eventosImediatos = ['pointerdown', 'touchstart', 'keydown'];
+        function baixarTags() {
+          var gtm = document.createElement('script');
+          gtm.async = true;
+          gtm.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-56ZSQTXF';
+          document.head.appendChild(gtm);
 
-        // Meta Pixel: baixa na primeira interacao (toque, rolagem, tecla) ou 4 s depois do
-        // load, o que vier primeiro. O fbevents.js travava a thread principal por ~370 ms
-        // logo na abertura (Lighthouse mobile, 21/11/2026). A fila do fbq ja existe no
-        // <head>: PageView e Contact feitos antes do download sao enviados quando ele chega.
-        var pixelCarregado = false;
-        var eventosPixel = ['pointerdown', 'touchstart', 'scroll', 'keydown'];
-        function carregarPixel() {
-          if (pixelCarregado) return;
-          pixelCarregado = true;
-          eventosPixel.forEach(function (ev) { window.removeEventListener(ev, carregarPixel); });
+          var g = document.createElement('script');
+          g.async = true;
+          g.src = 'https://www.googletagmanager.com/gtag/js?id=G-79X03K7F7F';
+          document.head.appendChild(g);
+
           var fb = document.createElement('script');
           fb.async = true;
           fb.src = 'https://connect.facebook.net/en_US/fbevents.js';
           primeiroScript.parentNode.insertBefore(fb, primeiroScript);
         }
-        eventosPixel.forEach(function (ev) { window.addEventListener(ev, carregarPixel, { passive: true }); });
-        setTimeout(carregarPixel, 4000);
-
-        // Google Ads + Google Analytics 4 (propriedade "site escola")
-        // ATENÇÃO: o id da URL precisa ser o do GA4 (G-...), não o do Ads (AW-...).
-        // Carregando com o id do Ads, o gtag criava container só para o Ads e os
-        // eventos personalizados (whatsapp_click, generate_lead, schedule_visit)
-        // eram descartados — chegava ao GA4 apenas o page_view espelhado.
-        // O Ads continua funcionando pelo gtag('config','AW-...') feito no <head>.
-        var g = document.createElement('script');
-        g.async = true;
-        g.src = 'https://www.googletagmanager.com/gtag/js?id=G-79X03K7F7F';
-        document.head.appendChild(g);
+        function pedirTags(agora) {
+          if (tagsPedidas) return;
+          tagsPedidas = true;
+          eventosImediatos.forEach(function (ev) { window.removeEventListener(ev, pedirAgora); });
+          window.removeEventListener('scroll', pedirNaFolga);
+          if (agora || !('requestIdleCallback' in window)) baixarTags();
+          else window.requestIdleCallback(baixarTags, { timeout: 1500 });
+        }
+        function pedirAgora() { pedirTags(true); }
+        function pedirNaFolga() { pedirTags(false); }
+        eventosImediatos.forEach(function (ev) { window.addEventListener(ev, pedirAgora, { passive: true }); });
+        window.addEventListener('scroll', pedirNaFolga, { passive: true });
+        setTimeout(pedirNaFolga, 5000);
 
         // Vercel Web Analytics (segunda fonte de acessos, sem depender de login no Google).
         // Servido pelo próprio domínio (sem terceiro, sem cookie); só funciona com o

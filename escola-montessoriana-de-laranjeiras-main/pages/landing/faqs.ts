@@ -135,7 +135,7 @@ export const faqCrecheCatete: ItemFAQ[] = [
 export const faqCrecheCosmeVelho: ItemFAQ[] = [
   {
     p: 'A Escola Montessoriana fica no Cosme Velho?',
-    r: 'O endereço oficial é Laranjeiras: Rua das Laranjeiras, 540, fundos, segundo andar. O número 540 fica no último trecho da rua, junto à divisa com o Cosme Velho, tanto que o Google Maps mostra o endereço como Cosme Velho.',
+    r: 'Sim. A escola fica na Rua das Laranjeiras, 540, fundos, segundo andar, no último trecho da rua, onde Laranjeiras encontra o Cosme Velho. O Google Maps mostra o endereço como Cosme Velho; pelos Correios, o CEP 22240-006 é de Laranjeiras.',
   },
   {
     p: 'Dá para ir a pé do Cosme Velho até a creche?',

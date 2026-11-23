@@ -7,9 +7,10 @@ import { faqCrecheCosmeVelho } from './faqs';
  * Página de SEO local para "creche cosme velho". Diferente das de Flamengo,
  * Botafogo e Catete, aqui a escola é VIZINHA de fato: o número 540 fica no
  * último trecho da Rua das Laranjeiras, junto à divisa, e o Google Maps
- * rotula o endereço como "Cosme Velho". Mesmo assim o endereço oficial é
- * Laranjeiras, e a página diz isso logo no começo: "somos vizinhos", nunca
- * "ficamos no Cosme Velho".
+ * rotula o endereço como "Cosme Velho". Em 23/11/2026 o Claudio disse que o
+ * bairro da escola é o Cosme Velho, e a página passou a dizer "no Cosme Velho".
+ * Ela também diz, sem esconder, que pelos Correios o CEP 22240-006 é de
+ * Laranjeiras (conferido no ViaCEP): por isso a escola aparece pelos dois nomes.
  *
  * Tudo conferido no Google Maps em 21/11/2026 (destino: R. das Laranjeiras,
  * 540 - Cosme Velho, 22240-006):
@@ -29,29 +30,29 @@ import { faqCrecheCosmeVelho } from './faqs';
  */
 export const CrecheCosmeVelho: React.FC = () => {
   usePageMeta(
-    'Creche perto do Cosme Velho, a 10 min a pé | Escola Montessoriana',
-    'Creche e berçário Montessori no fim da Rua das Laranjeiras, junto ao Cosme Velho: 7 minutos a pé da estação do Trem do Corcovado. A partir de 9 meses.'
+    'Creche no Cosme Velho, a partir de 9 meses | Escola Montessoriana',
+    'Creche e berçário Montessori no Cosme Velho, no trecho final da Rua das Laranjeiras: 7 minutos a pé da estação do Trem do Corcovado. A partir de 9 meses.'
   );
 
   return (
     <div className="bg-white">
       <LandingHero
-        eyebrow="Para famílias do Cosme Velho"
-        title="Do Cosme Velho até a creche, a pé"
-        subtitle="Nosso endereço é Laranjeiras: Rua das Laranjeiras, 540. Mas o número 540 fica na ponta da rua, encostado no Cosme Velho. Da estação do Trem do Corcovado são 500 metros de caminhada."
+        eyebrow="Creche no Cosme Velho"
+        title="Creche Montessori no Cosme Velho"
+        subtitle="Estamos na Rua das Laranjeiras, 540, no trecho final da rua, que no mapa já é Cosme Velho. Da estação do Trem do Corcovado são 500 metros de caminhada."
       />
 
-      <LandingSection heading="Vizinhos do Cosme Velho, com endereço em Laranjeiras" className="pt-10 sm:pt-14">
+      <LandingSection heading="No Cosme Velho, com endereço na Rua das Laranjeiras" className="pt-10 sm:pt-14">
         <P>
-          A escola fica na <strong>Rua das Laranjeiras, 540 (fundos, segundo andar)</strong>. O endereço oficial é
-          Laranjeiras, e é assim que nos apresentamos.
+          A escola fica na <strong>Rua das Laranjeiras, 540 (fundos, segundo andar)</strong>, no último trecho da
+          rua. É o pedaço em que Laranjeiras encontra o <strong>Cosme Velho</strong>.
         </P>
         <P>
-          Só que o 540 está no último trecho da rua, junto à divisa entre os dois bairros. No Google Maps, o mesmo
-          endereço aparece como “Cosme Velho”.
+          Por isso você nos encontra pelos dois nomes. No Google Maps, nosso endereço aparece como Cosme Velho. Pelos
+          Correios, o CEP 22240-006 é de Laranjeiras, e a escola leva Laranjeiras no nome.
         </P>
         <P>
-          Para quem mora no bairro, isso quer dizer uma coisa simples: somos vizinhos. A{' '}
+          Para quem mora no bairro, isso quer dizer uma coisa simples: a creche fica aqui mesmo. A{' '}
           <strong>Rua Cosme Velho</strong> desce direto até a escola. No caminho ela muda de nome e passa a se chamar
           Rua das Laranjeiras.
         </P>
