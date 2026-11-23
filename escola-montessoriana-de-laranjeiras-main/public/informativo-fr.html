@@ -610,13 +610,14 @@ section .pagenum{bottom:56px;}
     return r.gclid;
   }
   function detectar() {
-    if (params.get('gclid')) return 'google_ads';
+    if (params.get('gclid') || params.get('gbraid') || params.get('wbraid')) return 'google_ads';
     var utm = (params.get('utm_source') || '').toLowerCase();
     if (utm) {
       if (utm.indexOf('instagram') >= 0 || utm === 'ig' || utm === 'meta') return 'instagram';
       if (utm.indexOf('facebook') >= 0 || utm === 'fb') return 'facebook';
       if (utm.indexOf('bing') >= 0) return 'bing';
       if (utm.indexOf('google') >= 0) return 'google_organico';
+      if (utm.indexOf('youtube') >= 0 || utm === 'yt') return 'outro_site';
     }
     var ref = document.referrer;
     if (!ref) return 'informativo'; /* link compartilhado aberto direto: o informativo E o canal */
@@ -624,6 +625,9 @@ section .pagenum{bottom:56px;}
       var u = new URL(ref);
       if (u.hostname === location.hostname) return null; /* veio do site: origem ja decidida la */
       var h = u.hostname;
+      /* App Android: referrer android-app://pacote. So o app do Google e busca (23/11/2026). */
+      if (u.protocol === 'android-app:') { if (/googlequicksearchbox/.test(h)) return 'google_organico'; if (/instagram/.test(h)) return 'instagram'; if (/facebook/.test(h)) return 'facebook'; return 'outro_site'; }
+      if (/(^|\.)youtube\.com$/.test(h)) return 'outro_site';
       if (/(^|\.)google\./.test(h)) return 'google_organico';
       if (/(^|\.)instagram\.com$/.test(h)) return 'instagram';
       if (/(^|\.)(facebook\.com|fb\.me)$/.test(h)) return 'facebook';
@@ -635,7 +639,7 @@ section .pagenum{bottom:56px;}
     var detectada = detectar();
     if (!detectada) return;
     /* Pago promove: gclid (Google) ou utm_medium=paid (Meta). O resto respeita o 1o toque. */
-    var pago = !!params.get('gclid') || (params.get('utm_medium') || '').toLowerCase() === 'paid';
+    var pago = !!params.get('gclid') || !!params.get('gbraid') || !!params.get('wbraid') || (params.get('utm_medium') || '').toLowerCase() === 'paid';
     var atual = ler(K_ORIGEM);
     var valida = atual && atual.origem && (Date.now() - atual.ts <= VALIDADE);
     if (valida && !pago) return;
@@ -682,7 +686,10 @@ section .pagenum{bottom:56px;}
     if (!r || Date.now() - r.ts > VALIDADE) return null;
     return r;
   }
+  /* Robo que executa JS (crawler da Meta, Bytespider...) gravava linha a cada passada (23/11/2026). */
+  function ehRobo(){try{if(navigator.webdriver)return true;return /bot\/|crawler|spider|externalhit|externalagent|webindexer|externalfetcher|bytespider|google-safety|google-inspectiontool|mediapartners|adsbot|headlesschrome|lighthouse/i.test(navigator.userAgent||'')}catch(e){return false}}
   function registrarClique() {
+    if (ehRobo()) return;
     var gclid = obterGclid();
     var origem = obterOrigem();
     if (!gclid && !origem) return;

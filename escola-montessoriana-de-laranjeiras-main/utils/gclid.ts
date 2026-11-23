@@ -97,6 +97,32 @@ function gravarJson(chave: string, valor: unknown): void {
   }
 }
 
+/** Clique pago do Google: gclid, ou gbraid/wbraid (iOS, apps do Google). */
+function cliqueGooglePago(params: URLSearchParams): boolean {
+  return !!(params.get('gclid') || params.get('gbraid') || params.get('wbraid'));
+}
+
+/**
+ * Robô que executa o JavaScript da página. Medido nos logs do Supabase em
+ * 22/11/2026: ~70% das linhas do dia em cliques_anuncio vinham de robôs (crawler
+ * e indexador da Meta, Bytespider, Google-Safety, AdsBot, Ahrefs), todas como
+ * 'direto'. O GA4 já os descarta; aqui eles nem chegam ao banco.
+ * `bot/` (com barra) pega Googlebot/2.1, AhrefsBot/7.0 etc. sem pegar celulares
+ * da marca Cubot.
+ */
+const PADRAO_ROBO =
+  /bot\/|crawler|spider|externalhit|externalagent|webindexer|externalfetcher|bytespider|google-safety|google-inspectiontool|mediapartners|adsbot|headlesschrome|lighthouse/i;
+
+export function ehRobo(): boolean {
+  if (typeof navigator === 'undefined') return false;
+  try {
+    if (navigator.webdriver) return true;
+    return PADRAO_ROBO.test(navigator.userAgent || '');
+  } catch {
+    return false;
+  }
+}
+
 /**
  * Descobre de onde veio esta visita, olhando a URL e o `document.referrer`.
  *
@@ -109,8 +135,9 @@ function detectarOrigem(): Origem | null {
   if (typeof window === 'undefined') return null;
   const params = new URLSearchParams(window.location.search);
 
-  // 1. Anúncio é o sinal mais forte e o único pago: vence tudo.
-  if (params.get('gclid')) return 'google_ads';
+  // 1. Anúncio é o sinal mais forte e o único pago: vence tudo. No iPhone, clique
+  // vindo de app do Google chega com gbraid/wbraid no lugar do gclid (23/11/2026).
+  if (cliqueGooglePago(params)) return 'google_ads';
 
   // 2. UTM explícita, quando existir, vale mais que o referrer.
   const utm = (params.get('utm_source') || '').toLowerCase();
@@ -119,6 +146,9 @@ function detectarOrigem(): Origem | null {
     if (utm.includes('facebook') || utm === 'fb') return 'facebook';
     if (utm.includes('bing')) return 'bing';
     if (utm.includes('google')) return 'google_organico';
+    // Link da descrição dos Shorts (utm_source=youtube). Sem esta linha caía em
+    // 'direto' porque o app do YouTube não manda referrer (134 linhas em 3 semanas).
+    if (utm.includes('youtube') || utm === 'yt') return 'outro_site';
   }
 
   const ref = document.referrer;
@@ -133,6 +163,16 @@ function detectarOrigem(): Origem | null {
     }
 
     const h = url.hostname;
+    // App Android: o referrer vem como android-app://pacote. Só o app do Google é
+    // busca; YouTube (com.google.android.youtube), Gmail e afins caíam no regex de
+    // google e viravam 'google_organico'.
+    if (url.protocol === 'android-app:') {
+      if (/googlequicksearchbox/.test(h)) return 'google_organico';
+      if (/instagram/.test(h)) return 'instagram';
+      if (/facebook/.test(h)) return 'facebook';
+      return 'outro_site';
+    }
+    if (/(^|\.)youtube\.com$/.test(h)) return 'outro_site';
     if (/(^|\.)google\./.test(h)) return 'google_organico';
     if (/(^|\.)instagram\.com$/.test(h)) return 'instagram';
     if (/(^|\.)(facebook\.com|fb\.me)$/.test(h)) return 'facebook';
@@ -227,7 +267,7 @@ function definirOrigem(): void {
   // faria toda visita seguinte re-promover a origem como se fosse um clique novo.
   const params = new URLSearchParams(window.location.search);
   const pagoAgora =
-    !!params.get('gclid') ||
+    cliqueGooglePago(params) ||
     (!!params.get('fbclid') && (detectada === 'instagram' || detectada === 'facebook'));
   if (valida && !pagoAgora) return; // primeiro toque vence
 
@@ -301,6 +341,7 @@ export function capturarGclid(): void {
  * o site nem atrapalha o clique no WhatsApp.
  */
 async function registrarClique(): Promise<void> {
+  if (ehRobo()) return; // robô não é visita: não grava linha 'direto'
   const gclid = obterGclid();
   const origem = obterOrigem();
   if (!gclid && !origem) return; // sem storage ou sem sinal nenhum

@@ -266,13 +266,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   })();
   function obterC(){var r=ler(K_C);if(!r)return null;if(Date.now()-r.ts>VAL)return null;return r}
   function detectar(){
-    if(gclidUrl)return 'google_ads';
+    if(gclidUrl||params.get('gbraid')||params.get('wbraid'))return 'google_ads';
     var utm=(params.get('utm_source')||'').toLowerCase();
     if(utm){
       if(utm.indexOf('instagram')>=0||utm==='ig')return 'instagram';
       if(utm.indexOf('facebook')>=0||utm==='fb')return 'facebook';
       if(utm.indexOf('bing')>=0)return 'bing';
       if(utm.indexOf('google')>=0)return 'google_organico';
+      if(utm.indexOf('youtube')>=0||utm==='yt')return 'outro_site';
     }
     var ref=document.referrer;
     if(!ref)return 'direto';
@@ -280,6 +281,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       var u=new URL(ref);
       if(u.hostname===location.hostname){return u.pathname.indexOf('/informativo')===0?'informativo':null}
       var h=u.hostname;
+      // App Android: o referrer vem como android-app://pacote. So o app do Google e busca;
+      // YouTube, Gmail e afins nao podem cair no regex de google (23/11/2026).
+      if(u.protocol==='android-app:'){if(/googlequicksearchbox/.test(h))return 'google_organico';if(/instagram/.test(h))return 'instagram';if(/facebook/.test(h))return 'facebook';return 'outro_site';}
+      if(/(^|\.)youtube\.com$/.test(h))return 'outro_site';
       if(/(^|\.)google\./.test(h))return 'google_organico';
       if(/(^|\.)instagram\.com$/.test(h))return 'instagram';
       if(/(^|\.)(facebook\.com|fb\.me)$/.test(h))return 'facebook';
@@ -294,14 +299,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     // Clique pago sempre promove. O fbclid so promove quando a peca se identifica
     // como Meta: anuncio sem utm e sem referrer seria detectado como 'direto' e
     // apagaria uma origem boa que ja estava guardada.
-    var pagoAgora=!!gclidUrl||(!!fbclidUrl&&(det==='instagram'||det==='facebook'));
+    var pagoAgora=!!gclidUrl||!!params.get('gbraid')||!!params.get('wbraid')||(!!fbclidUrl&&(det==='instagram'||det==='facebook'));
     if(!valida||pagoAgora){var efetiva=(det!=='google_ads'&&obterG())?'google_ads':det;gravar(K_O,{origem:efetiva,ts:Date.now()});}
   }
   function obterG(){var r=ler(K_G);if(!r||!r.gclid)return null;if(Date.now()-r.ts>VAL)return null;return r.gclid}
   function obterO(){var r=ler(K_O);if(!r||!r.origem)return null;if(Date.now()-r.ts>VAL)return null;return r.origem}
   function novoRef(){var n=Math.random().toString(36).slice(2,8).toUpperCase();gravar(K_R,n);return n}
   function obterRef(){var e=ler(K_R);return e||novoRef()}
+  // Robo que executa JS (crawler da Meta, Bytespider, Google-Safety...) gravava uma linha
+  // 'direto' a cada passada: ~70% dos registros em 22/11/2026. Nao grava.
+  function ehRobo(){try{if(navigator.webdriver)return true;return /bot\/|crawler|spider|externalhit|externalagent|webindexer|externalfetcher|bytespider|google-safety|google-inspectiontool|mediapartners|adsbot|headlesschrome|lighthouse/i.test(navigator.userAgent||'')}catch(e){return false}}
   (function registrar(){
+    if(ehRobo())return;
     var g=obterG(),o=obterO();
     if(!g&&!o)return;
     // A peca entra na assinatura: sem isso, quem ja visitou pela bio e volta por um
