@@ -17,7 +17,7 @@ import {
   MONTESSORI_TRADICIONAL_TITLE,
   MONTESSORI_TRADICIONAL_DESCRIPTION,
 } from './pages/landing/MontessoriETradicional';
-import { faqCrecheLaranjeiras, faqCrecheFlamengo, faqCrecheBotafogo, faqCrecheCatete, faqCrecheCosmeVelho, faqMensalidade, type ItemFAQ } from './pages/landing/faqs';
+import { faqCrecheLaranjeiras, faqCrecheFlamengo, faqCrecheBotafogo, faqCrecheCatete, faqCrecheCosmeVelho, faqEscolaCosmeVelho, faqMensalidade, type ItemFAQ } from './pages/landing/faqs';
 
 export function render(url: string): string {
   return renderToString(
@@ -226,6 +226,14 @@ const rotasBase: RotaPrerender[] = [
       'Creche e berçário Montessori no Cosme Velho, no trecho final da Rua das Laranjeiras: 7 minutos a pé da estação do Trem do Corcovado. A partir de 9 meses.',
     faq: faqCrecheCosmeVelho,
     lastmod: '2026-11-21',
+  },
+  {
+    url: '/escola-cosme-velho',
+    title: 'Escola Montessori no início do Cosme Velho | Escola Montessoriana',
+    description:
+      'Escola Montessori no início do Cosme Velho, do berçário ao Fundamental. O endereço é Rua das Laranjeiras, 540, mas esse trecho da rua já é Cosme Velho.',
+    faq: faqEscolaCosmeVelho,
+    lastmod: '2026-11-23',
   },
   {
     url: '/agrupada-3',

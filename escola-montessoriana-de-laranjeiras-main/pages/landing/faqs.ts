@@ -155,6 +155,30 @@ export const faqCrecheCosmeVelho: ItemFAQ[] = [
   },
 ];
 
+/** Página /escola-cosme-velho. Distâncias iguais às de /creche-cosme-velho; idades iguais às de /turmas. */
+export const faqEscolaCosmeVelho: ItemFAQ[] = [
+  {
+    p: 'A Escola Montessoriana de Laranjeiras fica no Cosme Velho?',
+    r: 'Sim, no início do bairro. O endereço é Rua das Laranjeiras, 540, fundos, segundo andar, no trecho final da rua, que já é Cosme Velho: é assim que o Google Maps mostra o número 540. A estação do Trem do Corcovado fica a 500 metros.',
+  },
+  {
+    p: 'Por que o endereço diz Rua das Laranjeiras se a escola fica no Cosme Velho?',
+    r: 'Porque a Rua das Laranjeiras sobe cerca de 2 km desde as proximidades do Largo do Machado até a entrada do Cosme Velho, onde passa a se chamar Rua Cosme Velho. O número 540 fica nesse último trecho. Nos Correios, o CEP 22240-006 segue registrado como Laranjeiras.',
+  },
+  {
+    p: 'Dá para ir a pé do Cosme Velho até a escola?',
+    r: 'Sim. Pelo Google Maps, são 500 metros (7 minutos) da estação do Trem do Corcovado, 550 metros (7 minutos) da Praça São Judas Tadeu e 850 metros (10 minutos) do Largo do Boticário, em trajeto predominantemente plano.',
+  },
+  {
+    p: 'Até que idade a escola atende?',
+    r: 'Do berçário ao Ensino Fundamental, em três turmas de idades misturadas: Agrupada 1, de 9 meses a 3 anos; Agrupada 2, de 2 anos e meio a 6 anos; e Agrupada 3, de 7 a 12 anos.',
+  },
+  {
+    p: 'Qual é o horário da escola?',
+    r: 'Das 7h30 às 19h, de segunda a sexta. Há meio período (8h às 12h ou 13h às 17h), integral (8h às 17h), estendido (7h30 às 19h) e frequência reduzida em dias alternados.',
+  },
+];
+
 /** Página /mensalidade. Valor de partida e como ele é composto. */
 export const faqMensalidade: ItemFAQ[] = [
   {

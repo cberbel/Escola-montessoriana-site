@@ -23,6 +23,7 @@ import { CrecheFlamengo } from './pages/landing/CrecheFlamengo';
 import { CrecheBotafogo } from './pages/landing/CrecheBotafogo';
 import { CrecheCatete } from './pages/landing/CrecheCatete';
 import { CrecheCosmeVelho } from './pages/landing/CrecheCosmeVelho';
+import { EscolaCosmeVelho } from './pages/landing/EscolaCosmeVelho';
 import { MainEn } from './components/en/MainEn';
 import { MainFr } from './components/fr/MainFr';
 import { HomeFr } from './pages/fr/HomeFr';
@@ -67,6 +68,7 @@ export const pages: Pages = {
   CrecheBotafogo,
   CrecheCatete,
   CrecheCosmeVelho,
+  EscolaCosmeVelho,
   MainEn,
   MainFr,
   HomeFr,

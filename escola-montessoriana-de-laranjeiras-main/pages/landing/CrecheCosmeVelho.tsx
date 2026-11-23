@@ -158,6 +158,12 @@ export const CrecheCosmeVelho: React.FC = () => {
             conheça as turmas
           </Link>.
         </P>
+        <P>
+          Para a escola inteira, do berçário ao Ensino Fundamental, veja a página da{' '}
+          <Link to="/escola-cosme-velho" className="text-montessori-green font-semibold underline hover:no-underline">
+            escola no início do Cosme Velho
+          </Link>.
+        </P>
       </LandingSection>
 
       <LandingSection heading="Perguntas de quem mora no Cosme Velho">

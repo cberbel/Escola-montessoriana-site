@@ -26,6 +26,7 @@ export const pages: Pages = {
   CrecheBotafogo: lazy(() => import('./pages/landing/CrecheBotafogo').then((m) => ({ default: m.CrecheBotafogo }))),
   CrecheCatete: lazy(() => import('./pages/landing/CrecheCatete').then((m) => ({ default: m.CrecheCatete }))),
   CrecheCosmeVelho: lazy(() => import('./pages/landing/CrecheCosmeVelho').then((m) => ({ default: m.CrecheCosmeVelho }))),
+  EscolaCosmeVelho: lazy(() => import('./pages/landing/EscolaCosmeVelho').then((m) => ({ default: m.EscolaCosmeVelho }))),
   MainEn: lazy(() => import('./components/en/MainEn').then((m) => ({ default: m.MainEn }))),
   MainFr: lazy(() => import('./components/fr/MainFr').then((m) => ({ default: m.MainFr }))),
   HomeFr: lazy(() => import('./pages/fr/HomeFr').then((m) => ({ default: m.HomeFr }))),
