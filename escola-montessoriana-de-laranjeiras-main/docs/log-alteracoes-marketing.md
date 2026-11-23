@@ -16,6 +16,41 @@ Contêiner GTM: **GTM-56ZSQTXF** · Projeto Supabase: **ponto-escola-montessoria
 
 ---
 
+## 23/11/2026
+
+### Tags de terceiros só depois da primeira interação — 23/11 (commit `c2917a9`)
+
+O Claudio pediu o site mais rápido. No Lighthouse mobile da home, GTM + gtag travavam a
+página por cerca de 900 ms e o Meta Pixel por cerca de 370 ms logo na abertura.
+
+- **O que mudou** (`index.html`, bloco "Download das bibliotecas de tracking"): `gtm.js`,
+  `gtag/js` e `fbevents.js` deixaram de baixar no `load`. Agora baixam no primeiro toque ou
+  tecla (na hora), na primeira rolagem (quando a thread fica livre) ou 5 s depois do `load`,
+  o que vier primeiro. As filas (`dataLayer`, `gtag`, `fbq`) continuam criadas no `<head>`,
+  então PageView, `whatsapp_click` e a conversão do Ads feitos antes do download são
+  enviados quando as tags chegam. O Clarity vem pelo GTM e atrasa junto.
+- **Conferido no ar** (sem interação, navegador limpo): as três bibliotecas baixaram cerca
+  de 6 a 8 s depois de abrir a página e dispararam GA4 (`g/collect`), Ads (remarketing e
+  `ccm/collect`), Pixel (`facebook.com/tr`) e Clarity.
+- **Medição, antes e depois** (Lighthouse 12 mobile, home): nota 53 → 76 a 85; bloqueio
+  total 1.460 ms → 41 a 202 ms; LCP 5,2 s → 3,7 a 4,2 s. É laboratório: o teste termina
+  antes de as tags baixarem. Para o visitante, o ganho é a abertura da página.
+- **Efeito nos números**: quem sai em menos de ~6 s sem tocar na tela deixa de ser contado
+  no GA4, no Pixel e no Clarity. Sessões e page_views do GA4 devem cair um pouco a partir
+  de 23/11 e a taxa de engajamento deve subir; não comparar com semanas anteriores sem
+  lembrar disso. Conversões (clique no WhatsApp, formulário, agendamento) exigem toque,
+  então não mudam.
+- **Como desfazer**: `git revert c2917a9` desfaz também a página do Cosme Velho; para
+  desfazer só as tags, no `index.html` chamar `baixarTags()` direto dentro do `load`, no
+  lugar dos `addEventListener` e do `setTimeout(pedirNaFolga, 5000)`.
+
+### Indexação pedida no Search Console — 23/11
+
+Pedida a indexação de `/creche-cosme-velho` (ainda não estava no Google) e de
+`/creche-catete` (já estava). Não há o que desfazer.
+
+---
+
 ## 03/10/2026
 
 ### Teste "duas manhãs", versão 2: LP mais bonita, vídeo novo e botão "Assistir mais" — 03/10, ~23h
