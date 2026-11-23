@@ -18,6 +18,20 @@ Contêiner GTM: **GTM-56ZSQTXF** · Projeto Supabase: **ponto-escola-montessoria
 
 ## 23/11/2026
 
+### Perfil da Empresa no Google: descrição com "Creche" e "Cosme Velho" — 23/11
+
+O Claudio perguntou por que a escola não aparece em "creche cosme velho" ("nosso bairro é
+lá") e autorizou incluir o bairro na descrição do perfil. Só a primeira frase mudou; o
+resto ficou igual. Edição enviada às ~0h, em revisão do Google (costuma levar 10 minutos).
+
+- **Antes:** "Educação infantil trilíngue em Laranjeiras, para crianças de 9 meses a 11
+  anos, próximo de Cosme Velho, Flamengo e Catete."
+- **Depois:** "Creche e educação infantil trilíngue entre Laranjeiras e Cosme Velho, de 9
+  meses a 11 anos. Perto de Flamengo e Catete."
+- 733 de 750 caracteres. A palavra "Creche" não aparecia na descrição.
+- **Como desfazer:** buscar "Escola Montessoriana de Laranjeiras" no Google logado como
+  administrador → Editar perfil → Descrição → trocar a primeira frase pela de "Antes".
+
 ### Tags de terceiros só depois da primeira interação — 23/11 (commit `c2917a9`)
 
 O Claudio pediu o site mais rápido. No Lighthouse mobile da home, GTM + gtag travavam a
