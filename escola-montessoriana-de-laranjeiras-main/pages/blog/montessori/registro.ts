@@ -4,6 +4,17 @@ import type { BlogPostMeta } from '../posts';
 /** Textos de Maria Montessori com apresentação da escola: posts comuns do blog, publicados pela data. */
 export const montessoriPosts: BlogPostMeta[] = [
  {
+  "slug": "montessori-generalidades-sobre-o-meu-metodo",
+  "date": "2026-11-24",
+  "seoTitle": "O método Montessori resumido por ela mesma (1927)",
+  "title": "Generalidades sobre o meu método: o resumo de Montessori, do ambiente à concentração",
+  "excerpt": "Do ambiente que corrige sozinho à menina que repetiu mais de quarenta vezes o mesmo exercício: Montessori resume em três páginas os fundamentos do seu método.",
+  "image": "/images/montessori/sensorial-encaixes.jpg",
+  "imageAlt": "Criança concentrada trabalhando com os encaixes sólidos",
+  "dateDisplay": "24 de novembro de 2026",
+  "readingTime": "15 min"
+ },
+ {
   "slug": "montessori-periodos-sensiveis",
   "date": "2026-11-19",
   "seoTitle": "Períodos sensíveis, por Maria Montessori (1927)",
