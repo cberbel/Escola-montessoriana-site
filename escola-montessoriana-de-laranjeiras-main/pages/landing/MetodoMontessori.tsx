@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { LandingHero, LandingSection, LandingCTA, LandingImage, LandingImagePair, Highlight, Bullets, P, usePageMeta } from '../../components/landing/Landing';
+import { RegrasDeOuro, PerguntaOuro } from '../../components/landing/RegrasDeOuro';
 
 /** Área do currículo: título + texto + materiais reais usados na escola */
 const Area: React.FC<{ title: string; children: React.ReactNode; materials?: string }> = ({ title, children, materials }) => (
@@ -274,6 +275,26 @@ export const MetodoMontessori: React.FC = () => {
           Concentração profunda não se ensina — se protege.
         </p>
       </LandingSection>
+
+      <RegrasDeOuro
+        eyebrow="Como a nossa equipe trabalha"
+        heading="10 Regras de Ouro da Sala Montessori"
+        intro="Estas são as regras que toda a nossa equipe segue na sala, todos os dias."
+        regras={[
+          { titulo: "Não interrompa uma criança concentrada.", texto: "Se ela está trabalhando, preserve esse momento." },
+          { titulo: "Proteja a concentração dos outros.", texto: "Não permita que uma criança atrapalhe repetidamente o trabalho de outra." },
+          { titulo: "Abaixe-se para falar com a criança.", texto: "Converse na altura dela, com voz calma e respeitosa." },
+          { titulo: "Não faça pela criança o que ela acha que consegue fazer sozinha.", texto: "Ajude apenas o necessário e devolva a ação para ela." },
+          { titulo: "Observe antes de intervir.", texto: "Nem toda dificuldade precisa da ajuda imediata do adulto." },
+          { titulo: "Dê tempo para tentar, errar e corrigir.", texto: "Não mostre a solução cedo demais." },
+          { titulo: "Fale menos.", texto: "Dê instruções claras e breves. Depois, permita que a criança trabalhe." },
+          { titulo: "Evite elogios e correções constantes.", texto: "Não transforme o adulto na fonte permanente de aprovação." },
+          { titulo: "Respeite o ciclo de trabalho.", texto: "Sempre que possível, deixe a criança escolher, realizar, concluir e guardar." },
+          { titulo: "Promova autonomia.", texto: <>{"Antes de agir, pergunte-se:"}<PerguntaOuro>{"“Minha intervenção ajuda esta criança a precisar mais de mim ou menos de mim?”"}</PerguntaOuro></> },
+        ]}
+        resumoLabel="Em resumo"
+        resumo="Observe mais. Fale menos. Interrompa menos. Ajude somente o necessário. Proteja a concentração e a autonomia."
+      />
 
       <LandingSection heading="O que muda na criança">
         <Bullets

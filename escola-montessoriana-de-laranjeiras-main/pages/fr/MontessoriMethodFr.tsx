@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { LandingSection, LandingImage, LandingImagePair, Highlight, Bullets, P, usePageMeta } from '../../components/landing/Landing';
+import { RegrasDeOuro, PerguntaOuro } from '../../components/landing/RegrasDeOuro';
 import { LandingHeroFr, LandingCTAFr } from '../../components/landing/LandingFr';
 
 const Area: React.FC<{ title: string; children: React.ReactNode; materials?: string }> = ({ title, children, materials }) => (
@@ -281,6 +282,26 @@ export const MontessoriMethodFr: React.FC = () => {
           La concentration profonde ne s'enseigne pas — elle se protège.
         </p>
       </LandingSection>
+
+      <RegrasDeOuro
+        eyebrow="Comment travaille notre équipe"
+        heading="Les 10 règles d'or de l'ambiance Montessori"
+        intro="Voici les règles que toute notre équipe applique dans l'ambiance, chaque jour."
+        regras={[
+          { titulo: "N'interrompez pas un enfant concentré.", texto: "S'il travaille, préservez ce moment." },
+          { titulo: "Protégez la concentration des autres.", texto: "Ne laissez pas un enfant déranger sans cesse le travail d'un autre." },
+          { titulo: "Mettez-vous à la hauteur de l'enfant.", texto: "Parlez-lui à son niveau, d'une voix calme et respectueuse." },
+          { titulo: "Ne faites pas à la place de l'enfant ce qu'il pense pouvoir faire seul.", texto: "Aidez-le juste ce qu'il faut, puis laissez-le reprendre la main." },
+          { titulo: "Observez avant d'intervenir.", texto: "Toute difficulté ne demande pas l'aide immédiate de l'adulte." },
+          { titulo: "Laissez-lui le temps d'essayer, de se tromper et de se corriger.", texto: "Ne montrez pas la solution trop tôt." },
+          { titulo: "Parlez moins.", texto: "Donnez des consignes claires et brèves. Puis laissez l'enfant travailler." },
+          { titulo: "Évitez les compliments et les corrections permanents.", texto: "Ne faites pas de l'adulte la source constante d'approbation." },
+          { titulo: "Respectez le cycle de travail.", texto: "Autant que possible, laissez l'enfant choisir, réaliser, terminer et ranger." },
+          { titulo: "Favorisez l'autonomie.", texto: <>{"Avant d'agir, demandez-vous :"}<PerguntaOuro>{"« Mon intervention aide-t-elle cet enfant à avoir plus besoin de moi, ou moins besoin de moi ? »"}</PerguntaOuro></> },
+        ]}
+        resumoLabel="En résumé"
+        resumo="Observez plus. Parlez moins. Interrompez moins. Aidez juste ce qu'il faut. Protégez la concentration et l'autonomie."
+      />
 
       <LandingSection heading="Ce qui change chez l'enfant">
         <Bullets

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { LandingSection, LandingImage, LandingImagePair, Highlight, Bullets, P, usePageMeta } from '../../components/landing/Landing';
+import { RegrasDeOuro, PerguntaOuro } from '../../components/landing/RegrasDeOuro';
 import { LandingHeroEs, LandingCTAEs } from '../../components/landing/LandingEs';
 
 const Area: React.FC<{ title: string; children: React.ReactNode; materials?: string }> = ({ title, children, materials }) => (
@@ -279,6 +280,26 @@ export const MetodoMontessoriEs: React.FC = () => {
           La concentración profunda no se enseña — se protege.
         </p>
       </LandingSection>
+
+      <RegrasDeOuro
+        eyebrow="Cómo trabaja nuestro equipo"
+        heading="10 reglas de oro del salón Montessori"
+        intro="Estas son las reglas que todo nuestro equipo sigue en el salón, todos los días."
+        regras={[
+          { titulo: "No interrumpas a un niño concentrado.", texto: "Si está trabajando, cuida ese momento." },
+          { titulo: "Protege la concentración de los demás.", texto: "No permitas que un niño interrumpa una y otra vez el trabajo de otro." },
+          { titulo: "Agáchate para hablar con el niño.", texto: "Conversa a su altura, con voz tranquila y respetuosa." },
+          { titulo: "No hagas por el niño lo que él cree que puede hacer solo.", texto: "Ayuda solo lo necesario y devuélvele la acción." },
+          { titulo: "Observa antes de intervenir.", texto: "No toda dificultad necesita la ayuda inmediata del adulto." },
+          { titulo: "Dale tiempo para intentar, equivocarse y corregir.", texto: "No le muestres la solución demasiado pronto." },
+          { titulo: "Habla menos.", texto: "Da instrucciones claras y breves. Después, deja que el niño trabaje." },
+          { titulo: "Evita los elogios y las correcciones constantes.", texto: "No conviertas al adulto en la fuente permanente de aprobación." },
+          { titulo: "Respeta el ciclo de trabajo.", texto: "Siempre que sea posible, deja que el niño elija, realice, termine y guarde." },
+          { titulo: "Promueve la autonomía.", texto: <>{"Antes de actuar, pregúntate:"}<PerguntaOuro>{"“¿Mi intervención ayuda a este niño a necesitarme más o a necesitarme menos?”"}</PerguntaOuro></> },
+        ]}
+        resumoLabel="En resumen"
+        resumo="Observa más. Habla menos. Interrumpe menos. Ayuda solo lo necesario. Protege la concentración y la autonomía."
+      />
 
       <LandingSection heading="Qué cambia en el niño">
         <Bullets

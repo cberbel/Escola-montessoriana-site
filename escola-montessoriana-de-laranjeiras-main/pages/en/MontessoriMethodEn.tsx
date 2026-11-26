@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { LandingSection, LandingImage, LandingImagePair, Highlight, Bullets, P, usePageMeta } from '../../components/landing/Landing';
+import { RegrasDeOuro, PerguntaOuro } from '../../components/landing/RegrasDeOuro';
 import { LandingHeroEn, LandingCTAEn } from '../../components/landing/LandingEn';
 
 const Area: React.FC<{ title: string; children: React.ReactNode; materials?: string }> = ({ title, children, materials }) => (
@@ -278,6 +279,26 @@ export const MontessoriMethodEn: React.FC = () => {
           Deep concentration is not taught — it is protected.
         </p>
       </LandingSection>
+
+      <RegrasDeOuro
+        eyebrow="How our team works"
+        heading="10 Golden Rules of the Montessori Classroom"
+        intro="These are the rules our whole team follows in the classroom, every day."
+        regras={[
+          { titulo: "Don't interrupt a child who is concentrating.", texto: "If the child is working, protect that moment." },
+          { titulo: "Protect other children's concentration.", texto: "Don't let one child keep disrupting another child's work." },
+          { titulo: "Get down to the child's level.", texto: "Talk at their eye level, in a calm, respectful voice." },
+          { titulo: "Don't do for a child what they think they can do on their own.", texto: "Help only as much as needed, then hand the task back." },
+          { titulo: "Observe before stepping in.", texto: "Not every struggle needs an adult's help right away." },
+          { titulo: "Give them time to try, make mistakes and fix them.", texto: "Don't show the solution too soon." },
+          { titulo: "Talk less.", texto: "Give clear, short instructions. Then let the child work." },
+          { titulo: "Avoid constant praise and correction.", texto: "Don't make the adult the permanent source of approval." },
+          { titulo: "Respect the work cycle.", texto: "Whenever possible, let the child choose, do, finish and put away." },
+          { titulo: "Foster independence.", texto: <>{"Before you act, ask yourself:"}<PerguntaOuro>{"“Does my help make this child need me more, or need me less?”"}</PerguntaOuro></> },
+        ]}
+        resumoLabel="In short"
+        resumo="Observe more. Talk less. Interrupt less. Help only as much as needed. Protect concentration and independence."
+      />
 
       <LandingSection heading="What changes in the child">
         <Bullets
