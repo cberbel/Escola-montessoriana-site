@@ -1,5 +1,8 @@
 import type React from 'react';
 import { montessoriComponents } from './montessori/eager';
+import { MachadoCosmeVelho } from './MachadoCosmeVelho';
+import { PasseiosCosmeVelho } from './PasseiosCosmeVelho';
+import { HistoriaCosmeVelho } from './HistoriaCosmeVelho';
 import { LiberdadeDeEscolha } from './LiberdadeDeEscolha';
 import { EscolaMontessoriRio } from './EscolaMontessoriRio';
 import { EscolaPertoDeCasa } from './EscolaPertoDeCasa';
@@ -12,6 +15,9 @@ import { QuandoMatricular } from './QuandoMatricular';
 
 /** slug -> componente (imports estáticos; só o prerender usa). */
 export const blogPostComponents: Record<string, React.ComponentType> = {
+  'machado-de-assis-cosme-velho-capitu-cafe': MachadoCosmeVelho,
+  'passeios-com-criancas-cosme-velho': PasseiosCosmeVelho,
+  'cosme-velho-historia-do-bairro': HistoriaCosmeVelho,
   'liberdade-de-escolha-montessori': LiberdadeDeEscolha,
   'escola-montessori-rio-de-janeiro-como-avaliar': EscolaMontessoriRio,
   'erro-escolher-escola-perto-de-casa': EscolaPertoDeCasa,

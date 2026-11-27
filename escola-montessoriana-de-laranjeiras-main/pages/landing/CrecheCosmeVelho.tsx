@@ -166,6 +166,24 @@ export const CrecheCosmeVelho: React.FC = () => {
         </P>
       </LandingSection>
 
+      <LandingSection heading="O bairro em três leituras">
+        <P>
+          Escrevemos sobre o lugar onde a escola fica:{' '}
+          <Link to="/blog/machado-de-assis-cosme-velho-capitu-cafe" className="text-montessori-green font-semibold underline hover:no-underline">
+            Machado de Assis no Cosme Velho e o Capitu Café
+          </Link>
+          ,{' '}
+          <Link to="/blog/passeios-com-criancas-cosme-velho" className="text-montessori-green font-semibold underline hover:no-underline">
+            passeios com crianças pelo bairro
+          </Link>{' '}
+          e{' '}
+          <Link to="/blog/cosme-velho-historia-do-bairro" className="text-montessori-green font-semibold underline hover:no-underline">
+            a história do Cosme Velho
+          </Link>
+          .
+        </P>
+      </LandingSection>
+
       <LandingSection heading="Perguntas de quem mora no Cosme Velho">
         <FAQ itens={faqCrecheCosmeVelho} />
       </LandingSection>

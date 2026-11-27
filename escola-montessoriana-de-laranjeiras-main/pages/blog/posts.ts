@@ -33,6 +33,42 @@ export interface BlogPostMeta {
  */
 const postsDaEquipe: BlogPostMeta[] = [
   {
+    slug: 'machado-de-assis-cosme-velho-capitu-cafe',
+    date: '2026-11-27',
+    seoTitle: 'Machado de Assis no Cosme Velho e o Capitu Café',
+    title: 'Machado de Assis no Cosme Velho: a casa do Bruxo, o Capitu Café e a estátua',
+    excerpt:
+      'Machado viveu mais de duas décadas na Rua Cosme Velho e morreu ali. No lugar da casa, hoje, o Capitu Café, a placa da ABL e a estátua do escritor à mesa.',
+    image: '/images/cerebro/leitura-bebes.jpg',
+    imageAlt: 'Professora lendo um livro ilustrado para bebês atentos',
+    dateDisplay: '27 de novembro de 2026',
+    readingTime: '5 min',
+  },
+  {
+    slug: 'passeios-com-criancas-cosme-velho',
+    date: '2026-11-27',
+    seoTitle: 'Passeios com crianças no Cosme Velho',
+    title: 'Passeios com crianças no Cosme Velho: trem, estátua, largo e história a pé',
+    excerpt:
+      'O Trem do Corcovado, Machado de Assis de bronze no Capitu Café, o Largo do Boticário e a Bica da Rainha: um roteiro curto, quase todo a pé.',
+    image: '/images/natureza/patio-verde.jpg',
+    imageAlt: 'Crianças observando o verde no pátio da escola',
+    dateDisplay: '27 de novembro de 2026',
+    readingTime: '5 min',
+  },
+  {
+    slug: 'cosme-velho-historia-do-bairro',
+    date: '2026-11-27',
+    seoTitle: 'Cosme Velho: a história do bairro',
+    title: 'Cosme Velho: a história do bairro onde a Rua das Laranjeiras termina',
+    excerpt:
+      'De onde vem o nome, por que já se chamou Águas Férreas e quem morou ali: Machado de Assis, Portinari, o boticário da Família Real.',
+    image: '/images/natureza/grupo-natureza.jpg',
+    imageAlt: 'Educador e crianças com coroas de folhas diante do muro de pedra do pátio da escola',
+    dateDisplay: '27 de novembro de 2026',
+    readingTime: '4 min',
+  },
+  {
     slug: 'liberdade-de-escolha-montessori',
     date: '2026-09-30',
     seoTitle: 'Liberdade de escolha na Montessori: o dia da criança',
