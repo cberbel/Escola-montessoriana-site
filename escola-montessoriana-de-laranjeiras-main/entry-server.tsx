@@ -229,9 +229,9 @@ const rotasBase: RotaPrerender[] = [
   },
   {
     url: '/escola-cosme-velho',
-    title: 'Escola Montessori no início do Cosme Velho | Escola Montessoriana',
+    title: 'Escola infantil no Cosme Velho | Escola Montessoriana',
     description:
-      'Escola Montessori no início do Cosme Velho, do berçário ao Fundamental. O endereço é Rua das Laranjeiras, 540, mas esse trecho da rua já é Cosme Velho.',
+      'Escola infantil Montessori no início do Cosme Velho, de 9 meses ao Ensino Fundamental. Rua das Laranjeiras, 540, trecho que já é Cosme Velho.',
     faq: faqEscolaCosmeVelho,
     lastmod: '2026-11-23',
   },

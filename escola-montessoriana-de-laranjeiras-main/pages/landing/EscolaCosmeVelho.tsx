@@ -25,15 +25,15 @@ const linkCls = 'text-montessori-green font-semibold underline hover:no-underlin
 
 export const EscolaCosmeVelho: React.FC = () => {
   usePageMeta(
-    'Escola Montessori no início do Cosme Velho | Escola Montessoriana',
-    'Escola Montessori no início do Cosme Velho, do berçário ao Fundamental. O endereço é Rua das Laranjeiras, 540, mas esse trecho da rua já é Cosme Velho.'
+    'Escola infantil no Cosme Velho | Escola Montessoriana',
+    'Escola infantil Montessori no início do Cosme Velho, de 9 meses ao Ensino Fundamental. Rua das Laranjeiras, 540, trecho que já é Cosme Velho.'
   );
 
   return (
     <div className="bg-white">
       <LandingHero
         eyebrow="Escola no Cosme Velho"
-        title="Escola Montessori no início do Cosme Velho"
+        title="Escola infantil Montessori no início do Cosme Velho"
         subtitle="Nosso endereço é Rua das Laranjeiras, 540. Apesar do nome da rua, esse trecho final já é Cosme Velho: a estação do Trem do Corcovado fica a 500 metros."
       />
 
@@ -79,7 +79,7 @@ export const EscolaCosmeVelho: React.FC = () => {
         />
       </LandingSection>
 
-      <LandingSection heading="Do berçário ao Fundamental, no mesmo lugar">
+      <LandingSection heading="Da educação infantil ao Fundamental, no mesmo lugar">
         <P>
           A criança pode entrar bebê e seguir na mesma escola até o Ensino Fundamental. As turmas são de idades
           misturadas, como em toda escola Montessori:
