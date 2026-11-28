@@ -12,6 +12,7 @@ import {
   Loader2,
   CloudOff,
   Check,
+  Camera,
 } from 'lucide-react';
 import { AvisoAusencia as AvisoAusenciaDado, Batida, Funcionario } from './types';
 import { AvisoPonto } from './AvisoPonto';
@@ -214,6 +215,27 @@ export const PontoFuncionario: React.FC<{ modoCompartilhado?: boolean }> = ({ mo
           <Settings size={16} /> Admin
         </Link>
       </header>
+
+      {/* Claudio, 28/11/2026: "todas as professoras vão passar a fazer [a aprovação das fotos],
+          coloque essa aba do lado do aplicativo de ponto". A aprovação mora no Consultas (login
+          próprio); aqui fica a aba que leva até ela. Na estação compartilhada não aparece: lá o
+          login de uma pessoa ficaria aberto para a seguinte. */}
+      {!modoCompartilhado && (
+        <nav className="bg-white border-b border-black/10 flex text-sm" aria-label="Seções">
+          <span
+            aria-current="page"
+            className="flex-1 flex items-center justify-center gap-2 py-3 font-bold text-ponto-azul border-b-4 border-ponto-dourado"
+          >
+            <Clock size={18} /> Ponto
+          </span>
+          <a
+            href="https://consultas.escolamontessoriana.com.br/#fotos"
+            className="flex-1 flex items-center justify-center gap-2 py-3 font-bold text-ponto-escuro border-b-4 border-transparent hover:text-ponto-azul"
+          >
+            <Camera size={18} /> Fotos das famílias
+          </a>
+        </nav>
+      )}
 
       <main className="flex-grow flex flex-col items-center justify-center px-4 py-8">
         {!temConfig() ? (
